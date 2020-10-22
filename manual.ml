@@ -33,6 +33,13 @@ exception CategoryNotFound of string
 
 let categories = ref []
 
+let init_task name created_date due_date priority = {
+  name = name;
+  created_date = created_date;
+  due_date = due_date;
+  priority = priority;
+}
+
 (** Initialize an empty to-do list *)
 let empty_list cat_name = {
   name = cat_name;
@@ -45,16 +52,29 @@ let add_task t task = {
   task_list = task :: t.task_list
 }
 
+let add_new_cat new_cat =
+  let old_cats = categories in 
+  categories := (new_cat :: !old_cats)
 
-let add_task_to_category cat_name task = 
-  try add_task (List.find (fun x -> x.name = cat_name) (!categories)) task
+let find_category cat_name =
+  List.find (fun x -> x.name = cat_name) (!categories)
+
+let remove_cat t (lst : t list) = 
+  List.filter (fun x -> if x.name != t.name then true else false) lst
+
+
+let create_task cat_name task = 
+  try 
+    let new_list = add_task (find_category cat_name) task in 
+    let old_list = find_category cat_name in  
+    categories := (new_list :: (remove_cat old_list !categories))
   with Not_found -> begin
       let new_cat = add_task (empty_list cat_name) task in
-      ignore (new_cat :: !categories); new_cat
+      add_new_cat new_cat
     end
 
 (** [complete_task t task] is a updated completed to-do list [t] with [task]. *)
-(*val complete_task : t -> task -> t*)
+(*complete_task *)
 
 
 (** [delete_task t task] is an updated to-do list with [task] removed from [t] . *)
