@@ -1,4 +1,4 @@
-MODULES=manual main
+MODULES=manual main author
 OBJECTS=$(MODULES:=.cmo)
 MLS=$(MODULES:=.ml)
 MLIS=$(MODULES:=.mli)
