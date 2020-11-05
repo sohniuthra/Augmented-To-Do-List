@@ -1,4 +1,3 @@
-open Unix
 (** 
    Implementation of a manual to-do list.
 
@@ -34,15 +33,9 @@ let categories = ref []
 
 let access_cat () = !categories
 
-let todays_date = 
-  let time = Unix.localtime (Unix.time ()) in 
-  let (day, month, year) = (time.tm_mday, time.tm_mon, time.tm_year) in
-  string_of_int (month + 1) ^ "-" ^ string_of_int(day) ^ "-" ^ 
-  string_of_int (1900 + year)
-
-let init_task name due_date priority = {
+let init_task name created_date due_date priority = {
   name = name;
-  created_date = todays_date;
+  created_date = created_date;
   due_date = due_date;
   (* sorting by priority to be implemented *)
   priority = priority;

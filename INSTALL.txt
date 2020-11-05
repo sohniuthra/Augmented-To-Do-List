@@ -1,0 +1,7 @@
+To install the system, download it. Then, run make build and make clean.
+The system can be tested by running make test, which will run our test suite. 
+
+We used the following packages: ounit2, ANSITerminal
+
+The system should be interacted with in utop. Follow the directions that will 
+come up when you enter utop to use the to-do list. 
