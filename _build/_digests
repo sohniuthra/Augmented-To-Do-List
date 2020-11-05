@@ -1,0 +1,4 @@
+"Rule: ocaml dependencies ml (%=test )": "\"\240\182gQ\134\188\233\153Mf\160u8\231\228"
+"Rule: ocaml: ml -> cmo & cmi (%=test )": "\249\"\240\222\153\247W\221\215E\133\193\188N\018\243"
+"Resource: /Users/sohniuthra/Desktop/FALL 2020/CS 3110/todolist/test.ml": "\212\029\140\217\143\000\178\004\233\128\t\152\236\248B~"
+"Rule: ocaml: cmo* -> byte (%=test )": "\254\130\18044j(\139\173E\205\233\140\248\001\230"
