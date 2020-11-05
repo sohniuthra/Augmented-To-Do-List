@@ -16,7 +16,7 @@ type task = {
 
 (** The type representing a to-do list.  Type is [task list] *)
 type t = {
-  name : string;
+  c_name : string;
   task_list : task list; 
 }
 
@@ -32,27 +32,33 @@ exception CategoryNotFound of string
 
 let categories = ref []
 
+<<<<<<< HEAD
 let todays_date = 
   let time = Unix.localtime (Unix.time ()) in 
   let (day, month, year) = (time.tm_mday, time.tm_mon, time.tm_year) in
   string_of_int (month + 1) ^ "-" ^ string_of_int(day) ^ "-" ^ string_of_int(1900 + year)
 
 let init_task name due_date priority = {
+=======
+let access_cat = !categories
+
+let init_task name created_date due_date priority = {
+>>>>>>> 16ed0856d8d84d646e3144cbea31637e14634294
   name = name;
   created_date = todays_date;
   due_date = due_date;
+  (* sorting by priority to be implemented *)
   priority = priority;
 }
 
 (** Initialize an empty to-do list *)
 let empty_list cat_name = {
-  name = cat_name;
+  c_name = cat_name;
   task_list = [];
 }
 
-
 let add_task t task = {
-  name = t.name;
+  c_name = t.c_name;
   task_list = task :: t.task_list
 }
 
@@ -61,10 +67,10 @@ let add_new_cat new_cat =
   categories := (new_cat :: !old_cats)
 
 let find_category cat_name =
-  List.find (fun x -> x.name = cat_name) (!categories)
+  List.find (fun x -> x.c_name = cat_name) (!categories)
 
 let remove_cat t (lst : t list) = 
-  List.filter (fun x -> if x.name != t.name then true else false) lst
+  List.filter (fun x -> if x.c_name != t.c_name then true else false) lst
 
 
 let create_task cat_name task = 
