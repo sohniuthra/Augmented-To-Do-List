@@ -74,9 +74,20 @@ let find_category cat_name =
 let remove_cat t (lst : t list) = 
   List.filter (fun x -> if x.c_name != t.c_name then true else false) lst
 
+(* let rec sort_list_helper cat_lst = 
+   match cat_lst with
+   | [] -> acc
+   | task :: lst -> if task.priority *)
 
-let create_task cat_name name created_date due_date priority= 
-  let task = init_task name created_date due_date priority in
+(* two options for sorting...every time we create a task we can sort list or 
+   insert it in a sorted order kinda lke a3..*)
+let sort_list cat_name = 
+  let cat = find_category cat_name in
+  List.rev 
+    (List.stable_sort compare (List.map (fun x -> x.priority) cat.task_list))
+
+let create_task cat_name name due_date priority= 
+  let task = init_task name due_date priority in
   try 
     let new_list = add_task (find_category cat_name) task in 
     let old_list = find_category cat_name in  

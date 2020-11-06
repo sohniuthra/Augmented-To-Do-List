@@ -59,7 +59,7 @@ module CarList : Automatic = struct
   exception UnknownTask of task
 
   let make_auto =
-    failwith "rose's unimplemented"
+    failwith "rose's unimplemented <3"
 
   let access_cat =
     failwith "rose's unimplemented"

@@ -1,3 +1,4 @@
+open Unix
 (** 
    Implementation of a manual to-do list.
 
@@ -33,9 +34,15 @@ let categories = ref []
 
 let access_cat () = !categories
 
-let init_task name created_date due_date priority = {
+let todays_date = 
+  let time = Unix.localtime (Unix.time ()) in 
+  let (day, month, year) = (time.tm_mday, time.tm_mon, time.tm_year) in
+  string_of_int (month + 1) ^ "-" ^ string_of_int(day) ^ "-" ^ 
+  string_of_int (1900 + year)
+
+let init_task name due_date priority = {
   name = name;
-  created_date = created_date;
+  created_date = todays_date;
   due_date = due_date;
   (* sorting by priority to be implemented *)
   priority = priority;
@@ -79,8 +86,8 @@ let sort_list cat_name =
   List.rev 
     (List.stable_sort compare (List.map (fun x -> x.priority) cat.task_list))
 
-let create_task cat_name name created_date due_date priority = 
-  let task = init_task name created_date due_date priority in
+let create_task cat_name name due_date priority= 
+  let task = init_task name due_date priority in
   try 
     let new_list = add_task (find_category cat_name) task in 
     let old_list = find_category cat_name in  
@@ -89,6 +96,8 @@ let create_task cat_name name created_date due_date priority =
       let new_cat = add_task (empty_list cat_name) task in
       add_new_cat new_cat
     end
+
+
 
 (* TO BE IMPLEMENTED!!!! *)
 (** [complete_task t task] is a updated completed to-do list [t] with [task]. *)

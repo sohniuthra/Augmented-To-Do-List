@@ -34,12 +34,18 @@ val init_todolist : string -> task list -> t
     [cat_name]. *)
 val empty_list : string -> t
 
-(** [create_task cat_name name created_date due_date priority] updates the to-do
-    list with name [cat_name] with the new task [name created_date due_date
-     priority]. If category name [cat_name] does not already exist, a new 
-     category with [cat_name] is created with task 
-     [name created_date due_date priority] in the task list. *)
-val create_task : string -> string -> string -> string -> int -> unit 
+(** [sort_list cat_name] sorts a to-do list with category [name] by priority
+    of tasks  *)
+val sort_list : string -> unit
+
+(** [sort_task task cat_name] inserts a task into a sorted list - needed? *)
+
+(** [create_task cat_name name due_date priority] updates the to-do
+    list with name [cat_name] with the new task [name due_date priority]. 
+    If category name [cat_name] does not already exist, a new category with 
+    [cat_name] is created with task [name created_date due_date priority] 
+    in the task list. *)
+val create_task : string -> string -> string -> int -> unit 
 
 val access_cat : unit -> t list
 

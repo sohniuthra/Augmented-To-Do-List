@@ -24,7 +24,7 @@ exception CategoryNotFound of string
 (** [init_task name created_date due_date priority] initializes a task with 
     name [name], created date [created_date], due date [due_date], and priority 
     [priority] *)
-val init_task : string -> string -> string -> int -> task
+val init_task : string -> string -> int -> task
 
 (** [init_todolist name task_list] initializes a to-do list with name [name] 
     and task list [lst]. *)
