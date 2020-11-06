@@ -72,9 +72,12 @@ let remove_cat t (lst : t list) =
    | [] -> acc
    | task :: lst -> if task.priority *)
 
+(* two options for sorting...every time we create a task we can sort list or 
+   insert it in a sorted order kinda lke a3..*)
 let sort_list cat_name = 
   let cat = find_category cat_name in
-  List.stable_sort compare (List.map (fun x -> x.priority) cat.task_list)
+  List.rev 
+    (List.stable_sort compare (List.map (fun x -> x.priority) cat.task_list))
 
 let create_task cat_name name created_date due_date priority = 
   let task = init_task name created_date due_date priority in
@@ -86,8 +89,6 @@ let create_task cat_name name created_date due_date priority =
       let new_cat = add_task (empty_list cat_name) task in
       add_new_cat new_cat
     end
-
-
 
 (* TO BE IMPLEMENTED!!!! *)
 (** [complete_task t task] is a updated completed to-do list [t] with [task]. *)
