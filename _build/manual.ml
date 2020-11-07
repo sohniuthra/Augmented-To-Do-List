@@ -1,4 +1,5 @@
 open Unix
+
 (** 
    Implementation of a manual to-do list.
 
@@ -74,17 +75,27 @@ let find_category cat_name =
 let remove_cat t (lst : t list) = 
   List.filter (fun x -> if x.c_name != t.c_name then true else false) lst
 
-(* let rec sort_list_helper cat_lst = 
-   match cat_lst with
-   | [] -> acc
-   | task :: lst -> if task.priority *)
+(* compare function for two tasks based on priority *)
+let priority_compare t1 t2 = 
+  if t1.priority < t2.priority then -1 else 
+  if t1.priority > t2.priority then 1 else 0
+
+let rec sort_list_helper task_lst acc =
+  match task_lst with
+  | [] -> []
+  | task :: [] -> acc @ [task]
+  | task1 :: task2 :: lst -> begin if priority_compare task1 task2 = -1
+      then acc @ [task2] @ [task1]
+      else if priority_compare task1 task2 = 1 
+      then acc @ [task1] @ [task2] else sort_list_helper (task2 :: lst) acc
+    end
 
 (* two options for sorting...every time we create a task we can sort list or 
    insert it in a sorted order kinda lke a3..*)
 let sort_list cat_name = 
   let cat = find_category cat_name in
   List.rev 
-    (List.stable_sort compare (List.map (fun x -> x.priority) cat.task_list))
+    (List.stable_sort priority_compare cat.task_list)
 
 let create_task cat_name name due_date priority= 
   let task = init_task name due_date priority in
@@ -101,8 +112,9 @@ let remove_task t task = failwith "to be implemented"
 
 (** [complete_task t task] is a updated completed to-do list [t] with [task]. *)
 let complete_task t task =
-  let rem = remove_task t task in
-  create_task "Completed" task.name task.due_date task.priority
+  failwith "types don't match mli"
+(* let rem = remove_task t task in
+   create_task "Completed" task.name task.due_date task.priority *)
 
 
 (** [delete_task t task] is an updated to-do list with [task] removed from [t] 

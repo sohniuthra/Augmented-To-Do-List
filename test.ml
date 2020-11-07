@@ -43,8 +43,8 @@ open Manual
 let create_task_test name cat_name task_name due_date priority 
     expected_output = 
   name >:: (fun _ -> 
-      let expected = create_task cat_name task_name due_date priority;
-        (access_cat ()) in 
+      let expected = create_task cat_name task_name due_date 
+          priority; (access_cat ()) in 
       assert_equal expected_output (expected))
 
 let task1 = init_task "watch lecture" "10/28/20" 2

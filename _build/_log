@@ -1,20 +1,2 @@
 ### Starting build.
-# Target: manual.mli.depends, tags: { package(ANSITerminal), package(ounit2), extension:mli, file:manual.mli, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules manual.mli > manual.mli.depends
-# Target: manual.cmi, tags: { package(ANSITerminal), package(ounit2), byte, compile, extension:mli, file:manual.mli, interf, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -o manual.cmi manual.mli
-# Target: manual.ml.depends, tags: { package(ANSITerminal), package(ounit2), extension:ml, file:manual.ml, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules manual.ml > manual.ml.depends
-# Target: manual.cmo, tags: { package(ANSITerminal), package(ounit2), byte, compile, extension:cmo, extension:ml, file:manual.cmo, file:manual.ml, implem, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -o manual.cmo manual.ml
-+ ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -o manual.cmo manual.ml
-File "manual.ml", line 1:
-Error: The implementation manual.ml does not match the interface manual.cmi:
-       Values do not match:
-         val sort_list : string -> int list
-       is not included in
-         val sort_list : string -> unit
-       File "manual.mli", line 39, characters 0-30: Expected declaration
-       File "manual.ml", line 84, characters 4-13: Actual declaration
-Command exited with code 2.
 # Compilation unsuccessful.

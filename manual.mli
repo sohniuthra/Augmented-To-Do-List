@@ -36,7 +36,7 @@ val empty_list : string -> t
 
 (** [sort_list cat_name] sorts a to-do list with category [name] by priority
     of tasks  *)
-val sort_list : string -> unit
+val sort_list : string -> task list
 
 (** [sort_task task cat_name] inserts a task into a sorted list - needed? *)
 
