@@ -45,7 +45,6 @@ let init_task name due_date priority = {
   name = name;
   created_date = todays_date;
   due_date = due_date;
-  (* sorting by priority to be implemented *)
   priority = priority;
 }
 

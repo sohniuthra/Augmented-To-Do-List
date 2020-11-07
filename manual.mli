@@ -21,7 +21,7 @@ exception InvalidTask
 (** Raised when a category is not found. *)
 exception CategoryNotFound of string
 
-(** [init_task name created_date due_date priority] initializes a task with 
+(** [init_task name due_date priority] initializes a task with 
     name [name], created date [created_date], due date [due_date], and priority 
     [priority] *)
 val init_task : string -> string -> int -> task
@@ -48,9 +48,6 @@ val sort_list : string -> task list
 val create_task : string -> string -> string -> int -> unit 
 
 val access_cat : unit -> t list
-
-
-
 
 (** [complete_task t task] is a updated completed to-do list [t] with [task]. *)
 val complete_task : t -> task -> t
