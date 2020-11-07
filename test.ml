@@ -40,7 +40,7 @@ open Manual
       (* the [printer] tells OUnit how to convert the output to a string *)
       assert_equal expected_output (start_room adv) ~printer:String.escaped) *)
 
-let create_task_test name cat_name task_name created_date due_date priority 
+let create_task_test name cat_name task_name due_date priority 
     expected_output = 
   name >:: (fun _ -> 
       let expected = create_task cat_name task_name created_date due_date 
