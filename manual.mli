@@ -51,14 +51,14 @@ val access_cat : unit -> t list
 
 
 
-(*
+
 (** [complete_task t task] is a updated completed to-do list [t] with [task]. *)
 val complete_task : t -> task -> t
 
 (** [delete_task t task] is an updated to-do list with [task] removed from 
-[t].*)
+    [t].*)
 val delete_task : t -> task -> t 
-*)
+
 
 
 

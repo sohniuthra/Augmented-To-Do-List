@@ -97,17 +97,17 @@ let create_task cat_name name due_date priority=
       add_new_cat new_cat
     end
 
+let remove_task t task = failwith "to be implemented"
 
-
-(* TO BE IMPLEMENTED!!!! *)
 (** [complete_task t task] is a updated completed to-do list [t] with [task]. *)
-(*complete_task *)
+let complete_task t task =
+  let rem = remove_task t task in
+  create_task "Completed" task.name task.due_date task.priority
 
 
 (** [delete_task t task] is an updated to-do list with [task] removed from [t] 
     . *)
-(*val delete_task : t -> task -> t
-
-  let new_cat *)
+let delete_task t task =
+  remove_task t task
 
 
