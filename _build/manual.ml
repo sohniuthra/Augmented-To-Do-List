@@ -38,7 +38,7 @@ let access_cat () = !categories
 let todays_date = 
   let time = Unix.localtime (Unix.time ()) in 
   let (day, month, year) = (time.tm_mday, time.tm_mon, time.tm_year) in
-  string_of_int (month + 1) ^ "-" ^ string_of_int(day) ^ "-" ^ 
+  string_of_int (month + 1) ^ "/" ^ string_of_int(day) ^ "/" ^ 
   string_of_int (1900 + year)
 
 let init_task name due_date priority = {
