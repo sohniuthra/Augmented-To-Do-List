@@ -56,6 +56,10 @@ val complete_task : t -> task -> t
     [t].*)
 val delete_task : t -> task -> t 
 
+(** [to_list cat_name] is a list containing the same elements and the same 
+    category name [cat_name] as the category with name [cat_name].*)
+val to_list : string ->  string list
+
 
 
 

@@ -57,7 +57,6 @@ module type Automatic = sig
   val change_due : t -> task -> string -> unit
 
 end
-
 (** Module representation of a to-do list with  *)
 
 module CarList : Automatic = struct
@@ -113,8 +112,7 @@ module CarList : Automatic = struct
   let remove_cat t (lst : t list) = 
     List.filter (fun x -> if x.c_name != t.c_name then true else false) lst
 
-
-  let make_auto () =
+  let car_list () = 
     let init_list = empty_list "Car Tasks" in 
     let change_oil = add_task init_list (init_task "Change Oil" "TBD" 1) in 
     let change_steering = add_task change_oil (init_task "Change Steering Fluid" "TBD" 2) in 
@@ -125,8 +123,59 @@ module CarList : Automatic = struct
     let radiator = add_task battery (init_task "Change radiator fluid" "TBD" 7) in
     add_new_cat radiator; add_new_cat (empty_list "Completed Tasks")
 
-  let access_cat () = !categories
+  let school_list () =
+    let init_list = empty_list "School Tasks" in 
+    let math_pset = add_task init_list (init_task "Complete Math Problem Set" "TBD" 1) in 
+    let write_essay = add_task math_pset(init_task "Write Essay" "TBD" 2) in 
+    let biology_lab = add_task write_essay (init_task "Finish Biology Lab" "TBD" 3) in
+    let meet_professor = add_task biology_lab (init_task "Meet with Professor" "TBD" 4) in
+    let omm = add_task meet_professor (init_task "Fill out OMM" "TBD" 5) in
+    let lecture = add_task omm (init_task "Watch CS 3110 Lecture Videos" "TBD" 6) in 
+    let plan = add_task lecture (init_task "Plan for Pre-Enroll" "TBD" 7) in
+    add_new_cat plan
 
+  let household_list () = 
+    let init_list = empty_list "Household Tasks" in 
+    let mop_floor = add_task init_list (init_task "Mop Kitchen Floor" "TBD" 1) in 
+    let vacuum = add_task mop_floor (init_task "Vacuum the Rugs" "TBD" 2) in 
+    let dishes = add_task vacuum (init_task "Wash the Dishes" "TBD" 3) in
+    let cook = add_task dishes (init_task "Cook Dinner" "TBD" 4) in
+    let mow = add_task cook (init_task "Mow the Lawn" "TBD" 5) in
+    let dog = add_task mow (init_task "Feed the Dog" "TBD" 6) in 
+    let laundry = add_task dog (init_task "Do the Laundry" "TBD" 7) in
+    add_new_cat laundry
+
+  let shopping_list () = 
+    let init_list = empty_list "Shopping Tasks" in 
+    let groceries = add_task init_list (init_task "Order Groceries" "TBD" 1) in 
+    let cake = add_task groceries (init_task "Buy Cake for Melissa's Birthday" "TBD" 2) in 
+    let dress = add_task cake (init_task "Find Dress for Formal" "TBD" 3) in
+    let winter = add_task dress (init_task "Buy Essentials for Ithaca Winter" "TBD" 4) in
+    let shoes = add_task winter (init_task "Buy new Nike Sneakers" "TBD" 5) in
+    let lightbulbs = add_task shoes (init_task "Get new lightbulbs to replace current ones" "TBD" 6) in 
+    let phone = add_task lightbulbs (init_task "Get New iPhone 12 Pro Max" "TBD" 7) in
+    add_new_cat phone
+
+
+  let pandemic_list () = 
+    let init_list = empty_list "Pandemic Tasks" in 
+    let sanitizer = add_task init_list (init_task "Buy Hand Sanitizer" "TBD" 1) in 
+    let spray = add_task sanitizer (init_task "Buy Disinfectant Spray" "TBD" 2) in 
+    let wipe = add_task spray (init_task "Wipe down surfaces" "TBD" 3) in
+    let masks = add_task wipe (init_task "Make Masks" "TBD" 4) in
+    let tests = add_task masks (init_task "Get tested" "TBD" 5) in
+    let daily_check = add_task tests (init_task "Complete Daily Check" "TBD" 6) in 
+    let flight = add_task daily_check (init_task "Cancel flights" "TBD" 7) in
+    add_new_cat flight
+
+  let make_auto () =
+    car_list (); 
+    school_list (); 
+    household_list (); 
+    shopping_list (); 
+    pandemic_list ()
+
+  let access_cat () = !categories
 
   let delete_task t task =
     let new_task_list = List.filter (fun x -> x.name <> task.name) t.task_list in 

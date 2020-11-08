@@ -1,16 +1,26 @@
 ### Starting build.
-# Target: test.ml.depends, tags: { package(ANSITerminal), package(ounit2), debug, extension:ml, file:test.ml, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules test.ml > test.ml.depends
-# Target: manual.mli.depends, tags: { package(ANSITerminal), package(ounit2), debug, extension:mli, file:manual.mli, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules manual.mli > manual.mli.depends # cached
-# Target: manual.cmi, tags: { package(ANSITerminal), package(ounit2), byte, compile, debug, extension:mli, file:manual.mli, interf, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -o manual.cmi manual.mli # cached
-# Target: test.cmo, tags: { package(ANSITerminal), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:test.cmo, file:test.ml, implem, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -o test.cmo test.ml
-# Target: manual.ml.depends, tags: { package(ANSITerminal), package(ounit2), debug, extension:ml, file:manual.ml, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package ounit2 -package ANSITerminal -modules manual.ml > manual.ml.depends # cached
-# Target: manual.cmo, tags: { package(ANSITerminal), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:manual.cmo, file:manual.ml, implem, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -o manual.cmo manual.ml # cached
-# Target: test.byte, tags: { package(ANSITerminal), package(ounit2), byte, debug, dont_link_with, extension:byte, file:test.byte, link, ocaml, program, quiet, traverse }
-ocamlfind ocamlc -linkpkg -g -package ounit2 -package ANSITerminal manual.cmo test.cmo -o test.byte
+# Target: test.ml.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), debug, extension:ml, file:test.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules test.ml > test.ml.depends
+# Target: manual.mli.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), debug, extension:mli, file:manual.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules manual.mli > manual.mli.depends
+# Target: manual.cmi, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, debug, extension:mli, file:manual.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -package graphics -o manual.cmi manual.mli
+# Target: test.cmo, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:test.cmo, file:test.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -package graphics -o test.cmo test.ml
++ ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -package graphics -o test.cmo test.ml
+File "test.ml", line 94, characters 21-39:
+94 |       let expected = sort_list cat_name; (access_cat ()) in 
+                          ^^^^^^^^^^^^^^^^^^
+Warning 10: this expression should have type unit.
+# Target: manual.ml.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), debug, extension:ml, file:manual.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules manual.ml > manual.ml.depends
+# Target: manual.cmo, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:manual.cmo, file:manual.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -package graphics -o manual.cmo manual.ml
++ ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -package graphics -o manual.cmo manual.ml
+File "manual.ml", line 122, characters 6-9:
+122 |   let rem = remove_task t.task_list task [] in
+            ^^^
+Warning 26: unused variable rem.
+# Target: test.byte, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, debug, dont_link_with, extension:byte, file:test.byte, link, ocaml, program, quiet, traverse }
+ocamlfind ocamlc -linkpkg -g -package ounit2 -package ANSITerminal -package graphics manual.cmo test.cmo -o test.byte
 # Compilation successful.

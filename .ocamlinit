@@ -1,4 +1,4 @@
-
+#require "graphics";;
 #require "ounit2";;
 #require "ANSITerminal";;
 #use "manual.ml";;

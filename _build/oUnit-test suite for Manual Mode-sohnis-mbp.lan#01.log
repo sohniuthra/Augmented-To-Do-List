@@ -1,0 +1,7 @@
+2020-11-08T03:44:42+00:00 sohnis-mbp.lan#01 I: Start test test suite for Manual Mode:0:adding task1 to General category.
+2020-11-08T03:44:42+00:00 sohnis-mbp.lan#01 E: Test test suite for Manual Mode:0:adding task1 to General category has failed.
+2020-11-08T03:44:42+00:00 sohnis-mbp.lan#01 E: not equal in test test suite for Manual Mode:0:adding task1 to General category.
+2020-11-08T03:44:42+00:00 sohnis-mbp.lan#01 E: Raised at file "src/lib/ounit2/advanced/oUnitAssert.ml", line 45, characters 8-27
+2020-11-08T03:44:42+00:00 sohnis-mbp.lan#01 E: Called from file "src/lib/ounit2/advanced/oUnitRunner.ml", line 83, characters 13-26
+2020-11-08T03:44:42+00:00 sohnis-mbp.lan#01 E: 
+2020-11-08T03:44:42+00:00 sohnis-mbp.lan#01 I: End test test suite for Manual Mode:0:adding task1 to General category.

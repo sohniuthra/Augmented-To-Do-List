@@ -1,5 +1,5 @@
 open Unix
-
+(* open Graphics *)
 (** 
    Implementation of a manual to-do list.
 
@@ -107,18 +107,37 @@ let create_task cat_name name due_date priority=
       add_new_cat new_cat
     end
 
-let remove_task t task = failwith "to be implemented"
+(** [remove_task tsklst task nlst] returns a new task list without [task] *)
+let rec remove_task tsklst task nlst = 
+  match tsklst with
+  | [] -> nlst 
+  | h::t -> if h = task then remove_task t task nlst 
+    else remove_task t task (h::nlst)
 
 (** [complete_task t task] is a updated completed to-do list [t] with [task]. *)
 let complete_task t task =
-  failwith "types don't match mli"
-(* let rem = remove_task t task in
-   create_task "Completed" task.name task.due_date task.priority *)
+  (*let rem = remove_task t.task_list task [] in
+    let created = create_task "Completed" task.name task.due_date task.priority in
+    find_category "Completed"*)
+  let rem = remove_task t.task_list task [] in
+  create_task "Completed" task.name task.due_date task.priority; 
+  find_category "Completed"
 
 
-(** [delete_task t task] is an updated to-do list with [task] removed from [t] 
-    . *)
+(** [delete_task t task] is an updated to-do list with [task] removed from 
+    [t]. *)
 let delete_task t task =
-  remove_task t task
+  let remlst = remove_task t.task_list task [] in
+  {c_name = t.c_name; task_list = remlst}
 
+let rec to_list_helper cat_list acc =
+  match cat_list with
+  | [] -> acc
+  | {name; created_date; due_date; priority} :: t -> 
+    to_list_helper t 
+      (acc @ [name; created_date; due_date; string_of_int priority])
+
+let to_list cat_name =
+  let cat = find_category cat_name in  
+  [cat_name] @ (to_list_helper cat.task_list [])
 

@@ -49,15 +49,16 @@ val create_task : string -> string -> string -> int -> unit
 
 val access_cat : unit -> t list
 
-
-
-
 (** [complete_task t task] is a updated completed to-do list [t] with [task]. *)
 val complete_task : t -> task -> t
 
 (** [delete_task t task] is an updated to-do list with [task] removed from 
     [t].*)
 val delete_task : t -> task -> t 
+
+(** [to_list cat_name] is a list containing the same elements and the same 
+    category name [cat_name] as the category with name [cat_name].*)
+val to_list : string ->  string list
 
 
 
