@@ -125,10 +125,10 @@ let complete_task t task =
     find_category "Completed"*)
 
 
-  (* let rem = remove_task t.task_list task [] in
-     create_task "Completed" task.name task.due_date task.priority; 
-     find_category "Completed" *)
-  failwith "Unimplemented - have to fix variable error"
+  let rem = remove_task t.task_list task [] in
+  create_task "Completed" task.name task.due_date task.priority; 
+  find_category "Completed"
+(* failwith "Unimplemented - have to fix variable error" *)
 
 
 (** [delete_task t task] is an updated to-do list with [task] removed from 
