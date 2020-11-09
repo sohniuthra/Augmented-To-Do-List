@@ -123,8 +123,6 @@ let complete_task t task =
   (*let rem = remove_task t.task_list task [] in
     let created = create_task "Completed" task.name task.due_date task.priority in
     find_category "Completed"*)
-
-
   let rem = remove_task t.task_list task [] in
   create_task "Completed" task.name task.due_date task.priority; 
   find_category "Completed"
@@ -148,6 +146,4 @@ let to_list ?(cat=categories) cat_name =
   let cat = find_category ~cat:cat cat_name in  
   [cat_name] @ (to_list_helper cat.task_list [])
 
-(* let to_list_from_task_list cat_name lst =
-   [cat_name] @ (to_list_helper lst []) *)
 

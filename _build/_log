@@ -1,12 +1,4 @@
 ### Starting build.
-<<<<<<< HEAD
-# Target: test.ml.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), debug, extension:ml, file:test.ml, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules test.ml > test.ml.depends
-+ ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules test.ml > test.ml.depends
-ocamlfind: Package `graphics' not found
-Command exited with code 2.
-# Compilation unsuccessful.
-=======
 # Target: manual.mli.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:mli, file:manual.mli, ocaml, ocamldep, quiet, traverse }
 ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules manual.mli > manual.mli.depends
 # Target: manual.cmi, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:mli, file:manual.mli, interf, ocaml, quiet, traverse }
@@ -37,4 +29,3 @@ ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modu
 # Target: author.cmo, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:cmo, extension:ml, file:author.cmo, file:author.ml, implem, ocaml, quiet, traverse }
 ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o author.cmo author.ml
 # Compilation successful.
->>>>>>> ae6f6de2692402dd162c0318b2851634a053ffac

@@ -55,7 +55,6 @@ let pp_list pp_elt lst =
       priority; to_list cat_name in
    name >:: (fun _ -> 
       assert_equal ~printer: (pp_list pp_string) expected_output expected) *)
-
 let update_cat_test name categories cat_name expected_output = 
   name >:: (fun _ -> 
       assert_equal expected_output 
