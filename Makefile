@@ -5,6 +5,7 @@ MLIS=$(MODULES:=.mli)
 TEST=test.byte
 MAIN=main.byte
 OCAMLBUILD=ocamlbuild -use-ocamlfind -pkg graphics
+GUI=gui.byte
 
 default: build
 	utop
@@ -22,6 +23,9 @@ check:
 finalcheck: check
 	bash checkzip.sh
 	bash finalcheck.sh
+
+graphics: 
+	$(OCAMLBUILD) $(GUI) && ./$(GUI)
 
 zip:
 	zip todolist.zip *.ml* *.json _tags Makefile

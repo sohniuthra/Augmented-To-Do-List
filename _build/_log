@@ -1,0 +1,8 @@
+### Starting build.
+# Target: gui.ml.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:ml, file:gui.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules gui.ml > gui.ml.depends
+# Target: gui.cmo, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:cmo, extension:ml, file:gui.cmo, file:gui.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o gui.cmo gui.ml
+# Target: gui.byte, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, dont_link_with, extension:byte, file:gui.byte, link, ocaml, program, quiet, traverse }
+ocamlfind ocamlc -linkpkg -package ounit2 -package ANSITerminal -package graphics gui.cmo -o gui.byte
+# Compilation successful.
