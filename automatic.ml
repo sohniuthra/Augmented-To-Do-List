@@ -50,11 +50,11 @@ module type Automatic = sig
       If category name [cat_name] does not already exist, a new category with 
       [cat_name] is created with task [name created_date due_date priority] 
       in the task list. *)
-  val create_task : string -> string -> int -> unit 
+  val create_task : string -> string -> string -> int -> unit 
 
-  val change_priority : t -> task -> int ->  unit
+  val change_priority : string -> string -> int ->  unit
 
-  val change_due : t -> task -> string -> unit
+  val change_due : string -> string -> string ->  unit
 
 end
 (** Module representation of a to-do list with  *)
@@ -186,17 +186,26 @@ module CarList : Automatic = struct
     let new_auto = delete_task t task in 
     categories := new_auto :: new_completed :: []
 
-  let create_task name due_date priority= 
+  let create_task name cat_name due_date priority= 
     let task = init_task name due_date priority in
-    let new_list = add_task (find_category "Car Tasks") task in 
-    let old_list = find_category "Car Tasks" in  
+    let new_list = add_task (find_category cat_name) task in 
+    let old_list = find_category cat_name in  
     categories := (new_list :: (remove_cat old_list !categories))
 
-  let change_priority t task int =
-    failwith "rose's unimplemented"
+  let change_priority cat_name task_name new_priority =
+    let cat = find_category cat_name in
+    let old_task =  List.find (fun x -> x.name = task_name) cat.task_list in
+    let date = old_task.due_date in 
+    let new_t = delete_task cat old_task in
+    categories := (new_t :: (remove_cat cat !categories));
+    create_task cat_name task_name date new_priority
 
-  let change_due =
-    failwith "rose's unimplemented"
-
+  let change_due cat_name task_name new_date =
+    let cat= find_category cat_name in
+    let old_task =  List.find (fun x -> x.name = task_name) cat.task_list in
+    let priority = old_task.priority in 
+    let new_t = delete_task cat old_task in
+    categories := (new_t :: (remove_cat cat !categories));
+    create_task cat_name task_name new_date priority
 
 end
