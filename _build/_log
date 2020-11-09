@@ -1,7 +1,40 @@
 ### Starting build.
+<<<<<<< HEAD
 # Target: test.ml.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), debug, extension:ml, file:test.ml, ocaml, ocamldep, quiet, traverse }
 ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules test.ml > test.ml.depends
 + ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules test.ml > test.ml.depends
 ocamlfind: Package `graphics' not found
 Command exited with code 2.
 # Compilation unsuccessful.
+=======
+# Target: manual.mli.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:mli, file:manual.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules manual.mli > manual.mli.depends
+# Target: manual.cmi, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:mli, file:manual.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o manual.cmi manual.mli
+# Target: manual.ml.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:ml, file:manual.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules manual.ml > manual.ml.depends
+# Target: manual.cmo, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:cmo, extension:ml, file:manual.cmo, file:manual.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o manual.cmo manual.ml
++ ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o manual.cmo manual.ml
+File "manual.ml", line 128, characters 6-9:
+128 |   let rem = remove_task t.task_list task [] in
+            ^^^
+Warning 26: unused variable rem.
+# Target: main.mli.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:mli, file:main.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules main.mli > main.mli.depends
+# Target: main.cmi, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:mli, file:main.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o main.cmi main.mli
+# Target: main.ml.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:ml, file:main.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules main.ml > main.ml.depends
+# Target: main.cmo, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:cmo, extension:ml, file:main.cmo, file:main.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o main.cmo main.ml
+# Target: author.mli.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:mli, file:author.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules author.mli > author.mli.depends
+# Target: author.cmi, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:mli, file:author.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o author.cmi author.mli
+# Target: author.ml.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:ml, file:author.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules author.ml > author.ml.depends
+# Target: author.cmo, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:cmo, extension:ml, file:author.cmo, file:author.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o author.cmo author.ml
+# Compilation successful.
+>>>>>>> ae6f6de2692402dd162c0318b2851634a053ffac
