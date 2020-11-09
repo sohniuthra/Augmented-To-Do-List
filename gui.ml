@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-open Graphics 
-=======
 open Graphics
 open Manual
->>>>>>> ae6f6de2692402dd162c0318b2851634a053ffac
 
 let rec loop () = loop ()
 
