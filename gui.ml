@@ -1,4 +1,4 @@
-open Graphics
+open Graphics 
 
 let rec loop () = loop ()
 
