@@ -29,7 +29,7 @@ let rec draw_tsk_list tlst =
 let rec draw_str_list slst =
   match slst with 
   | [] -> ()
-  | h::t -> draw_string h; moveto (current_x ()) (current_y () - 15); 
+  | h::t -> draw_string h; moveto (10) (current_y () - 15); 
     draw_str_list t
 
 let () = open_window;
@@ -37,7 +37,9 @@ let () = open_window;
   set_color blue;
   draw_string "Welcome to your new to-do list!"; 
   moveto 10 440;
-  draw_string "Press 'n' to create a new task";
+  draw_string "Press 'n' to create a new task"; (* this doesn't work yet *)
   set_color black;
+  moveto 10 420;
+  draw_str_list ["a"; "cat"];
   loop ()
 

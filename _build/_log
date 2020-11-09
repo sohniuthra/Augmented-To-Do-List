@@ -7,11 +7,6 @@ ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o m
 ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules manual.ml > manual.ml.depends
 # Target: manual.cmo, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:cmo, extension:ml, file:manual.cmo, file:manual.ml, implem, ocaml, quiet, traverse }
 ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o manual.cmo manual.ml
-+ ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o manual.cmo manual.ml
-File "manual.ml", line 128, characters 6-9:
-128 |   let rem = remove_task t.task_list task [] in
-            ^^^
-Warning 26: unused variable rem.
 # Target: main.mli.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:mli, file:main.mli, ocaml, ocamldep, quiet, traverse }
 ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules main.mli > main.mli.depends
 # Target: main.cmi, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:mli, file:main.mli, interf, ocaml, quiet, traverse }

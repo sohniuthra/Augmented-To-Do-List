@@ -114,16 +114,23 @@ let create_task ?(cat=categories) cat_name name due_date priority =
 (** [remove_task tsklst task nlst] returns a new task list without [task] *)
 let rec remove_task tsklst task nlst = 
   match tsklst with
-  | [] -> nlst 
+  | [] -> () 
   | h::t -> if h = task then remove_task t task nlst 
     else remove_task t task (h::nlst)
+
+(** [remove_task tsklst task nlst] returns a new task list without [task] *)
+let rec remove_task_newlst tsklst task nlst = 
+  match tsklst with
+  | [] -> nlst 
+  | h::t -> if h = task then remove_task_newlst t task nlst 
+    else remove_task_newlst t task (h::nlst)
 
 (** [complete_task t task] is a updated completed to-do list [t] with [task]. *)
 let complete_task t task =
   (*let rem = remove_task t.task_list task [] in
     let created = create_task "Completed" task.name task.due_date task.priority in
     find_category "Completed"*)
-  let rem = remove_task t.task_list task [] in
+  remove_task t.task_list task [];
   create_task "Completed" task.name task.due_date task.priority; 
   find_category "Completed"
 (* failwith "Unimplemented - have to fix variable error" *)
@@ -132,7 +139,7 @@ let complete_task t task =
 (** [delete_task t task] is an updated to-do list with [task] removed from 
     [t]. *)
 let delete_task t task =
-  let remlst = remove_task t.task_list task [] in
+  let remlst = remove_task_newlst t.task_list task [] in
   {c_name = t.c_name; task_list = remlst}
 
 let rec to_list_helper cat_list acc =
