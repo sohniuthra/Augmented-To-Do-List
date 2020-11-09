@@ -69,7 +69,7 @@ let task1 = create_task ~cat:cat "General" "watch lecture" "10/28/20" 2
 let create_task_tests1 =
   [
     update_cat_test "Adding 1 task to the General category" cat "General"
-      ["General"; "watch lecture"; todays_date; "10/28/20"; "2"];
+      ["General"; "watch lecture"; "11/8/2020"; "10/28/20"; "2"];
   ]
 
 let cat = empty_cat ()
@@ -80,7 +80,7 @@ let task2 = create_task ~cat:cat "General" "fill out OMM" "10/24/20" 1
 let create_task_tests2 =
   [
     update_cat_test "Adding 2 tasks to the General category" cat "General"
-      ["General"; "fill out OMM"; todays_date; "10/24/20"; "1"; "watch lecture"; 
+      ["General"; "fill out OMM"; "11/8/2020"; "10/24/20"; "1"; "watch lecture"; 
        "11/8/2020"; "10/28/20"; "2"];
   ]
 
@@ -93,8 +93,8 @@ let task3 = create_task ~cat:cat "General" "do lab" "10/28/20" 3
 let create_task_tests3 =
   [
     update_cat_test "Adding 3 tasks to the General category" cat "General"
-      ["General"; "do lab"; todays_date; "10/28/20"; "3"; "fill out OMM"; 
-       todays_date; "10/24/20"; "1"; "watch lecture"; todays_date; "10/28/20"; 
+      ["General"; "do lab"; "11/8/2020"; "10/28/20"; "3"; "fill out OMM"; 
+       "11/8/2020"; "10/24/20"; "1"; "watch lecture"; "11/8/2020"; "10/28/20"; 
        "2"];
   ]
 
@@ -111,13 +111,13 @@ let task5 = create_task ~cat:cat "General" "watch basketball game" "10/28/20" 2
 let create_task_tests4 =
   [
     update_cat_test "Adding 3 tasks to the School category" cat "School"
-      ["School"; "do lab"; todays_date; "10/28/20"; "3"; "fill out OMM"; 
-       todays_date; "10/24/20"; "1"; "watch lecture"; todays_date; "10/28/20"; 
+      ["School"; "do lab"; "11/8/2020"; "10/28/20"; "3"; "fill out OMM"; 
+       "11/8/2020"; "10/24/20"; "1"; "watch lecture"; "11/8/2020"; "10/28/20"; 
        "2"];
 
     update_cat_test "Also adding 2 tasks to the General category" cat "General" 
-      ["General"; "watch basketball game"; todays_date; "10/28/20"; "2"; 
-       "wash dishes"; todays_date; "10/27/20"; "2"];
+      ["General"; "watch basketball game"; "11/8/2020"; "10/28/20"; "2"; 
+       "wash dishes"; "11/8/2020"; "10/27/20"; "2"];
   ]
 
 let cat = empty_cat ()
@@ -127,7 +127,7 @@ let sort = sort_list ~cat:cat "General"
 (* sorting a list with one task *)
 let sort_list_tests1 = [
   update_cat_test "Sorting General by priority with one task" cat "General" 
-    ["General"; "watch lecture"; todays_date; "10/28/20"; "2"];
+    ["General"; "watch lecture"; "11/8/2020"; "10/28/20"; "2"];
 ]
 
 let cat = empty_cat ()
@@ -140,8 +140,8 @@ let sort = sort_list ~cat:cat "General"
 let sort_list_tests2 = [
   update_cat_test "Sorting General by priority with each task containing 
   different prioirities" cat "General" 
-    ["General"; "fill out OMM"; todays_date; "10/24/20"; "1"; "watch lecture"; 
-     todays_date; "10/28/20"; "2"; "do lab"; todays_date; "10/28/20"; "3"];
+    ["General"; "fill out OMM"; "11/8/2020"; "10/24/20"; "1"; "watch lecture"; 
+     "11/8/2020"; "10/28/20"; "2"; "do lab"; "11/8/2020"; "10/28/20"; "3"];
 ]
 
 let cat = empty_cat ()
@@ -154,8 +154,8 @@ let sort = sort_list ~cat:cat "General"
 let sort_list_tests3 = [
   update_cat_test "Sorting General by priority with some tasks containing the 
   same priorities" cat "General" 
-    ["General"; "do lab"; todays_date; "10/28/20"; "2"; "fill out OMM"; 
-     todays_date; "10/24/20"; "2"; "watch lecture"; todays_date; "10/28/20"; 
+    ["General"; "do lab"; "11/8/2020"; "10/28/20"; "2"; "fill out OMM"; 
+     "11/8/2020"; "10/24/20"; "2"; "watch lecture"; "11/8/2020"; "10/28/20"; 
      "2"];
 ]
 
@@ -169,8 +169,8 @@ let sort = sort_list ~cat:cat "General"
 let sort_list_tests4 = [
   update_cat_test "Sorting General by priority with some tasks containing the 
   same priorities" cat "General" 
-    ["General"; "fill out OMM"; todays_date; "10/24/20"; "2"; "watch lecture"; 
-     todays_date; "10/28/20"; "2"; "do lab"; todays_date; "10/28/20"; "3";];
+    ["General"; "fill out OMM"; "11/8/2020"; "10/24/20"; "2"; "watch lecture"; 
+     "11/8/2020"; "10/28/20"; "2"; "do lab"; "11/8/2020"; "10/28/20"; "3";];
 ]
 
 let cat = empty_cat ()
@@ -185,9 +185,9 @@ let sort = sort_list ~cat:cat "General"
 let sort_list_tests5 = [
   update_cat_test "Sorting General by priority with some tasks containing the 
   same priorities" cat "General" 
-    ["General"; "do reading"; todays_date; "10/28/20"; "1"; "fill out OMM"; 
-     todays_date; "10/24/20"; "1"; "go to discussion"; todays_date; "10/28/20"; 
-     "2"; "watch lecture"; todays_date; "10/28/20"; "2";"do lab"; todays_date; 
+    ["General"; "do reading"; "11/8/2020"; "10/28/20"; "1"; "fill out OMM"; 
+     "11/8/2020"; "10/24/20"; "1"; "go to discussion"; "11/8/2020"; "10/28/20"; 
+     "2"; "watch lecture"; "11/8/2020"; "10/28/20"; "2";"do lab"; "11/8/2020"; 
      "10/28/20"; "3"];
 ]
 
