@@ -1,67 +1,188 @@
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Runner: processes
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Chooser: simple
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Configuration suite_name = "test suite for Manual Mode"
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Configuration cache_filename = "/Users/poojakanumalla/Documents/College/3 - Fall 2020/CS 3110/todolist/_build/oUnit-$(suite_name).cache"
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Configuration run_gc_full_major = "true"
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Configuration display = "true"
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Configuration results_style_1_X = "false"
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Configuration testdata_dir = "none"
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Configuration health_check_interval = "1."
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Configuration verbose = "false"
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Configuration chooser = "simple"
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Configuration output_html_dir = "none"
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Configuration processes_kill_period = "5."
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Configuration runner = "processes"
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Configuration shards = "2"
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Configuration processes_grace_period = "5."
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Configuration log_encoding = "utf-8"
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Configuration output_junit_file = "none"
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Configuration ci = "false"
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Configuration output_file = "/Users/poojakanumalla/Documents/College/3 - Fall 2020/CS 3110/todolist/_build/oUnit-$(suite_name)-$(shard_id).log"
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Using 2 workers maximum.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Starting worker number macbook-pro-5.lan#01.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Worker macbook-pro-5.lan#01 started.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Starting worker number macbook-pro-5.lan#02.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Worker macbook-pro-5.lan#02 started.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Still 2 tests running : test suite for Manual Mode:1:Sorting General by priority, test suite for Manual Mode:0:Adding 3 tasks to the same category.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:1:Sorting General by priority, test suite for Manual Mode:0:Adding 3 tasks to the same category.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:0:Adding 3 tasks to the same category.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Still 2 tests running : test suite for Manual Mode:1:Sorting General by priority, test suite for Manual Mode:0:Adding 3 tasks to the same category.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:1:Sorting General by priority, test suite for Manual Mode:0:Adding 3 tasks to the same category.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#02 I: Start test test suite for Manual Mode:1:Sorting General by priority.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Still 2 tests running : test suite for Manual Mode:1:Sorting General by priority, test suite for Manual Mode:0:Adding 3 tasks to the same category.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:1:Sorting General by priority, test suite for Manual Mode:0:Adding 3 tasks to the same category.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:0:Adding 3 tasks to the same category is successful.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Still 2 tests running : test suite for Manual Mode:1:Sorting General by priority, test suite for Manual Mode:0:Adding 3 tasks to the same category.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:1:Sorting General by priority, test suite for Manual Mode:0:Adding 3 tasks to the same category.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:0:Adding 3 tasks to the same category.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Still 2 tests running : test suite for Manual Mode:1:Sorting General by priority, test suite for Manual Mode:0:Adding 3 tasks to the same category.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:1:Sorting General by priority, test suite for Manual Mode:0:Adding 3 tasks to the same category.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Still 1 tests running : test suite for Manual Mode:1:Sorting General by priority.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: 1 tests running: test suite for Manual Mode:1:Sorting General by priority.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#02 I: Test test suite for Manual Mode:1:Sorting General by priority is successful.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Still 1 tests running : test suite for Manual Mode:1:Sorting General by priority.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: 1 tests running: test suite for Manual Mode:1:Sorting General by priority.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#02 I: End test test suite for Manual Mode:1:Sorting General by priority.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Still 1 tests running : test suite for Manual Mode:1:Sorting General by priority.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: 1 tests running: test suite for Manual Mode:1:Sorting General by priority.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: 0 tests running: .
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Worker macbook-pro-5.lan#01 has ended.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Worker macbook-pro-5.lan#02 has ended.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Used 2 worker during test execution.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Run 1 tests with shard macbook-pro-5.lan#01.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Run 1 tests with shard macbook-pro-5.lan#02.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Check health of shard macbook-pro-5.lan#01, 4 times.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Check health of shard macbook-pro-5.lan#02, 1 times.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: ==============
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Summary:
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Test test suite for Manual Mode:1:Sorting General by priority is successful.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Test test suite for Manual Mode:0:Adding 3 tasks to the same category is successful.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Ran: 2 tests in: 0.11 seconds.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Cases: 2.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Tried: 2.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Errors: 0.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Failures: 0.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Skip: 0.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Todo: 0.
-2020-11-09T01:43:20+00:00 macbook-pro-5.lan#00 I: Timeout: 0.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Runner: processes
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Chooser: simple
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Configuration suite_name = "test suite for Manual Mode"
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Configuration cache_filename = "/Users/poojakanumalla/Documents/College/3 - Fall 2020/CS 3110/todolist/_build/oUnit-$(suite_name).cache"
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Configuration run_gc_full_major = "true"
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Configuration display = "true"
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Configuration results_style_1_X = "false"
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Configuration testdata_dir = "none"
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Configuration health_check_interval = "1."
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Configuration verbose = "false"
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Configuration chooser = "simple"
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Configuration output_html_dir = "none"
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Configuration processes_kill_period = "5."
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Configuration runner = "processes"
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Configuration shards = "2"
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Configuration processes_grace_period = "5."
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Configuration log_encoding = "utf-8"
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Configuration output_junit_file = "none"
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Configuration ci = "false"
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Configuration output_file = "/Users/poojakanumalla/Documents/College/3 - Fall 2020/CS 3110/todolist/_build/oUnit-$(suite_name)-$(shard_id).log"
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Using 2 workers maximum.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Starting worker number macbook-pro-5.lan#01.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Worker macbook-pro-5.lan#01 started.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Starting worker number macbook-pro-5.lan#02.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Worker macbook-pro-5.lan#02 started.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:1:Adding 2 tasks to the General category, test suite for Manual Mode:0:Adding 1 task to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:0:Adding 1 task to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:1:Adding 2 tasks to the General category, test suite for Manual Mode:0:Adding 1 task to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#02 I: Start test test suite for Manual Mode:1:Adding 2 tasks to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:1:Adding 2 tasks to the General category, test suite for Manual Mode:0:Adding 1 task to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:0:Adding 1 task to the General category is successful.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:1:Adding 2 tasks to the General category, test suite for Manual Mode:0:Adding 1 task to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:0:Adding 1 task to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:1:Adding 2 tasks to the General category, test suite for Manual Mode:0:Adding 1 task to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:2:Adding 3 tasks to the General category, test suite for Manual Mode:1:Adding 2 tasks to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:2:Adding 3 tasks to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:2:Adding 3 tasks to the General category, test suite for Manual Mode:1:Adding 2 tasks to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#02 I: Test test suite for Manual Mode:1:Adding 2 tasks to the General category is successful.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:2:Adding 3 tasks to the General category, test suite for Manual Mode:1:Adding 2 tasks to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#02 I: End test test suite for Manual Mode:1:Adding 2 tasks to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:2:Adding 3 tasks to the General category, test suite for Manual Mode:1:Adding 2 tasks to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:3:Adding 3 tasks to the School category, test suite for Manual Mode:2:Adding 3 tasks to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#02 I: Start test test suite for Manual Mode:3:Adding 3 tasks to the School category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:3:Adding 3 tasks to the School category, test suite for Manual Mode:2:Adding 3 tasks to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:2:Adding 3 tasks to the General category is successful.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:3:Adding 3 tasks to the School category, test suite for Manual Mode:2:Adding 3 tasks to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:2:Adding 3 tasks to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:3:Adding 3 tasks to the School category, test suite for Manual Mode:2:Adding 3 tasks to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:4:Also adding 2 tasks to the General category, test suite for Manual Mode:3:Adding 3 tasks to the School category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:4:Also adding 2 tasks to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:4:Also adding 2 tasks to the General category, test suite for Manual Mode:3:Adding 3 tasks to the School category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#02 I: Test test suite for Manual Mode:3:Adding 3 tasks to the School category is successful.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:4:Also adding 2 tasks to the General category, test suite for Manual Mode:3:Adding 3 tasks to the School category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#02 I: End test test suite for Manual Mode:3:Adding 3 tasks to the School category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:4:Also adding 2 tasks to the General category, test suite for Manual Mode:3:Adding 3 tasks to the School category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:5:Sorting General by priority with one task, test suite for Manual Mode:4:Also adding 2 tasks to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#02 I: Start test test suite for Manual Mode:5:Sorting General by priority with one task.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:5:Sorting General by priority with one task, test suite for Manual Mode:4:Also adding 2 tasks to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:4:Also adding 2 tasks to the General category is successful.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:5:Sorting General by priority with one task, test suite for Manual Mode:4:Also adding 2 tasks to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:4:Also adding 2 tasks to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:5:Sorting General by priority with one task, test suite for Manual Mode:4:Also adding 2 tasks to the General category.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:6:Sorting General by priority with each task containing 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   different prioirities, test suite for Manual Mode:5:Sorting General by priority with one task.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:6:Sorting General by priority with each task containing 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#01 I:   different prioirities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:6:Sorting General by priority with each task containing 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   different prioirities, test suite for Manual Mode:5:Sorting General by priority with one task.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#02 I: Test test suite for Manual Mode:5:Sorting General by priority with one task is successful.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:6:Sorting General by priority with each task containing 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   different prioirities, test suite for Manual Mode:5:Sorting General by priority with one task.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#02 I: End test test suite for Manual Mode:5:Sorting General by priority with one task.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:6:Sorting General by priority with each task containing 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   different prioirities, test suite for Manual Mode:5:Sorting General by priority with one task.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:7:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities, test suite for Manual Mode:6:Sorting General by priority with each task containing 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   different prioirities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#02 I: Start test test suite for Manual Mode:7:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#02 I:   same priorities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:7:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities, test suite for Manual Mode:6:Sorting General by priority with each task containing 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   different prioirities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:6:Sorting General by priority with each task containing 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#01 I:   different prioirities is successful.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:7:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities, test suite for Manual Mode:6:Sorting General by priority with each task containing 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   different prioirities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:6:Sorting General by priority with each task containing 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#01 I:   different prioirities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:7:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities, test suite for Manual Mode:6:Sorting General by priority with each task containing 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   different prioirities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:8:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities, test suite for Manual Mode:7:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:8:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#01 I:   same priorities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:8:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities, test suite for Manual Mode:7:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#02 I: Test test suite for Manual Mode:7:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#02 I:   same priorities is successful.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:8:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities, test suite for Manual Mode:7:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#02 I: End test test suite for Manual Mode:7:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#02 I:   same priorities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:8:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities, test suite for Manual Mode:7:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Still 2 tests running : test suite for Manual Mode:9:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities, test suite for Manual Mode:8:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:9:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities, test suite for Manual Mode:8:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#02 I: Start test test suite for Manual Mode:9:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#02 I:   same priorities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Still 2 tests running : test suite for Manual Mode:9:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities, test suite for Manual Mode:8:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:9:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities, test suite for Manual Mode:8:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:8:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#01 I:   same priorities is successful.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Still 2 tests running : test suite for Manual Mode:9:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities, test suite for Manual Mode:8:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:9:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities, test suite for Manual Mode:8:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:8:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#01 I:   same priorities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Still 2 tests running : test suite for Manual Mode:9:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities, test suite for Manual Mode:8:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 2 tests running: test suite for Manual Mode:9:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities, test suite for Manual Mode:8:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Still 1 tests running : test suite for Manual Mode:9:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 1 tests running: test suite for Manual Mode:9:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#02 I: Test test suite for Manual Mode:9:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#02 I:   same priorities is successful.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Still 1 tests running : test suite for Manual Mode:9:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 1 tests running: test suite for Manual Mode:9:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#02 I: End test test suite for Manual Mode:9:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#02 I:   same priorities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Still 1 tests running : test suite for Manual Mode:9:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 1 tests running: test suite for Manual Mode:9:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: 0 tests running: .
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Worker macbook-pro-5.lan#01 has ended.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Worker macbook-pro-5.lan#02 has ended.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Used 2 worker during test execution.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Run 5 tests with shard macbook-pro-5.lan#01.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Run 5 tests with shard macbook-pro-5.lan#02.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Check health of shard macbook-pro-5.lan#01, 4 times.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Check health of shard macbook-pro-5.lan#02, 1 times.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: ==============
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Summary:
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Test test suite for Manual Mode:9:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities is successful.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Test test suite for Manual Mode:8:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities is successful.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Test test suite for Manual Mode:7:Sorting General by priority with some tasks containing the 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   same priorities is successful.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Test test suite for Manual Mode:6:Sorting General by priority with each task containing 
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I:   different prioirities is successful.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Test test suite for Manual Mode:5:Sorting General by priority with one task is successful.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Test test suite for Manual Mode:4:Also adding 2 tasks to the General category is successful.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Test test suite for Manual Mode:3:Adding 3 tasks to the School category is successful.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Test test suite for Manual Mode:2:Adding 3 tasks to the General category is successful.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Test test suite for Manual Mode:1:Adding 2 tasks to the General category is successful.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Test test suite for Manual Mode:0:Adding 1 task to the General category is successful.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Ran: 10 tests in: 0.11 seconds.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Cases: 10.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Tried: 10.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Errors: 0.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Failures: 0.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Skip: 0.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Todo: 0.
+2020-11-09T02:35:07+00:00 macbook-pro-5.lan#00 I: Timeout: 0.

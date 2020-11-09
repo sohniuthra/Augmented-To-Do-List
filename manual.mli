@@ -21,6 +21,12 @@ exception InvalidTask
 (** Raised when a category is not found. *)
 exception CategoryNotFound of string
 
+(* SPEC??? *)
+val access_cat : ?cat:(t list ref) -> unit -> t list
+
+(** [empty_cat ()] initializes an empty category list. *)
+val empty_cat : unit -> t list ref
+
 (** [init_task name due_date priority] initializes a task with 
     name [name], created date [created_date], due date [due_date], and priority 
     [priority] *)
@@ -46,8 +52,6 @@ val sort_list : ?cat:(t list ref) -> string -> unit
     [cat_name] is created with task [name created_date due_date priority] 
     in the task list. *)
 val create_task : ?cat:(t list ref) -> string -> string -> string -> int -> unit 
-
-val access_cat : ?cat:(t list ref) -> unit -> t list
 
 val empty_cat : unit -> t list ref
 
