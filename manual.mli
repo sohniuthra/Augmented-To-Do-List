@@ -36,7 +36,7 @@ val empty_list : string -> t
 
 (** [sort_list cat_name] sorts a to-do list with category [name] by priority
     of tasks  *)
-val sort_list : string -> task list
+val sort_list : ?cat:(t list ref) -> string -> unit
 
 (** [sort_task task cat_name] inserts a task into a sorted list - needed? *)
 
@@ -45,9 +45,11 @@ val sort_list : string -> task list
     If category name [cat_name] does not already exist, a new category with 
     [cat_name] is created with task [name created_date due_date priority] 
     in the task list. *)
-val create_task : string -> string -> string -> int -> unit 
+val create_task : ?cat:(t list ref) -> string -> string -> string -> int -> unit 
 
-val access_cat : unit -> t list
+val access_cat : ?cat:(t list ref) -> unit -> t list
+
+val empty_cat : unit -> t list ref
 
 (** [complete_task t task] is a updated completed to-do list [t] with [task]. *)
 val complete_task : t -> task -> t
@@ -58,7 +60,12 @@ val delete_task : t -> task -> t
 
 (** [to_list cat_name] is a list containing the same elements and the same 
     category name [cat_name] as the category with name [cat_name].*)
-val to_list : string ->  string list
+val to_list : ?cat:(t list ref) -> string ->  string list
+
+(** [to_list cat_name lst] is a list containing the same elements and the same 
+    category name [cat_name] as the category with name [cat_name] given 
+    a task list [lst] as an additional input.*)
+(* val to_list : string ->  task list -> string list *)
 
 
 

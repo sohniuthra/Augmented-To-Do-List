@@ -33,7 +33,9 @@ exception CategoryNotFound of string
 
 let categories = ref []
 
-let access_cat () = !categories
+let access_cat ?(cat=categories) () = !cat
+
+let empty_cat () = ref []
 
 let todays_date = 
   let time = Unix.localtime (Unix.time ()) in 
@@ -64,12 +66,12 @@ let add_task t task = {
   task_list = task :: t.task_list
 }
 
-let add_new_cat new_cat =
-  let old_cats = categories in 
-  categories := (new_cat :: !old_cats)
+let add_new_cat ?(cat=categories) new_cat =
+  let old_cats = cat in 
+  cat := (new_cat :: !old_cats)
 
-let find_category cat_name =
-  List.find (fun x -> x.c_name = cat_name) (!categories)
+let find_category ?(cat=categories) cat_name =
+  List.find (fun x -> x.c_name = cat_name) (!cat)
 
 let remove_cat t (lst : t list) = 
   List.filter (fun x -> if x.c_name != t.c_name then true else false) lst
@@ -91,20 +93,21 @@ let rec sort_list_helper task_lst acc =
 
 (* two options for sorting...every time we create a task we can sort list or 
    insert it in a sorted order kinda lke a3..*)
-let sort_list cat_name = 
-  let cat = find_category cat_name in
-  List.rev 
-    (List.stable_sort priority_compare cat.task_list)
+let sort_list ?(cat=categories) cat_name = 
+  let category = find_category ~cat:cat cat_name in
+  let sorted_lst = List.rev (List.stable_sort priority_compare category.task_list) in
+  let sorted_cat = init_todolist cat_name sorted_lst in
+  cat := (sorted_cat :: (remove_cat category !cat))
 
-let create_task cat_name name due_date priority= 
+let create_task ?(cat=categories) cat_name name due_date priority = 
   let task = init_task name due_date priority in
   try 
-    let new_list = add_task (find_category cat_name) task in 
-    let old_list = find_category cat_name in  
-    categories := (new_list :: (remove_cat old_list !categories))
+    let new_list = add_task (find_category ~cat:cat cat_name) task in 
+    let old_list = find_category ~cat:cat cat_name in  
+    cat := (new_list :: (remove_cat old_list !cat))
   with Not_found -> begin
       let new_cat = add_task (empty_list cat_name) task in
-      add_new_cat new_cat
+      add_new_cat ~cat:cat new_cat
     end
 
 (** [remove_task tsklst task nlst] returns a new task list without [task] *)
@@ -137,7 +140,10 @@ let rec to_list_helper cat_list acc =
     to_list_helper t 
       (acc @ [name; created_date; due_date; string_of_int priority])
 
-let to_list cat_name =
-  let cat = find_category cat_name in  
+let to_list ?(cat=categories) cat_name =
+  let cat = find_category ~cat:cat cat_name in  
   [cat_name] @ (to_list_helper cat.task_list [])
+
+(* let to_list_from_task_list cat_name lst =
+   [cat_name] @ (to_list_helper lst []) *)
 
