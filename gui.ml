@@ -2,9 +2,22 @@ open Graphics
 open Manual
 open Printf
 
+let draw_basic () =
+  clear_graph ();
+  moveto 10 460;
+  set_color blue;
+  draw_string "Welcome to your new to-do list!"; 
+  moveto 10 440;
+  draw_string "Press t to create a new task"; (* this doesn't work fully yet *)
+  moveto 10 425;
+  draw_string "Press c to complete a task"; (* need to implement *)
+  moveto 10 410;
+  draw_string "Press d to delete a task"; (* need to implement *)
+  set_color black
+
 let rec string_input str =
   let e = wait_next_event [Key_pressed] in 
-  if e.key <> '0' 
+  if e.key <> '\r' 
   then string_input (str ^ (Char.escaped e.key))
   else str
 
@@ -16,12 +29,16 @@ let task_input () =
   let cat = empty_cat () in
   draw_string "Type the name of your category";
   let category = (string_input "") in
+  draw_basic ();
   draw_string "Type the name of your task";
   let name = (string_input "") in
+  draw_basic ();
   draw_string "Type the due date in an mm/dd/yyyy format";
   let due = (string_input "") in
+  draw_basic ();
   draw_string "Type the priority of your task";
   let priority = int_of_string (string_input "") in
+  draw_basic ();
   Manual.create_task ~cat:cat category name due priority
 
 
@@ -83,17 +100,7 @@ let rec draw_str_list slst =
     draw_str_list t
 
 let () = open_window;
-  moveto 10 460;
-  set_color blue;
-  draw_string "Welcome to your new to-do list!"; 
-  moveto 10 440;
-  draw_string "Press t to create a new task"; (* this doesn't work fully yet *)
-  moveto 10 425;
-  draw_string "Press c to complete a task"; (* need to implement *)
-  moveto 10 410;
-  draw_string "Press d to delete a task"; (* need to implement *)
-  (*draw_str_list ["a"; "cat"];*)
-  set_color black;
+  draw_basic ();
   loop ();
   close_graph ();
 

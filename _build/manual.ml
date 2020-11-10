@@ -111,13 +111,6 @@ let create_task ?(cat=categories) cat_name name due_date priority =
       add_new_cat ~cat:cat new_cat
     end
 
-(* * [remove_task tsklst task nlst] returns a new task list without [task]
-   let rec remove_task tsklst task nlst = 
-   match tsklst with
-   | [] -> () 
-   | h :: t -> if h = task then remove_task t task nlst 
-    else remove_task t task (nlst @ [h]) *)
-
 (** [remove_task tsklst task nlst] returns a new task list without [task] *)
 let rec remove_task_newlst tsklst task nlst = 
   match tsklst with
