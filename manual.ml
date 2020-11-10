@@ -112,18 +112,11 @@ let create_task ?(cat=categories) cat_name name due_date priority =
     end
 
 (** [remove_task tsklst task nlst] returns a new task list without [task] *)
-let rec remove_task tsklst task nlst = 
-  match tsklst with
-  | [] -> () 
-  | h::t -> if h = task then remove_task t task nlst 
-    else remove_task t task (h::nlst)
-
-(** [remove_task tsklst task nlst] returns a new task list without [task] *)
 let rec remove_task_newlst tsklst task nlst = 
   match tsklst with
   | [] -> nlst 
-  | h::t -> if h = task then remove_task_newlst t task nlst 
-    else remove_task_newlst t task (h::nlst)
+  | h :: t -> if h = task then remove_task_newlst t task nlst 
+    else remove_task_newlst t task (nlst @ [h])
 
 let remove t task =
   {c_name = t.c_name; 

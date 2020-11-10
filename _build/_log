@@ -23,4 +23,16 @@ ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o a
 ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules author.ml > author.ml.depends
 # Target: author.cmo, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:cmo, extension:ml, file:author.cmo, file:author.ml, implem, ocaml, quiet, traverse }
 ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o author.cmo author.ml
+# Target: automatic.mli.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:mli, file:automatic.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules automatic.mli > automatic.mli.depends
+# Target: automatic.cmi, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:mli, file:automatic.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o automatic.cmi automatic.mli
+# Target: automatic.ml.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:ml, file:automatic.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules automatic.ml > automatic.ml.depends
+# Target: automatic.cmo, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:cmo, extension:ml, file:automatic.cmo, file:automatic.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o automatic.cmo automatic.ml
+# Target: gui.ml.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:ml, file:gui.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules gui.ml > gui.ml.depends
+# Target: gui.cmo, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:cmo, extension:ml, file:gui.cmo, file:gui.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o gui.cmo gui.ml
 # Compilation successful.

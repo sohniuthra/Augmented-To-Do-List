@@ -1,4 +1,4 @@
-MODULES=manual main author
+MODULES=manual main author automatic gui
 OBJECTS=$(MODULES:=.cmo)
 MLS=$(MODULES:=.ml)
 MLIS=$(MODULES:=.mli)

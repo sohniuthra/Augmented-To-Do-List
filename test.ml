@@ -65,7 +65,6 @@ let update_cat_test name categories cat_name expected_output =
 let cat = empty_cat ()
 let task1 = create_task ~cat:cat "General" "watch lecture" "10/28/20" 2
 
-
 (* adding one task into one category *)
 let create_task_tests1 =
   [
@@ -200,7 +199,7 @@ let task2 = create_task ~cat:cat "General" "fill out OMM" "10/24/20" 1
 let task3 = create_task ~cat:cat "General" "do lab" "10/28/20" 3 
 let task4 = create_task ~cat:cat "General" "go to discussion" "10/28/20" 2 
 let task5 = create_task ~cat:cat "General" "do reading" "10/28/20" 1 
-let comp1 = complete_task ~cat:cat cat "General" "watch lecture"
+let comp1 = complete_task ~cat:cat "General" "watch lecture"
 
 (* completing 1 task - watch lecture *)
 let complete_tests1 =
@@ -214,7 +213,7 @@ let complete_tests1 =
 
     (* watch lecture should be in Completed *)
     update_cat_test "Completed should contain watch lecture" cat "Completed"
-      ["watch lecture"; todays_date (); "10/28/20"; "2"];
+      ["Completed"; "watch lecture"; todays_date (); "10/28/20"; "2"];
   ]
 
 let cat = empty_cat ()
@@ -223,13 +222,13 @@ let task2 = create_task ~cat:cat "General" "fill out OMM" "10/24/20" 1
 let task3 = create_task ~cat:cat "General" "do lab" "10/28/20" 3 
 let task4 = create_task ~cat:cat "General" "go to discussion" "10/28/20" 2 
 let task5 = create_task ~cat:cat "General" "do reading" "10/28/20" 1 
-let comp1 = complete_task ~cat:cat cat "General" "watch lecture"
-let comp2 = complete_task ~cat:cat cat "General" "go to discussion"
+let comp1 = complete_task ~cat:cat "General" "watch lecture"
+let comp2 = complete_task ~cat:cat "General" "go to discussion"
 
 (* completing 2 tasks - watch lecture & go to discussion *)
 let complete_tests2 =
   [
-    (* watch lecture should not be in General *)
+    (* watch lecture and go to discussion should not be in General *)
     update_cat_test "General should not contain watch lecture or go to 
     discussion" cat "General" 
       ["General"; "do reading"; todays_date (); "10/28/20"; "1"; "do lab"; 
@@ -239,7 +238,7 @@ let complete_tests2 =
     (* watch lecture & go to discussion should be in Completed *)
     update_cat_test "Completed should contain watch lecture and go to 
     discussion" cat "Completed"
-      ["go to discussion"; todays_date (); "10/28/20"; "2";
+      ["Completed"; "go to discussion"; todays_date (); "10/28/20"; "2";
        "watch lecture"; todays_date (); "10/28/20"; "2"];
   ]
 
@@ -254,13 +253,13 @@ let task5 = create_task ~cat:cat "General" "watch basketball game" "10/28/20" 2
 let comp1 = complete_task ~cat:cat "School" "fill out OMM"
 let comp2 = complete_task ~cat:cat "General" "watch basketball game"
 
-(* completing 2 tasks from different categories - fill out OMM & watch 
-   basketball game*)
+(* completing 2 tasks from different categories, School & General - fill out 
+   OMM & watch basketball game*)
 let complete_tests3 =
   [
     (* watch basketball game should not be in General *)
     update_cat_test "General should not contain watch basketball game" cat 
-      "General" ["General"; "wash dishes"; todays_date (); "10/27/20"];
+      "General" ["General"; "wash dishes"; todays_date (); "10/27/20"; "2"];
 
     (* fill out OMM should not be in School *)
     update_cat_test "School should not contain fill out OMM" cat "School" 
@@ -270,21 +269,83 @@ let complete_tests3 =
     (* fill out OMM & watch basketball game should be in Completed *)
     update_cat_test "Completed should contain fill out OMM and watch basketball
     game" cat "Completed"
-      ["Completed"; "watch basktball game"; todays_date (); "10/28/20"; "2"; 
+      ["Completed"; "watch basketball game"; todays_date (); "10/28/20"; "2"; 
        "fill out OMM"; todays_date (); "10/24/20"; "1"];
   ]
 
-let delete_tests1 = 
-  [
+let cat = empty_cat ()
+let task1 = create_task ~cat:cat "General" "watch lecture" "10/28/20" 2 
+let task2 = create_task ~cat:cat "General" "fill out OMM" "10/24/20" 1
+let task3 = create_task ~cat:cat "General" "do lab" "10/28/20" 3 
+let task4 = create_task ~cat:cat "General" "go to discussion" "10/28/20" 2 
+let task5 = create_task ~cat:cat "General" "do reading" "10/28/20" 1 
+let del1 = delete_task ~cat:cat "General" "watch lecture"
 
+(* deleting 1 task in 1 category- watch lecture *)
+let delete_tests1 =
+  [
+    (* watch lecture should not be in General *)
+    update_cat_test "General should not contain watch lecture" cat "General" 
+      ["General"; "do reading"; todays_date (); "10/28/20"; "1"; 
+       "go to discussion"; todays_date (); "10/28/20"; "2"; "do lab"; 
+       todays_date (); "10/28/20"; "3"; "fill out OMM"; todays_date (); 
+       "10/24/20"; "1"];
   ]
 
-let cat = make_school_auto ~cat:cat ()
-let change = change_priority ~cat:cat "School" "Write Essay" 4
+let cat = empty_cat ()
+let task1 = create_task ~cat:cat "General" "watch lecture" "10/28/20" 2 
+let task2 = create_task ~cat:cat "General" "fill out OMM" "10/24/20" 1
+let task3 = create_task ~cat:cat "General" "do lab" "10/28/20" 3 
+let task4 = create_task ~cat:cat "General" "go to discussion" "10/28/20" 2 
+let task5 = create_task ~cat:cat "General" "do reading" "10/28/20" 1 
+let del1 = delete_task ~cat:cat "General" "watch lecture"
+let del2 = delete_task ~cat:cat "General" "go to discussion"
+
+(* deleting 2 tasks in 1 categor- watch lecture & go to discussion *)
+let delete_tests2 =
+  [
+    (* watch lecture  go to discussion should not be in General *)
+    update_cat_test "General should not contain watch lecture or go to 
+    discussion" cat "General" 
+      ["General"; "do reading"; todays_date (); "10/28/20"; "1"; "do lab"; 
+       todays_date (); "10/28/20"; "3"; "fill out OMM"; todays_date (); 
+       "10/24/20"; "1"];
+  ]
+
+let cat = empty_cat ()
+let task1 = create_task ~cat:cat "School" "watch lecture" "10/28/20" 2
+let task2 = create_task ~cat:cat "School" "fill out OMM" "10/24/20" 1
+let task3 = create_task ~cat:cat "School" "do lab" "10/28/20" 3
+
+let task4 = create_task ~cat:cat "General" "wash dishes" "10/27/20" 2
+let task5 = create_task ~cat:cat "General" "watch basketball game" "10/28/20" 2
+
+let del1 = delete_task ~cat:cat "School" "fill out OMM"
+let del2 = delete_task ~cat:cat "General" "watch basketball game"
+
+
+(* deleting 2 tasks from different categories, School & General - fill out OMM 
+      & watch basketball game*)
+let delete_tests3 = 
+  [
+    (* watch basketball game should not be in General *)
+    update_cat_test "General should not contain watch basketball game" cat 
+      "General" ["General"; "wash dishes"; todays_date (); "10/27/20"; "2"];
+
+    (* fill out OMM should not be in School *)
+    update_cat_test "School should not contain fill out OMM" cat "School" 
+      ["School"; "do lab"; todays_date (); "10/28/20"; "3"; "watch lecture"; 
+       todays_date (); "10/28/20"; "2"];
+  ]
+
+(* let cat = make_school_auto ~cat:cat () *)
+let cat : Automatic.t list ref = empty_cat_auto ()
+let school = make_school_auto ~cat:cat ()
+let change : unit = change_priority ~cat:cat "School" "Write Essay" 4 "School"
+(* let change = change_priority  "School" "Write Essay" 4 "School" *)
 let change_priority_tests = 
   [
-    update_cat_test "Write Essay priority has changed in category School" cat 
-      "School"
+    update_cat_test "Write Essay priority has changed in category School" cat "School"
       ["School Tasks"; "Plan for Pre-Enroll"; todays_date (); "TBD"; "7"; 
        "Watch CS 3110 Lecture Videos"; todays_date (); "TBD"; "6"; 
        "Fill out OMM";todays_date (); "TBD"; "5";
@@ -310,6 +371,10 @@ let suite =
     complete_tests1;
     complete_tests2;
     complete_tests3;
+
+    delete_tests1;    
+    delete_tests2;
+    delete_tests3;
 
     change_priority_tests;
   ]

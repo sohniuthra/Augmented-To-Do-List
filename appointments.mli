@@ -7,7 +7,7 @@ module type Appointment = sig
 
   type t 
 
-  val add_app : unit -> unit
+  val add_app : string -> string -> unit
 
   val complete_app : unit -> unit
 

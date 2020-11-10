@@ -11,9 +11,15 @@ module AppSuite = struct
     notes : string;
   }
 
-  type t = unit
+  type t = app list
 
-  let add_app = failwith "rose's unimplementecd"
+  let appointments = ref []
+
+  let empty_cat () = ref []
+
+  let access_app ?(appo=appointments) () = !appo
+
+  let add_app title date = failwith "rose's unimplementecd"
 
   let complete_app = failwith "rose's unimplemented"
 
