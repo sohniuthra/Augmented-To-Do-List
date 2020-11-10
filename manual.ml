@@ -37,7 +37,7 @@ let access_cat ?(cat=categories) () = !cat
 
 let empty_cat () = ref []
 
-let todays_date = 
+let todays_date () = 
   let time = Unix.localtime (Unix.time ()) in 
   let (day, month, year) = (time.tm_mday, time.tm_mon, time.tm_year) in
   string_of_int (month + 1) ^ "/" ^ string_of_int(day) ^ "/" ^ 
@@ -45,7 +45,7 @@ let todays_date =
 
 let init_task name due_date priority = {
   name = name;
-  created_date = todays_date;
+  created_date = todays_date ();
   due_date = due_date;
   priority = priority;
 }
@@ -125,22 +125,32 @@ let rec remove_task_newlst tsklst task nlst =
   | h::t -> if h = task then remove_task_newlst t task nlst 
     else remove_task_newlst t task (h::nlst)
 
+let remove t task =
+  {c_name = t.c_name; 
+   task_list = remove_task_newlst t.task_list task []}
+
+let find_task cat task_name = 
+  List.find (fun x -> x.name = task_name) cat.task_list
+
 (** [complete_task t task] is a updated completed to-do list [t] with [task]. *)
-let complete_task t task =
-  (*let rem = remove_task t.task_list task [] in
-    let created = create_task "Completed" task.name task.due_date task.priority in
-    find_category "Completed"*)
-  remove_task t.task_list task [];
-  create_task "Completed" task.name task.due_date task.priority; 
-  find_category "Completed"
-(* failwith "Unimplemented - have to fix variable error" *)
+let complete_task ?(cat=categories) cat_name task_name =
+  let category = find_category ~cat:cat cat_name in
+  let task = find_task category task_name in
+  try 
+    let new_list = remove category task in 
+    create_task ~cat:cat "Completed" task.name task.due_date task.priority;
+    let old_list = category in 
+    cat := (new_list :: (remove_cat old_list !cat))
+  with Not_found -> begin
+      failwith "task not found" 
+    end
 
-
-(** [delete_task t task] is an updated to-do list with [task] removed from 
-    [t]. *)
-let delete_task t task =
-  let remlst = remove_task_newlst t.task_list task [] in
-  {c_name = t.c_name; task_list = remlst}
+let delete_task ?(cat=categories) cat_name task_name =
+  let old_cat = find_category ~cat:cat cat_name in 
+  let task = find_task old_cat task_name in
+  let new_list = remove_task_newlst old_cat.task_list task [] in 
+  let new_cat = init_todolist cat_name new_list in
+  cat := (new_cat :: (remove_cat old_cat !cat))
 
 let rec to_list_helper cat_list acc =
   match cat_list with

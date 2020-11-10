@@ -8,6 +8,21 @@ let rec string_input str =
   then string_input (str ^ (Char.escaped e.key))
   else str
 
+(** [draw_int i] draws int [i] as a string *) 
+let draw_int i =
+  draw_string (string_of_int i)
+
+let task_input () =
+  draw_string "Type the name of your category";
+  draw_string (string_input "");
+  draw_string "Type the name of your task";
+  draw_string (string_input "");
+  draw_string "Type the due date in an mm/dd/yy format";
+  draw_string (string_input "");
+  draw_string "Type the priority of your task";
+  draw_string (string_input "")
+
+
 let rec loop () = 
   let e = wait_next_event [Key_pressed] in
 
@@ -23,10 +38,15 @@ let rec loop () =
           string_input "")
     else "" in
 
+  let new_task = if e.key = 't'
+    then task_input ()
+    else () in
+
   (*clear_graph ();*)
   (*moveto 0 100; draw_string key_description;*)
   moveto 0 200; draw_string a_pressed;
   moveto 15 100; draw_string n_pressed;
+  new_task;
   (*moveto 0 0; draw_string mouse_description;*)
 
   if e.key <> 'q' then loop () else ()

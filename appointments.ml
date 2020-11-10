@@ -1,19 +1,25 @@
-(** A module that lets the user create appointments 
-    this will have a better representation when a GUI is created *)
+(** Module struct of Appointments sig
+    Used to create appointments as part of a larger suite of planning *)
+open Manual
 
-module type Appointment = sig 
+module AppSuite = struct
 
-  type app
+  type app = {
+    title : string;
+    app_date : string;
+    location : string;
+    notes : string;
+  }
 
-  type t 
+  type t = unit
 
-  val add_app
+  let add_app = failwith "rose's unimplementecd"
 
-  val complete_app
+  let complete_app = failwith "rose's unimplemented"
 
-  val delete_app
+  let delete_app = failwith "rose's unimplemented"
 
-  val add_app_info
+  let add_app_info = failwith "rose's unimplemented"
 
-  val add_location
+  let add_location = failwith "rose's unimplemented"
 end 

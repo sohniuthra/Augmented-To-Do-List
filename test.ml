@@ -1,5 +1,6 @@
 open OUnit2
 open Manual
+open Automatic
 
 (**  [pp_string s] pretty-prints string [s]. *)
 let pp_string s = "\"" ^ s ^ "\""
@@ -64,11 +65,12 @@ let update_cat_test name categories cat_name expected_output =
 let cat = empty_cat ()
 let task1 = create_task ~cat:cat "General" "watch lecture" "10/28/20" 2
 
+
 (* adding one task into one category *)
 let create_task_tests1 =
   [
     update_cat_test "Adding 1 task to the General category" cat "General"
-      ["General"; "watch lecture"; todays_date; "10/28/20"; "2"];
+      ["General"; "watch lecture"; todays_date (); "10/28/20"; "2"];
   ]
 
 let cat = empty_cat ()
@@ -79,8 +81,8 @@ let task2 = create_task ~cat:cat "General" "fill out OMM" "10/24/20" 1
 let create_task_tests2 =
   [
     update_cat_test "Adding 2 tasks to the General category" cat "General"
-      ["General"; "fill out OMM"; todays_date; "10/24/20"; "1"; "watch lecture"; 
-       "11/8/2020"; "10/28/20"; "2"];
+      ["General"; "fill out OMM"; todays_date (); "10/24/20"; "1"; 
+       "watch lecture"; todays_date (); "10/28/20"; "2"];
   ]
 
 let cat = empty_cat ()
@@ -92,9 +94,9 @@ let task3 = create_task ~cat:cat "General" "do lab" "10/28/20" 3
 let create_task_tests3 =
   [
     update_cat_test "Adding 3 tasks to the General category" cat "General"
-      ["General"; "do lab"; todays_date; "10/28/20"; "3"; "fill out OMM"; 
-       todays_date; "10/24/20"; "1"; "watch lecture"; todays_date; "10/28/20"; 
-       "2"];
+      ["General"; "do lab"; todays_date (); "10/28/20"; "3"; "fill out OMM"; 
+       todays_date (); "10/24/20"; "1"; "watch lecture"; todays_date (); 
+       "10/28/20"; "2"];
   ]
 
 let cat = empty_cat ()
@@ -110,13 +112,13 @@ let task5 = create_task ~cat:cat "General" "watch basketball game" "10/28/20" 2
 let create_task_tests4 =
   [
     update_cat_test "Adding 3 tasks to the School category" cat "School"
-      ["School"; "do lab"; todays_date; "10/28/20"; "3"; "fill out OMM"; 
-       todays_date; "10/24/20"; "1"; "watch lecture"; todays_date; "10/28/20"; 
-       "2"];
+      ["School"; "do lab"; todays_date (); "10/28/20"; "3"; "fill out OMM"; 
+       todays_date (); "10/24/20"; "1"; "watch lecture"; todays_date (); 
+       "10/28/20"; "2"];
 
     update_cat_test "Also adding 2 tasks to the General category" cat "General" 
-      ["General"; "watch basketball game"; todays_date; "10/28/20"; "2"; 
-       "wash dishes"; todays_date; "10/27/20"; "2"];
+      ["General"; "watch basketball game"; todays_date (); "10/28/20"; "2"; 
+       "wash dishes"; todays_date (); "10/27/20"; "2"];
   ]
 
 let cat = empty_cat ()
@@ -126,7 +128,7 @@ let sort = sort_list ~cat:cat "General"
 (* sorting a list with one task *)
 let sort_list_tests1 = [
   update_cat_test "Sorting General by priority with one task" cat "General" 
-    ["General"; "watch lecture"; todays_date; "10/28/20"; "2"];
+    ["General"; "watch lecture"; todays_date (); "10/28/20"; "2"];
 ]
 
 let cat = empty_cat ()
@@ -139,8 +141,9 @@ let sort = sort_list ~cat:cat "General"
 let sort_list_tests2 = [
   update_cat_test "Sorting General by priority with each task containing 
   different prioirities" cat "General" 
-    ["General"; "fill out OMM"; todays_date; "10/24/20"; "1"; "watch lecture"; 
-     todays_date; "10/28/20"; "2"; "do lab"; todays_date; "10/28/20"; "3"];
+    ["General"; "fill out OMM"; todays_date (); "10/24/20"; "1"; 
+     "watch lecture"; todays_date (); "10/28/20"; "2"; "do lab"; todays_date (); 
+     "10/28/20"; "3"];
 ]
 
 let cat = empty_cat ()
@@ -153,9 +156,9 @@ let sort = sort_list ~cat:cat "General"
 let sort_list_tests3 = [
   update_cat_test "Sorting General by priority with some tasks containing the 
   same priorities" cat "General" 
-    ["General"; "do lab"; todays_date; "10/28/20"; "2"; "fill out OMM"; 
-     todays_date; "10/24/20"; "2"; "watch lecture"; todays_date; "10/28/20"; 
-     "2"];
+    ["General"; "do lab"; todays_date (); "10/28/20"; "2"; "fill out OMM"; 
+     todays_date (); "10/24/20"; "2"; "watch lecture"; todays_date (); 
+     "10/28/20"; "2"];
 ]
 
 let cat = empty_cat ()
@@ -168,8 +171,9 @@ let sort = sort_list ~cat:cat "General"
 let sort_list_tests4 = [
   update_cat_test "Sorting General by priority with some tasks containing the 
   same priorities" cat "General" 
-    ["General"; "fill out OMM"; todays_date; "10/24/20"; "2"; "watch lecture"; 
-     todays_date; "10/28/20"; "2"; "do lab"; todays_date; "10/28/20"; "3";];
+    ["General"; "fill out OMM"; todays_date (); "10/24/20"; "2"; 
+     "watch lecture"; todays_date (); "10/28/20"; "2"; "do lab"; todays_date ();
+     "10/28/20"; "3";];
 ]
 
 let cat = empty_cat ()
@@ -184,19 +188,110 @@ let sort = sort_list ~cat:cat "General"
 let sort_list_tests5 = [
   update_cat_test "Sorting General by priority with some tasks containing the 
   same priorities" cat "General" 
-    ["General"; "do reading"; todays_date; "10/28/20"; "1"; "fill out OMM"; 
-     todays_date; "10/24/20"; "1"; "go to discussion"; todays_date; "10/28/20"; 
-     "2"; "watch lecture"; todays_date; "10/28/20"; "2";"do lab"; todays_date; 
-     "10/28/20"; "3"];
+    ["General"; "do reading"; todays_date (); "10/28/20"; "1"; "fill out OMM"; 
+     todays_date (); "10/24/20"; "1"; "go to discussion"; todays_date (); 
+     "10/28/20"; "2"; "watch lecture"; todays_date (); "10/28/20"; "2";"do lab"; 
+     todays_date (); "10/28/20"; "3"];
 ]
 
-let complete_task_test name t task expected_output =
-  name >:: (fun _ -> assert_equal expected_output (complete_task t task))
+let cat = empty_cat ()
+let task1 = create_task ~cat:cat "General" "watch lecture" "10/28/20" 2 
+let task2 = create_task ~cat:cat "General" "fill out OMM" "10/24/20" 1
+let task3 = create_task ~cat:cat "General" "do lab" "10/28/20" 3 
+let task4 = create_task ~cat:cat "General" "go to discussion" "10/28/20" 2 
+let task5 = create_task ~cat:cat "General" "do reading" "10/28/20" 1 
+let comp1 = complete_task ~cat:cat cat "General" "watch lecture"
 
+(* completing 1 task - watch lecture *)
+let complete_tests1 =
+  [
+    (* watch lecture should not be in General *)
+    update_cat_test "General should not contain watch lecture" cat "General" 
+      ["General"; "do reading"; todays_date (); "10/28/20"; "1"; 
+       "go to discussion"; todays_date (); "10/28/20"; "2"; "do lab"; 
+       todays_date (); "10/28/20"; "3"; "fill out OMM"; todays_date (); 
+       "10/24/20"; "1"];
 
-let remove_tests =
+    (* watch lecture should be in Completed *)
+    update_cat_test "Completed should contain watch lecture" cat "Completed"
+      ["watch lecture"; todays_date (); "10/28/20"; "2"];
+  ]
+
+let cat = empty_cat ()
+let task1 = create_task ~cat:cat "General" "watch lecture" "10/28/20" 2 
+let task2 = create_task ~cat:cat "General" "fill out OMM" "10/24/20" 1
+let task3 = create_task ~cat:cat "General" "do lab" "10/28/20" 3 
+let task4 = create_task ~cat:cat "General" "go to discussion" "10/28/20" 2 
+let task5 = create_task ~cat:cat "General" "do reading" "10/28/20" 1 
+let comp1 = complete_task ~cat:cat cat "General" "watch lecture"
+let comp2 = complete_task ~cat:cat cat "General" "go to discussion"
+
+(* completing 2 tasks - watch lecture & go to discussion *)
+let complete_tests2 =
+  [
+    (* watch lecture should not be in General *)
+    update_cat_test "General should not contain watch lecture or go to 
+    discussion" cat "General" 
+      ["General"; "do reading"; todays_date (); "10/28/20"; "1"; "do lab"; 
+       todays_date (); "10/28/20"; "3"; "fill out OMM"; todays_date (); 
+       "10/24/20"; "1"];
+
+    (* watch lecture & go to discussion should be in Completed *)
+    update_cat_test "Completed should contain watch lecture and go to 
+    discussion" cat "Completed"
+      ["go to discussion"; todays_date (); "10/28/20"; "2";
+       "watch lecture"; todays_date (); "10/28/20"; "2"];
+  ]
+
+let cat = empty_cat ()
+let task1 = create_task ~cat:cat "School" "watch lecture" "10/28/20" 2
+let task2 = create_task ~cat:cat "School" "fill out OMM" "10/24/20" 1
+let task3 = create_task ~cat:cat "School" "do lab" "10/28/20" 3
+
+let task4 = create_task ~cat:cat "General" "wash dishes" "10/27/20" 2
+let task5 = create_task ~cat:cat "General" "watch basketball game" "10/28/20" 2
+
+let comp1 = complete_task ~cat:cat "School" "fill out OMM"
+let comp2 = complete_task ~cat:cat "General" "watch basketball game"
+
+(* completing 2 tasks from different categories - fill out OMM & watch 
+   basketball game*)
+let complete_tests3 =
+  [
+    (* watch basketball game should not be in General *)
+    update_cat_test "General should not contain watch basketball game" cat 
+      "General" ["General"; "wash dishes"; todays_date (); "10/27/20"];
+
+    (* fill out OMM should not be in School *)
+    update_cat_test "School should not contain fill out OMM" cat "School" 
+      ["School"; "do lab"; todays_date (); "10/28/20"; "3"; "watch lecture"; 
+       todays_date (); "10/28/20"; "2"];
+
+    (* fill out OMM & watch basketball game should be in Completed *)
+    update_cat_test "Completed should contain fill out OMM and watch basketball
+    game" cat "Completed"
+      ["Completed"; "watch basktball game"; todays_date (); "10/28/20"; "2"; 
+       "fill out OMM"; todays_date (); "10/24/20"; "1"];
+  ]
+
+let delete_tests1 = 
   [
 
+  ]
+
+let cat = make_school_auto ~cat:cat ()
+let change = change_priority ~cat:cat "School" "Write Essay" 4
+let change_priority_tests = 
+  [
+    update_cat_test "Write Essay priority has changed in category School" cat 
+      "School"
+      ["School Tasks"; "Plan for Pre-Enroll"; todays_date (); "TBD"; "7"; 
+       "Watch CS 3110 Lecture Videos"; todays_date (); "TBD"; "6"; 
+       "Fill out OMM";todays_date (); "TBD"; "5";
+       "Meet with Professor"; todays_date (); "TBD"; "4";
+       "Finish Biology Lab"; todays_date (); "TBD"; "3";
+       "Write Essay"; todays_date (); "TBD"; "4";
+       "Complete Math Problem Set"; todays_date (); "TBD"; "1"]
   ]
 
 let suite =
@@ -211,6 +306,12 @@ let suite =
     sort_list_tests3;
     sort_list_tests4;
     sort_list_tests5;
+
+    complete_tests1;
+    complete_tests2;
+    complete_tests3;
+
+    change_priority_tests;
   ]
 
 let _ = run_test_tt_main suite

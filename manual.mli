@@ -27,6 +27,8 @@ val access_cat : ?cat:(t list ref) -> unit -> t list
 (** [empty_cat ()] initializes an empty category list. *)
 val empty_cat : unit -> t list ref
 
+val todays_date : unit -> string
+
 (** [init_task name due_date priority] initializes a task with 
     name [name], created date [created_date], due date [due_date], and priority 
     [priority] *)
@@ -55,12 +57,13 @@ val create_task : ?cat:(t list ref) -> string -> string -> string -> int -> unit
 
 val empty_cat : unit -> t list ref
 
-(** [complete_task t task] is a updated completed to-do list [t] with [task]. *)
-val complete_task : t -> task -> t
+(** [complete_task t task] is an updated completed to-do list with name
+    [cat_name] with task named [task_name]. *)
+val complete_task : ?cat:(t list ref) -> string -> string -> unit
 
-(** [delete_task t task] is an updated to-do list with [task] removed from 
-    [t].*)
-val delete_task : t -> task -> t 
+(** [delete_task t task] is an updated to-do list with task with name 
+    [task_name ] deleted from category with name [cat_name]. *)
+val delete_task : ?cat:(t list ref) -> string -> string -> unit
 
 (** [to_list cat_name] is a list containing the same elements and the same 
     category name [cat_name] as the category with name [cat_name].*)
