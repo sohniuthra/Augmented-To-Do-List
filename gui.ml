@@ -23,7 +23,7 @@ let rec loop () =
           string_input "")
     else "" in
 
-  clear_graph ();
+  (*clear_graph ();*)
   (*moveto 0 100; draw_string key_description;*)
   moveto 0 200; draw_string a_pressed;
   moveto 15 100; draw_string n_pressed;
@@ -65,7 +65,7 @@ let () = open_window;
   set_color blue;
   draw_string "Welcome to your new to-do list!"; 
   moveto 10 440;
-  draw_string "Press 'n' to create a new task"; (* this doesn't work fully yet *)
+  draw_string "Press n to create a new task"; (* this doesn't work fully yet *)
   set_color black;
   moveto 10 420;
   (*draw_str_list ["a"; "cat"];*)
