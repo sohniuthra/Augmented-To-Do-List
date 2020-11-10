@@ -91,9 +91,6 @@ let rec sort_list_helper task_lst acc =
       then acc @ [task1] @ [task2] else sort_list_helper (task2 :: lst) acc
     end
 
-(* two options for sorting...every time we create a task we can sort list or 
-   insert it in a sorted order kinda lke a3..
-   also which way do we want priority - 3,2,1, or 1,2,3*)
 let sort_list ?(cat=categories) cat_name = 
   let category = find_category ~cat:cat cat_name in
   let sorted_lst = List.stable_sort priority_compare category.task_list in

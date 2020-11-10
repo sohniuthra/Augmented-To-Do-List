@@ -1,6 +1,6 @@
 open OUnit2
 open Manual
-open Automatic
+(* open Automatic *)
 
 (**  [pp_string s] pretty-prints string [s]. *)
 let pp_string s = "\"" ^ s ^ "\""
@@ -118,6 +118,35 @@ let create_task_tests4 =
     update_cat_test "Also adding 2 tasks to the General category" cat "General" 
       ["General"; "watch basketball game"; todays_date (); "10/28/20"; "2"; 
        "wash dishes"; todays_date (); "10/27/20"; "2"];
+  ]
+
+let cat = empty_cat ()
+let task1 = create_task ~cat:cat "School" "watch lecture" "10/28/20" 2
+let task2 = create_task ~cat:cat "School" "fill out OMM" "10/24/20" 1
+let task3 = create_task ~cat:cat "School" "do lab" "10/28/20" 3
+
+let task4 = create_task ~cat:cat "General" "wash dishes" "10/27/20" 2
+let task5 = create_task ~cat:cat "General" "watch basketball game" "10/28/20" 2
+
+let task6 = create_task ~cat:cat "Careers" "Google Interview" "11/15/20" 3
+let task7 = create_task ~cat:cat "Careers" "Microsoft Information Session" 
+    "11/22/20" 3
+
+(* adding multiple tasks into three categories *)
+let create_task_tests4 =
+  [
+    update_cat_test "Adding 3 tasks to the School category" cat "School"
+      ["School"; "do lab"; todays_date (); "10/28/20"; "3"; "fill out OMM"; 
+       todays_date (); "10/24/20"; "1"; "watch lecture"; todays_date (); 
+       "10/28/20"; "2"];
+
+    update_cat_test "Also adding 2 tasks to the General category" cat "General" 
+      ["General"; "watch basketball game"; todays_date (); "10/28/20"; "2"; 
+       "wash dishes"; todays_date (); "10/27/20"; "2"];
+
+    update_cat_test "Also adding 2 tasks to the Careers category" cat "Careers" 
+      ["Careers"; "Microsoft Information Session"; todays_date (); "11/22/20"; 
+       "3"; "Google Interview"; todays_date (); "11/15/20"; "3"];
   ]
 
 let cat = empty_cat ()
@@ -376,7 +405,7 @@ let suite =
     delete_tests2;
     delete_tests3;
 
-    change_priority_tests;
+    (* change_priority_tests; *)
   ]
 
 let _ = run_test_tt_main suite
