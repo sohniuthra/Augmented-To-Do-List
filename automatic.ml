@@ -201,7 +201,7 @@ module CarList : Automatic = struct
     create_task cat_name task_name date new_priority
 
   let change_due cat_name task_name new_date =
-    let cat= find_category cat_name in
+    let cat = find_category cat_name in
     let old_task =  List.find (fun x -> x.name = task_name) cat.task_list in
     let priority = old_task.priority in 
     let new_t = delete_task cat old_task in
