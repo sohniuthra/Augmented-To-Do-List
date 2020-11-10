@@ -2,18 +2,31 @@ open Graphics
 open Manual
 open Printf
 
+let rec string_input str =
+  let e = wait_next_event [Key_pressed] in 
+  if e.key <> '0' 
+  then string_input (str ^ (Char.escaped e.key))
+  else str
+
 let rec loop () = 
-  let e = wait_next_event [Mouse_motion; Key_pressed] in
+  let e = wait_next_event [Key_pressed] in
 
   (*let mouse_description = sprintf "Mouse position: %d,%d" e.mouse_x e.mouse_y in*)
-  let key_description = if e.keypressed then sprintf "Key %c was pressed" e.key 
+  (*let key_description = if e.keypressed 
+    then sprintf "Key %c was pressed" e.key 
+    else "" in*)
+
+  let a_pressed = if e.key = 'a' then sprintf "pressed a" else "" in
+
+  let n_pressed = if e.key = 'n' 
+    then (draw_string "Type your task name. Press 0 when you are finished"; 
+          string_input "")
     else "" in
 
-  let n_pressed = if e.key = 'n' then sprintf "new task" else "" in
-
   clear_graph ();
-  moveto 0 100; draw_string key_description;
-  moveto 0 200; draw_string n_pressed;
+  (*moveto 0 100; draw_string key_description;*)
+  moveto 0 200; draw_string a_pressed;
+  moveto 15 100; draw_string n_pressed;
   (*moveto 0 0; draw_string mouse_description;*)
 
   if e.key <> 'q' then loop () else ()
@@ -52,10 +65,10 @@ let () = open_window;
   set_color blue;
   draw_string "Welcome to your new to-do list!"; 
   moveto 10 440;
-  draw_string "Press 'n' to create a new task"; (* this doesn't work yet *)
+  draw_string "Press 'n' to create a new task"; (* this doesn't work fully yet *)
   set_color black;
   moveto 10 420;
-  draw_str_list ["a"; "cat"];
+  (*draw_str_list ["a"; "cat"];*)
   loop ();
   close_graph ();
 
