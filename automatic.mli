@@ -49,21 +49,25 @@ val access_cat : ?cat:(t list ref) -> unit -> t list
     made also. 
     Invariant: completed list clears if it passes a 
     certain number of elements. *)
-val complete_task : ?cat:(t list ref) -> string -> string -> unit
+val complete_task_auto : ?cat:(t list ref) -> string -> string -> unit
 
 (** Function for user to be able to delete task out of 
     automatic list.  Also used to delete task out of 
     completed list when completed list becomes too large. *)
-val delete_task : ?cat:(t list ref) -> string -> string -> unit 
+val delete_task_auto : ?cat:(t list ref) -> string -> string -> unit 
 
 (** [create_task cat_name name due_date priority] updates the to-do
     list with name [cat_name] with the new task [name due_date priority]. 
     If category name [cat_name] does not already exist, a new category with 
     [cat_name] is created with task [name created_date due_date priority] 
     in the task list. *)
-val create_task : ?cat:(t list ref) -> string -> string -> string -> int -> 
+val create_task_auto : ?cat:(t list ref) -> string -> string -> string -> int -> 
   unit 
 
 val change_priority : ?cat:(t list ref) -> string -> string -> int ->  unit
 
 val change_due : ?cat:(t list ref) -> string -> string -> string ->  unit
+
+(** [to_list cat_name] is a list containing the same elements and the same 
+    category name [cat_name] as the category with name [cat_name].*)
+val to_list_auto : ?cat:(t list ref) -> string ->  string list

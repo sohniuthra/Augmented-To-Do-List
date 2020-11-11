@@ -61,6 +61,11 @@ let update_cat_test name categories cat_name expected_output =
       assert_equal expected_output 
         (to_list ~cat:categories cat_name) ~printer: (pp_list pp_string)) 
 
+let update_cat_test_auto name categories cat_name expected_output = 
+  name >:: (fun _ -> 
+      assert_equal expected_output 
+        (to_list_auto ~cat:categories cat_name) ~printer: (pp_list pp_string)) 
+
 (* all tests using update_cat_test also test to_list *)
 let cat = empty_cat ()
 let task1 = create_task ~cat:cat "General" "watch lecture" "10/28/20" 2
@@ -95,7 +100,7 @@ let create_task_tests3 =
     update_cat_test "Adding 3 tasks to the General category" cat "General"
       ["General"; "do lab"; todays_date (); "10/28/20"; "3"; "fill out OMM"; 
        todays_date (); "10/24/20"; "1"; "watch lecture"; todays_date (); 
-       "10/28/20"; "2"];
+       "10/28/20"; "2"]; 
   ]
 
 let cat = empty_cat ()
@@ -339,13 +344,13 @@ let delete_tests3 =
   ]
 
 (* let cat = make_school_auto ~cat:cat () *)
-let cat : Automatic.t list ref = empty_cat_auto ()
+let cat = empty_cat_auto ()
 let school = make_school_auto ~cat:cat ()
-let change : unit = change_priority ~cat:cat "School" "Write Essay" 4 "School"
-(* let change = change_priority  "School" "Write Essay" 4 "School" *)
+let change = change_priority ~cat:cat "School Tasks" "Write Essay" 4
+
 let change_priority_tests = 
   [
-    update_cat_test "Write Essay priority has changed in category School" cat "School"
+    update_cat_test_auto "Write Essay priority has changed in category School Tasks" cat "School Tasks"
       ["School Tasks"; "Plan for Pre-Enroll"; todays_date (); "TBD"; "7"; 
        "Watch CS 3110 Lecture Videos"; todays_date (); "TBD"; "6"; 
        "Fill out OMM";todays_date (); "TBD"; "5";
