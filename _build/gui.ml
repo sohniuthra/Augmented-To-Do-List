@@ -8,12 +8,15 @@ let draw_basic () =
   set_color blue;
   draw_string "Welcome to your new to-do list!"; 
   moveto 10 440;
-  draw_string "Press t to create a new task"; (* this doesn't work fully yet *)
+  draw_string "Press t to create a new task"; 
   moveto 10 425;
-  draw_string "Press c to complete a task"; (* need to implement *)
+  draw_string "Press c to complete a task"; 
   moveto 10 410;
   draw_string "Press d to delete a task"; (* need to implement *)
-  set_color black
+  set_color black;
+  moveto 10 10;
+  draw_string "Press q to quit";
+  moveto 10 395
 
 let rec string_input str =
   let e = wait_next_event [Key_pressed] in 
@@ -41,32 +44,47 @@ let task_input () =
   draw_basic ();
   Manual.create_task ~cat:cat category name due priority
 
+(** [complete_task_gui ()] prompts the user to type in the category and name
+    of a task they want to complete *) 
+let complete_task_gui () =
+  let cat = empty_cat () in 
+  draw_string "Type the category of the task you want to complete";
+  let category = (string_input "") in
+  draw_basic ();
+  draw_string "Type the name of the task you want to complete";
+  let name = (string_input "") in
+  Manual.complete_task ~cat:cat category name
+
+(** [delete_task_gui ()] prompts the user to type in the category and name
+    of a task they want to delete *) 
+let delete_task_gui () =
+  let cat = empty_cat () in 
+  draw_string "Type the category of the task you want to delete";
+  let category = (string_input "") in
+  draw_basic ();
+  draw_string "Type the name of the task you want to delete";
+  let name = (string_input "") in
+  Manual.delete_task ~cat:cat category name
+
 
 let rec loop () = 
   let e = wait_next_event [Key_pressed] in
-
-  (*let mouse_description = sprintf "Mouse position: %d,%d" e.mouse_x e.mouse_y in*)
-  (*let key_description = if e.keypressed 
-    then sprintf "Key %c was pressed" e.key 
-    else "" in*)
-
-  let a_pressed = if e.key = 'a' then sprintf "pressed a" else "" in
-
-  let n_pressed = if e.key = 'n' 
-    then (draw_string "Type your task name. Press 0 when you are finished"; 
-          string_input "")
-    else "" in
 
   let new_task = if e.key = 't'
     then task_input ()
     else () in
 
-  (*clear_graph ();*)
-  (*moveto 0 100; draw_string key_description;*)
-  moveto 0 200; draw_string a_pressed;
-  moveto 15 100; draw_string n_pressed;
+  let comp_task = if e.key = 'c'
+    then complete_task_gui ()
+    else () in
+
+  let del_task = if e.key = 'd'
+    then delete_task_gui ()
+    else () in
+
   new_task;
-  (*moveto 0 0; draw_string mouse_description;*)
+  comp_task;
+  del_task;
 
   if e.key <> 'q' then loop () else ()
 
