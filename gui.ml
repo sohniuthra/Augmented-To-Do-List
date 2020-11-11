@@ -32,7 +32,7 @@ let draw_basic () =
   set_color black;
   moveto 10 10;
   draw_string "Press q to quit";
-  moveto 10 375
+  moveto 10 365
 
 (** [string_input str] produces a string from anything that the user types 
     before pressing enter *)
@@ -45,6 +45,11 @@ let rec string_input str =
 (** [draw_int i] draws int [i] as a string *) 
 let draw_int i =
   draw_string (string_of_int i)
+
+let view_category category = 
+  (*let cat = empty_cat () in*)
+  let lst = Manual.to_list ~cat:cat category in
+  draw_str_list lst
 
 let task_input () =
   (*let cat = empty_cat () in*)
@@ -60,7 +65,8 @@ let task_input () =
   draw_string "Type the priority of your task";
   let priority = int_of_string (string_input "") in
   draw_basic ();
-  Manual.create_task ~cat:cat category name due priority
+  Manual.create_task ~cat:cat category name due priority;
+  view_category category
 
 (** [complete_task_gui ()] prompts the user to type in the category and name
     of a task they want to complete *) 
@@ -83,11 +89,6 @@ let delete_task_gui () =
   draw_string "Type the name of the task you want to delete";
   let name = (string_input "") in
   Manual.delete_task ~cat:cat category name
-
-let view_category category = 
-  (*let cat = empty_cat () in*)
-  let lst = Manual.to_list ~cat:cat category in
-  draw_str_list lst
 
 let view_all_categories () = failwith "unimplemented"
 
