@@ -2,6 +2,14 @@ open Graphics
 open Manual
 open Printf
 
+(** [draw_str_list slst] takes string list [slst] and draws it with each item 
+    on a new line *) 
+let rec draw_str_list slst =
+  match slst with 
+  | [] -> ()
+  | h::t -> draw_string h; moveto (10) (current_y () - 15); 
+    draw_str_list t
+
 let draw_basic () =
   clear_graph ();
   moveto 10 460;
@@ -68,7 +76,10 @@ let delete_task_gui () =
   let name = (string_input "") in
   Manual.delete_task ~cat:cat category name
 
-let view_category category = failwith "unimplemented"
+let view_category category = 
+  let cat = empty_cat () in
+  let lst = Manual.to_list ~cat:cat category in
+  draw_str_list lst
 
 let view_all_categories () = failwith "unimplemented"
 
@@ -125,14 +136,6 @@ let rec draw_tsk_list tlst =
   | [] -> ()
   | h::t -> draw_task h; moveto (current_x ()) (current_y () - 15); 
     draw_tsk_list t
-
-(** [draw_str_list slst] takes string list [slst] and draws it with each item 
-    on a new line *) 
-let rec draw_str_list slst =
-  match slst with 
-  | [] -> ()
-  | h::t -> draw_string h; moveto (10) (current_y () - 15); 
-    draw_str_list t
 
 let () = open_window;
   draw_basic ();
