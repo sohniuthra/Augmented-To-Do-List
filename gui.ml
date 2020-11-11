@@ -13,10 +13,12 @@ let draw_basic () =
   draw_string "Press c to complete a task"; 
   moveto 10 410;
   draw_string "Press d to delete a task"; (* need to implement *)
+  moveto 10 395;
+  draw_string "Press v to view a list";
   set_color black;
   moveto 10 10;
   draw_string "Press q to quit";
-  moveto 10 395
+  moveto 10 380
 
 let rec string_input str =
   let e = wait_next_event [Key_pressed] in 
@@ -66,6 +68,16 @@ let delete_task_gui () =
   let name = (string_input "") in
   Manual.delete_task ~cat:cat category name
 
+let view_category category = failwith "unimplemented"
+
+let view_all_categories () = failwith "unimplemented"
+
+let draw_list () =
+  draw_string "Type the category of the list you want to view. If you want to view all lists, type all";
+  let category = (string_input "") in 
+  if category = "all" 
+  then view_all_categories ()
+  else view_category category
 
 let rec loop () = 
   let e = wait_next_event [Key_pressed] in
@@ -82,9 +94,14 @@ let rec loop () =
     then delete_task_gui ()
     else () in
 
+  let view = if e.key = 'v'
+    then draw_list ()
+    else () in
+
   new_task;
   comp_task;
   del_task;
+  view;
 
   if e.key <> 'q' then loop () else ()
 
