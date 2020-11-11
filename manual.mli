@@ -42,8 +42,9 @@ val init_todolist : string -> task list -> t
     [cat_name]. *)
 val empty_list : string -> t
 
-(** [sort_list cat_name] sorts a to-do list with category [name] by priority
-    of tasks  *)
+(** [sort_list cat_name] sorts a to-do list with category [name] by [sort_by]
+    of tasks. 
+    Requires: [sort_by] must either be Priority or Due Date *)
 val sort_list : ?cat:(t list ref) -> string -> string -> unit
 
 (** [sort_task task cat_name] inserts a task into a sorted list - needed? *)

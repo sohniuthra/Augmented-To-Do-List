@@ -23,7 +23,7 @@ exception UnknownTask of task
 let todays_date = 
   let time = Unix.localtime (Unix.time ()) in 
   let (day, month, year) = (time.tm_mday, time.tm_mon, time.tm_year) in
-  string_of_int (month + 1) ^ "-" ^ string_of_int(day) ^ "-" ^ 
+  string_of_int (month + 1) ^ "/" ^ string_of_int(day) ^ "/" ^ 
   string_of_int (1900 + year)
 
 let init_task name due_date priority = {
@@ -177,10 +177,10 @@ let complete_task_auto ?(cat=categories) cat_name task_name =
   let new_auto = del_task category finished_task in 
   cat := new_auto :: new_completed :: []
 
-let create_task_auto ?(cat=categories) name cat_name due_date priority= 
-  let task = init_task name due_date priority in
-  let new_list = add_task (find_category ~cat:cat cat_name) task in 
+let create_task_auto ?(cat=categories) cat_name task_name due_date priority= 
+  let task = init_task task_name due_date priority in
   let old_list = find_category ~cat:cat cat_name in  
+  let new_list = add_task (old_list) task in
   cat := (new_list :: (remove_cat old_list !cat))
 
 let change_priority ?(cat=categories) cat_name task_name new_priority =
@@ -188,18 +188,19 @@ let change_priority ?(cat=categories) cat_name task_name new_priority =
   let old_task =  find_task category task_name in
   let date = old_task.due_date in 
   let new_t = del_task category old_task in
-  create_task_auto ~cat:cat cat_name task_name date new_priority;
-  cat := (new_t :: (remove_cat category !cat))
+  let new_task = init_task task_name date new_priority in
+  let new_cat = add_task new_t new_task in
+  cat := (new_cat :: (remove_cat category !cat))
 
 
 let change_due ?(cat=categories) cat_name task_name new_date =
   let category = find_category ~cat:cat cat_name in
-  let old_task =  List.find (fun x -> x.name = task_name) category.task_list 
-  in
+  let old_task =  find_task category task_name in
   let priority = old_task.priority in 
   let new_t = del_task category old_task in
-  cat := (new_t :: (remove_cat category !cat));
-  create_task_auto ~cat:cat cat_name task_name new_date priority
+  let new_task = init_task task_name new_date priority in
+  let new_cat = add_task new_t new_task in
+  cat := (new_cat :: (remove_cat category !cat))
 
 let rec to_list_helper cat_list acc =
   match cat_list with

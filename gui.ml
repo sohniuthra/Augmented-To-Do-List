@@ -2,6 +2,8 @@ open Graphics
 open Manual
 open Printf
 
+let cat = empty_cat ()
+
 (** [draw_str_list slst] takes string list [slst] and draws it with each item 
     on a new line *) 
 let rec draw_str_list slst =
@@ -10,6 +12,8 @@ let rec draw_str_list slst =
   | h::t -> draw_string h; moveto (10) (current_y () - 15); 
     draw_str_list t
 
+(** [draw_basic ()] is the basic window that should open when the application
+    opens *) 
 let draw_basic () =
   clear_graph ();
   moveto 10 460;
@@ -20,14 +24,18 @@ let draw_basic () =
   moveto 10 425;
   draw_string "Press c to complete a task"; 
   moveto 10 410;
-  draw_string "Press d to delete a task"; (* need to implement *)
+  draw_string "Press d to delete a task";
   moveto 10 395;
   draw_string "Press v to view a list";
+  moveto 10 380;
+  draw_string "Press a to make an automatic list";
   set_color black;
   moveto 10 10;
   draw_string "Press q to quit";
-  moveto 10 380
+  moveto 10 375
 
+(** [string_input str] produces a string from anything that the user types 
+    before pressing enter *)
 let rec string_input str =
   let e = wait_next_event [Key_pressed] in 
   if e.key <> '\r' 
@@ -39,7 +47,7 @@ let draw_int i =
   draw_string (string_of_int i)
 
 let task_input () =
-  let cat = empty_cat () in
+  (*let cat = empty_cat () in*)
   draw_string "Type the name of your category";
   let category = (string_input "") in
   draw_basic ();
@@ -57,7 +65,7 @@ let task_input () =
 (** [complete_task_gui ()] prompts the user to type in the category and name
     of a task they want to complete *) 
 let complete_task_gui () =
-  let cat = empty_cat () in 
+  (*let cat = empty_cat () in *)
   draw_string "Type the category of the task you want to complete";
   let category = (string_input "") in
   draw_basic ();
@@ -68,7 +76,7 @@ let complete_task_gui () =
 (** [delete_task_gui ()] prompts the user to type in the category and name
     of a task they want to delete *) 
 let delete_task_gui () =
-  let cat = empty_cat () in 
+  (*let cat = empty_cat () in *)
   draw_string "Type the category of the task you want to delete";
   let category = (string_input "") in
   draw_basic ();
@@ -77,7 +85,7 @@ let delete_task_gui () =
   Manual.delete_task ~cat:cat category name
 
 let view_category category = 
-  let cat = empty_cat () in
+  (*let cat = empty_cat () in*)
   let lst = Manual.to_list ~cat:cat category in
   draw_str_list lst
 
@@ -89,6 +97,34 @@ let draw_list () =
   if category = "all" 
   then view_all_categories ()
   else view_category category
+
+let sort_gui () = 
+  let e = wait_next_event [Key_pressed] in
+  draw_string "To sort by priority, press p. To sort by due date, press d.";
+  let priority = if e.key = 'p' 
+    then (clear_graph ();
+          draw_string "Type the name of the category you want to sort";
+          let category = (string_input "") in
+          Manual.sort_list category "priority")
+    else () in
+  let date = if e.key = 'd' 
+    then (clear_graph ();
+          draw_string "Type the name of the category you want to sort";
+          let category = (string_input "") in
+          Manual.sort_list category "date")
+    else () in
+  priority;
+  date
+
+let make_auto () =
+  draw_string "Type what kind of automatic list you want. The options are car, school, household, shopping, and pandemic.";
+  let auto_choice = string_input "" in 
+  if auto_choice = "car" then Automatic.make_car_auto ()
+  else if auto_choice = "school" then Automatic.make_school_auto ()
+  else if auto_choice = "household" then Automatic.make_household_auto ()
+  else if auto_choice = "shopping" then Automatic.make_shopping_auto ()
+  else if auto_choice = "pandemic" then Automatic.make_pandemic_auto ()
+  else draw_string "Input invalid"; draw_basic ()
 
 let rec loop () = 
   let e = wait_next_event [Key_pressed] in
@@ -109,10 +145,20 @@ let rec loop () =
     then draw_list ()
     else () in
 
+  let sort = if e.key = 's'
+    then sort_gui ()
+    else () in 
+
+  let auto = if e.key = 'a'
+    then make_auto ()
+    else () in 
+
   new_task;
   comp_task;
   del_task;
   view;
+  sort;
+  auto;
 
   if e.key <> 'q' then loop () else ()
 

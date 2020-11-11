@@ -1,6 +1,6 @@
 open OUnit2
 open Manual
-(* open Automatic *)
+open Automatic
 
 (**  [pp_string s] pretty-prints string [s]. *)
 let pp_string s = "\"" ^ s ^ "\""
@@ -64,7 +64,7 @@ let update_cat_test name categories cat_name expected_output =
 let update_cat_test_auto name categories cat_name expected_output = 
   name >:: (fun _ -> 
       assert_equal expected_output 
-        (to_list_auto ~cat:categories cat_name) ~printer: (pp_list pp_string)) 
+        (to_list_auto ~cat:categories cat_name) ~printer: (pp_list pp_string))
 
 (* all tests using update_cat_test also test to_list *)
 let cat = empty_cat ()
@@ -111,7 +111,6 @@ let task3 = create_task ~cat:cat "School" "do lab" "10/28/20" 3
 let task4 = create_task ~cat:cat "General" "wash dishes" "10/27/20" 2
 let task5 = create_task ~cat:cat "General" "watch basketball game" "10/28/20" 2
 
-
 (* adding multiple tasks into two categories *)
 let create_task_tests4 =
   [
@@ -156,10 +155,10 @@ let create_task_tests4 =
 
 let cat = empty_cat ()
 let task1 = create_task ~cat:cat "General" "watch lecture" "10/28/20" 2 
-let sort = sort_list ~cat:cat "General"
+let sort = sort_list ~cat:cat "General" "Priority"
 
-(* sorting a list with one task *)
-let sort_list_tests1 = [
+(* sorting a list by priority with one task *)
+let sort_list_priority_tests1 = [
   update_cat_test "Sorting General by priority with one task" cat "General" 
     ["General"; "watch lecture"; todays_date (); "10/28/20"; "2"];
 ]
@@ -168,12 +167,12 @@ let cat = empty_cat ()
 let task1 = create_task ~cat:cat "General" "watch lecture" "10/28/20" 2 
 let task2 = create_task ~cat:cat "General" "fill out OMM" "10/24/20" 1 
 let task3 = create_task ~cat:cat "General" "do lab" "10/28/20" 3 
-let sort = sort_list ~cat:cat "General"
+let sort = sort_list ~cat:cat "General" "Priority"
 
-(* sorting a list with three tasks of each different priorities *)
-let sort_list_tests2 = [
+(* sorting a list by priority with three tasks of each different priorities *)
+let sort_list_priority_tests2 = [
   update_cat_test "Sorting General by priority with each task containing 
-  different prioirities" cat "General" 
+  different priorities" cat "General" 
     ["General"; "fill out OMM"; todays_date (); "10/24/20"; "1"; 
      "watch lecture"; todays_date (); "10/28/20"; "2"; "do lab"; todays_date (); 
      "10/28/20"; "3"];
@@ -183,11 +182,12 @@ let cat = empty_cat ()
 let task1 = create_task ~cat:cat "General" "watch lecture" "10/28/20" 2 
 let task2 = create_task ~cat:cat "General" "fill out OMM" "10/24/20" 2 
 let task3 = create_task ~cat:cat "General" "do lab" "10/28/20" 2 
-let sort = sort_list ~cat:cat "General"
+let sort = sort_list ~cat:cat "General" "Priority"
 
-(* sorting a list with three tasks, all containing the same priorities *)
-let sort_list_tests3 = [
-  update_cat_test "Sorting General by priority with some tasks containing the 
+(* sorting a list by priority with three tasks, all containing the same 
+   priorities *)
+let sort_list_priority_tests3 = [
+  update_cat_test "Sorting General by priority with all tasks containing the 
   same priorities" cat "General" 
     ["General"; "do lab"; todays_date (); "10/28/20"; "2"; "fill out OMM"; 
      todays_date (); "10/24/20"; "2"; "watch lecture"; todays_date (); 
@@ -198,10 +198,11 @@ let cat = empty_cat ()
 let task1 = create_task ~cat:cat "General" "watch lecture" "10/28/20" 2 
 let task2 = create_task ~cat:cat "General" "fill out OMM" "10/24/20" 2 
 let task3 = create_task ~cat:cat "General" "do lab" "10/28/20" 3 
-let sort = sort_list ~cat:cat "General"
+let sort = sort_list ~cat:cat "General" "Priority"
 
-(* sorting a list with multiple tasks, some containing the same priorities *)
-let sort_list_tests4 = [
+(* sorting a list by priority with multiple tasks, some containing the same 
+   priorities *)
+let sort_list_priority_tests4 = [
   update_cat_test "Sorting General by priority with some tasks containing the 
   same priorities" cat "General" 
     ["General"; "fill out OMM"; todays_date (); "10/24/20"; "2"; 
@@ -215,16 +216,109 @@ let task2 = create_task ~cat:cat "General" "fill out OMM" "10/24/20" 1
 let task3 = create_task ~cat:cat "General" "do lab" "10/28/20" 3 
 let task4 = create_task ~cat:cat "General" "go to discussion" "10/28/20" 2 
 let task5 = create_task ~cat:cat "General" "do reading" "10/28/20" 1 
-let sort = sort_list ~cat:cat "General"
+let sort = sort_list ~cat:cat "General" "Priority"
 
-(* sorting a list with five tasks, some containing the same priorities*)
-let sort_list_tests5 = [
+(* sorting a list by priority with five tasks, some containing the same 
+   priorities*)
+let sort_list_priority_tests5 = [
   update_cat_test "Sorting General by priority with some tasks containing the 
   same priorities" cat "General" 
     ["General"; "do reading"; todays_date (); "10/28/20"; "1"; "fill out OMM"; 
      todays_date (); "10/24/20"; "1"; "go to discussion"; todays_date (); 
      "10/28/20"; "2"; "watch lecture"; todays_date (); "10/28/20"; "2";"do lab"; 
      todays_date (); "10/28/20"; "3"];
+]
+
+let cat = empty_cat ()
+let task1 = create_task ~cat:cat "General" "watch lecture" "10/28/20" 2 
+let sort = sort_list ~cat:cat "General" "Due Date"
+
+(* sorting a list by due date with one task *)
+let sort_list_date_tests1 = [
+  update_cat_test "Sorting General by date with one task" cat "General" 
+    ["General"; "watch lecture"; todays_date (); "10/28/20"; "2"];
+]
+
+let cat = empty_cat ()
+let task1 = create_task ~cat:cat "General" "watch lecture" "10/28/22" 2 
+let task2 = create_task ~cat:cat "General" "fill out OMM" "10/24/21" 2 
+let task3 = create_task ~cat:cat "General" "do lab" "10/28/20" 2 
+let sort = sort_list ~cat:cat "General" "Due Date"
+
+(* sorting a list by due date with three tasks, each with the different years *)
+let sort_list_date_tests2 = [
+  update_cat_test "Sorting General by due date with each task due different 
+  years" cat "General" 
+    ["General"; "do lab"; todays_date (); "10/28/20"; "2"; "fill out OMM"; 
+     todays_date (); "10/24/21"; "2"; "watch lecture"; todays_date (); 
+     "10/28/22"; "2"];
+]
+
+let cat = empty_cat ()
+let task1 = create_task ~cat:cat "General" "watch lecture" "10/28/20" 2 
+let task2 = create_task ~cat:cat "General" "fill out OMM" "11/24/20" 2 
+let task3 = create_task ~cat:cat "General" "do lab" "12/28/20" 2 
+let sort = sort_list ~cat:cat "General" "Due Date"
+
+(* sorting a list by due date with three tasks, each with the different months 
+   and the arbitrary days and same years *)
+let sort_list_date_tests3 = [
+  update_cat_test "Sorting General by due date with each task due different 
+  months of the same year" cat "General" 
+    ["General"; "watch lecture"; todays_date ();  "10/28/20"; "2"; 
+     "fill out OMM"; todays_date (); "11/24/20"; "2"; "do lab"; todays_date (); 
+     "12/28/20"; "2"];
+]
+
+let cat = empty_cat ()
+let task1 = create_task ~cat:cat "General" "watch lecture" "11/28/20" 2 
+let task2 = create_task ~cat:cat "General" "fill out OMM" "11/25/20" 2 
+let task3 = create_task ~cat:cat "General" "do lab" "11/29/20" 2 
+let sort = sort_list ~cat:cat "General" "Due Date"
+
+(* sorting a list by due date with three tasks, each with the different days but 
+   the same months and years *)
+let sort_list_date_tests4 = [
+  update_cat_test "Sorting General by due date with each task due different days 
+  of the same month and same years" cat "General" 
+    ["General"; "fill out OMM"; todays_date (); "11/25/20"; "2"; 
+     "watch lecture"; todays_date ();  "11/28/20"; "2"; "do lab"; 
+     todays_date (); "11/29/20"; "2" ];
+]
+
+let cat = empty_cat ()
+let task1 = create_task ~cat:cat "General" "watch lecture" "10/29/20" 2 
+let task2 = create_task ~cat:cat "General" "fill out OMM" "10/20/20" 3
+let task3 = create_task ~cat:cat "General" "do lab" "10/28/20" 1 
+let task4 = create_task ~cat:cat "General" "go to discussion" "10/29/20" 2 
+let task5 = create_task ~cat:cat "General" "do reading" "10/20/20" 1
+let sort = sort_list ~cat:cat "General" "Priority"
+
+(* sorting a list by due date with five tasks, some containing the same 
+   due dates *)
+let sort_list_date_tests5 = [
+  update_cat_test "Sorting General by due date with some tasks containing the 
+  same due dates" cat "General" 
+    ["General"; "do reading"; todays_date (); "10/28/20"; "1"; "fill out OMM"; 
+     todays_date (); "10/24/20"; "1"; "go to discussion"; todays_date (); 
+     "10/28/20"; "2"; "watch lecture"; todays_date (); "10/28/20"; "2";"do lab"; 
+     todays_date (); "10/28/20"; "3"];
+]
+
+let cat = empty_cat ()
+let task1 = create_task ~cat:cat "General" "watch lecture" "10/28/20" 2 
+let task2 = create_task ~cat:cat "General" "fill out OMM" "10/28/20" 1 
+let task3 = create_task ~cat:cat "General" "do lab" "10/28/20" 3 
+let sort = sort_list ~cat:cat "General" "Due Date"
+
+(* sorting a list by due date with three tasks, all containing the same 
+   due date *)
+let sort_list_date_tests6 = [
+  update_cat_test "Sorting General by priority with all tasks containing the 
+  same due date" cat "General" 
+    ["General"; "do lab"; todays_date (); "10/28/20"; "2"; "fill out OMM"; 
+     todays_date (); "10/28/20"; "2"; "watch lecture"; todays_date (); 
+     "10/28/20"; "2"];
 ]
 
 let cat = empty_cat ()
@@ -372,22 +466,49 @@ let delete_tests3 =
        todays_date (); "10/28/20"; "2"];
   ]
 
-(* let cat = make_school_auto ~cat:cat () *)
 let cat = empty_cat_auto ()
 let school = make_school_auto ~cat:cat ()
 let change = change_priority ~cat:cat "School Tasks" "Write Essay" 4
 
 let change_priority_tests = 
   [
-    update_cat_test_auto "Write Essay priority has changed in category School Tasks" cat "School Tasks"
-      ["School Tasks"; "Plan for Pre-Enroll"; todays_date (); "TBD"; "7"; 
+    update_cat_test_auto "Write Essay priority has changed in category School 
+    Tasks" cat "School Tasks"
+      ["School Tasks"; "Write Essay"; todays_date (); "TBD"; "4";
+       "Plan for Pre-Enroll"; todays_date (); "TBD"; "7"; 
        "Watch CS 3110 Lecture Videos"; todays_date (); "TBD"; "6"; 
        "Fill out OMM";todays_date (); "TBD"; "5";
        "Meet with Professor"; todays_date (); "TBD"; "4";
        "Finish Biology Lab"; todays_date (); "TBD"; "3";
-       "Write Essay"; todays_date (); "TBD"; "4";
        "Complete Math Problem Set"; todays_date (); "TBD"; "1"]
   ]
+
+let cat = empty_cat_auto ()
+let list = make_auto ~cat:cat ()
+let change = change_priority ~cat:cat "Pandemic Tasks" "Make Masks" 4
+let change2 = change_priority ~cat:cat "Household Tasks"  
+    "Feed the Dog" 1
+
+let change_priority_tests2 = [
+
+]
+
+let cat = empty_cat_auto ()
+let shopping = make_shopping_auto ~cat:cat ()
+let change = change_due ~cat:cat "Shopping Tasks" "Get New iPhone 12 Pro Max" 
+    "11/14/2020"
+
+let change_due_tests = [
+  update_cat_test_auto "Change due date of Pooja's iPhone Purchase" cat
+    "Shopping Tasks" 
+    ["Shopping Tasks"; "Get New iPhone 12 Pro Max"; todays_date (); "11/14/2020"; "7";
+     "Get new lightbulbs to replace current ones"; todays_date (); "TBD"; "6";
+     "Buy new Nike Sneakers"; todays_date ();"TBD"; "5"; 
+     "Buy Essentials for Ithaca Winter"; todays_date (); "TBD"; "4";
+     "Find Dress for Formal";  todays_date ();"TBD"; "3";
+     "Buy Cake for Melissa's Birthday"; todays_date ();"TBD";  "2";
+     "Order Groceries"; todays_date (); "TBD"; "1"]
+]
 
 let suite =
   "test suite for Manual Mode"  >::: List.flatten [
@@ -396,11 +517,16 @@ let suite =
     create_task_tests3;
     create_task_tests4;
 
-    sort_list_tests1;
-    sort_list_tests2;
-    sort_list_tests3;
-    sort_list_tests4;
-    sort_list_tests5;
+    sort_list_priority_tests1;
+    sort_list_priority_tests2;
+    sort_list_priority_tests3;
+    sort_list_priority_tests4;
+    sort_list_priority_tests5;
+
+    sort_list_date_tests1;
+    sort_list_date_tests2;
+    sort_list_date_tests3;
+    sort_list_date_tests4;
 
     complete_tests1;
     complete_tests2;
@@ -410,7 +536,8 @@ let suite =
     delete_tests2;
     delete_tests3;
 
-    (* change_priority_tests; *)
+    change_priority_tests;
+    change_due_tests;
   ]
 
 let _ = run_test_tt_main suite

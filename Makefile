@@ -28,7 +28,7 @@ graphics:
 	$(OCAMLBUILD) $(GUI) && ./$(GUI)
 
 zip:
-	zip todolist.zip *.ml* *.json _tags Makefile
+	zip todolist.zip *.ml* *.json _tags Makefile INSTALL.txt
 	
 docs: docs-public docs-private
 	

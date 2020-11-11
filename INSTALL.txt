@@ -5,3 +5,7 @@ We used the following packages: ounit2, ANSITerminal
 
 The system should be interacted with in utop. Follow the directions that will 
 come up when you enter utop to use the to-do list. 
+
+To interact with the GUI, user must have XQuartz installed. Run make graphics 
+in the terminal and an XQuartz application will open with instructions on how 
+to use it.
