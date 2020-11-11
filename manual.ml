@@ -78,24 +78,71 @@ let remove_cat t (lst : t list) =
 
 (* compare function for two tasks based on priority *)
 let priority_compare t1 t2 = 
-  if t1.priority < t2.priority then -1 else 
-  if t1.priority > t2.priority then 1 else 0
+  let t1p = t1.priority in
+  let t2p = t2.priority in
+  if t1p < t2p then -1 else 
+  if t1p > t2p then 1 else 0
 
-let rec sort_list_helper task_lst acc =
-  match task_lst with
-  | [] -> []
-  | task :: [] -> acc @ [task]
-  | task1 :: task2 :: lst -> begin if priority_compare task1 task2 = -1
+(* helper function to get the month of a properly formatted due date *)
+let get_month_due task = 
+  let date = task.due_date in 
+  let month_ind = String.index date '-' in
+  String.sub date 0 month_ind 
+
+(* helper function to get the day of a properly formatted due date *)
+let get_day_due task = 
+  let date = task.due_date in 
+  let month_ind = String.index date '-' in
+  let day_ind = String.rindex date '-' in
+  String.sub date month_ind day_ind 
+
+(* helper function to get the year of a properly formatted due date *)
+let get_year_due task = 
+  let date = task.due_date in 
+  let year_ind = String.rindex date '-' in
+  String.sub date year_ind (String.length date)
+
+(* compare function for two tasks based on due date *)
+let date_compare t1 t2 = 
+  let t1month = get_month_due t1 in 
+  let t1day = get_day_due t1 in 
+  let t1year = get_year_due t1 in 
+  let t2month = get_month_due t2 in
+  let t2day = get_day_due t2 in
+  let t2year = get_year_due t2 in
+
+  if t1year > t2year then 1 else if t1year < t2year then -1 else
+  if t1month > t2month then 1 else if t1month < t2month then -1 else
+  if t1day > t2day then 1 else if t1day < t2day then -1 else 0
+
+(* let rec sort_list_helper task_lst acc =
+   match task_lst with
+   | [] -> []
+   | task :: [] -> acc @ [task]
+   | task1 :: task2 :: lst -> begin if priority_compare task1 task2 = -1
       then acc @ [task2] @ [task1]
       else if priority_compare task1 task2 = 1 
       then acc @ [task1] @ [task2] else sort_list_helper (task2 :: lst) acc
-    end
+    end *)
 
-let sort_list ?(cat=categories) cat_name = 
+let sort_by_priority ?(cat=categories) cat_name = 
   let category = find_category ~cat:cat cat_name in
   let sorted_lst = List.stable_sort priority_compare category.task_list in
   let sorted_cat = init_todolist cat_name sorted_lst in
   cat := (sorted_cat :: (remove_cat category !cat))
+
+let sort_by_date ?(cat=categories) cat_name = 
+  let category = find_category ~cat:cat cat_name in
+  let sorted_lst = List.stable_sort date_compare category.task_list in 
+  let sorted_cat = init_todolist cat_name sorted_lst in
+  cat := (sorted_cat :: (remove_cat category !cat))
+
+
+let sort_list ?(cat=categories) cat_name sort_by = 
+  if sort_by = "priority" || sort_by = "Priority" then sort_by_priority 
+      ~cat:cat cat_name
+  else if sort_by = "date" || sort_by = "Date" || sort_by = "due date" || 
+          sort_by = "Due Date" then sort_by_date ~cat:cat cat_name
 
 let create_task ?(cat=categories) cat_name name due_date priority = 
   let task = init_task name due_date priority in
