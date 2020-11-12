@@ -48,6 +48,7 @@ let draw_int i =
 
 let view_category category = 
   (*let cat = empty_cat () in*)
+  draw_basic ();
   let lst = Manual.to_list ~cat:cat category in
   draw_str_list lst
 
@@ -72,12 +73,14 @@ let task_input () =
     of a task they want to complete *) 
 let complete_task_gui () =
   (*let cat = empty_cat () in *)
+  draw_basic ();
   draw_string "Type the category of the task you want to complete";
   let category = (string_input "") in
   draw_basic ();
   draw_string "Type the name of the task you want to complete";
   let name = (string_input "") in
-  Manual.complete_task ~cat:cat category name
+  Manual.complete_task ~cat:cat category name;
+  view_category category 
 
 (** [delete_task_gui ()] prompts the user to type in the category and name
     of a task they want to delete *) 
