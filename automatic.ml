@@ -33,7 +33,7 @@ let init_task name due_date priority = {
   priority = priority;
 }
 
-(** Initialize an empty to-do list *)
+(** Initialize an empty category. *)
 let empty_list cat_name = {
   c_name = cat_name;
   task_list = [];
@@ -53,6 +53,9 @@ let find_category ?(cat=categories) cat_name =
 let remove_cat t (lst : t list) = 
   List.filter (fun x -> if x.c_name != t.c_name then true else false) lst
 
+(* let make_completed ?(cat=categories) () =
+   add_new_cat ~cat:cat (empty_list "Completed Tasks") *)
+
 let car_list ?(cat=categories) () = 
   let init_list = empty_list "Car Tasks" in 
   let change_oil = add_task init_list 
@@ -63,11 +66,10 @@ let car_list ?(cat=categories) () =
       (init_task "Go for Emissions Test" "TBD" 3) in
   let car_wash = add_task emissions (init_task "Go to Car Wash" "TBD" 4) in
   let brakes = add_task car_wash (init_task "Change Brake Pads" "TBD" 5) in
-  let battery = add_task brakes (init_task "Change battery" "TBD" 6) in 
+  let battery = add_task brakes (init_task "Change Battery" "TBD" 6) in 
   let radiator = add_task battery 
-      (init_task "Change radiator fluid" "TBD" 7) in
-  add_new_cat ~cat:cat radiator; add_new_cat ~cat:cat 
-    (empty_list "Completed Tasks")
+      (init_task "Change Radiator Fluid" "TBD" 7) in
+  add_new_cat ~cat:cat radiator
 
 let school_list ?(cat=categories) () =
   let init_list = empty_list "School Tasks" in 
@@ -80,7 +82,7 @@ let school_list ?(cat=categories) () =
   let meet_professor = add_task biology_lab 
       (init_task "Meet with Professor" "TBD" 4) in
   let omm = add_task meet_professor 
-      (init_task "Fill out OMM" "TBD" 5) in
+      (init_task "Fill Out OMM" "TBD" 5) in
   let lecture = add_task omm 
       (init_task "Watch CS 3110 Lecture Videos" "TBD" 6) in 
   let plan = add_task lecture 
@@ -117,7 +119,6 @@ let shopping_list ?(cat=categories) () =
       (init_task "Get New iPhone 12 Pro Max" "TBD" 7) in
   add_new_cat ~cat:cat phone
 
-
 let pandemic_list ?(cat=categories) () = 
   let init_list = empty_list "Pandemic Tasks" in 
   let sanitizer = add_task init_list (init_task "Buy Hand Sanitizer" "TBD" 1) 
@@ -138,6 +139,7 @@ let make_auto ?(cat=categories) () =
   household_list ~cat:cat (); 
   shopping_list ~cat:cat (); 
   pandemic_list ~cat:cat ()
+(* make_completed ~cat:cat () to be added fully in MS3 *)
 
 let make_car_auto ?(cat=categories) () = 
   car_list ~cat:cat () 
@@ -169,13 +171,13 @@ let delete_task_auto ?(cat=categories) cat_name task_name =
   let cat_wo_t = List.filter (fun x -> x.c_name <> cat_name) (!cat) in
   cat := new_t :: cat_wo_t
 
-let complete_task_auto ?(cat=categories) cat_name task_name =
-  let category = find_category ~cat:cat cat_name in
-  let finished_task = find_task category task_name in
-  let new_completed = add_task (find_category ~cat:cat "Completed Tasks") 
+(* let complete_task_auto ?(cat=categories) cat_name task_name =
+   let category = find_category ~cat:cat cat_name in
+   let finished_task = find_task category task_name in
+   let new_completed = add_task (find_category ~cat:cat "Completed Tasks") 
       finished_task in 
-  let new_auto = del_task category finished_task in 
-  cat := new_auto :: new_completed :: []
+   let new_auto = del_task category finished_task in 
+   cat := new_auto :: new_completed :: [] *)
 
 let create_task_auto ?(cat=categories) cat_name task_name due_date priority= 
   let task = init_task task_name due_date priority in
@@ -192,13 +194,22 @@ let change_priority ?(cat=categories) cat_name task_name new_priority =
   let new_cat = add_task new_t new_task in
   cat := (new_cat :: (remove_cat category !cat))
 
-
 let change_due ?(cat=categories) cat_name task_name new_date =
   let category = find_category ~cat:cat cat_name in
   let old_task =  find_task category task_name in
   let priority = old_task.priority in 
   let new_t = del_task category old_task in
   let new_task = init_task task_name new_date priority in
+  let new_cat = add_task new_t new_task in
+  cat := (new_cat :: (remove_cat category !cat))
+
+let change_name ?(cat=categories) cat_name task_name new_name =
+  let category = find_category ~cat:cat cat_name in
+  let old_task =  find_task category task_name in
+  let priority = old_task.priority in 
+  let date = old_task.due_date in
+  let new_t = del_task category old_task in
+  let new_task = init_task new_name date priority in
   let new_cat = add_task new_t new_task in
   cat := (new_cat :: (remove_cat category !cat))
 

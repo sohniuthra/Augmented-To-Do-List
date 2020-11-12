@@ -477,37 +477,66 @@ let change_priority_tests =
       ["School Tasks"; "Write Essay"; todays_date (); "TBD"; "4";
        "Plan for Pre-Enroll"; todays_date (); "TBD"; "7"; 
        "Watch CS 3110 Lecture Videos"; todays_date (); "TBD"; "6"; 
-       "Fill out OMM";todays_date (); "TBD"; "5";
+       "Fill Out OMM";todays_date (); "TBD"; "5";
        "Meet with Professor"; todays_date (); "TBD"; "4";
        "Finish Biology Lab"; todays_date (); "TBD"; "3";
        "Complete Math Problem Set"; todays_date (); "TBD"; "1"]
   ]
 
 let cat = empty_cat_auto ()
-let list = make_auto ~cat:cat ()
-let change = change_priority ~cat:cat "Pandemic Tasks" "Make Masks" 4
-let change2 = change_priority ~cat:cat "Household Tasks"  
-    "Feed the Dog" 1
+let pan = make_pandemic_auto ~cat:cat ()
+let change = change_priority ~cat:cat "Pandemic Tasks" "Make Masks" 5
+let change2 = change_priority ~cat:cat "Pandemic Tasks"  
+    "Buy Disinfectant Spray" 3
 
+(* changi g priority of 2 tasks from the same category*)
 let change_priority_tests2 = [
-
+  update_cat_test_auto "the priority of Make Masks in Pandemic Tasks has changed 
+  from 4 to 5, and the priority of Buy Disenfectant Spray has changed from 2
+  to 3" cat "Pandemic Tasks" 
+    ["Pandemic Tasks"; "Buy Disinfectant Spray"; todays_date (); "TBD"; "3";
+     "Make Masks"; todays_date (); "TBD"; "5"; 
+     "Cancel flights"; todays_date (); "TBD"; "7"; 
+     "Complete Daily Check"; todays_date (); "TBD"; "6"; 
+     "Get tested"; todays_date (); "TBD"; "5"; 
+     "Wipe down surfaces"; todays_date (); "TBD"; "3"; 
+     "Buy Hand Sanitizer"; todays_date ();  "TBD"; "1"]
 ]
 
 let cat = empty_cat_auto ()
 let shopping = make_shopping_auto ~cat:cat ()
 let change = change_due ~cat:cat "Shopping Tasks" "Get New iPhone 12 Pro Max" 
-    "11/14/2020"
+    "11/13/2020"
 
 let change_due_tests = [
-  update_cat_test_auto "Change due date of Pooja's iPhone Purchase" cat
-    "Shopping Tasks" 
-    ["Shopping Tasks"; "Get New iPhone 12 Pro Max"; todays_date (); "11/14/2020"; "7";
+  update_cat_test_auto "Change due date of Pooja's iPhone 12 Pro Max Purchase 
+  to as soon as possible" cat "Shopping Tasks" 
+    ["Shopping Tasks"; "Get New iPhone 12 Pro Max"; todays_date (); 
+     "11/13/2020"; "7";
      "Get new lightbulbs to replace current ones"; todays_date (); "TBD"; "6";
      "Buy new Nike Sneakers"; todays_date ();"TBD"; "5"; 
      "Buy Essentials for Ithaca Winter"; todays_date (); "TBD"; "4";
      "Find Dress for Formal";  todays_date ();"TBD"; "3";
      "Buy Cake for Melissa's Birthday"; todays_date ();"TBD";  "2";
      "Order Groceries"; todays_date (); "TBD"; "1"]
+]
+
+let cat = empty_cat_auto ()
+let car = make_car_auto ~cat:cat ()
+let change = change_due ~cat:cat "Car Tasks" "Go to Car Wash" "12/20/2020"
+let change2 = change_due ~cat:cat "Car Tasks" "Change Radiator Fluid" 
+    "11/30/2020"
+
+let change_due_tests2 = [
+  update_cat_test_auto "Change due date of 2 tasks in the same category" cat 
+    "Car Tasks"
+    ["Car Tasks"; "Change Radiator Fluid"; todays_date ();
+     "11/30/2020"; "7"; "Go to Car Wash"; 
+     todays_date (); "12/20/2020"; "4"; "Change Battery"; todays_date ();
+     "TBD"; "6"; "Change Brake Pads"; todays_date (); "TBD"; "5"; 
+     "Go for Emissions Test"; todays_date ();
+     "TBD"; "3"; "Change Steering Fluid"; todays_date (); "TBD"; "2"; 
+     "Change Oil"; todays_date (); "TBD"; "1"]
 ]
 
 let suite =
@@ -537,7 +566,10 @@ let suite =
     delete_tests3;
 
     change_priority_tests;
+    change_priority_tests2;
+
     change_due_tests;
+    change_due_tests2;
   ]
 
 let _ = run_test_tt_main suite

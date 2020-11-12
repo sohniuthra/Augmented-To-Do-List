@@ -5,33 +5,33 @@
    data for each task.
 *)
 
+(** The abstract type representing one task of the to-do list *)
+type task
 
 (** The abstract type representing a to-do list. *)
 type t 
 
-(** The abstract type representing one task of the to-do list *)
-type task
-
-(** Raised when an unknown task is encountered. *)
-exception UnknownTask of task
-
 (** Raised when an invalid task is encountered. *)
 exception InvalidTask 
+
+(** Raised when a task is not found. *)
+exception TaskNotFound of string
 
 (** Raised when a category is not found. *)
 exception CategoryNotFound of string
 
-(* SPEC??? *)
+(** [access_cat ()] allows the user to view the entire to-do list. *)
 val access_cat : ?cat:(t list ref) -> unit -> t list
 
 (** [empty_cat ()] initializes an empty category list. *)
 val empty_cat : unit -> t list ref
 
+(** [todays_date ()] is today's date in string form. *)
 val todays_date : unit -> string
 
 (** [init_task name due_date priority] initializes a task with 
-    name [name], created date [created_date], due date [due_date], and priority 
-    [priority] *)
+    name [name], created date (made automatically with [todays_date()], 
+    due date [due_date], and priority [priority] *)
 val init_task : string -> string -> int -> task
 
 (** [init_todolist name task_list] initializes a to-do list with name [name] 
@@ -42,12 +42,12 @@ val init_todolist : string -> task list -> t
     [cat_name]. *)
 val empty_list : string -> t
 
+(** [sort_task task cat_name] inserts a task into a sorted list - needed? *)
+
 (** [sort_list cat_name] sorts a to-do list with category [name] by [sort_by]
     of tasks. 
     Requires: [sort_by] must either be Priority or Due Date *)
 val sort_list : ?cat:(t list ref) -> string -> string -> unit
-
-(** [sort_task task cat_name] inserts a task into a sorted list - needed? *)
 
 (** [create_task cat_name name due_date priority] updates the to-do
     list with name [cat_name] with the new task [name due_date priority]. 
@@ -56,10 +56,8 @@ val sort_list : ?cat:(t list ref) -> string -> string -> unit
     in the task list. *)
 val create_task : ?cat:(t list ref) -> string -> string -> string -> int -> unit 
 
-val empty_cat : unit -> t list ref
-
 (** [complete_task t task] is an updated completed to-do list with name
-    [cat_name] with task named [task_name]. *)
+    [cat_name] with completed task named [task_name] added to it. *)
 val complete_task : ?cat:(t list ref) -> string -> string -> unit
 
 (** [delete_task t task] is an updated to-do list with task with name 
@@ -70,10 +68,18 @@ val delete_task : ?cat:(t list ref) -> string -> string -> unit
     category name [cat_name] as the category with name [cat_name].*)
 val to_list : ?cat:(t list ref) -> string ->  string list
 
-(** [to_list cat_name lst] is a list containing the same elements and the same 
-    category name [cat_name] as the category with name [cat_name] given 
-    a task list [lst] as an additional input.*)
-(* val to_list : string ->  task list -> string list *)
+(** [change_due_date cat_name task_name new_date] changes the due date of the 
+    task with name [task_name] in the category with name [cat_name] from old 
+    due date to [new_date]. *)
+val change_due_date : ?cat:(t list ref) -> string -> string ->  string -> unit
+
+(** [change_priority cat_name task_name new_priority] changes the priority of 
+    the task with name [task_name] in the category with name [cat_name] from 
+    old priority to [new_priority]. *)
+val change_priority: ?cat:(t list ref) -> string -> string -> int -> unit
+
+(** [todays_tasks] is a task list containing all of the tasks due today *)
+val todays_tasks : unit -> task list
 
 
 

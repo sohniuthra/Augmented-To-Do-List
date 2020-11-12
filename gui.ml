@@ -4,6 +4,15 @@ open Printf
 
 let cat = empty_cat ()
 
+(** [sep_tasks lst tsklst currtsk] takes list [lst] and separates it into tasks
+    in [tsklst] *)
+let rec sep_tasks (lst : 'a list) (tsklst : 'a list list) (currtsk : 'a list) = 
+  match lst with 
+  | [] -> [[]]
+  | h::t -> if List.length currtsk = 4 
+    then sep_tasks t (currtsk :: tsklst) [] 
+    else sep_tasks t tsklst (currtsk @ [h]) 
+
 (** [draw_str_list slst] takes string list [slst] and draws it with each item 
     on a new line *) 
 let rec draw_str_list slst =
@@ -30,9 +39,11 @@ let draw_basic () =
   moveto 10 380;
   draw_string "Press a to make an automatic list";
   set_color black;
+  moveto 10 365;
+  draw_string "Press s to sort your to-do list";
   moveto 10 10;
   draw_string "Press q to quit";
-  moveto 10 365
+  moveto 10 350
 
 (** [string_input str] produces a string from anything that the user types 
     before pressing enter *)
@@ -95,6 +106,7 @@ let delete_task_gui () =
 
 let view_all_categories () = failwith "unimplemented"
 
+(** [draw_list ()] shows the list *)
 let draw_list () =
   draw_string "Type the category of the list you want to view. If you want to view all lists, type all";
   let category = (string_input "") in 
@@ -102,6 +114,8 @@ let draw_list () =
   then view_all_categories ()
   else view_category category
 
+(** [sort_gui ()] allows the user to choose whether to sort by priority or date
+    and then sorts the category *)
 let sort_gui () = 
   let e = wait_next_event [Key_pressed] in
   draw_string "To sort by priority, press p. To sort by due date, press d.";
@@ -121,13 +135,15 @@ let sort_gui () =
   date
 
 let make_auto () =
-  draw_string "Type what kind of automatic list you want. The options are car, school, household, shopping, and pandemic.";
+  draw_string "Type what kind of automatic list you want. The options are car, \
+               school, household, shopping, pandemic, or all (for all lists)";
   let auto_choice = string_input "" in 
   if auto_choice = "car" then Automatic.make_car_auto ()
   else if auto_choice = "school" then Automatic.make_school_auto ()
   else if auto_choice = "household" then Automatic.make_household_auto ()
   else if auto_choice = "shopping" then Automatic.make_shopping_auto ()
   else if auto_choice = "pandemic" then Automatic.make_pandemic_auto ()
+  else if auto_choice = "all" then Automatic.make_auto ()
   else draw_string "Input invalid"; draw_basic ()
 
 let rec loop () = 
@@ -166,28 +182,25 @@ let rec loop () =
 
   if e.key <> 'q' then loop () else ()
 
+(** [open_window] opens an empty window *)
 let open_window = open_graph " 640x480"; set_window_title "To-Do List"
 
 (** [draw_task tsk] takes task [tsk] and draws it *) 
-let draw_task (tsk : Manual.task) =
-  draw_string "" (*tsk.name*);
-  moveto (current_x () + 30) (current_y ()); 
-  draw_string "" (*tsk.created_date*);
-  moveto (current_x () + 30) (current_y ());
-  draw_string "" (*tsk.due_date*);
-  moveto (current_x () + 30) (current_y ());
-  draw_string "" (*(string_of_int tsk.priority)*)
-
+let rec draw_task tsk =
+  match tsk with 
+  | [] -> moveto 10 (current_y () - 15)
+  | h::t -> draw_string h; moveto (current_x () + 30) (current_y ())
 
 (** [draw_tsk_list tlst] takes task list [tlst] and draws it with each item on 
     a new line *) 
 let rec draw_tsk_list tlst =
   match tlst with 
-  | [] -> ()
+  | [] -> moveto 10 (current_y () - 15)
   | h::t -> draw_task h; moveto (current_x ()) (current_y () - 15); 
     draw_tsk_list t
 
-let () = open_window;
+let () = 
+  open_window;
   draw_basic ();
   loop ();
   close_graph ();
