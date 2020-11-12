@@ -206,17 +206,17 @@ let change_due_date ?(cat=categories) cat_name task_name new_date =
     try
       let old_task = find_task category task_name in
       let priority = old_task.priority in
-      let removed_cat = remove_task category old_task in
+      let removed_cat = remove category old_task in
       let new_task = init_task task_name new_date priority in
       let new_cat = add_task removed_cat new_task in
       cat := (new_cat :: (remove_cat category !cat))
-    with Not_Found -> raise (TaskNotFound task_name)
+    with Not_found -> raise (TaskNotFound task_name)
   with Not_found -> raise (CategoryNotFound cat_name)
 
 let change_priority ?(cat=categories) cat_name task_name new_priority =
   failwith "poo's unimplemented"
 
 let todays_tasks () =
-  failwtih "poo's unimplemented"
+  failwith "poo's unimplemented"
 
 
