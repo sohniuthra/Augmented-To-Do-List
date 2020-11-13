@@ -21,15 +21,16 @@ type t = {
   task_list : task list; 
 }
 
-(** Raised when an unknown task is encountered. *)
-exception UnknownTask of task
+
 
 (** Raised when an invalid task is encountered. *)
 exception InvalidTask 
 
+(** Raised when an unknown task is encountered. *)
+exception TaskNotFound of string
+
 (** Raised when a category is not found. *)
 exception CategoryNotFound of string
-
 
 let categories = ref []
 
@@ -55,7 +56,6 @@ let init_todolist name lst = {
   task_list = lst;
 }
 
-(** Initialize an empty to-do list *)
 let empty_list cat_name = {
   c_name = cat_name;
   task_list = [];
@@ -66,43 +66,47 @@ let add_task t task = {
   task_list = task :: t.task_list
 }
 
+(* helper function *)
 let add_new_cat ?(cat=categories) new_cat =
   let old_cats = cat in 
   cat := (new_cat :: !old_cats)
 
+(* helper function *)
 let find_category ?(cat=categories) cat_name =
-  List.find (fun x -> x.c_name = cat_name) (!cat)
+  try 
+    List.find (fun x -> x.c_name = cat_name) (!cat)
+  with Not_found -> raise (CategoryNotFound cat_name)
 
-let remove_cat t (lst : t list) = 
+(* helper function: does not actually remove the category from categories, 
+   but instead returns a list of cateogories without category [t]*)
+let remove_cat t lst = 
   List.filter (fun x -> if x.c_name != t.c_name then true else false) lst
 
-(* compare function for two tasks based on priority *)
+(* helper function: compare function for two tasks based on priority *)
 let priority_compare t1 t2 = 
   let t1p = t1.priority in
   let t2p = t2.priority in
   if t1p < t2p then -1 else 
   if t1p > t2p then 1 else 0
 
-(* helper function to get the month of a properly formatted due date *)
+(* helper function: gets the month of a properly formatted due date *)
 let get_month_due task = 
   let date = task.due_date in 
-  let month_ind = String.index date '-' in
-  String.sub date 0 month_ind 
+  int_of_string (String.sub date 0 2)
 
-(* helper function to get the day of a properly formatted due date *)
+(* helper function: gets the day of a properly formatted due date *)
 let get_day_due task = 
   let date = task.due_date in 
-  let month_ind = String.index date '-' in
-  let day_ind = String.rindex date '-' in
-  String.sub date month_ind day_ind 
+  let month_ind = (String.index date '/') + 1 in
+  int_of_string (String.sub date month_ind 2 )
 
-(* helper function to get the year of a properly formatted due date *)
+(* helper function: gets the year of a properly formatted due date *)
 let get_year_due task = 
   let date = task.due_date in 
-  let year_ind = String.rindex date '-' in
-  String.sub date year_ind (String.length date)
+  let year_ind = (String.rindex date '/') + 1 in
+  int_of_string (String.sub date year_ind 2)
 
-(* compare function for two tasks based on due date *)
+(* helper function: compare function for two tasks based on due date *)
 let date_compare t1 t2 = 
   let t1month = get_month_due t1 in 
   let t1day = get_day_due t1 in 
@@ -112,31 +116,24 @@ let date_compare t1 t2 =
   let t2year = get_year_due t2 in
 
   if t1year > t2year then 1 else if t1year < t2year then -1 else
-  if t1month > t2month then 1 else if t1month < t2month then -1 else
-  if t1day > t2day then 1 else if t1day < t2day then -1 else 0
+    (if t1month > t2month then 1 else if t1month < t2month then -1 else
+       (if t1day > t2day then 1 else if t1day < t2day then -1 else 0))
 
-(* let rec sort_list_helper task_lst acc =
-   match task_lst with
-   | [] -> []
-   | task :: [] -> acc @ [task]
-   | task1 :: task2 :: lst -> begin if priority_compare task1 task2 = -1
-      then acc @ [task2] @ [task1]
-      else if priority_compare task1 task2 = 1 
-      then acc @ [task1] @ [task2] else sort_list_helper (task2 :: lst) acc
-    end *)
-
+(* helper function: employs sorting by priority *)
 let sort_by_priority ?(cat=categories) cat_name = 
   let category = find_category ~cat:cat cat_name in
   let sorted_lst = List.stable_sort priority_compare category.task_list in
   let sorted_cat = init_todolist cat_name sorted_lst in
   cat := (sorted_cat :: (remove_cat category !cat))
 
+(* helper function: employs sorting by due date *)
 let sort_by_date ?(cat=categories) cat_name = 
   let category = find_category ~cat:cat cat_name in
   let sorted_lst = List.stable_sort date_compare category.task_list in 
   let sorted_cat = init_todolist cat_name sorted_lst in
   cat := (sorted_cat :: (remove_cat category !cat))
 
+<<<<<<< HEAD
 let sort_helper ?(cat=categories) cat_name pd = 
   let category = find_category ~cat:cat cat_name in
   let sorted_lst = List.stable_sort date_compare category.task_list in 
@@ -148,6 +145,11 @@ let sort_list ?(cat=categories) cat_name sort_by =
       ~cat:cat "p"
   else if sort_by = "date" || sort_by = "Date" || sort_by = "due date" || 
           sort_by = "Due Date" then sort_helper ~cat:cat "d"
+=======
+let sort_list ?(cat=categories) cat_name sort_by = 
+  if sort_by = "Priority" then sort_by_priority ~cat:cat cat_name
+  else if sort_by = "Due Date" then sort_by_date ~cat:cat cat_name
+>>>>>>> c3fcecd0d8db450754012fa6a615b66c6fa8ccaa
   else failwith "Sorting not properly specified"
 
 let create_task ?(cat=categories) cat_name name due_date priority = 
@@ -161,6 +163,11 @@ let create_task ?(cat=categories) cat_name name due_date priority =
       add_new_cat ~cat:cat new_cat
     end
 
+(* helper function: returns a task with [task_name] in [cat]  *)
+let find_task cat task_name = 
+  List.find (fun x -> x.name = task_name) cat.task_list
+
+(* helper function for remove *)
 (** [remove_task tsklst task nlst] returns a new task list without [task] *)
 let rec remove_task_newlst tsklst task nlst = 
   match tsklst with
@@ -168,32 +175,31 @@ let rec remove_task_newlst tsklst task nlst =
   | h :: t -> if h = task then remove_task_newlst t task nlst 
     else remove_task_newlst t task (nlst @ [h])
 
+(* helper function: initializes a new to-do list without [task] *)
 let remove t task =
-  {c_name = t.c_name; 
-   task_list = remove_task_newlst t.task_list task []}
+  let new_lst = remove_task_newlst t.task_list task [] in
+  init_todolist t.c_name new_lst
 
-let find_task cat task_name = 
-  List.find (fun x -> x.name = task_name) cat.task_list
-
-(** [complete_task t task] is a updated completed to-do list [t] with [task]. *)
 let complete_task ?(cat=categories) cat_name task_name =
-  let category = find_category ~cat:cat cat_name in
-  let task = find_task category task_name in
-  try 
-    let new_list = remove category task in 
-    create_task ~cat:cat "Completed" task.name task.due_date task.priority;
-    let old_list = category in 
-    cat := (new_list :: (remove_cat old_list !cat))
-  with Not_found -> begin
-      failwith "task not found" 
-    end
+  try
+    let category = find_category ~cat:cat cat_name in
+    try 
+      let task = find_task category task_name in
+      let new_list = remove category task in 
+      create_task ~cat:cat "Completed" task.name task.due_date task.priority;
+      cat := (new_list :: (remove_cat category !cat))
+    with Not_found -> raise (TaskNotFound task_name)
+  with Not_found -> raise (CategoryNotFound cat_name)
 
 let delete_task ?(cat=categories) cat_name task_name =
-  let old_cat = find_category ~cat:cat cat_name in 
-  let task = find_task old_cat task_name in
-  let new_list = remove_task_newlst old_cat.task_list task [] in 
-  let new_cat = init_todolist cat_name new_list in
-  cat := (new_cat :: (remove_cat old_cat !cat))
+  try
+    let old_cat = find_category ~cat:cat cat_name in 
+    try
+      let task = find_task old_cat task_name in
+      let new_cat = remove old_cat task in 
+      cat := (new_cat :: (remove_cat old_cat !cat))
+    with Not_found -> raise (TaskNotFound task_name)
+  with Not_found -> raise (CategoryNotFound cat_name)
 
 let rec to_list_helper cat_list acc =
   match cat_list with
@@ -203,7 +209,28 @@ let rec to_list_helper cat_list acc =
       (acc @ [name; created_date; due_date; string_of_int priority])
 
 let to_list ?(cat=categories) cat_name =
-  let cat = find_category ~cat:cat cat_name in  
-  [cat_name] @ (to_list_helper cat.task_list [])
+  try
+    let category = find_category ~cat:cat cat_name in  
+    [cat_name] @ (to_list_helper category.task_list [])
+  with Not_found -> raise (CategoryNotFound cat_name)
+
+let change_due_date ?(cat=categories) cat_name task_name new_date =
+  try 
+    let category = find_category ~cat:cat cat_name in 
+    try
+      let old_task = find_task category task_name in
+      let priority = old_task.priority in
+      let removed_cat = remove category old_task in
+      let new_task = init_task task_name new_date priority in
+      let new_cat = add_task removed_cat new_task in
+      cat := (new_cat :: (remove_cat category !cat))
+    with Not_found -> raise (TaskNotFound task_name)
+  with Not_found -> raise (CategoryNotFound cat_name)
+
+let change_priority ?(cat=categories) cat_name task_name new_priority =
+  failwith "poo's unimplemented"
+
+let todays_tasks () =
+  failwith "poo's unimplemented"
 
 

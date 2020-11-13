@@ -7,13 +7,15 @@ module type Appointment = sig
 
   type t 
 
-  val add_app : string -> string -> unit
+  val access_app : ?cat:(t list ref) -> unit -> t list
 
-  val complete_app : unit -> unit
+  val delete_app : ?cat:(t list ref) -> t -> unit
 
-  val delete_app : unit -> unit
+  val add_app : ?cat:(t list ref) -> string -> string -> string -> unit
 
-  val add_app_info : unit -> unit
+  val complete_app : ?cat:(t list ref) -> string -> unit
 
-  val add_location : unit -> unit
+  val add_app_info : ?cat:(t list ref) -> string -> string -> unit
+
+  val add_location : ?cat:(t list ref) -> string -> string -> unit
 end 
