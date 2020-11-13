@@ -133,23 +133,9 @@ let sort_by_date ?(cat=categories) cat_name =
   let sorted_cat = init_todolist cat_name sorted_lst in
   cat := (sorted_cat :: (remove_cat category !cat))
 
-<<<<<<< HEAD
-let sort_helper ?(cat=categories) cat_name pd = 
-  let category = find_category ~cat:cat cat_name in
-  let sorted_lst = List.stable_sort date_compare category.task_list in 
-  let sorted_cat = init_todolist cat_name sorted_lst in
-  cat := (sorted_cat :: (remove_cat category !cat))
-
-let sort_list ?(cat=categories) cat_name sort_by = 
-  if sort_by = "priority" || sort_by = "Priority" then sort_helper
-      ~cat:cat "p"
-  else if sort_by = "date" || sort_by = "Date" || sort_by = "due date" || 
-          sort_by = "Due Date" then sort_helper ~cat:cat "d"
-=======
 let sort_list ?(cat=categories) cat_name sort_by = 
   if sort_by = "Priority" then sort_by_priority ~cat:cat cat_name
   else if sort_by = "Due Date" then sort_by_date ~cat:cat cat_name
->>>>>>> c3fcecd0d8db450754012fa6a615b66c6fa8ccaa
   else failwith "Sorting not properly specified"
 
 let create_task ?(cat=categories) cat_name name due_date priority = 
@@ -227,10 +213,10 @@ let change_due_date ?(cat=categories) cat_name task_name new_date =
     with Not_found -> raise (TaskNotFound task_name)
   with Not_found -> raise (CategoryNotFound cat_name)
 
-let change_priority ?(cat=categories) cat_name task_name new_priority =
-  failwith "poo's unimplemented"
+(* let change_priority ?(cat=categories) cat_name task_name new_priority =
+   failwith "poo's unimplemented"
 
-let todays_tasks () =
-  failwith "poo's unimplemented"
+   let todays_tasks () =
+   failwith "poo's unimplemented" *)
 
 
