@@ -213,10 +213,10 @@ let change_due_date ?(cat=categories) cat_name task_name new_date =
     with Not_found -> raise (TaskNotFound task_name)
   with Not_found -> raise (CategoryNotFound cat_name)
 
-let change_priority ?(cat=categories) cat_name task_name new_priority =
-  failwith "poo's unimplemented"
+(* let change_priority ?(cat=categories) cat_name task_name new_priority =
+   failwith "poo's unimplemented"
 
-let todays_tasks () =
-  failwith "poo's unimplemented"
+   let todays_tasks () =
+   failwith "poo's unimplemented" *)
 
 

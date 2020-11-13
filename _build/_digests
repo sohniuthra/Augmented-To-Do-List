@@ -1,4 +1,16 @@
+<<<<<<< HEAD
 "Rule: ocaml: ml & cmi -> cmo (%=manual )": "\238C\240\162\222\012;\152*\2005\127\206\022\233\155"
+=======
+<<<<<<< HEAD
+"Resource: /Users/poojakanumalla/Documents/College/3 - Fall 2020/CS 3110/todolist/manual.ml": "\170\238*6\198\014\198\137\t\237\177C\170d\254j"
+"Rule: ocaml dependencies mli (%=manual )": "m\020\169\210\254\004\208\021;3L\238v\127\211O"
+"Rule: ocaml: mli -> cmi (%=manual )": "nn\188\138\218q\233\154\179\247\172\239w=f\173"
+"Rule: ocaml dependencies ml (%=manual )": "\t\185\2005\135pw\222\209\197\211\254a\254\165\252"
+"Resource: /Users/poojakanumalla/Documents/College/3 - Fall 2020/CS 3110/todolist/manual.mli": "\201<\235\182\201+\"Y|}\n\012)\220\016\231"
+=======
+"Rule: ocaml: ml & cmi -> cmo (%=manual )": "(\241\022\028\1701\018\249)K0\229\233r\252n"
+"Resource: /Users/sohniuthra/Desktop/FALL 2020/CS 3110/todolist/automatic.mli": "\027\031q\003\213\202\205\132\"\177G\159\194\219\232\135"
+>>>>>>> 1751397997b91b76ac0f084c9d6d933877f64a8d
 "Rule: ocaml: ml & cmi -> cmo (%=main )": "\168\198\137`\n\160\179\012\177\194F\171\146m\246\135"
 "Rule: ocaml dependencies mli (%=manual )": "\143\189\1951\226\244SU\031N\164W\187]W\188"
 "Resource: /Users/Jyne/Library/Mobile Documents/com~apple~CloudDocs/Documents/Junior/CS3110/todolist-1/gui.ml": "A\1358%\212m\209\145\207\166GO\159e@\031"
@@ -28,3 +40,4 @@
 "Resource: /Users/Jyne/Library/Mobile Documents/com~apple~CloudDocs/Documents/Junior/CS3110/todolist-1/manual.mli": "\138\159\n\254mL\229\250\158\154:\188\251i\028'"
 "Rule: ocaml dependencies ml (%=automatic )": "\0113\136\189\174\128\0014n\175\016\253$\202\245a"
 "Rule: ocaml dependencies mli (%=gui )": "\247\221;\180\1678>\245\021;9\254\174\164*\021"
+>>>>>>> c3fcecd0d8db450754012fa6a615b66c6fa8ccaa
