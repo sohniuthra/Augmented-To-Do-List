@@ -1,5 +1,4 @@
 ### Starting build.
-<<<<<<< HEAD
 # Target: manual.mli.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:mli, file:manual.mli, ocaml, ocamldep, quiet, traverse }
 ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules manual.mli > manual.mli.depends
 # Target: manual.cmi, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:mli, file:manual.mli, interf, ocaml, quiet, traverse }
@@ -41,6 +40,3 @@ ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modu
 # Target: gui.cmo, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:cmo, extension:ml, file:gui.cmo, file:gui.ml, implem, ocaml, quiet, traverse }
 ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o gui.cmo gui.ml
 # Compilation successful.
-=======
-# Compilation unsuccessful.
->>>>>>> 1751397997b91b76ac0f084c9d6d933877f64a8d

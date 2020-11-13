@@ -65,6 +65,7 @@ let view_category category =
 
 let task_input () =
   (*let cat = empty_cat () in*)
+  draw_basic ();
   draw_string "Type the name of your category";
   let category = (string_input "") in
   draw_basic ();
@@ -91,18 +92,20 @@ let complete_task_gui () =
   draw_string "Type the name of the task you want to complete";
   let name = (string_input "") in
   Manual.complete_task ~cat:cat category name;
-  view_category category 
+  view_category "Completed"
 
 (** [delete_task_gui ()] prompts the user to type in the category and name
     of a task they want to delete *) 
 let delete_task_gui () =
   (*let cat = empty_cat () in *)
+  draw_basic ();
   draw_string "Type the category of the task you want to delete";
   let category = (string_input "") in
   draw_basic ();
   draw_string "Type the name of the task you want to delete";
   let name = (string_input "") in
-  Manual.delete_task ~cat:cat category name
+  Manual.delete_task ~cat:cat category name;
+  view_category category
 
 let view_all_categories () = failwith "unimplemented"
 
