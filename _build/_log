@@ -1,20 +1,20 @@
 ### Starting build.
-# Target: test.ml.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), debug, extension:ml, file:test.ml, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules test.ml > test.ml.depends
-# Target: automatic.mli.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), debug, extension:mli, file:automatic.mli, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules automatic.mli > automatic.mli.depends # cached
-# Target: manual.mli.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), debug, extension:mli, file:manual.mli, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules manual.mli > manual.mli.depends # cached
-# Target: automatic.cmi, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, debug, extension:mli, file:automatic.mli, interf, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -package graphics -o automatic.cmi automatic.mli
-# Target: manual.cmi, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, debug, extension:mli, file:manual.mli, interf, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -package graphics -o manual.cmi manual.mli
-# Target: test.cmo, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, debug, extension:cmo, extension:ml, file:test.cmo, file:test.ml, implem, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -package graphics -o test.cmo test.ml
-+ ocamlfind ocamlc -c -g -package ounit2 -package ANSITerminal -package graphics -o test.cmo test.ml
-File "test.ml", line 371, characters 33-47:
-371 | let cat : Automatic.t list ref = empty_cat_auto ()
-                                       ^^^^^^^^^^^^^^
-Error: Unbound value empty_cat_auto
+# Target: manual.mli.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:mli, file:manual.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules manual.mli > manual.mli.depends
+# Target: manual.cmi, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:mli, file:manual.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o manual.cmi manual.mli
+# Target: manual.ml.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:ml, file:manual.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules manual.ml > manual.ml.depends
+# Target: manual.cmo, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:cmo, extension:ml, file:manual.cmo, file:manual.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o manual.cmo manual.ml
++ ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o manual.cmo manual.ml
+File "manual.ml", line 1:
+Error: The implementation manual.ml does not match the interface manual.cmi:
+       Values do not match:
+         val sort_list : ?cat:t list ref -> 'a -> string -> 'b -> unit
+       is not included in
+         val sort_list : ?cat:t list ref -> string -> string -> unit
+       File "manual.mli", line 47, characters 0-61: Expected declaration
+       File "manual.ml", line 146, characters 4-13: Actual declaration
 Command exited with code 2.
 # Compilation unsuccessful.

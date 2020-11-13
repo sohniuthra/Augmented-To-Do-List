@@ -137,12 +137,18 @@ let sort_by_date ?(cat=categories) cat_name =
   let sorted_cat = init_todolist cat_name sorted_lst in
   cat := (sorted_cat :: (remove_cat category !cat))
 
+let sort_helper ?(cat=categories) cat_name pd = 
+  let category = find_category ~cat:cat cat_name in
+  let sorted_lst = List.stable_sort date_compare category.task_list in 
+  let sorted_cat = init_todolist cat_name sorted_lst in
+  cat := (sorted_cat :: (remove_cat category !cat))
 
 let sort_list ?(cat=categories) cat_name sort_by = 
-  if sort_by = "priority" || sort_by = "Priority" then sort_by_priority 
-      ~cat:cat cat_name
+  if sort_by = "priority" || sort_by = "Priority" then sort_helper
+      ~cat:cat "p"
   else if sort_by = "date" || sort_by = "Date" || sort_by = "due date" || 
-          sort_by = "Due Date" then sort_by_date ~cat:cat cat_name
+          sort_by = "Due Date" then sort_helper ~cat:cat "d"
+  else failwith "Sorting not properly specified"
 
 let create_task ?(cat=categories) cat_name name due_date priority = 
   let task = init_task name due_date priority in
