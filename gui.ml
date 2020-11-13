@@ -37,11 +37,11 @@ let draw_basic () =
   moveto 10 395;
   draw_string "Press v to view a list";
   moveto 10 380;
-  draw_string "Press a to make an automatic list";
-  set_color black;
+  draw_string "Press a to make an automatic list - NOT IMPLEMENTED IN GUI YET"; 
   moveto 10 365;
-  draw_string "Press s to sort your to-do list";
+  draw_string "Press s to sort your to-do list - NOT IMPLEMENTED IN GUI YET";
   moveto 10 10;
+  set_color black;
   draw_string "Press q to quit";
   moveto 10 350
 
@@ -108,7 +108,8 @@ let view_all_categories () = failwith "unimplemented"
 
 (** [draw_list ()] shows the list *)
 let draw_list () =
-  draw_string "Type the category of the list you want to view. If you want to view all lists, type all";
+  draw_string "Type the category of the list you want to view. If you want to \
+               view all lists, type all";
   let category = (string_input "") in 
   if category = "all" 
   then view_all_categories ()
