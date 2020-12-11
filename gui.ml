@@ -13,12 +13,41 @@ let rec sep_tasks (lst : 'a list) (tsklst : 'a list list) (currtsk : 'a list) =
     then sep_tasks t (currtsk :: tsklst) [] 
     else sep_tasks t tsklst (currtsk @ [h]) 
 
+let rec make_tll (tlst : 'a list) (cat : 'a) (acc : 'a list list) = failwith "jyne unimplemented"
+(*let n = [] in 
+  match tlst with 
+  | [] -> acc 
+  | t::dd::dc::p::r -> [cat::t::dd::dc::p::n::[]]::make_tll r cat acc *)
+
+let rec draw_task t =
+  let y = current_y () in 
+  match t with 
+  | [] -> ()
+  | c::t::dd::dc::p::[] -> moveto 10 y;
+    draw_string c;
+    moveto 150 y;
+    draw_string t;
+    moveto 350 y;
+    draw_string dd;
+    moveto 425 y;
+    draw_string dc;
+    moveto 550 y; 
+    draw_string p;
+  | _ -> ()
+
+let rec draw_task_list tlst = 
+  match tlst with 
+  | [] -> ()
+  | h::t -> draw_task h; moveto 10 (current_y () - 15); draw_task_list t
+
 (** [draw_str_list slst] takes string list [slst] and draws it with each item 
     on a new line *) 
 let rec draw_str_list slst =
+  let y = current_y () in 
   match slst with 
   | [] -> ()
-  | h::t -> draw_string h; moveto (10) (current_y () - 15); 
+  | h::t -> if y > 320 then moveto 10 320;
+    draw_string h; moveto (10) (current_y () - 15); 
     draw_str_list t
 
 (** [draw_basic ()] is the basic window that should open when the application
@@ -40,9 +69,20 @@ let draw_basic () =
   draw_string "Press a to make an automatic list - NOT IMPLEMENTED IN GUI YET"; 
   moveto 10 365;
   draw_string "Press s to sort your to-do list - NOT IMPLEMENTED IN GUI YET";
-  moveto 10 10;
-  set_color black;
+  moveto 520 460;
+  set_color red;
   draw_string "Press q to quit";
+  set_color black;
+  moveto 10 335;
+  draw_string "Category";
+  moveto 150 335;
+  draw_string "Task";
+  moveto 350 335;
+  draw_string "Due date";
+  moveto 425 335;
+  draw_string "Date created";
+  moveto 550 335; 
+  draw_string "Priority";
   moveto 10 350
 
 (** [string_input str] produces a string from anything that the user types 
@@ -66,6 +106,7 @@ let view_category category =
 let task_input () =
   (*let cat = empty_cat () in*)
   draw_basic ();
+  set_color red;
   draw_string "Type the name of your category";
   let category = (string_input "") in
   draw_basic ();
@@ -79,6 +120,7 @@ let task_input () =
   let priority = int_of_string (string_input "") in
   draw_basic ();
   Manual.create_task ~cat:cat category name due priority;
+  set_color black;
   view_category category
 
 (** [complete_task_gui ()] prompts the user to type in the category and name
