@@ -13,7 +13,29 @@ let rec sep_tasks (lst : 'a list) (tsklst : 'a list list) (currtsk : 'a list) =
     then sep_tasks t (currtsk :: tsklst) [] 
     else sep_tasks t tsklst (currtsk @ [h]) 
 
-let rec make_tll (tlst : 'a list) (cat : 'a) (acc : 'a list list) = failwith "jyne unimplemented"
+let rec sep_tasks_w_cat (lst : 'a list) (tsklst : 'a list list) (currtsk : 'a list) = 
+  match lst with 
+  | [] -> [[]]
+  | h::t -> if List.length currtsk = 5 
+    then sep_tasks t (currtsk :: tsklst) [] 
+    else sep_tasks t tsklst (currtsk @ [h]) 
+
+let rec add_cat tll cat acc = 
+  match tll with 
+  | [] -> acc 
+  | h::t -> add_cat t cat (acc @ cat @ h)
+
+(** [make_tll tlst cat] takes the category list [tlst] with category [cat] and
+    creates a list list where each element is a task with the category *)
+let rec make_tll tlst cat = 
+  let not_cat = 
+    match tlst with 
+    | [] -> []
+    | h::t -> t in 
+  let separated = sep_tasks not_cat [[]] [] in 
+  let wcat = add_cat separated [cat] [] in 
+  sep_tasks_w_cat wcat [[]] []
+
 (*let n = [] in 
   match tlst with 
   | [] -> acc 
