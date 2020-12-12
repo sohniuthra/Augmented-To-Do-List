@@ -74,7 +74,6 @@ let rec draw_str_list slst =
     draw_str_list t
 
 let rec draw_str_ll slstlst =
-  let y = current_y () in 
   match slstlst with 
   | [] -> ()
   | h::t -> draw_str_list h; moveto 10 (current_y () - 15); draw_str_ll t
@@ -97,7 +96,7 @@ let draw_basic () =
   moveto 10 380;
   draw_string "Press a to make an automatic list - NOT IMPLEMENTED IN GUI YET"; 
   moveto 10 365;
-  draw_string "Press s to sort your to-do list - NOT IMPLEMENTED IN GUI YET";
+  draw_string "Press s to sort your to-do list";
   moveto 520 460;
   set_color red;
   draw_string "Press q to quit";
@@ -164,54 +163,78 @@ let task_input () =
 let complete_task_gui () =
   (*let cat = empty_cat () in *)
   draw_basic ();
+  set_color red;
   draw_string "Type the category of the task you want to complete";
   let category = (string_input "") in
   draw_basic ();
+  set_color red;
   draw_string "Type the name of the task you want to complete";
   let name = (string_input "") in
   Manual.complete_task ~cat:cat category name;
-  view_category "Completed"
+  let cat_lst_form = Manual.to_list ~cat:cat "Completed" in 
+  let cat_lst_lst = make_tll cat_lst_form "Completed" in
+  draw_task_list cat_lst_lst
 
 (** [delete_task_gui ()] prompts the user to type in the category and name
     of a task they want to delete *) 
 let delete_task_gui () =
   (*let cat = empty_cat () in *)
   draw_basic ();
+  set_color red;
   draw_string "Type the category of the task you want to delete";
   let category = (string_input "") in
   draw_basic ();
+  set_color red;
   draw_string "Type the name of the task you want to delete";
   let name = (string_input "") in
   Manual.delete_task ~cat:cat category name;
-  view_category category
+  let cat_lst_form = Manual.to_list ~cat:cat category in 
+  let cat_lst_lst = make_tll cat_lst_form category in
+  draw_task_list cat_lst_lst
 
 let view_all_categories () = failwith "unimplemented"
 
 (** [draw_list ()] shows the list *)
 let draw_list () =
+  draw_basic ();
+  set_color red;
   draw_string "Type the category of the list you want to view. If you want to \
                view all lists, type all";
   let category = (string_input "") in 
   if category = "all" 
   then view_all_categories ()
-  else view_category category
+  else let cat_lst_form = Manual.to_list ~cat:cat category in 
+    let cat_lst_lst = make_tll cat_lst_form category in
+    draw_task_list cat_lst_lst
 
 (** [sort_gui ()] allows the user to choose whether to sort by priority or date
     and then sorts the category *)
 let sort_gui () = 
-  let e = wait_next_event [Key_pressed] in
+  moveto 10 350;
+  set_color red;
   draw_string "To sort by priority, press p. To sort by due date, press d.";
+  let e = wait_next_event [Key_pressed] in
   let priority = if e.key = 'p' 
-    then (clear_graph ();
+    then (draw_basic ();
+          set_color red;
           draw_string "Type the name of the category you want to sort";
           let category = (string_input "") in
-          Manual.sort_list category "priority")
+          draw_basic ();
+          Manual.sort_list ~cat:cat category "Priority";
+          let cat_lst_form = Manual.to_list ~cat:cat category in 
+          let cat_lst_lst = make_tll cat_lst_form category in
+          draw_task_list cat_lst_lst)
     else () in
   let date = if e.key = 'd' 
-    then (clear_graph ();
+    then (draw_basic ();
+          set_color red;
           draw_string "Type the name of the category you want to sort";
           let category = (string_input "") in
-          Manual.sort_list category "date")
+          draw_basic ();
+          Manual.sort_list ~cat:cat category "Due Date";
+          let cat_lst_form = Manual.to_list ~cat:cat category in 
+          let cat_lst_lst = make_tll cat_lst_form category in
+          draw_task_list cat_lst_lst)
     else () in
   priority;
   date
