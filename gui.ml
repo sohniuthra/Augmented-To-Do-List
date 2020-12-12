@@ -36,11 +36,6 @@ let rec make_tll tlst cat =
   let wcat = add_cat separated [cat] [] in 
   sep_tasks_w_cat wcat [] []
 
-(*let n = [] in 
-  match tlst with 
-  | [] -> acc 
-  | t::dd::dc::p::r -> [cat::t::dd::dc::p::n::[]]::make_tll r cat acc *)
-
 let rec draw_task t =
   if current_y () > 320 then moveto 10 320; 
   let y = current_y () in  
@@ -126,7 +121,6 @@ let draw_int i =
   draw_string (string_of_int i)
 
 let view_category category = 
-  (*let cat = empty_cat () in*)
   draw_basic ();
   let lst = Manual.to_list ~cat:cat category in
   draw_str_list lst
@@ -152,11 +146,9 @@ let task_input () =
   draw_basic ();
   Manual.create_task ~cat:cat category name due priority;
   set_color black;
-  (*view_category category*) (*the simpler version*)
   let cat_lst_form = Manual.to_list ~cat:cat category in 
   let cat_lst_lst = make_tll cat_lst_form category in
-  (*draw_str_ll cat_lst_lst;*)
-  draw_task_list cat_lst_lst (*the better version*)
+  draw_task_list cat_lst_lst
 
 (** [complete_task_gui ()] prompts the user to type in the category and name
     of a task they want to complete *) 
@@ -192,14 +184,21 @@ let delete_task_gui () =
   let cat_lst_lst = make_tll cat_lst_form category in
   draw_task_list cat_lst_lst
 
-let view_all_categories () = failwith "unimplemented"
+let rec view_all_helper cat_list = 
+  match cat_list with 
+  | [] -> ()
+  | h::t -> failwith "need a way to get the cat name"
+
+let view_all_categories () = 
+  let cat_list = !cat in 
+  view_all_helper cat_list
 
 (** [draw_list ()] shows the list *)
 let draw_list () =
   draw_basic ();
   set_color red;
   draw_string "Type the category of the list you want to view. If you want to \
-               view all lists, type all";
+               view all lists, type all (NOT IMPLEMENTED IN GUI YET)";
   let category = (string_input "") in 
   if category = "all" 
   then view_all_categories ()
