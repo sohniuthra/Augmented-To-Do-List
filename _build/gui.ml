@@ -42,7 +42,8 @@ let rec make_tll tlst cat =
   | t::dd::dc::p::r -> [cat::t::dd::dc::p::n::[]]::make_tll r cat acc *)
 
 let rec draw_task t =
-  let y = current_y () in 
+  if current_y () > 320 then moveto 10 320; 
+  let y = current_y () in  
   match t with 
   | [] -> ()
   | c::t::dd::dc::p::[] -> moveto 10 y;
@@ -72,6 +73,12 @@ let rec draw_str_list slst =
     draw_string h; moveto (10) (current_y () - 15); 
     draw_str_list t
 
+let rec draw_str_ll slstlst =
+  let y = current_y () in 
+  match slstlst with 
+  | [] -> ()
+  | h::t -> draw_str_list h; moveto 10 (current_y () - 15); draw_str_ll t
+
 (** [draw_basic ()] is the basic window that should open when the application
     opens *) 
 let draw_basic () =
@@ -100,9 +107,9 @@ let draw_basic () =
   moveto 150 335;
   draw_string "Task";
   moveto 350 335;
-  draw_string "Due date";
-  moveto 425 335;
   draw_string "Date created";
+  moveto 425 335;
+  draw_string "Due date";
   moveto 550 335; 
   draw_string "Priority";
   moveto 10 350
@@ -132,18 +139,26 @@ let task_input () =
   draw_string "Type the name of your category";
   let category = (string_input "") in
   draw_basic ();
+  set_color red;
   draw_string "Type the name of your task";
   let name = (string_input "") in
   draw_basic ();
+  set_color red;
   draw_string "Type the due date in an mm/dd/yyyy format";
   let due = (string_input "") in
   draw_basic ();
+  set_color red;
   draw_string "Type the priority of your task";
   let priority = int_of_string (string_input "") in
   draw_basic ();
   Manual.create_task ~cat:cat category name due priority;
   set_color black;
-  view_category category
+  (*view_category category*) (*the simpler version*)
+  let cat_lst_form = Manual.to_list ~cat:cat category in 
+  (*  let cat_lst_lst = make_tll cat_lst_form category in
+      draw_str_ll cat_lst_lst  
+      draw_task_list cat_lst_lst*) (*the better version*)
+  draw_task cat_lst_form
 
 (** [complete_task_gui ()] prompts the user to type in the category and name
     of a task they want to complete *) 

@@ -39,4 +39,9 @@ ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o g
 ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules gui.ml > gui.ml.depends
 # Target: gui.cmo, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:cmo, extension:ml, file:gui.cmo, file:gui.ml, implem, ocaml, quiet, traverse }
 ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o gui.cmo gui.ml
++ ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o gui.cmo gui.ml
+File "gui.ml", line 77, characters 6-7:
+77 |   let y = current_y () in 
+           ^
+Warning 26: unused variable y.
 # Compilation successful.
