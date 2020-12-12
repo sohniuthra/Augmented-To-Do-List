@@ -54,6 +54,7 @@ let rec draw_task t =
   | _ -> ()
 
 let rec draw_task_list tlst = 
+  set_color black;
   match tlst with 
   | [] -> ()
   | h::t -> draw_task h; moveto 10 (current_y () - 15); draw_task_list t
@@ -73,13 +74,22 @@ let rec draw_str_ll slstlst =
   | [] -> ()
   | h::t -> draw_str_list h; moveto 10 (current_y () - 15); draw_str_ll t
 
-(** [draw_basic ()] is the basic window that should open when the application
-    opens *) 
+(** [draw_basic ()] is the basic window that opens when the application opens. 
+    It is the interface for the to-do list
+    NOTE: this function is quite lengthy because of how many commands need
+    to be given to make the GUI appear. While it is long, it is not too 
+    complicated for one function *) 
 let draw_basic () =
   clear_graph ();
-  moveto 10 460;
   set_color blue;
-  draw_string "Welcome to your new to-do list!"; 
+  fill_rect 99 459 30 15;
+  moveto 100 460;
+  set_color white;
+  draw_string "To-Do List";
+  moveto 300 460;
+  set_color black;
+  draw_string "Appointments - NOT DONE YET";
+  set_color blue;
   moveto 10 440;
   draw_string "Press t to create a new task"; 
   moveto 10 425;
@@ -107,6 +117,18 @@ let draw_basic () =
   moveto 550 335; 
   draw_string "Priority";
   moveto 10 350
+
+(** [draw_appointments ()] is the interface for appointments *)
+let draw_appointments () = 
+  clear_graph ();
+  moveto 100 460;
+  set_color white;
+  draw_string "To-Do List";
+  set_color blue;
+  fill_rect 299 459 30 15;
+  moveto 300 460;
+  set_color black;
+  draw_string "Appointments - NOT DONE YET"
 
 (** [string_input str] produces a string from anything that the user types 
     before pressing enter *)
