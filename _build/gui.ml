@@ -8,17 +8,17 @@ let cat = empty_cat ()
     in [tsklst] *)
 let rec sep_tasks (lst : 'a list) (tsklst : 'a list list) (currtsk : 'a list) = 
   match lst with 
-  | [] -> [[]]
+  | [] -> (currtsk :: tsklst)
   | h::t -> if List.length currtsk = 4 
-    then sep_tasks t (currtsk :: tsklst) [] 
+    then sep_tasks t (currtsk :: tsklst) [h] 
     else sep_tasks t tsklst (currtsk @ [h]) 
 
 let rec sep_tasks_w_cat (lst : 'a list) (tsklst : 'a list list) (currtsk : 'a list) = 
   match lst with 
-  | [] -> [[]]
+  | [] -> (currtsk :: tsklst)
   | h::t -> if List.length currtsk = 5 
-    then sep_tasks t (currtsk :: tsklst) [] 
-    else sep_tasks t tsklst (currtsk @ [h]) 
+    then sep_tasks_w_cat t (currtsk :: tsklst) [h] 
+    else sep_tasks_w_cat t tsklst (currtsk @ [h]) 
 
 let rec add_cat tll cat acc = 
   match tll with 
@@ -32,9 +32,9 @@ let rec make_tll tlst cat =
     match tlst with 
     | [] -> []
     | h::t -> t in 
-  let separated = sep_tasks not_cat [[]] [] in 
+  let separated = sep_tasks not_cat [] [] in 
   let wcat = add_cat separated [cat] [] in 
-  sep_tasks_w_cat wcat [[]] []
+  sep_tasks_w_cat wcat [] []
 
 (*let n = [] in 
   match tlst with 
@@ -50,7 +50,7 @@ let rec draw_task t =
     draw_string c;
     moveto 150 y;
     draw_string t;
-    moveto 350 y;
+    moveto 300 y;
     draw_string dd;
     moveto 425 y;
     draw_string dc;
@@ -106,7 +106,7 @@ let draw_basic () =
   draw_string "Category";
   moveto 150 335;
   draw_string "Task";
-  moveto 350 335;
+  moveto 300 335;
   draw_string "Date created";
   moveto 425 335;
   draw_string "Due date";
@@ -155,10 +155,9 @@ let task_input () =
   set_color black;
   (*view_category category*) (*the simpler version*)
   let cat_lst_form = Manual.to_list ~cat:cat category in 
-  (*  let cat_lst_lst = make_tll cat_lst_form category in
-      draw_str_ll cat_lst_lst  
-      draw_task_list cat_lst_lst*) (*the better version*)
-  draw_task cat_lst_form
+  let cat_lst_lst = make_tll cat_lst_form category in
+  (*draw_str_ll cat_lst_lst;*)
+  draw_task_list cat_lst_lst (*the better version*)
 
 (** [complete_task_gui ()] prompts the user to type in the category and name
     of a task they want to complete *) 
