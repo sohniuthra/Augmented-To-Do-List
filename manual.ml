@@ -21,8 +21,6 @@ type t = {
   task_list : task list; 
 }
 
-
-
 (** Raised when an invalid task is encountered. *)
 exception InvalidTask 
 
