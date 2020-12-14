@@ -82,10 +82,12 @@ let rec draw_str_ll slstlst =
 let draw_basic () =
   clear_graph ();
   set_color blue;
-  fill_rect 99 459 30 15;
+  fill_rect 99 459 60 15;
   moveto 100 460;
   set_color white;
   draw_string "To-Do List";
+  set_color red;
+  fill_rect 299 459 72 15;
   moveto 300 460;
   set_color black;
   draw_string "Appointments - NOT DONE YET";
@@ -121,13 +123,15 @@ let draw_basic () =
 (** [draw_appointments ()] is the interface for appointments *)
 let draw_appointments () = 
   clear_graph ();
+  set_color red;
+  fill_rect 99 459 60 15;
   moveto 100 460;
-  set_color white;
+  set_color black;
   draw_string "To-Do List";
   set_color blue;
-  fill_rect 299 459 30 15;
+  fill_rect 299 459 72 15;
   moveto 300 460;
-  set_color black;
+  set_color white;
   draw_string "Appointments - NOT DONE YET"
 
 (** [string_input str] produces a string from anything that the user types 
@@ -273,7 +277,7 @@ let make_auto () =
   else draw_string "Input invalid"; draw_basic ()
 
 let rec loop () = 
-  let e = wait_next_event [Key_pressed] in
+  let e = wait_next_event [Key_pressed; Mouse_motion; Button_down] in
 
   let new_task = if e.key = 't'
     then task_input ()
@@ -299,12 +303,22 @@ let rec loop () =
     then make_auto ()
     else () in 
 
+  let switch_to_appo = if e.mouse_x > 299 && e.mouse_x < 371 && e.mouse_y > 459 
+                          && e.mouse_y < 474 && e.button
+    then draw_appointments () in 
+
+  let switch_to_todo = if e.mouse_x > 99 && e.mouse_x < 169 && e.mouse_y > 459 
+                          && e.mouse_y < 474 && e.button
+    then draw_basic () in 
+
   new_task;
   comp_task;
   del_task;
   view;
   sort;
   auto;
+  switch_to_appo;
+  switch_to_todo;
 
   if e.key <> 'q' then loop () else ()
 
