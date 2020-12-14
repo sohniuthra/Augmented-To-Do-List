@@ -71,9 +71,9 @@ let add_new_cat ?(cat=categories) new_cat =
 
 (* helper function *)
 let find_category ?(cat=categories) cat_name =
-  try 
-    List.find (fun x -> x.c_name = cat_name) (!cat)
-  with Not_found -> raise (CategoryNotFound cat_name)
+  (*try *)
+  List.find (fun x -> x.c_name = cat_name) (!cat)
+(*with Not_found -> raise (CategoryNotFound cat_name)*)
 
 (* helper function: does not actually remove the category from categories, 
    but instead returns a list of cateogories without category [t]*)
