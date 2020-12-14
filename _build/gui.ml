@@ -1,8 +1,10 @@
 open Graphics
 open Manual
 open Printf
+open Automatic
 
 let cat = empty_cat ()
+let auto_cat = empty_cat_auto ()
 
 (** [sep_tasks lst tsklst currtsk] takes list [lst] and separates it into tasks
     in [tsklst] *)
@@ -268,13 +270,16 @@ let make_auto () =
   draw_string "Type what kind of automatic list you want. The options are car, \
                school, household, shopping, pandemic, or all (for all lists)";
   let auto_choice = string_input "" in 
-  if auto_choice = "car" then Automatic.make_car_auto ()
-  else if auto_choice = "school" then Automatic.make_school_auto ()
-  else if auto_choice = "household" then Automatic.make_household_auto ()
-  else if auto_choice = "shopping" then Automatic.make_shopping_auto ()
-  else if auto_choice = "pandemic" then Automatic.make_pandemic_auto ()
-  else if auto_choice = "all" then Automatic.make_auto ()
-  else draw_string "Input invalid"; draw_basic ()
+  if auto_choice = "car" then (make_car_auto ~cat:auto_cat (); 
+                               let car_list = to_list_auto ~cat:auto_cat "Car Tasks" in 
+                               let car_ll = make_tll car_list "Car Tasks" in 
+                               draw_task_list car_ll)
+  else if auto_choice = "school" then make_school_auto ~cat:auto_cat ()
+  else if auto_choice = "household" then make_household_auto ~cat:auto_cat ()
+  else if auto_choice = "shopping" then make_shopping_auto ~cat:auto_cat ()
+  else if auto_choice = "pandemic" then make_pandemic_auto ~cat:auto_cat ()
+  else if auto_choice = "all" then make_auto ~cat:auto_cat ()
+  else draw_basic (); draw_string "Input invalid"
 
 let rec loop () = 
   let e = wait_next_event [Key_pressed; Mouse_motion; Button_down] in
