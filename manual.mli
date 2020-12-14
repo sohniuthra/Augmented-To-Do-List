@@ -74,12 +74,12 @@ val to_list : ?cat:(t list ref) -> string ->  string list
 val change_due_date : ?cat:(t list ref) -> string -> string ->  string -> unit
 
 (** [change_priority cat_name task_name new_priority] changes the priority of 
-    the task with name [task_name] in the category with name [cat_name] from 
+    the task with [task_name] in the category with name [cat_name] from 
     old priority to [new_priority]. *)
-(* val change_priority: ?cat:(t list ref) -> string -> string -> int -> unit *)
+val change_priority: ?cat:(t list ref) -> string -> string -> int -> unit
 
 (** [todays_tasks] is a task list containing all of the tasks due today *)
-(* val todays_tasks : unit -> task list *)
+val todays_tasks : unit -> task list
 
 
 

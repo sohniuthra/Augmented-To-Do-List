@@ -21,8 +21,6 @@ type t = {
   task_list : task list; 
 }
 
-
-
 (** Raised when an invalid task is encountered. *)
 exception InvalidTask 
 
@@ -213,10 +211,20 @@ let change_due_date ?(cat=categories) cat_name task_name new_date =
     with Not_found -> raise (TaskNotFound task_name)
   with Not_found -> raise (CategoryNotFound cat_name)
 
-(* let change_priority ?(cat=categories) cat_name task_name new_priority =
-   failwith "poo's unimplemented"
+let change_priority ?(cat=categories) cat_name task_name new_priority =
+  try 
+    let category = find_category ~cat:cat cat_name in 
+    try
+      let old_task = find_task category task_name in
+      let old_date = old_task.due_date in
+      let removed_cat = remove category old_task in
+      let new_task = init_task task_name old_date new_priority in
+      let new_cat = add_task removed_cat new_task in
+      cat := (new_cat :: (remove_cat category !cat))
+    with Not_found -> raise (TaskNotFound task_name)
+  with Not_found -> raise (CategoryNotFound cat_name)
 
-   let todays_tasks () =
-   failwith "poo's unimplemented" *)
+let todays_tasks () =
+  failwith "poo's unimplemented"
 
 
