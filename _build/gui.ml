@@ -1,33 +1,99 @@
 open Graphics
 open Manual
 open Printf
+open Automatic
 
 let cat = empty_cat ()
+let auto_cat = empty_cat_auto ()
 
 (** [sep_tasks lst tsklst currtsk] takes list [lst] and separates it into tasks
     in [tsklst] *)
 let rec sep_tasks (lst : 'a list) (tsklst : 'a list list) (currtsk : 'a list) = 
   match lst with 
-  | [] -> [[]]
+  | [] -> (currtsk :: tsklst)
   | h::t -> if List.length currtsk = 4 
-    then sep_tasks t (currtsk :: tsklst) [] 
+    then sep_tasks t (currtsk :: tsklst) [h] 
     else sep_tasks t tsklst (currtsk @ [h]) 
+
+let rec sep_tasks_w_cat (lst : 'a list) (tsklst : 'a list list) (currtsk : 'a list) = 
+  match lst with 
+  | [] -> (currtsk :: tsklst)
+  | h::t -> if List.length currtsk = 5 
+    then sep_tasks_w_cat t (currtsk :: tsklst) [h] 
+    else sep_tasks_w_cat t tsklst (currtsk @ [h]) 
+
+let rec add_cat tll cat acc = 
+  match tll with 
+  | [] -> acc 
+  | h::t -> add_cat t cat (acc @ cat @ h)
+
+(** [make_tll tlst cat] takes the category list [tlst] with category [cat] and
+    creates a list list where each element is a task with the category *)
+let rec make_tll tlst cat = 
+  let not_cat = 
+    match tlst with 
+    | [] -> []
+    | h::t -> t in 
+  let separated = sep_tasks not_cat [] [] in 
+  let wcat = add_cat separated [cat] [] in 
+  sep_tasks_w_cat wcat [] []
+
+let rec draw_task t =
+  if current_y () > 320 then moveto 10 320; 
+  let y = current_y () in  
+  match t with 
+  | [] -> ()
+  | c::t::dd::dc::p::[] -> moveto 10 y;
+    draw_string c;
+    moveto 150 y;
+    draw_string t;
+    moveto 300 y;
+    draw_string dd;
+    moveto 425 y;
+    draw_string dc;
+    moveto 550 y; 
+    draw_string p;
+  | _ -> ()
+
+let rec draw_task_list tlst = 
+  set_color black;
+  match tlst with 
+  | [] -> ()
+  | h::t -> draw_task h; moveto 10 (current_y () - 15); draw_task_list t
 
 (** [draw_str_list slst] takes string list [slst] and draws it with each item 
     on a new line *) 
 let rec draw_str_list slst =
+  let y = current_y () in 
   match slst with 
   | [] -> ()
-  | h::t -> draw_string h; moveto (10) (current_y () - 15); 
+  | h::t -> if y > 320 then moveto 10 320;
+    draw_string h; moveto (10) (current_y () - 15); 
     draw_str_list t
 
-(** [draw_basic ()] is the basic window that should open when the application
-    opens *) 
+let rec draw_str_ll slstlst =
+  match slstlst with 
+  | [] -> ()
+  | h::t -> draw_str_list h; moveto 10 (current_y () - 15); draw_str_ll t
+
+(** [draw_basic ()] is the basic window that opens when the application opens. 
+    It is the interface for the to-do list
+    NOTE: this function is quite lengthy because of how many commands need
+    to be given to make the GUI appear. While it is long, it is not too 
+    complicated for one function *) 
 let draw_basic () =
   clear_graph ();
-  moveto 10 460;
   set_color blue;
-  draw_string "Welcome to your new to-do list!"; 
+  fill_rect 99 459 60 15;
+  moveto 100 460;
+  set_color white;
+  draw_string "To-Do List";
+  set_color red;
+  fill_rect 299 459 72 15;
+  moveto 300 460;
+  set_color black;
+  draw_string "Appointments - NOT DONE YET";
+  set_color blue;
   moveto 10 440;
   draw_string "Press t to create a new task"; 
   moveto 10 425;
@@ -39,11 +105,36 @@ let draw_basic () =
   moveto 10 380;
   draw_string "Press a to make an automatic list - NOT IMPLEMENTED IN GUI YET"; 
   moveto 10 365;
-  draw_string "Press s to sort your to-do list - NOT IMPLEMENTED IN GUI YET";
-  moveto 10 10;
-  set_color black;
+  draw_string "Press s to sort your to-do list";
+  moveto 520 460;
+  set_color red;
   draw_string "Press q to quit";
+  set_color black;
+  moveto 10 335;
+  draw_string "Category";
+  moveto 150 335;
+  draw_string "Task";
+  moveto 300 335;
+  draw_string "Date created";
+  moveto 425 335;
+  draw_string "Due date";
+  moveto 550 335; 
+  draw_string "Priority";
   moveto 10 350
+
+(** [draw_appointments ()] is the interface for appointments *)
+let draw_appointments () = 
+  clear_graph ();
+  set_color red;
+  fill_rect 99 459 60 15;
+  moveto 100 460;
+  set_color black;
+  draw_string "To-Do List";
+  set_color blue;
+  fill_rect 299 459 72 15;
+  moveto 300 460;
+  set_color white;
+  draw_string "Appointments - NOT DONE YET"
 
 (** [string_input str] produces a string from anything that the user types 
     before pressing enter *)
@@ -58,7 +149,6 @@ let draw_int i =
   draw_string (string_of_int i)
 
 let view_category category = 
-  (*let cat = empty_cat () in*)
   draw_basic ();
   let lst = Manual.to_list ~cat:cat category in
   draw_str_list lst
@@ -66,74 +156,112 @@ let view_category category =
 let task_input () =
   (*let cat = empty_cat () in*)
   draw_basic ();
+  set_color red;
   draw_string "Type the name of your category";
   let category = (string_input "") in
   draw_basic ();
+  set_color red;
   draw_string "Type the name of your task";
   let name = (string_input "") in
   draw_basic ();
+  set_color red;
   draw_string "Type the due date in an mm/dd/yyyy format";
   let due = (string_input "") in
   draw_basic ();
+  set_color red;
   draw_string "Type the priority of your task";
   let priority = int_of_string (string_input "") in
   draw_basic ();
   Manual.create_task ~cat:cat category name due priority;
-  view_category category
+  set_color black;
+  let cat_lst_form = Manual.to_list ~cat:cat category in 
+  let cat_lst_lst = make_tll cat_lst_form category in
+  draw_task_list cat_lst_lst
 
 (** [complete_task_gui ()] prompts the user to type in the category and name
     of a task they want to complete *) 
 let complete_task_gui () =
   (*let cat = empty_cat () in *)
   draw_basic ();
+  set_color red;
   draw_string "Type the category of the task you want to complete";
   let category = (string_input "") in
   draw_basic ();
+  set_color red;
   draw_string "Type the name of the task you want to complete";
   let name = (string_input "") in
   Manual.complete_task ~cat:cat category name;
-  view_category "Completed"
+  let cat_lst_form = Manual.to_list ~cat:cat "Completed" in 
+  let cat_lst_lst = make_tll cat_lst_form "Completed" in
+  draw_task_list cat_lst_lst
 
 (** [delete_task_gui ()] prompts the user to type in the category and name
     of a task they want to delete *) 
 let delete_task_gui () =
   (*let cat = empty_cat () in *)
   draw_basic ();
+  set_color red;
   draw_string "Type the category of the task you want to delete";
   let category = (string_input "") in
   draw_basic ();
+  set_color red;
   draw_string "Type the name of the task you want to delete";
   let name = (string_input "") in
   Manual.delete_task ~cat:cat category name;
-  view_category category
+  let cat_lst_form = Manual.to_list ~cat:cat category in 
+  let cat_lst_lst = make_tll cat_lst_form category in
+  draw_task_list cat_lst_lst
 
-let view_all_categories () = failwith "unimplemented"
+let rec view_all_helper cat_list = 
+  match cat_list with 
+  | [] -> ()
+  | h::t -> failwith "need a way to get the cat name"
+
+let view_all_categories () = 
+  let cat_list = !cat in 
+  view_all_helper cat_list
 
 (** [draw_list ()] shows the list *)
 let draw_list () =
+  draw_basic ();
+  set_color red;
   draw_string "Type the category of the list you want to view. If you want to \
-               view all lists, type all";
+               view all lists, type all (NOT IMPLEMENTED IN GUI YET)";
   let category = (string_input "") in 
   if category = "all" 
   then view_all_categories ()
-  else view_category category
+  else let cat_lst_form = Manual.to_list ~cat:cat category in 
+    let cat_lst_lst = make_tll cat_lst_form category in
+    draw_task_list cat_lst_lst
 
 (** [sort_gui ()] allows the user to choose whether to sort by priority or date
     and then sorts the category *)
 let sort_gui () = 
-  let e = wait_next_event [Key_pressed] in
+  moveto 10 350;
+  set_color red;
   draw_string "To sort by priority, press p. To sort by due date, press d.";
+  let e = wait_next_event [Key_pressed] in
   let priority = if e.key = 'p' 
-    then (clear_graph ();
+    then (draw_basic ();
+          set_color red;
           draw_string "Type the name of the category you want to sort";
           let category = (string_input "") in
-          Manual.sort_list category "priority")
+          draw_basic ();
+          Manual.sort_list ~cat:cat category "Priority";
+          let cat_lst_form = Manual.to_list ~cat:cat category in 
+          let cat_lst_lst = make_tll cat_lst_form category in
+          draw_task_list cat_lst_lst)
     else () in
   let date = if e.key = 'd' 
-    then (clear_graph ();
+    then (draw_basic ();
+          set_color red;
           draw_string "Type the name of the category you want to sort";
           let category = (string_input "") in
-          Manual.sort_list category "date")
+          draw_basic ();
+          Manual.sort_list ~cat:cat category "Due Date";
+          let cat_lst_form = Manual.to_list ~cat:cat category in 
+          let cat_lst_lst = make_tll cat_lst_form category in
+          draw_task_list cat_lst_lst)
     else () in
   priority;
   date
@@ -142,16 +270,19 @@ let make_auto () =
   draw_string "Type what kind of automatic list you want. The options are car, \
                school, household, shopping, pandemic, or all (for all lists)";
   let auto_choice = string_input "" in 
-  if auto_choice = "car" then Automatic.make_car_auto ()
-  else if auto_choice = "school" then Automatic.make_school_auto ()
-  else if auto_choice = "household" then Automatic.make_household_auto ()
-  else if auto_choice = "shopping" then Automatic.make_shopping_auto ()
-  else if auto_choice = "pandemic" then Automatic.make_pandemic_auto ()
-  else if auto_choice = "all" then Automatic.make_auto ()
-  else draw_string "Input invalid"; draw_basic ()
+  if auto_choice = "car" then (make_car_auto ~cat:auto_cat (); 
+                               let car_list = to_list_auto ~cat:auto_cat "Car Tasks" in 
+                               let car_ll = make_tll car_list "Car Tasks" in 
+                               draw_task_list car_ll)
+  else if auto_choice = "school" then make_school_auto ~cat:auto_cat ()
+  else if auto_choice = "household" then make_household_auto ~cat:auto_cat ()
+  else if auto_choice = "shopping" then make_shopping_auto ~cat:auto_cat ()
+  else if auto_choice = "pandemic" then make_pandemic_auto ~cat:auto_cat ()
+  else if auto_choice = "all" then make_auto ~cat:auto_cat ()
+  else draw_basic (); draw_string "Input invalid"
 
 let rec loop () = 
-  let e = wait_next_event [Key_pressed] in
+  let e = wait_next_event [Key_pressed; Mouse_motion; Button_down] in
 
   let new_task = if e.key = 't'
     then task_input ()
@@ -177,12 +308,22 @@ let rec loop () =
     then make_auto ()
     else () in 
 
+  let switch_to_appo = if e.mouse_x > 299 && e.mouse_x < 371 && e.mouse_y > 459 
+                          && e.mouse_y < 474 && e.button
+    then draw_appointments () in 
+
+  let switch_to_todo = if e.mouse_x > 99 && e.mouse_x < 169 && e.mouse_y > 459 
+                          && e.mouse_y < 474 && e.button
+    then draw_basic () in 
+
   new_task;
   comp_task;
   del_task;
   view;
   sort;
   auto;
+  switch_to_appo;
+  switch_to_todo;
 
   if e.key <> 'q' then loop () else ()
 

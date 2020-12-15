@@ -26,11 +26,11 @@ ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o a
 # Target: automatic.mli.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:mli, file:automatic.mli, ocaml, ocamldep, quiet, traverse }
 ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules automatic.mli > automatic.mli.depends # cached
 # Target: automatic.cmi, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:mli, file:automatic.mli, interf, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o automatic.cmi automatic.mli
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o automatic.cmi automatic.mli # cached
 # Target: automatic.ml.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:ml, file:automatic.ml, ocaml, ocamldep, quiet, traverse }
 ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules automatic.ml > automatic.ml.depends # cached
 # Target: automatic.cmo, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:cmo, extension:ml, file:automatic.cmo, file:automatic.ml, implem, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o automatic.cmo automatic.ml
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o automatic.cmo automatic.ml # cached
 # Target: gui.mli.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:mli, file:gui.mli, ocaml, ocamldep, quiet, traverse }
 ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules gui.mli > gui.mli.depends # cached
 # Target: gui.cmi, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:mli, file:gui.mli, interf, ocaml, quiet, traverse }
