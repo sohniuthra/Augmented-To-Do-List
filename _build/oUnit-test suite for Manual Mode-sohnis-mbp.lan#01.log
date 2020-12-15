@@ -1,0 +1,66 @@
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Start test test suite for Manual Mode:0:Adding 1 task to the General category.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Test test suite for Manual Mode:0:Adding 1 task to the General category is successful.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: End test test suite for Manual Mode:0:Adding 1 task to the General category.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Start test test suite for Manual Mode:2:Adding 3 tasks to the General category.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Test test suite for Manual Mode:2:Adding 3 tasks to the General category is successful.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: End test test suite for Manual Mode:2:Adding 3 tasks to the General category.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Start test test suite for Manual Mode:3:Adding 3 tasks to the School category.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Test test suite for Manual Mode:3:Adding 3 tasks to the School category is successful.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: End test test suite for Manual Mode:3:Adding 3 tasks to the School category.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Start test test suite for Manual Mode:5:Also adding 2 tasks to the Careers category.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Test test suite for Manual Mode:5:Also adding 2 tasks to the Careers category is successful.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: End test test suite for Manual Mode:5:Also adding 2 tasks to the Careers category.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Start test test suite for Manual Mode:7:Sorting General by priority with each task containing 
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I:   different priorities.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Test test suite for Manual Mode:7:Sorting General by priority with each task containing 
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I:   different priorities is successful.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: End test test suite for Manual Mode:7:Sorting General by priority with each task containing 
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I:   different priorities.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Start test test suite for Manual Mode:9:Sorting General by priority with some tasks containing the 
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I:   same priorities.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Test test suite for Manual Mode:9:Sorting General by priority with some tasks containing the 
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I:   same priorities is successful.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: End test test suite for Manual Mode:9:Sorting General by priority with some tasks containing the 
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I:   same priorities.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Start test test suite for Manual Mode:11:Sorting General by date with one task.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Test test suite for Manual Mode:11:Sorting General by date with one task is successful.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: End test test suite for Manual Mode:11:Sorting General by date with one task.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Start test test suite for Manual Mode:14:Sorting General by due date with each task due different days 
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I:   of the same month and same years.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Test test suite for Manual Mode:14:Sorting General by due date with each task due different days 
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I:   of the same month and same years is successful.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: End test test suite for Manual Mode:14:Sorting General by due date with each task due different days 
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I:   of the same month and same years.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Start test test suite for Manual Mode:16:Completed should contain watch lecture.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Test test suite for Manual Mode:16:Completed should contain watch lecture is successful.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: End test test suite for Manual Mode:16:Completed should contain watch lecture.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Start test test suite for Manual Mode:18:Completed should contain watch lecture and go to 
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I:     discussion.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Test test suite for Manual Mode:18:Completed should contain watch lecture and go to 
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I:     discussion is successful.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: End test test suite for Manual Mode:18:Completed should contain watch lecture and go to 
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I:     discussion.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Start test test suite for Manual Mode:20:School should not contain fill out OMM.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Test test suite for Manual Mode:20:School should not contain fill out OMM is successful.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: End test test suite for Manual Mode:20:School should not contain fill out OMM.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Start test test suite for Manual Mode:22:General should not contain watch lecture.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Test test suite for Manual Mode:22:General should not contain watch lecture is successful.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: End test test suite for Manual Mode:22:General should not contain watch lecture.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Start test test suite for Manual Mode:23:General should not contain watch lecture or go to 
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I:     discussion.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Test test suite for Manual Mode:23:General should not contain watch lecture or go to 
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I:     discussion is successful.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: End test test suite for Manual Mode:23:General should not contain watch lecture or go to 
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I:     discussion.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Start test test suite for Manual Mode:26:Write Essay priority has changed in category School 
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I:     Tasks.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Test test suite for Manual Mode:26:Write Essay priority has changed in category School 
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I:     Tasks is successful.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: End test test suite for Manual Mode:26:Write Essay priority has changed in category School 
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I:     Tasks.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Start test test suite for Manual Mode:28:Change due date of Pooja's iPhone 12 Pro Max Purchase 
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I:   to as soon as possible.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: Test test suite for Manual Mode:28:Change due date of Pooja's iPhone 12 Pro Max Purchase 
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I:   to as soon as possible is successful.
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I: End test test suite for Manual Mode:28:Change due date of Pooja's iPhone 12 Pro Max Purchase 
+2020-11-13T22:12:12+00:00 sohnis-mbp.lan#01 I:   to as soon as possible.

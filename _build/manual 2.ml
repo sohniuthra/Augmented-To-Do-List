@@ -73,9 +73,9 @@ let add_new_cat ?(cat=categories) new_cat =
 
 (* helper function *)
 let find_category ?(cat=categories) cat_name =
-  (*try *)
-  List.find (fun x -> x.c_name = cat_name) (!cat)
-(*with Not_found -> raise (CategoryNotFound cat_name)*)
+  try 
+    List.find (fun x -> x.c_name = cat_name) (!cat)
+  with Not_found -> raise (CategoryNotFound cat_name)
 
 (* helper function: does not actually remove the category from categories, 
    but instead returns a list of cateogories without category [t]*)
@@ -86,8 +86,8 @@ let remove_cat t lst =
 let priority_compare t1 t2 = 
   let t1p = t1.priority in
   let t2p = t2.priority in
-  if t1p < t2p then 1 else 
-  if t1p > t2p then -1 else 0
+  if t1p < t2p then -1 else 
+  if t1p > t2p then 1 else 0
 
 (* helper function: gets the month of a properly formatted due date *)
 let get_month_due task = 
@@ -213,10 +213,10 @@ let change_due_date ?(cat=categories) cat_name task_name new_date =
     with Not_found -> raise (TaskNotFound task_name)
   with Not_found -> raise (CategoryNotFound cat_name)
 
-(* let change_priority ?(cat=categories) cat_name task_name new_priority =
-   failwith "poo's unimplemented"
+let change_priority ?(cat=categories) cat_name task_name new_priority =
+  failwith "poo's unimplemented"
 
-   let todays_tasks () =
-   failwith "poo's unimplemented" *)
+let todays_tasks () =
+  failwith "poo's unimplemented"
 
 
