@@ -496,10 +496,10 @@ let change_priority_tests2 = [
   to 3" cat "Pandemic Tasks" 
     ["Pandemic Tasks"; "Buy Disinfectant Spray"; todays_date (); "TBD"; "3";
      "Make Masks"; todays_date (); "TBD"; "5"; 
-     "Cancel flights"; todays_date (); "TBD"; "7"; 
+     "Cancel Flights"; todays_date (); "TBD"; "7"; 
      "Complete Daily Check"; todays_date (); "TBD"; "6"; 
-     "Get tested"; todays_date (); "TBD"; "5"; 
-     "Wipe down surfaces"; todays_date (); "TBD"; "3"; 
+     "Get Tested"; todays_date (); "TBD"; "5"; 
+     "Wipe Down Surfaces"; todays_date (); "TBD"; "3"; 
      "Buy Hand Sanitizer"; todays_date ();  "TBD"; "1"]
 ]
 
@@ -539,6 +539,80 @@ let change_due_tests2 = [
      "Change Oil"; todays_date (); "TBD"; "1"]
 ]
 
+let cat = empty_cat_auto ()
+let school = make_school_auto ~cat:cat ()
+let chagnge = change_name ~cat:cat "School Tasks" "Watch CS 3110 Lecture Videos"
+    "Watch CS 2800 Lecture Videos"
+
+let change_name_tests = [
+  update_cat_test_auto "Change name of a task in School cateogry" cat
+    "School Tasks"
+    [
+      "School Tasks"; 
+      "Watch CS 2800 Lecture Videos"; todays_date (); "TBD"; "6"; 
+      "Plan for Pre-Enroll"; todays_date (); "TBD"; "7"; 
+      "Fill Out OMM";todays_date (); "TBD"; "5";
+      "Meet with Professor"; todays_date (); "TBD"; "4";
+      "Finish Biology Lab"; todays_date (); "TBD"; "3";
+      "Write Essay"; todays_date (); "TBD"; "2";
+      "Complete Math Problem Set"; todays_date (); "TBD"; "1"]
+]
+
+let cat = empty_cat_auto ()
+let house = make_household_auto ~cat:cat ()
+let change = change_name ~cat:cat "Household Tasks" "Cook Dinner" "Pack Lunch"
+let change2 = change_due ~cat:cat "Household Tasks" "Do the Laundry" 
+    "12/16/2020"
+
+let change_name_and_due_tests = [
+  update_cat_test_auto "Change name of a task in Household category and change
+  due date of another task" cat "Household Tasks"
+    [
+      "Household Tasks";
+      "Do the Laundry"; todays_date (); "12/16/2020"; "7";
+      "Pack Lunch"; todays_date (); "TBD"; "4";
+      "Feed the Dog"; todays_date (); "TBD"; "6";
+      "Mow the Lawn"; todays_date (); "TBD"; "5";
+      "Wash the Dishes"; todays_date (); "TBD"; "3";
+      "Vacuum the Rugs"; todays_date (); "TBD"; "2";
+      "Mop Kitchen Floor"; todays_date (); "TBD"; "1"]
+]
+
+let cat = empty_cat_auto ()
+let shopping = make_shopping_auto ~cat:cat ()
+let change = create_task_auto ~cat:cat "Shopping Tasks" "Buy New Sweater" 
+    "12/25/2020" 3
+
+let add_task_tests = [
+  update_cat_test_auto "Add task to Shopping category" cat "Shopping Tasks"
+    [
+      "Shopping Tasks";
+      "Buy New Sweater"; todays_date (); "12/25/2020"; "3";
+      "Get New iPhone 12 Pro Max"; todays_date (); "TBD"; "7";
+      "Get new lightbulbs to replace current ones"; todays_date (); "TBD"; "6";
+      "Buy new Nike Sneakers"; todays_date ();"TBD"; "5"; 
+      "Buy Essentials for Ithaca Winter"; todays_date (); "TBD"; "4";
+      "Find Dress for Formal";  todays_date ();"TBD"; "3";
+      "Buy Cake for Melissa's Birthday"; todays_date ();"TBD";  "2";
+      "Order Groceries"; todays_date (); "TBD"; "1"]
+]
+
+let cat = empty_cat_auto ()
+let pandemic = make_pandemic_auto ~cat:cat ()
+let change = delete_task_auto ~cat:cat "Pandemic Tasks" "Cancel Flights"
+
+let delete_task_tests = [
+  update_cat_test_auto "Delete task from Pandemic category" cat "Pandemic Tasks"
+    [
+      "Pandemic Tasks";
+      "Complete Daily Check"; todays_date (); "TBD"; "6"; 
+      "Get Tested"; todays_date (); "TBD"; "5"; 
+      "Make Masks"; todays_date (); "TBD"; "4"; 
+      "Wipe Down Surfaces"; todays_date (); "TBD"; "3"; 
+      "Buy Disinfectant Spray"; todays_date (); "TBD"; "2";
+      "Buy Hand Sanitizer"; todays_date ();  "TBD"; "1"]
+]
+
 let suite =
   "test suite for Manual Mode"  >::: List.flatten [
     create_task_tests1;
@@ -546,11 +620,11 @@ let suite =
     create_task_tests3;
     create_task_tests4;
 
-    sort_list_priority_tests1;
-    sort_list_priority_tests2;
-    sort_list_priority_tests3;
-    sort_list_priority_tests4;
-    sort_list_priority_tests5;
+    (* sort_list_priority_tests1;
+       sort_list_priority_tests2;
+       sort_list_priority_tests3;
+       sort_list_priority_tests4;
+       sort_list_priority_tests5; *)
 
     sort_list_date_tests1;
     sort_list_date_tests2;
@@ -570,6 +644,12 @@ let suite =
 
     change_due_tests;
     change_due_tests2;
+
+    change_name_tests;
+    change_name_and_due_tests;
+
+    add_task_tests;
+    delete_task_tests;
   ]
 
 let _ = run_test_tt_main suite

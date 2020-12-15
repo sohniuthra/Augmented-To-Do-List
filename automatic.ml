@@ -125,12 +125,12 @@ let pandemic_list ?(cat=categories) () =
   in 
   let spray = add_task sanitizer (init_task "Buy Disinfectant Spray" "TBD" 2) 
   in 
-  let wipe = add_task spray (init_task "Wipe down surfaces" "TBD" 3) in
+  let wipe = add_task spray (init_task "Wipe Down Surfaces" "TBD" 3) in
   let masks = add_task wipe (init_task "Make Masks" "TBD" 4) in
-  let tests = add_task masks (init_task "Get tested" "TBD" 5) in
+  let tests = add_task masks (init_task "Get Tested" "TBD" 5) in
   let daily_check = add_task tests (init_task "Complete Daily Check" "TBD" 6) 
   in 
-  let flight = add_task daily_check (init_task "Cancel flights" "TBD" 7) in
+  let flight = add_task daily_check (init_task "Cancel Flights" "TBD" 7) in
   add_new_cat ~cat:cat flight
 
 let make_auto ?(cat=categories) () =
