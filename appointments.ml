@@ -14,7 +14,7 @@ module AppSuite = struct
 
   type t = app list
 
-  let (appointments : t list ref) = ref []
+  let appointments = ref []
 
   let empty_appo () = ref []
 
@@ -50,4 +50,14 @@ module AppSuite = struct
     let new_app = {title = app.title; app_date = app.date; time = app.time;
                    location = loc; notes = app.notes} in 
     delete_app appo app; (appo := new_app :: (!appo))
+
+  let find_date_and_time () =
+    Unix.localtime (Unix.time)
+
+  let rec to_list_app ?(appo=appointments) acc =
+    match (!appo) with
+    | [] -> acc
+    | {title; app_date; time; location; notes} :: t -> 
+      to_list_helper t 
+        (acc @ [title; app_date; time; location; notes])
 end 
