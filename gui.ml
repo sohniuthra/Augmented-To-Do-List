@@ -17,7 +17,7 @@ let rec sep_tasks (lst : 'a list) (tsklst : 'a list list) (currtsk : 'a list) =
     then sep_tasks t (currtsk :: tsklst) [h] 
     else sep_tasks t tsklst (currtsk @ [h]) 
 
-let rec sep_tasks_w_cat (lst : 'a list) (tsklst : 'a list list) (currtsk : 'a list) = 
+let rec sep_tasks_w_cat (lst : 'a list) (tsklst : 'a list list) currtsk = 
   match lst with 
   | [] -> (currtsk :: tsklst)
   | h::t -> if List.length currtsk = 5 
@@ -105,7 +105,7 @@ let draw_basic () =
   moveto 10 395;
   draw_string "Press v to view a list";
   moveto 10 380;
-  draw_string "Press a to make an automatic list - NOT IMPLEMENTED IN GUI YET"; 
+  draw_string "Press a to make an automatic list - CAN VIEW BUT NOT EDIT"; 
   moveto 10 365;
   draw_string "Press s to sort your to-do list";
   moveto 520 460;
@@ -274,19 +274,53 @@ let sort_gui () =
   date
 
 let make_auto () =
-  draw_string "Type what kind of automatic list you want. The options are car, \
-               school, household, shopping, pandemic, or all (for all lists)";
+  set_color red;
+  draw_string "Type what kind of automatic list you want: car, school, \
+               household, shopping, pandemic";
   let auto_choice = string_input "" in 
   if auto_choice = "car" then (make_car_auto ~cat:auto_cat (); 
-                               let car_list = to_list_auto ~cat:auto_cat "Car Tasks" in 
+                               let car_list = to_list_auto ~cat:auto_cat 
+                                   "Car Tasks" in 
                                let car_ll = make_tll car_list "Car Tasks" in 
+                               draw_basic ();
                                draw_task_list car_ll)
-  else if auto_choice = "school" then make_school_auto ~cat:auto_cat ()
-  else if auto_choice = "household" then make_household_auto ~cat:auto_cat ()
-  else if auto_choice = "shopping" then make_shopping_auto ~cat:auto_cat ()
-  else if auto_choice = "pandemic" then make_pandemic_auto ~cat:auto_cat ()
-  else if auto_choice = "all" then make_auto ~cat:auto_cat ()
-  else draw_basic (); draw_string "Input invalid"
+  else if auto_choice = "school" then (make_school_auto ~cat:auto_cat (); 
+                                       let school_list = 
+                                         to_list_auto ~cat:auto_cat 
+                                           "School Tasks" in 
+                                       let school_ll = make_tll school_list 
+                                           "School Tasks" in 
+                                       draw_basic ();
+                                       draw_task_list school_ll)
+  else if auto_choice = "household" then (make_household_auto ~cat:auto_cat (); 
+                                          let house_list = to_list_auto 
+                                              ~cat:auto_cat "Household Tasks" in 
+                                          let house_ll = make_tll house_list 
+                                              "Household Tasks" in 
+                                          draw_basic ();
+                                          draw_task_list house_ll)
+  else if auto_choice = "shopping" then (make_shopping_auto ~cat:auto_cat (); 
+                                         let shopping_list = to_list_auto 
+                                             ~cat:auto_cat "Shopping Tasks" in 
+                                         let shopping_ll = make_tll 
+                                             shopping_list "Shopping Tasks" in 
+                                         draw_basic ();
+                                         draw_task_list shopping_ll)
+  else if auto_choice = "pandemic" then (make_pandemic_auto ~cat:auto_cat (); 
+                                         let pandemic_list = to_list_auto 
+                                             ~cat:auto_cat "Pandemic Tasks" in 
+                                         let pandemic_ll = make_tll 
+                                             pandemic_list "Pandemic Tasks" in 
+                                         draw_basic ();
+                                         draw_task_list pandemic_ll)
+  else if auto_choice = "all" then (make_auto ~cat:auto_cat (); 
+                                    let all_list = to_list_auto ~cat:auto_cat 
+                                        "All Tasks" in 
+                                    let all_ll = make_tll all_list "All Tasks" 
+                                    in 
+                                    draw_basic ();
+                                    draw_task_list all_ll)
+  else draw_basic ()
 
 let find_task y : string list = 
   let cat_lst_form = Manual.to_list ~cat:cat !viewed_cat in 
