@@ -7,6 +7,7 @@ let cat = empty_cat ()
 let auto_cat = empty_cat_auto ()
 
 let viewed_cat = ref ""
+let is_todo = ref true 
 
 (** [sep_tasks lst tsklst currtsk] takes list [lst] and separates it into tasks
     in [tsklst] *)
@@ -83,7 +84,7 @@ let rec draw_str_ll slstlst =
     NOTE: this function is quite lengthy because of how many commands need
     to be given to make the GUI appear. While it is long, it is not too 
     complicated for one function *) 
-let draw_basic () =
+let rec draw_basic () =
   clear_graph ();
   set_color blue;
   fill_rect 99 459 60 15;
@@ -122,7 +123,15 @@ let draw_basic () =
   draw_string "Due date";
   moveto 550 335; 
   draw_string "Priority";
+  if !viewed_cat = "" then () else view_category !viewed_cat;
+  is_todo := true;
   moveto 10 350
+
+and view_category category = 
+  draw_basic ();
+  let lst = Manual.to_list ~cat:cat category in
+  draw_str_list lst;
+  viewed_cat := category
 
 (** [draw_appointments ()] is the interface for appointments *)
 let draw_appointments () = 
@@ -136,7 +145,23 @@ let draw_appointments () =
   fill_rect 299 459 72 15;
   moveto 300 460;
   set_color white;
-  draw_string "Appointments - NOT DONE YET"
+  draw_string "Appointments - NOT DONE YET";
+  moveto 520 460;
+  set_color red;
+  draw_string "Press q to quit";
+  set_color black;
+  moveto 10 335;
+  draw_string "Name";
+  moveto 150 335;
+  draw_string "Date";
+  moveto 225 335;
+  draw_string "Time";
+  moveto 300 335;
+  draw_string "Location";
+  moveto 425 335; 
+  draw_string "Notes";
+  is_todo := false;
+  moveto 10 350
 
 (** [string_input str] produces a string from anything that the user types 
     before pressing enter *)
@@ -149,12 +174,6 @@ let rec string_input str =
 (** [draw_int i] draws int [i] as a string *) 
 let draw_int i =
   draw_string (string_of_int i)
-
-let view_category category = 
-  draw_basic ();
-  let lst = Manual.to_list ~cat:cat category in
-  draw_str_list lst;
-  viewed_cat := category
 
 let task_input () =
   (*let cat = empty_cat () in*)
@@ -387,19 +406,19 @@ let rec loop () =
     else () in 
 
   let switch_to_appo = if e.mouse_x > 299 && e.mouse_x < 371 && e.mouse_y > 459 
-                          && e.mouse_y < 474 && e.button
+                          && e.mouse_y < 474 && e.button && !is_todo
     then draw_appointments () in 
 
   let switch_to_todo = if e.mouse_x > 99 && e.mouse_x < 169 && e.mouse_y > 459 
-                          && e.mouse_y < 474 && e.button
+                          && e.mouse_y < 474 && e.button && (not !is_todo)
     then draw_basic () in 
 
   let click_due = if e.mouse_x > 425 && e.mouse_x < 520 && e.mouse_y < 335 
-                     && e.button
+                     && e.button && !is_todo
     then change_dd (e.mouse_y) in 
 
   let click_pri = if e.mouse_x > 550 && e.mouse_x < 640 && e.mouse_y < 335 
-                     && e.button
+                     && e.button && !is_todo
     then change_pri (e.mouse_y) in 
 
   new_task;
