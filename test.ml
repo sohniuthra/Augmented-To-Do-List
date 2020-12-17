@@ -1,6 +1,7 @@
 open OUnit2
 open Manual
 open Automatic
+open Appointments
 (* open Appointments *)
 
 (**  [pp_string s] pretty-prints string [s]. *)
@@ -67,10 +68,10 @@ let update_cat_test_auto name categories cat_name expected_output =
       assert_equal expected_output 
         (to_list_auto ~cat:categories cat_name) ~printer: (pp_list pp_string))
 
-(* let update_app_test name appointments expected_output =
-   name >:: (fun _ -> 
+let update_app_test name appointments expected_output =
+  name >:: (fun _ -> 
       assert_equal expected_output
-        (to_list_app ~appo:appointments []) ~printer: (pp_list pp_string)) *)
+        (to_list_app ~appo:appointments []) ~printer: (pp_list pp_string))
 
 (* all tests using update_cat_test also test to_list *)
 let cat = empty_cat ()
@@ -619,34 +620,95 @@ let delete_task_tests = [
       "Buy Hand Sanitizer"; todays_date ();  "TBD"; "1"]
 ]
 
-(* let apps = empty_appo ()
+let apps = empty_appo ()
 
-   let access_app_tests = [
-   update_app_test "View empty appointments list" apps []
-   ] *)
+let access_app_tests = [
+  update_app_test "View empty appointments list" apps []
+]
 
-(* let apps = empty_appo ()
-   let dentist = add_app ~appo:apps "Go to Dentist" "12/16/20" "2:30 PM"
-   let practiece = add_app ~appo:apps "Go to Lacrosse Practice" "1/25/21" "4 PM"
-   let chores = add_app ~appo:apps "Do Chores" "6/12/21" "9 AM"
-   let fat = add_app ~appo:apps "Eat with Fatty and Poo" "12/25/20" "12 PM"
-   let cs = add_app ~appo:apps "CS 3110 Final Due" "12/20/20" "11:59 PM" *)
+let apps = empty_appo ()
+let dentist = add_app ~appo:apps "Go to Dentist" "12/16/20" "2:30 PM"
+let practiece = add_app ~appo:apps "Go to Lacrosse Practice" "1/25/21" "4 PM"
+let chores = add_app ~appo:apps "Do Chores" "6/12/21" "9 AM"
+let fat = add_app ~appo:apps "Eat with Fatty and Poo" "12/25/20" "12 PM"
+let cs = add_app ~appo:apps "CS 3110 Final Due" "12/20/20" "11:59 PM"
 
 
 let add_app_tests = [
-  [
-    "Go to Dentist"; "12/16/20"; "2:30 PM"; "Location"; 
-    "Notes about Appointment";
-    "Go to Lacrosse Practice"; "1/25/21"; "4 PM"; "Location"; 
-    "Notes about Appointment";
-    "Do Chores"; "6/12/21"; "9 AM"; "Location";
-    "Notes about Appointment";
-    "Eat with Fatty and Poo"; "12/25/20"; "12 PM"; "Location";
-    "Notes about Appointment";
-    "CS 3110 Final Due"; "12/20/20"; "11:59 PM"; "Location";
-    "Notes about Appointment"]
+  update_app_test "Apps are added to appointment list" apps 
+    [
+      "CS 3110 Final Due"; "12/20/20"; "11:59 PM"; "Location";
+      "Notes about Appointment";
+      "Eat with Fatty and Poo"; "12/25/20"; "12 PM"; "Location";
+      "Notes about Appointment";
+      "Do Chores"; "6/12/21"; "9 AM"; "Location";
+      "Notes about Appointment";
+      "Go to Lacrosse Practice"; "1/25/21"; "4 PM"; "Location"; 
+      "Notes about Appointment";
+      "Go to Dentist"; "12/16/20"; "2:30 PM"; "Location"; 
+      "Notes about Appointment";]
 ]
 
+let apps = empty_appo ()
+let dentist = add_app ~appo:apps "Go to Dentist" "12/16/20" "2:30 PM"
+let practiece = add_app ~appo:apps "Go to Lacrosse Practice" "1/25/21" "4 PM"
+let chores = add_app ~appo:apps "Do Chores" "6/12/21" "9 AM"
+let fat = add_app ~appo:apps "Eat with Fatty and Poo" "12/25/20" "12 PM"
+let cs = add_app ~appo:apps "CS 3110 Final Due" "12/20/20" "11:59 PM"
+let delete1 = delete_app ~appo:apps "Go to Dentist"
+let delete2 = delete_app ~appo:apps "CS 3110 Final Due"
+let delete3 = delete_app ~appo:apps "Do Chores"
+let semester = add_app ~appo:apps "End of Semester!!!!" "12/20/20" "All Day"
+let christmas = add_app ~appo:apps "Christmas Woo" "12/25/20" "All Day"
+let new_years = add_app ~appo:apps "Goodbye 2020!" "1/1/21" "All Day"
+
+
+let delete_app_tests = [
+  update_app_test "Apps are deleted from list" apps 
+    [
+      "Goodbye 2020!"; "1/1/21"; "All Day"; "Location";
+      "Notes about Appointment";
+      "Christmas Woo"; "12/25/20"; "All Day"; "Location";
+      "Notes about Appointment";
+      "End of Semester!!!!"; "12/20/20"; "All Day"; "Location";
+      "Notes about Appointment";
+      "Eat with Fatty and Poo"; "12/25/20"; "12 PM"; "Location";
+      "Notes about Appointment";
+      "Go to Lacrosse Practice"; "1/25/21"; "4 PM"; "Location"; 
+      "Notes about Appointment";
+    ]
+
+
+]
+
+let apps = empty_appo ()
+let dentist = add_app ~appo:apps "Go to Dentist" "12/16/20" "2:30 PM"
+let practiece = add_app ~appo:apps "Go to Lacrosse Practice" "1/25/21" "4 PM"
+let chores = add_app ~appo:apps "Do Chores" "6/12/21" "9 AM"
+let fat = add_app ~appo:apps "Eat with Fatty and Poo" "12/25/20" "12 PM"
+let cs = add_app ~appo:apps "CS 3110 Final Due" "12/20/20" "11:59 PM"
+let delete1 = delete_app ~appo:apps "Go to Dentist"
+let delete2 = delete_app ~appo:apps "CS 3110 Final Due"
+let delete3 = delete_app ~appo:apps "Do Chores"
+let semester = add_app ~appo:apps "End of Semester!!!!" "12/20/20" "All Day"
+let christmas = add_app ~appo:apps "Christmas Woo" "12/25/20" "All Day"
+let new_years = add_app ~appo:apps "Goodbye 2020!" "1/1/21" "All Day"
+
+let complete_app_tests = [
+  update_app_test "Apps are deleted from list" apps 
+    [
+      "Goodbye 2020!"; "1/1/21"; "All Day"; "Location";
+      "Notes about Appointment";
+      "Christmas Woo"; "12/25/20"; "All Day"; "Location";
+      "Notes about Appointment";
+      "End of Semester!!!!"; "12/20/20"; "All Day"; "Location";
+      "Notes about Appointment";
+      "Eat with Fatty and Poo"; "12/25/20"; "12 PM"; "Location";
+      "Notes about Appointment";
+      "Go to Lacrosse Practice"; "1/25/21"; "4 PM"; "Location"; 
+      "Notes about Appointment";
+    ]
+]
 
 
 
@@ -688,8 +750,8 @@ let suite =
     add_task_tests;
     delete_task_tests;
 
-    (* access_app_tests; *)
-    (* add_app_tests *)
+    access_app_tests; 
+    add_app_tests;
   ]
 
 let _ = run_test_tt_main suite

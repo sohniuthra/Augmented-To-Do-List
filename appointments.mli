@@ -1,21 +1,21 @@
 (** A module that lets the user create appointments 
     this will have a better representation when a GUI is created *)
 
-module type Appointment = sig 
 
-  type app
+type app
 
-  type t 
+val empty_appo : unit -> app list ref 
 
-  val access_app : ?cat:(t list ref) -> unit -> t list
+val access_app : ?appo:(app list ref) -> unit -> app list
 
-  val delete_app : ?cat:(t list ref) -> t -> unit
+val delete_app : ?appo:(app list ref) -> string -> unit
 
-  val add_app : ?cat:(t list ref) -> string -> string -> string -> unit
+val add_app : ?appo:(app list ref) -> string -> string -> string -> unit
 
-  val complete_app : ?cat:(t list ref) -> string -> unit
+val complete_app : ?appo:(app list ref) -> string -> unit
 
-  val add_app_info : ?cat:(t list ref) -> string -> string -> unit
+val add_app_info : ?appo:(app list ref) -> string -> string -> unit
 
-  val add_location : ?cat:(t list ref) -> string -> string -> unit
-end 
+val add_location : ?appo:(app list ref) -> string -> string -> unit
+
+val to_list_app : ?appo:(app list ref) -> string list -> string list

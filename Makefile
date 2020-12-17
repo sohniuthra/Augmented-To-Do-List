@@ -1,4 +1,4 @@
-MODULES=manual main author automatic gui
+MODULES=manual main author automatic gui appointments
 OBJECTS=$(MODULES:=.cmo)
 MLS=$(MODULES:=.ml)
 MLIS=$(MODULES:=.mli)
