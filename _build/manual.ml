@@ -84,7 +84,7 @@ let remove_cat t lst =
 let priority_compare t1 t2 = 
   let t1p = t1.priority in
   let t2p = t2.priority in
-  if t1p < t2p then 1 else 
+  if t1p > t2p then 1 else 
   if t1p > t2p then -1 else 0
 
 (* helper function: gets the month of a properly formatted due date *)
