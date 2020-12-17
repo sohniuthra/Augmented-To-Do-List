@@ -123,14 +123,15 @@ let rec draw_basic () =
   draw_string "Due date";
   moveto 550 335; 
   draw_string "Priority";
-  if !viewed_cat = "" then () else view_category !viewed_cat;
+  (*if !viewed_cat = "" then () else view_category !viewed_cat;*)
   is_todo := true;
   moveto 10 350
 
 and view_category category = 
   draw_basic ();
   let lst = Manual.to_list ~cat:cat category in
-  draw_str_list lst;
+  let ll = make_tll lst category in 
+  draw_task_list ll;
   viewed_cat := category
 
 (** [draw_appointments ()] is the interface for appointments *)
@@ -231,10 +232,19 @@ let delete_task_gui () =
   set_color red;
   draw_string "Type the name of the task you want to delete";
   let name = (string_input "") in
-  Manual.delete_task ~cat:cat category name;
-  let cat_lst_form = Manual.to_list ~cat:cat category in 
-  let cat_lst_lst = make_tll cat_lst_form category in
-  draw_task_list cat_lst_lst;
+  draw_basic ();
+  if category = "Car Tasks" || category = "School Tasks" || 
+     category = "Household Tasks" || category = "Shopping Tasks" || 
+     category = "Pandemic Tasks"
+  then (Automatic.delete_task_auto ~cat:auto_cat category name;
+        let cat_lst_form = Automatic.to_list_auto ~cat:auto_cat category in 
+        let cat_lst_lst = make_tll cat_lst_form category in 
+        draw_task_list cat_lst_lst) 
+  else 
+    (Manual.delete_task ~cat:cat category name;
+     let cat_lst_formm = Manual.to_list ~cat:cat category in 
+     let cat_lst_lstm = make_tll cat_lst_formm category in
+     draw_task_list cat_lst_lstm);
   viewed_cat := category
 
 let rec view_all_helper cat_list = 
@@ -381,27 +391,27 @@ let change_pri y =
 let rec loop () = 
   let e = wait_next_event [Key_pressed; Mouse_motion; Button_down] in
 
-  let new_task = if e.key = 't'
+  let new_task = if e.key = 't' && !is_todo
     then task_input ()
     else () in
 
-  let comp_task = if e.key = 'c'
+  let comp_task = if e.key = 'c' && !is_todo
     then complete_task_gui ()
     else () in
 
-  let del_task = if e.key = 'd'
+  let del_task = if e.key = 'd' && !is_todo
     then delete_task_gui ()
     else () in
 
-  let view = if e.key = 'v'
+  let view = if e.key = 'v' && !is_todo
     then draw_list ()
     else () in
 
-  let sort = if e.key = 's'
+  let sort = if e.key = 's' && !is_todo
     then sort_gui ()
     else () in 
 
-  let auto = if e.key = 'a'
+  let auto = if e.key = 'a' && !is_todo
     then make_auto ()
     else () in 
 
