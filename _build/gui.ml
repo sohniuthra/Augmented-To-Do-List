@@ -195,11 +195,18 @@ let task_input () =
   draw_string "Type the priority of your task";
   let priority = int_of_string (string_input "") in
   draw_basic ();
-  Manual.create_task ~cat:cat category name due priority;
-  set_color black;
-  let cat_lst_form = Manual.to_list ~cat:cat category in 
-  let cat_lst_lst = make_tll cat_lst_form category in
-  draw_task_list cat_lst_lst;
+  if category = "Car Tasks" || category = "School Tasks" || 
+     category = "Household Tasks" || category = "Shopping Tasks" || 
+     category = "Pandemic Tasks" 
+  then (Automatic.create_task_auto ~cat:auto_cat category name due priority;
+        let cat_lst_form = Automatic.to_list_auto ~cat:auto_cat category in 
+        let cat_lst_lst = make_tll cat_lst_form category in
+        draw_task_list cat_lst_lst)
+  else (Manual.create_task ~cat:cat category name due priority;
+        set_color black;
+        let cat_lst_form = Manual.to_list ~cat:cat category in 
+        let cat_lst_lst = make_tll cat_lst_form category in
+        draw_task_list cat_lst_lst);
   viewed_cat := category
 
 (** [complete_task_gui ()] prompts the user to type in the category and name
@@ -231,7 +238,6 @@ let delete_task_gui () =
   draw_basic ();
   set_color red;
   draw_string "Type the name of the task you want to delete";
-
   let name = (string_input "") in
   draw_basic ();
   if category = "Car Tasks" || category = "School Tasks" || 
@@ -313,7 +319,8 @@ let make_auto () =
                                    "Car Tasks" in 
                                let car_ll = make_tll car_list "Car Tasks" in 
                                draw_basic ();
-                               draw_task_list car_ll)
+                               draw_task_list car_ll;
+                               viewed_cat := "Car Tasks")
   else if auto_choice = "school" then (make_school_auto ~cat:auto_cat (); 
                                        let school_list = 
                                          to_list_auto ~cat:auto_cat 
@@ -321,46 +328,62 @@ let make_auto () =
                                        let school_ll = make_tll school_list 
                                            "School Tasks" in 
                                        draw_basic ();
-                                       draw_task_list school_ll)
+                                       draw_task_list school_ll;
+                                       viewed_cat := "School Tasks")
   else if auto_choice = "household" then (make_household_auto ~cat:auto_cat (); 
                                           let house_list = to_list_auto 
                                               ~cat:auto_cat "Household Tasks" in 
                                           let house_ll = make_tll house_list 
                                               "Household Tasks" in 
                                           draw_basic ();
-                                          draw_task_list house_ll)
+                                          draw_task_list house_ll;
+                                          viewed_cat := "Household Tasks")
   else if auto_choice = "shopping" then (make_shopping_auto ~cat:auto_cat (); 
                                          let shopping_list = to_list_auto 
                                              ~cat:auto_cat "Shopping Tasks" in 
                                          let shopping_ll = make_tll 
                                              shopping_list "Shopping Tasks" in 
                                          draw_basic ();
-                                         draw_task_list shopping_ll)
+                                         draw_task_list shopping_ll;
+                                         viewed_cat := "Shopping Tasks")
   else if auto_choice = "pandemic" then (make_pandemic_auto ~cat:auto_cat (); 
                                          let pandemic_list = to_list_auto 
                                              ~cat:auto_cat "Pandemic Tasks" in 
                                          let pandemic_ll = make_tll 
                                              pandemic_list "Pandemic Tasks" in 
                                          draw_basic ();
-                                         draw_task_list pandemic_ll)
+                                         draw_task_list pandemic_ll;
+                                         viewed_cat := "Pandemic Tasks")
   else if auto_choice = "all" then (make_auto ~cat:auto_cat (); 
                                     let all_list = to_list_auto ~cat:auto_cat 
                                         "All Tasks" in 
                                     let all_ll = make_tll all_list "All Tasks" 
                                     in 
                                     draw_basic ();
-                                    draw_task_list all_ll)
+                                    draw_task_list all_ll;
+                                    viewed_cat := "All Tasks")
   else draw_basic ()
 
 let find_task y : string list = 
-  let cat_lst_form = Manual.to_list ~cat:cat !viewed_cat in 
-  let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
-  let num_tasks = List.length cat_lst_lst in 
-  let lower_bound = 335 - 15 * num_tasks in 
-  if y < lower_bound then failwith "out of bounds" 
-  else let plc = (y - 5) / 15 in 
-    let n = 21 - plc in 
-    List.nth cat_lst_lst n
+  if !viewed_cat = "Car Tasks" || !viewed_cat = "School Tasks" || 
+     !viewed_cat = "Household Tasks" || !viewed_cat = "Shopping Tasks" || 
+     !viewed_cat = "Pandemic Tasks"
+  then (let cat_lst_form = Automatic.to_list_auto ~cat:auto_cat !viewed_cat in 
+        let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
+        let num_tasks = List.length cat_lst_lst in 
+        let lower_bound = 335 - 15 * num_tasks in 
+        if y < lower_bound then failwith "out of bounds" 
+        else let plc = (y - 5) / 15 in 
+          let n = 21 - plc in 
+          List.nth cat_lst_lst n)
+  else (let cat_lst_form = Manual.to_list ~cat:cat !viewed_cat in 
+        let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
+        let num_tasks = List.length cat_lst_lst in 
+        let lower_bound = 335 - 15 * num_tasks in 
+        if y < lower_bound then failwith "out of bounds" 
+        else let plc = (y - 5) / 15 in 
+          let n = 21 - plc in 
+          List.nth cat_lst_lst n)
 
 let change_dd y = 
   moveto 10 350;
@@ -368,12 +391,21 @@ let change_dd y =
   draw_string "What do you want the new due date to be?";
   let new_dd = string_input "" in 
   let task_changing = find_task y in 
-  change_due_date ~cat:cat (List.nth task_changing 0) (List.nth task_changing 1) 
-    new_dd;
-  let cat_lst_form = Manual.to_list ~cat:cat !viewed_cat in 
-  let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
-  draw_basic ();
-  draw_task_list cat_lst_lst
+  if !viewed_cat = "Car Tasks" || !viewed_cat = "School Tasks" || 
+     !viewed_cat = "Household Tasks" || !viewed_cat = "Shopping Tasks" || 
+     !viewed_cat = "Pandemic Tasks" 
+  then (Automatic.change_due ~cat:auto_cat (List.nth task_changing 0) 
+          (List.nth task_changing 1) new_dd;
+        let cat_lst_form = Automatic.to_list_auto ~cat:auto_cat !viewed_cat in 
+        let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
+        draw_basic ();
+        draw_task_list cat_lst_lst)
+  else (change_due_date ~cat:cat (List.nth task_changing 0) 
+          (List.nth task_changing 1) new_dd;
+        let cat_lst_form = Manual.to_list ~cat:cat !viewed_cat in 
+        let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
+        draw_basic ();
+        draw_task_list cat_lst_lst)
 
 let change_pri y = 
   moveto 10 350;
@@ -381,12 +413,24 @@ let change_pri y =
   draw_string "What do you want the new priority to be?";
   let new_pri = string_input "" in 
   let task_changing = find_task y in 
-  Manual.change_priority ~cat:cat (List.nth task_changing 0) 
-    (List.nth task_changing 1) (int_of_string new_pri);
-  let cat_lst_form = Manual.to_list ~cat:cat !viewed_cat in 
-  let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
-  draw_basic ();
-  draw_task_list cat_lst_lst
+  if !viewed_cat = "Car Tasks" || !viewed_cat = "School Tasks" || 
+     !viewed_cat = "Household Tasks" || !viewed_cat = "Shopping Tasks" || 
+     !viewed_cat = "Pandemic Tasks" 
+  then (Automatic.change_priority ~cat:auto_cat (List.nth task_changing 0) 
+          (List.nth task_changing 1) (int_of_string new_pri);
+        let cat_lst_form = Automatic.to_list_auto ~cat:auto_cat !viewed_cat in 
+        let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
+        draw_basic ();
+        draw_task_list cat_lst_lst)
+  else (Manual.change_priority ~cat:cat (List.nth task_changing 0) 
+          (List.nth task_changing 1) (int_of_string new_pri);
+        let cat_lst_form = Manual.to_list ~cat:cat !viewed_cat in 
+        let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
+        draw_basic ();
+        draw_task_list cat_lst_lst)
+
+let change_name y =
+  failwith "unimplemented"
 
 
 let rec loop () = 
@@ -432,6 +476,17 @@ let rec loop () =
                      && e.button && !is_todo
     then change_pri (e.mouse_y) in 
 
+  let change_name = if e.mouse_x > 149 && e.mouse_x < 301 && e.mouse_y < 335 
+                       && e.button && !is_todo && (!viewed_cat = "Car Tasks" || 
+                                                   !viewed_cat = "School Tasks" 
+                                                   || !viewed_cat = 
+                                                      "Household Tasks" || 
+                                                   !viewed_cat = 
+                                                   "Shopping Tasks" || 
+                                                   !viewed_cat = 
+                                                   "Pandemic Tasks")
+    then change_name (e.mouse_y) in
+
   new_task;
   comp_task;
   del_task;
@@ -442,6 +497,7 @@ let rec loop () =
   switch_to_todo;
   click_due;
   click_pri;
+  change_name;
 
   if e.key <> 'q' then loop () else ()
 
