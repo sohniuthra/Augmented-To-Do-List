@@ -78,18 +78,32 @@ val change_due : ?cat:(t list ref) -> string -> string -> string ->  unit
     [new_name].*)
 val change_name : ?cat:(t list ref) -> string -> string -> string ->  unit
 
+(** [delete_cat_auto cat_name] updates the to-do list by deleting the category
+    with name [cat_name]. *)
 val delete_cat_auto : ?cat:(t list ref) -> string -> unit
 
+(** [reset_car ()] resets the car category of the automatic to-do list to
+    its pre-set tasks, due dates, and priorities. *)
 val reset_car : ?cat:(t list ref) -> unit -> unit
 
+(** [reset_school ()] resets the school category of the automatic to-do list to
+    its pre-set tasks, due dates, and priorities. *)
 val reset_school : ?cat:(t list ref) -> unit -> unit
 
+(** [reset_household ()] resets the household category of the automatic to-do 
+    list to its pre-set tasks, due dates, and priorities. *)
 val reset_household : ?cat:(t list ref) -> unit -> unit
 
+(** [reset_car ()] resets the shopping category of the automatic to-do list to
+    its pre-set tasks, due dates, and priorities. *)
 val reset_shopping : ?cat:(t list ref) -> unit -> unit
 
+(** [reset_car ()] resets the pandemic category of the automatic to-do list to
+    its pre-set tasks, due dates, and priorities. *)
 val reset_pandemic : ?cat:(t list ref) -> unit -> unit
 
+(** [reset_all_cat ()] resets every category of the automatic to-do list to
+    all pre-set tasks, due dates, and priorities. *)
 val reset_all_cat : ?cat:(t list ref) -> unit -> unit
 
 (** [to_list cat_name] is a list containing the same elements and the same 
