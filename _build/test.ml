@@ -633,7 +633,7 @@ let reset_one_cat_tests = [
       "Do the Laundry"; todays_date (); "TBD"; "7";
       "Feed the Dog"; todays_date (); "TBD"; "6";
       "Mow the Lawn"; todays_date (); "TBD"; "5";
-      "Pack Lunch"; todays_date (); "TBD"; "4";
+      "Cook Dinner"; todays_date (); "TBD"; "4";
       "Wash the Dishes"; todays_date (); "TBD"; "3";
       "Vacuum the Rugs"; todays_date (); "TBD"; "2";
       "Mop Kitchen Floor"; todays_date (); "TBD"; "1"
@@ -774,5 +774,4 @@ let suite =
 
   ]
 
-let _ = run_test_tt_main suite
 let _ = run_test_tt_main suite
