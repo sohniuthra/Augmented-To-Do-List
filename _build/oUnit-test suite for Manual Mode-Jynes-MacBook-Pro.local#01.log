@@ -1,0 +1,87 @@
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Start test test suite for Manual Mode:0:Adding 1 task to the General category.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Test test suite for Manual Mode:0:Adding 1 task to the General category is successful.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: End test test suite for Manual Mode:0:Adding 1 task to the General category.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Start test test suite for Manual Mode:2:Adding 3 tasks to the General category.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Test test suite for Manual Mode:2:Adding 3 tasks to the General category is successful.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: End test test suite for Manual Mode:2:Adding 3 tasks to the General category.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Start test test suite for Manual Mode:4:Also adding 2 tasks to the General category.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Test test suite for Manual Mode:4:Also adding 2 tasks to the General category is successful.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: End test test suite for Manual Mode:4:Also adding 2 tasks to the General category.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Start test test suite for Manual Mode:5:Also adding 2 tasks to the Careers category.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Test test suite for Manual Mode:5:Also adding 2 tasks to the Careers category is successful.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: End test test suite for Manual Mode:5:Also adding 2 tasks to the Careers category.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Start test test suite for Manual Mode:8:Sorting General by priority with all tasks containing the 
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:   same priorities.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Test test suite for Manual Mode:8:Sorting General by priority with all tasks containing the 
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:   same priorities is successful.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: End test test suite for Manual Mode:8:Sorting General by priority with all tasks containing the 
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:   same priorities.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Start test test suite for Manual Mode:9:Sorting General by priority with some tasks containing the 
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:   same priorities.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Test test suite for Manual Mode:9:Sorting General by priority with some tasks containing the 
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:   same priorities is successful.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: End test test suite for Manual Mode:9:Sorting General by priority with some tasks containing the 
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:   same priorities.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Start test test suite for Manual Mode:12:Sorting General by due date with each task due different 
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:   years.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Test test suite for Manual Mode:12:Sorting General by due date with each task due different 
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:   years is successful.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: End test test suite for Manual Mode:12:Sorting General by due date with each task due different 
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:   years.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Start test test suite for Manual Mode:14:Sorting General by due date with each task due different days 
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:   of the same month and same years.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Test test suite for Manual Mode:14:Sorting General by due date with each task due different days 
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:   of the same month and same years is successful.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: End test test suite for Manual Mode:14:Sorting General by due date with each task due different days 
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:   of the same month and same years.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Start test test suite for Manual Mode:16:Completed should contain watch lecture.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Test test suite for Manual Mode:16:Completed should contain watch lecture is successful.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: End test test suite for Manual Mode:16:Completed should contain watch lecture.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Start test test suite for Manual Mode:17:General should not contain watch lecture or go to 
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:     discussion.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Test test suite for Manual Mode:17:General should not contain watch lecture or go to 
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:     discussion is successful.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: End test test suite for Manual Mode:17:General should not contain watch lecture or go to 
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:     discussion.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Start test test suite for Manual Mode:20:School should not contain fill out OMM.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Test test suite for Manual Mode:20:School should not contain fill out OMM is successful.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: End test test suite for Manual Mode:20:School should not contain fill out OMM.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Start test test suite for Manual Mode:21:Completed should contain fill out OMM and watch basketball
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:     game.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Test test suite for Manual Mode:21:Completed should contain fill out OMM and watch basketball
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:     game is successful.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: End test test suite for Manual Mode:21:Completed should contain fill out OMM and watch basketball
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:     game.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Start test test suite for Manual Mode:23:General should not contain watch lecture or go to 
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:     discussion.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Test test suite for Manual Mode:23:General should not contain watch lecture or go to 
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:     discussion is successful.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: End test test suite for Manual Mode:23:General should not contain watch lecture or go to 
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:     discussion.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Start test test suite for Manual Mode:25:School should not contain fill out OMM.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Test test suite for Manual Mode:25:School should not contain fill out OMM is successful.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: End test test suite for Manual Mode:25:School should not contain fill out OMM.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Start test test suite for Manual Mode:27:the priority of Make Masks in Pandemic Tasks has changed 
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:   from 4 to 5, and the priority of Buy Disenfectant Spray has changed from 2
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:   to 3.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Test test suite for Manual Mode:27:the priority of Make Masks in Pandemic Tasks has changed 
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:   from 4 to 5, and the priority of Buy Disenfectant Spray has changed from 2
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:   to 3 is successful.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: End test test suite for Manual Mode:27:the priority of Make Masks in Pandemic Tasks has changed 
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:   from 4 to 5, and the priority of Buy Disenfectant Spray has changed from 2
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:   to 3.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Start test test suite for Manual Mode:29:Change due date of 2 tasks in the same category.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Test test suite for Manual Mode:29:Change due date of 2 tasks in the same category is successful.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: End test test suite for Manual Mode:29:Change due date of 2 tasks in the same category.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Start test test suite for Manual Mode:31:Change name of a task in Household category and change
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:   due date of another task.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Test test suite for Manual Mode:31:Change name of a task in Household category and change
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:   due date of another task is successful.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: End test test suite for Manual Mode:31:Change name of a task in Household category and change
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I:   due date of another task.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Start test test suite for Manual Mode:34:View empty appointments list.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Test test suite for Manual Mode:34:View empty appointments list is successful.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: End test test suite for Manual Mode:34:View empty appointments list.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Start test test suite for Manual Mode:35:Apps are added to appointment list.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: Test test suite for Manual Mode:35:Apps are added to appointment list is successful.
+2020-12-17T20:55:10+00:00 Jynes-MacBook-Pro.local#01 I: End test test suite for Manual Mode:35:Apps are added to appointment list.
