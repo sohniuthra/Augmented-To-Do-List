@@ -147,6 +147,22 @@ let create_task ?(cat=categories) cat_name name due_date priority =
       add_new_cat ~cat:cat new_cat
     end
 
+let reminders ?(cat=categories) cat_name name freq due_date priority = 
+  (** if a task needs to be reccuring, we need to find the task in the category
+      and call create_task to duplicate it with a new due date. the amount of times
+      we duplicate it depends on how often the user wants to be reminded
+      (represented by the freq parameter). For example, if today is 12/17 and we 
+      want the task to appear weekly until 12/31, we would have 2 tasks (12/24) and 
+      (12/31). We can create an integer r that is equal to (days left until due)/freq.
+      Then we can pattern match on r, and create a new task each time with a new date
+      of created_date + freq (in terms of days). This might be tricky when carrying
+      over between months but I think there is an OCaml function that we can use.
+
+      change freq to a number??- simple for weekly and annually but can get complicated with
+      monthly because some months have different days *)
+
+  failwith "rose"
+
 (* helper function: returns a task with [task_name] in [cat]  *)
 let find_task cat task_name = 
   List.find (fun x -> x.name = task_name) cat.task_list

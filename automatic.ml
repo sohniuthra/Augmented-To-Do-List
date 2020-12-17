@@ -213,6 +213,37 @@ let change_name ?(cat=categories) cat_name task_name new_name =
   let new_cat = add_task new_t new_task in
   cat := (new_cat :: (remove_cat category !cat))
 
+let delete_cat_auto ?(cat=categories) cat_name =
+  cat := List.filter (fun x -> x.c_name <> cat_name) (!cat)
+
+let reset_car ?(cat=categories) () = 
+  delete_cat_auto ~cat:cat "Car Tasks"; 
+  make_car_auto ~cat:cat ()
+
+let reset_school ?(cat=categories) () = 
+  delete_cat_auto ~cat:cat "School Tasks"; 
+  make_school_auto ~cat:cat ()
+
+let reset_household ?(cat=categories) () = 
+  delete_cat_auto ~cat:cat "Household Tasks";
+  make_household_auto ~cat:cat ()
+
+let reset_shopping ?(cat=categories) () = 
+  delete_cat_auto ~cat:cat "Shopping Tasks";
+  make_shopping_auto ~cat:cat ()
+
+let reset_pandemic ?(cat=categories) () = 
+  delete_cat_auto ~cat:cat "Pandemic Tasks"; 
+  make_pandemic_auto ~cat:cat ()
+
+let reset_all_cat ?(cat=categories) () = 
+  delete_cat_auto ~cat:cat "Car Tasks"; 
+  delete_cat_auto ~cat:cat "School Tasks"; 
+  delete_cat_auto ~cat:cat "Household Tasks"; 
+  delete_cat_auto ~cat:cat "Shopping Tasks"; 
+  delete_cat_auto ~cat:cat "Pandemic Tasks"; 
+  make_auto ~cat:cat ()
+
 let rec to_list_helper cat_list acc =
   match cat_list with
   | [] -> acc

@@ -620,8 +620,27 @@ let delete_task_tests = [
       "Buy Hand Sanitizer"; todays_date ();  "TBD"; "1"]
 ]
 
-let apps = empty_appo ()
+let cat = empty_cat_auto ()
+let household = make_household_auto ~cat:cat ()
+let change = change_due ~cat:cat "Household Tasks" "Feed the Dog" "12/18/2020"
+let reset = reset_household ~cat:cat ()
 
+let reset_one_cat_tests = [
+  update_cat_test_auto "Reset household category after a change" cat 
+    "Household Tasks"
+    [
+      "Household Tasks";
+      "Do the Laundry"; todays_date (); "TBD"; "7";
+      "Feed the Dog"; todays_date (); "TBD"; "6";
+      "Mow the Lawn"; todays_date (); "TBD"; "5";
+      "Pack Lunch"; todays_date (); "TBD"; "4";
+      "Wash the Dishes"; todays_date (); "TBD"; "3";
+      "Vacuum the Rugs"; todays_date (); "TBD"; "2";
+      "Mop Kitchen Floor"; todays_date (); "TBD"; "1"
+    ]
+]
+
+let apps = empty_appo ()
 let access_app_tests = [
   update_app_test "View empty appointments list" apps []
 ]
@@ -677,8 +696,6 @@ let delete_app_tests = [
       "Go to Lacrosse Practice"; "1/25/21"; "4 PM"; "Location"; 
       "Notes about Appointment";
     ]
-
-
 ]
 
 let apps = empty_appo ()
@@ -750,8 +767,11 @@ let suite =
     add_task_tests;
     delete_task_tests;
 
+    reset_one_cat_tests;
+
     access_app_tests; 
     add_app_tests;
+
   ]
 
 let _ = run_test_tt_main suite

@@ -78,6 +78,20 @@ val change_due : ?cat:(t list ref) -> string -> string -> string ->  unit
     [new_name].*)
 val change_name : ?cat:(t list ref) -> string -> string -> string ->  unit
 
+val delete_cat_auto : ?cat:(t list ref) -> string -> unit
+
+val reset_car : ?cat:(t list ref) -> unit -> unit
+
+val reset_school : ?cat:(t list ref) -> unit -> unit
+
+val reset_household : ?cat:(t list ref) -> unit -> unit
+
+val reset_shopping : ?cat:(t list ref) -> unit -> unit
+
+val reset_pandemic : ?cat:(t list ref) -> unit -> unit
+
+val reset_all_cat : ?cat:(t list ref) -> unit -> unit
+
 (** [to_list cat_name] is a list containing the same elements and the same 
     category name [cat_name] as the category with name [cat_name].*)
 val to_list_auto : ?cat:(t list ref) -> string ->  string list
