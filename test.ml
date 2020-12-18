@@ -179,7 +179,7 @@ let sort = sort_list ~cat:cat "General" "Priority"
 (* sorting a list by priority with three tasks of each different priorities *)
 let sort_list_priority_tests2 = [
   update_cat_test "Sorting General by priority with each task containing 
-  different priorities" cat "General" 
+   different priorities" cat "General" 
     ["General"; "fill out OMM"; todays_date (); "10/24/20"; "1"; 
      "watch lecture"; todays_date (); "10/28/20"; "2"; "do lab"; todays_date (); 
      "10/28/20"; "3"];
@@ -195,7 +195,7 @@ let sort = sort_list ~cat:cat "General" "Priority"
    priorities *)
 let sort_list_priority_tests3 = [
   update_cat_test "Sorting General by priority with all tasks containing the 
-  same priorities" cat "General" 
+   same priorities" cat "General" 
     ["General"; "do lab"; todays_date (); "10/28/20"; "2"; "fill out OMM"; 
      todays_date (); "10/24/20"; "2"; "watch lecture"; todays_date (); 
      "10/28/20"; "2"];
@@ -211,7 +211,7 @@ let sort = sort_list ~cat:cat "General" "Priority"
    priorities *)
 let sort_list_priority_tests4 = [
   update_cat_test "Sorting General by priority with some tasks containing the 
-  same priorities" cat "General" 
+   same priorities" cat "General" 
     ["General"; "fill out OMM"; todays_date (); "10/24/20"; "2"; 
      "watch lecture"; todays_date (); "10/28/20"; "2"; "do lab"; todays_date ();
      "10/28/20"; "3";];
@@ -229,7 +229,7 @@ let sort = sort_list ~cat:cat "General" "Priority"
    priorities*)
 let sort_list_priority_tests5 = [
   update_cat_test "Sorting General by priority with some tasks containing the 
-  same priorities" cat "General" 
+   same priorities" cat "General" 
     ["General"; "do reading"; todays_date (); "10/28/20"; "1"; "fill out OMM"; 
      todays_date (); "10/24/20"; "1"; "go to discussion"; todays_date (); 
      "10/28/20"; "2"; "watch lecture"; todays_date (); "10/28/20"; "2";"do lab"; 
@@ -255,7 +255,7 @@ let sort = sort_list ~cat:cat "General" "Due Date"
 (* sorting a list by due date with three tasks, each with the different years *)
 let sort_list_date_tests2 = [
   update_cat_test "Sorting General by due date with each task due different 
-  years" cat "General" 
+   years" cat "General" 
     ["General"; "do lab"; todays_date (); "10/28/20"; "2"; "fill out OMM"; 
      todays_date (); "10/24/21"; "2"; "watch lecture"; todays_date (); 
      "10/28/22"; "2"];
@@ -271,7 +271,7 @@ let sort = sort_list ~cat:cat "General" "Due Date"
    and the arbitrary days and same years *)
 let sort_list_date_tests3 = [
   update_cat_test "Sorting General by due date with each task due different 
-  months of the same year" cat "General" 
+   months of the same year" cat "General" 
     ["General"; "watch lecture"; todays_date ();  "10/28/20"; "2"; 
      "fill out OMM"; todays_date (); "11/24/20"; "2"; "do lab"; todays_date (); 
      "12/28/20"; "2"];
@@ -287,7 +287,7 @@ let sort = sort_list ~cat:cat "General" "Due Date"
    the same months and years *)
 let sort_list_date_tests4 = [
   update_cat_test "Sorting General by due date with each task due different days 
-  of the same month and same years" cat "General" 
+   of the same month and same years" cat "General" 
     ["General"; "fill out OMM"; todays_date (); "11/25/20"; "2"; 
      "watch lecture"; todays_date ();  "11/28/20"; "2"; "do lab"; 
      todays_date (); "11/29/20"; "2" ];
@@ -305,7 +305,7 @@ let sort = sort_list ~cat:cat "General" "Priority"
    due dates *)
 let sort_list_date_tests5 = [
   update_cat_test "Sorting General by due date with some tasks containing the 
-  same due dates" cat "General" 
+   same due dates" cat "General" 
     ["General"; "do reading"; todays_date (); "10/28/20"; "1"; "fill out OMM"; 
      todays_date (); "10/24/20"; "1"; "go to discussion"; todays_date (); 
      "10/28/20"; "2"; "watch lecture"; todays_date (); "10/28/20"; "2";"do lab"; 
@@ -322,7 +322,7 @@ let sort = sort_list ~cat:cat "General" "Due Date"
    due date *)
 let sort_list_date_tests6 = [
   update_cat_test "Sorting General by priority with all tasks containing the 
-  same due date" cat "General" 
+   same due date" cat "General" 
     ["General"; "do lab"; todays_date (); "10/28/20"; "2"; "fill out OMM"; 
      todays_date (); "10/28/20"; "2"; "watch lecture"; todays_date (); 
      "10/28/20"; "2"];
@@ -460,7 +460,7 @@ let del2 = delete_task ~cat:cat "General" "watch basketball game"
 
 
 (* deleting 2 tasks from different categories, School & General - fill out OMM 
-      & watch basketball game*)
+   & watch basketball game*)
 let delete_tests3 = 
   [
     (* watch basketball game should not be in General *)
@@ -484,8 +484,8 @@ let ch1 = change_name ~cat:cat "School" "fill out OMM" "Fill Out OMM"
 let change_name_tests1 = 
   [
     update_cat_test "fill out OMM in School should now be Fill Out OMM" cat 
-      "School" ["School"; "watch lecture"; todays_date (); "10/28/20"; "2"; 
-                "Fill Out OMM"; todays_date (); "10/24/20"; "1";
+      "School" ["School"; "Fill Out OMM"; todays_date (); "10/24/20"; "1";
+                "watch lecture"; todays_date (); "10/28/20"; "2"; 
                 "do lab"; todays_date (); "10/28/20"; "3"];
   ]
 
@@ -500,10 +500,11 @@ let ch2 = change_name ~cat:cat "School" "do lab" "Do Lab"
 (* changing the names of two tasks from the same category *)
 let change_name_tests2 = 
   [
-    update_cat_test "fill out OMM in School should now be Fill Out OMM" cat 
-      "School" ["School"; "watch lecture"; todays_date (); "10/28/20"; "2"; 
+    update_cat_test "fill out OMM in School should now be Fill Out OMM and do 
+    lab in School should now be Do Lab" cat 
+      "School" ["School";  "Do Lab"; todays_date (); "10/28/20"; "3";
                 "Fill Out OMM"; todays_date (); "10/24/20"; "1";
-                "Do Lab"; todays_date (); "10/28/20"; "3"];
+                "watch lecture"; todays_date (); "10/28/20"; "2" ];
   ]
 
 let cat = empty_cat ()
@@ -522,11 +523,11 @@ let change_name_tests3 =
   [
     update_cat_test "fill out OMM in School should now be named Fill Out OMM" 
       cat 
-      "School" ["School"; "watch lecture"; todays_date (); "10/28/20"; "2"; 
-                "Fill Out OMM"; todays_date (); "10/24/20"; "1";
+      "School" ["School"; "Fill Out OMM"; todays_date (); "10/24/20"; "1";
+                "watch lecture"; todays_date (); "10/28/20"; "2"; 
                 "do lab"; todays_date (); "10/28/20"; "3"];
 
-    update_cat_test "wash dishes in General should now be names Wash Dishes" 
+    update_cat_test "wash dishes in General should now be named Wash Dishes" 
       cat "General" 
       ["General"; "Wash Dishes"; todays_date (); "10/27/20"; "2"; 
        "watch basketball game"; todays_date (); "10/28/20"; "2"];
@@ -542,9 +543,9 @@ let ch1 = change_priority ~cat:cat "School" "fill out OMM" 2
 (* changing the priority of one task in one category *)
 let change_priority_tests1 = 
   [
-    update_cat_test "fill out OMM in School should now be Fill Out OMM" cat 
-      "School" ["School"; "watch lecture"; todays_date (); "10/28/20"; "2"; 
-                "fill out OMM"; todays_date (); "10/24/20"; "2";
+    update_cat_test "fill out OMM in School should now have priority 2" cat 
+      "School" ["School"; "fill out OMM"; todays_date (); "10/24/20"; "2";
+                "watch lecture"; todays_date (); "10/28/20"; "2"; 
                 "do lab"; todays_date (); "10/28/20"; "3"];
   ]
 
@@ -559,10 +560,11 @@ let ch2 = change_priority ~cat:cat "School" "do lab" 1
 (* changing the priorities of two tasks from the same category *)
 let change_priority_tests2 = 
   [
-    update_cat_test "fill out OMM in School should now be Fill Out OMM" cat 
-      "School" ["School"; "watch lecture"; todays_date (); "10/28/20"; "2"; 
+    update_cat_test "fill out OMM in School should now have priority 3 and do 
+    lab in School should now have priority 1" cat 
+      "School" ["School"; "do lab"; todays_date (); "10/28/20"; "1";
                 "fill out OMM"; todays_date (); "10/24/20"; "3";
-                "do lab"; todays_date (); "10/28/20"; "1"];
+                "watch lecture"; todays_date (); "10/28/20"; "2"];
   ]
 
 let cat = empty_cat ()
@@ -580,13 +582,13 @@ let ch2 = change_priority ~cat:cat "General" "wash dishes" 1
    different categories *)
 let change_priority_tests3 = 
   [
-    update_cat_test "fill out OMM in School should now be named Fill Out OMM" 
+    update_cat_test "fill out OMM in School should now have priority 2" 
       cat 
-      "School" ["School"; "watch lecture"; todays_date (); "10/28/20"; "2"; 
-                "fill out OMM"; todays_date (); "10/24/20"; "2";
+      "School" ["School"; "fill out OMM"; todays_date (); "10/24/20"; "2";
+                "watch lecture"; todays_date (); "10/28/20"; "2"; 
                 "do lab"; todays_date (); "10/28/20"; "3"];
 
-    update_cat_test "wash dishes in General should now be names Wash Dishes" 
+    update_cat_test "wash dishes in General should now have priority 1" 
       cat "General" 
       ["General"; "wash dishes"; todays_date (); "10/27/20"; "1"; 
        "watch basketball game"; todays_date (); "10/28/20"; "2"];
@@ -602,9 +604,9 @@ let ch1 = change_due_date ~cat:cat "School" "fill out OMM" "10/27/20"
 (* changing the due date of one task in one category *)
 let change_due_date_tests1 = 
   [
-    update_cat_test "fill out OMM in School should now be Fill Out OMM" cat 
-      "School" ["School"; "watch lecture"; todays_date (); "10/28/20"; "2"; 
-                "fill out OMM"; todays_date (); "10/27/20"; "2";
+    update_cat_test "fill out OMM in School should now be due 10/27/20" cat 
+      "School" ["School";  "fill out OMM"; todays_date (); "10/27/20"; "2";
+                "watch lecture"; todays_date (); "10/28/20"; "2"; 
                 "do lab"; todays_date (); "10/28/20"; "3"];
   ]
 
@@ -619,10 +621,10 @@ let ch2 = change_due_date ~cat:cat "School" "do lab" "10/25/20"
 (* changing the due dates of two tasks from the same category *)
 let change_due_date_tests2 = 
   [
-    update_cat_test "fill out OMM in School should now be Fill Out OMM" cat 
-      "School" ["School"; "watch lecture"; todays_date (); "10/28/20"; "2"; 
+    update_cat_test "fill out OMM in School should now be due 10/27/20" cat 
+      "School" ["School";  "do lab"; todays_date (); "10/25/20"; "1";
                 "fill out OMM"; todays_date (); "10/27/20"; "3";
-                "do lab"; todays_date (); "10/25/20"; "1"];
+                "watch lecture"; todays_date (); "10/28/20"; "2"];
   ]
 
 let cat = empty_cat ()
@@ -640,15 +642,15 @@ let ch2 = change_due_date ~cat:cat "General" "wash dishes" "10/30/20"
    different categories *)
 let change_due_date_tests3 = 
   [
-    update_cat_test "fill out OMM in School should now be named Fill Out OMM" 
+    update_cat_test "fill out OMM in School should now be due 10/27/20" 
       cat 
-      "School" ["School"; "watch lecture"; todays_date (); "10/28/20"; "2"; 
-                "fill out OMM"; todays_date (); "10/27/20"; "2";
+      "School" ["School"; "fill out OMM"; todays_date (); "10/27/20"; "1";
+                "watch lecture"; todays_date (); "10/28/20"; "2"; 
                 "do lab"; todays_date (); "10/28/20"; "3"];
 
-    update_cat_test "wash dishes in General should now be names Wash Dishes" 
+    update_cat_test "wash dishes in General should now be due 10/30/20" 
       cat "General" 
-      ["General"; "wash dishes"; todays_date (); "10/30/20"; "1"; 
+      ["General"; "wash dishes"; todays_date (); "10/30/20"; "2"; 
        "watch basketball game"; todays_date (); "10/28/20"; "2"];
   ]
 
@@ -678,8 +680,8 @@ let change2 = change_priority_auto ~cat:cat "Pandemic Tasks"
 (* changi g priority of 2 tasks from the same category*)
 let change_auto_priority_tests2 = [
   update_cat_test_auto "the priority of Make Masks in Pandemic Tasks has changed 
-  from 4 to 5, and the priority of Buy Disenfectant Spray has changed from 2
-  to 3" cat "Pandemic Tasks" 
+   from 4 to 5, and the priority of Buy Disenfectant Spray has changed from 2
+   to 3" cat "Pandemic Tasks" 
     ["Pandemic Tasks"; "Buy Disinfectant Spray"; todays_date (); "TBD"; "3";
      "Make Masks"; todays_date (); "TBD"; "5"; 
      "Cancel Flights"; todays_date (); "TBD"; "7"; 
@@ -696,7 +698,7 @@ let change = change_due_auto ~cat:cat "Shopping Tasks" "Get New iPhone 12 Pro Ma
 
 let change_auto_due_tests = [
   update_cat_test_auto "Change due date of Pooja's iPhone 12 Pro Max Purchase 
-  to as soon as possible" cat "Shopping Tasks" 
+   to as soon as possible" cat "Shopping Tasks" 
     ["Shopping Tasks"; "Get New iPhone 12 Pro Max"; todays_date (); 
      "11/13/2020"; "7";
      "Get new lightbulbs to replace current ones"; todays_date (); "TBD"; "6";
@@ -725,13 +727,13 @@ let change_auto_due_tests2 = [
      "Change Oil"; todays_date (); "TBD"; "1"]
 ]
 
-let cat = empty_cat_auto ()
-let school = make_school_auto ~cat:cat ()
-let chagnge = change_name_auto ~cat:cat "School Tasks" "Watch CS 3110 
-Lecture Videos" "Watch CS 2800 Lecture Videos"
+(* let cat = empty_cat_auto ()
+   let school = make_school_auto ~cat:cat ()
+   let chagnge = change_name_auto ~cat:cat "School Tasks" "Watch CS 3110 
+   Lecture Videos" "Watch CS 2800 Lecture Videos"
 
-let change_auto_name_tests = [
-  update_cat_test_auto "Change name of a task in School cateogry" cat
+   let change_auto_name_tests = [
+   update_cat_test_auto "Change name of a task in School cateogry" cat
     "School Tasks"
     [
       "School Tasks"; 
@@ -742,7 +744,7 @@ let change_auto_name_tests = [
       "Finish Biology Lab"; todays_date (); "TBD"; "3";
       "Write Essay"; todays_date (); "TBD"; "2";
       "Complete Math Problem Set"; todays_date (); "TBD"; "1"]
-]
+   ] *)
 
 let cat = empty_cat_auto ()
 let house = make_household_auto ~cat:cat ()
@@ -752,7 +754,7 @@ let change2 = change_due_auto ~cat:cat "Household Tasks" "Do the Laundry"
 
 let change_auto_name_and_due_tests = [
   update_cat_test_auto "Change name of a task in Household category and change
-  due date of another task" cat "Household Tasks"
+   due date of another task" cat "Household Tasks"
     [
       "Household Tasks";
       "Do the Laundry"; todays_date (); "12/16/2020"; "7";
@@ -882,7 +884,7 @@ let reset_all_cat_tests = [
     "Pandemic Tasks"
     [
       "Pandemic Tasks";
-      "Cancel Flights" todays_date (); "TBD" "7";
+      "Cancel Flights"; todays_date (); "TBD"; "7";
       "Complete Daily Check"; todays_date (); "TBD"; "6"; 
       "Get Tested"; todays_date (); "TBD"; "5"; 
       "Make Masks"; todays_date (); "TBD"; "4"; 
@@ -979,6 +981,25 @@ let complete_app_tests = [
     ]
 ]
 
+let apps = empty_appo ()
+let meeting = add_app ~appo:apps "Staff Meeting" "4/1/21" "2 pm"
+let report = add_app ~appo:apps "Company report due" "2/14/21" "End of work day"
+let lunch = add_app ~appo:apps "Lunch with Client" "1/15/21" "12 PM"
+let system = add_app ~appo:apps "Learn new system features"
+let database = add_app ~appo:apps "Patch Data Base" "TBD" "TBD"
+let meeting2 = add_app_info ~appo:apps "Staff Meeting" "meeting to determine 
+third financial quarter goals"
+
+
+
+
+let add_app_info_tests = [
+  update_app_test "Add info to apps" apps 
+    [
+
+    ]
+]
+
 let suite =
   "test suite for Manual Mode"  >::: List.flatten [
     create_task_tests1;
@@ -1005,17 +1026,17 @@ let suite =
     delete_tests2;
     delete_tests3;
 
-    change_name_tests1;
-    change_name_tests2;
-    change_name_tests3;
+    (* change_name_tests1;
+       change_name_tests2;
+       change_name_tests3;
 
-    change_priority_tests1;
-    change_priority_tests2;
-    change_priority_tests3;
+       change_priority_tests1;
+       change_priority_tests2;
+       change_priority_tests3;
 
-    change_due_date_tests1;
-    change_due_date_tests2;
-    change_due_date_tests3;
+       change_due_date_tests1;
+       change_due_date_tests2;
+       change_due_date_tests3; *)
 
     change_auto_priority_tests;
     change_auto_priority_tests2;
