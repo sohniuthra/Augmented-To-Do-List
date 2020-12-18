@@ -1034,88 +1034,8 @@ let suite =
 
     access_app_tests; 
     add_app_tests;
+    complete_app_tests;
   ]
 
 let _ = run_test_tt_main suite
 
-    complete_tests1;
-  complete_tests2;
-  complete_tests3;
-
-  delete_tests1;    
-  delete_tests2;
-  delete_tests3;
-
-  change_name_tests1;
-  change_name_tests2;
-  change_name_tests3;
-
-  change_priority_tests1;
-  change_priority_tests2;
-  change_priority_tests3;
-
-  change_due_date_tests1;
-  change_due_date_tests2;
-  change_due_date_tests3;
-
-  change_auto_priority_tests;
-  change_auto_priority_tests2;
-
-  change_auto_due_tests;
-  change_auto_due_tests2;
-
-  change_auto_name_tests;
-  change_auto_name_and_due_tests;
-
-  add_task_auto_tests;
-  delete_task_auto_tests;
-
-  reset_one_cat_tests;
-  reset_all_cat_tests;
-
-  access_app_tests; 
-  add_app_tests;
-]
-
-let _ = run_test_tt_main suite
-
-    complete_tests1;
-  complete_tests2;
-  complete_tests3;
-
-  delete_tests1;    
-  delete_tests2;
-  delete_tests3;
-
-  change_name_tests1;
-  change_name_tests2;
-  change_name_tests3;
-
-  change_priority_tests1;
-  change_priority_tests2;
-  change_priority_tests3;
-
-  change_due_date_tests1;
-  change_due_date_tests2;
-  change_due_date_tests3;
-
-  change_auto_priority_tests;
-  change_auto_priority_tests2;
-
-  change_auto_due_tests;
-  change_auto_due_tests2;
-
-  change_auto_name_tests;
-  change_auto_name_and_due_tests;
-
-  add_task_auto_tests;
-  delete_task_auto_tests;
-
-  reset_one_cat_tests;
-  reset_all_cat_tests;
-
-  access_app_tests; 
-  add_app_tests;
-]
-
-let _ = run_test_tt_main suite
