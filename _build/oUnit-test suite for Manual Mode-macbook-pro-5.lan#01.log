@@ -1,72 +1,72 @@
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:0:Adding 1 task to the General category.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:0:Adding 1 task to the General category is successful.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:0:Adding 1 task to the General category.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:2:Adding 3 tasks to the General category.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:2:Adding 3 tasks to the General category is successful.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:2:Adding 3 tasks to the General category.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:4:Also adding 2 tasks to the General category.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:4:Also adding 2 tasks to the General category is successful.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:4:Also adding 2 tasks to the General category.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:7:Sorting General by priority with each task containing 
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I:   different priorities.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:7:Sorting General by priority with each task containing 
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I:   different priorities is successful.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:7:Sorting General by priority with each task containing 
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I:   different priorities.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:8:Sorting General by priority with all tasks containing the 
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I:   same priorities.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:8:Sorting General by priority with all tasks containing the 
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I:   same priorities is successful.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:8:Sorting General by priority with all tasks containing the 
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I:   same priorities.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:11:Sorting General by date with one task.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:11:Sorting General by date with one task is successful.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:11:Sorting General by date with one task.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:12:Sorting General by due date with each task due different 
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I:   years.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:12:Sorting General by due date with each task due different 
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I:   years is successful.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:12:Sorting General by due date with each task due different 
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I:   years.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:14:Sorting General by due date with each task due different days 
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I:   of the same month and same years.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:14:Sorting General by due date with each task due different days 
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I:   of the same month and same years is successful.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:14:Sorting General by due date with each task due different days 
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I:   of the same month and same years.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:16:Completed should contain watch lecture.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:16:Completed should contain watch lecture is successful.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:16:Completed should contain watch lecture.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:18:Completed should contain watch lecture and go to 
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I:     discussion.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:18:Completed should contain watch lecture and go to 
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I:     discussion is successful.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:18:Completed should contain watch lecture and go to 
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I:     discussion.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:20:School should not contain fill out OMM.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:20:School should not contain fill out OMM is successful.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:20:School should not contain fill out OMM.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:22:General should not contain watch lecture.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:22:General should not contain watch lecture is successful.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:22:General should not contain watch lecture.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:24:General should not contain watch basketball game.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:24:General should not contain watch basketball game is successful.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:24:General should not contain watch basketball game.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:26:Write Essay priority has changed in category School 
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I:     Tasks.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:26:Write Essay priority has changed in category School 
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I:     Tasks is successful.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:26:Write Essay priority has changed in category School 
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I:     Tasks.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:28:Change due date of Pooja's iPhone 12 Pro Max Purchase 
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I:   to as soon as possible.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:28:Change due date of Pooja's iPhone 12 Pro Max Purchase 
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I:   to as soon as possible is successful.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:28:Change due date of Pooja's iPhone 12 Pro Max Purchase 
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I:   to as soon as possible.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:30:Change name of a task in School cateogry.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:30:Change name of a task in School cateogry is successful.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:30:Change name of a task in School cateogry.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:33:Delete task from Pandemic category.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:33:Delete task from Pandemic category is successful.
-2020-12-17T03:33:54+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:33:Delete task from Pandemic category.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:0:Adding 1 task to the General category.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:0:Adding 1 task to the General category is successful.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:0:Adding 1 task to the General category.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:2:Adding 3 tasks to the General category.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:2:Adding 3 tasks to the General category is successful.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:2:Adding 3 tasks to the General category.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:4:Also adding 2 tasks to the General category.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:4:Also adding 2 tasks to the General category is successful.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:4:Also adding 2 tasks to the General category.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:6:Sorting General by priority with one task.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:6:Sorting General by priority with one task is successful.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:6:Sorting General by priority with one task.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:8:Sorting General by priority with all tasks containing the 
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I:   same priorities.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:8:Sorting General by priority with all tasks containing the 
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I:   same priorities is successful.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:8:Sorting General by priority with all tasks containing the 
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I:   same priorities.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:10:Sorting General by priority with some tasks containing the 
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I:   same priorities.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:10:Sorting General by priority with some tasks containing the 
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I:   same priorities is successful.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:10:Sorting General by priority with some tasks containing the 
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I:   same priorities.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:12:Sorting General by due date with each task due different 
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I:   years.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:12:Sorting General by due date with each task due different 
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I:   years is successful.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:12:Sorting General by due date with each task due different 
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I:   years.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:14:Sorting General by due date with each task due different days 
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I:   of the same month and same years.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:14:Sorting General by due date with each task due different days 
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I:   of the same month and same years is successful.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:14:Sorting General by due date with each task due different days 
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I:   of the same month and same years.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:16:Completed should contain watch lecture.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:16:Completed should contain watch lecture is successful.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:16:Completed should contain watch lecture.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:18:Completed should contain watch lecture and go to 
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I:     discussion.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:18:Completed should contain watch lecture and go to 
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I:     discussion is successful.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:18:Completed should contain watch lecture and go to 
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I:     discussion.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:20:School should not contain fill out OMM.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:20:School should not contain fill out OMM is successful.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:20:School should not contain fill out OMM.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:22:General should not contain watch lecture.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:22:General should not contain watch lecture is successful.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:22:General should not contain watch lecture.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:24:General should not contain watch basketball game.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:24:General should not contain watch basketball game is successful.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:24:General should not contain watch basketball game.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:26:Write Essay priority has changed in category School 
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I:     Tasks.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:26:Write Essay priority has changed in category School 
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I:     Tasks is successful.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:26:Write Essay priority has changed in category School 
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I:     Tasks.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:28:Change due date of Pooja's iPhone 12 Pro Max Purchase 
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I:   to as soon as possible.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:28:Change due date of Pooja's iPhone 12 Pro Max Purchase 
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I:   to as soon as possible is successful.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:28:Change due date of Pooja's iPhone 12 Pro Max Purchase 
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I:   to as soon as possible.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:30:Change name of a task in School cateogry.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:30:Change name of a task in School cateogry is successful.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:30:Change name of a task in School cateogry.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Start test test suite for Manual Mode:32:Add task to Shopping category.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: Test test suite for Manual Mode:32:Add task to Shopping category is successful.
+2020-12-17T03:36:24+00:00 macbook-pro-5.lan#01 I: End test test suite for Manual Mode:32:Add task to Shopping category.
