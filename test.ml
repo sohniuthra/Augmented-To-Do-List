@@ -73,6 +73,11 @@ let update_app_test name appointments expected_output =
       assert_equal expected_output
         (to_list_app ~appo:appointments []) ~printer: (pp_list pp_string))
 
+let update_find_test name one_app expected_output =
+  name >:: (fun _ ->
+      assert_equal expected_output 
+        (to_list_find ~one:one_app []) ~printer: (pp_list pp_string))
+
 (* all tests using update_cat_test also test to_list *)
 let cat = empty_cat ()
 let task1 = create_task ~cat:cat "General" "watch lecture" "10/28/20" 2
@@ -986,14 +991,11 @@ let apps = empty_appo ()
 let meeting = add_app ~appo:apps "Staff Meeting" "4/1/21" "2 pm"
 let report = add_app ~appo:apps "Company report due" "2/14/21" "End of work day"
 let lunch = add_app ~appo:apps "Lunch with Client" "1/15/21" "12 PM"
-let system = add_app ~appo:apps "Learn new system features"
+let system = add_app ~appo:apps "Learn new system features" "ASAP" "ASAP"
 let database = add_app ~appo:apps "Patch Data Base" "TBD" "TBD"
-let meeting2 = add_app_info ~appo:apps "Staff Meeting" "meeting to determine 
-third financial quarter goals"
-let report2 = add_app_info ~appo:apps "Company report due" "report needs
-to be 7-10 pages long"
-let lunch2 = add_app_info ~appo:apps "Lunch with Client" "client from 
-Goldman Sachs"
+let meeting2 = add_app_info ~appo:apps "Staff Meeting" "meeting to determine third financial quarter goals"
+let report2 = add_app_info ~appo:apps "Company report due" "report needs to be 7-10 pages long"
+let lunch2 = add_app_info ~appo:apps "Lunch with Client" "client from Goldman Sachs"
 
 
 
@@ -1001,7 +1003,63 @@ Goldman Sachs"
 let add_app_info_tests = [
   update_app_test "Add info to apps" apps 
     [
+      "Lunch with Client"; "1/15/21"; "12 PM"; "Location";
+      "client from Goldman Sachs";
+      "Company report due"; "2/14/21"; "End of work day"; "Location";
+      "report needs to be 7-10 pages long";
+      "Staff Meeting"; "4/1/21"; "2 pm"; "Location";
+      "meeting to determine third financial quarter goals";
+      "Patch Data Base"; "TBD"; "TBD"; "Location";
+      "Notes about Appointment";
+      "Learn new system features"; "ASAP"; "ASAP"; "Location";
+      "Notes about Appointment"
 
+    ]
+]
+
+
+let apps = empty_appo ()
+let meeting = add_app ~appo:apps "Staff Meeting" "4/1/21" "2 pm"
+let report = add_app ~appo:apps "Company report due" "2/14/21" "End of work day"
+let lunch = add_app ~appo:apps "Lunch with Client" "1/15/21" "12 PM"
+let system = add_app ~appo:apps "Learn new system features" "ASAP" "ASAP"
+let database = add_app ~appo:apps "Patch Data Base" "TBD" "TBD"
+let meeting2 = add_location ~appo:apps "Staff Meeting" "conference room 4C"
+let report2 = add_location ~appo:apps "Company report due" "No location"
+let lunch2 = add_location ~appo:apps "Lunch with Client" "Manhatta"
+
+
+let add_app_location_tests = [
+  update_app_test "Add location to apps" apps
+    [
+      "Lunch with Client"; "1/15/21"; "12 PM"; "Manhatta";
+      "Notes about Appointment";
+      "Company report due"; "2/14/21"; "End of work day"; "No location";
+      "Notes about Appointment";
+      "Staff Meeting"; "4/1/21"; "2 pm"; "conference room 4C";
+      "Notes about Appointment";
+      "Patch Data Base"; "TBD"; "TBD"; "Location";
+      "Notes about Appointment";
+      "Learn new system features"; "ASAP"; "ASAP"; "Location";
+      "Notes about Appointment"
+    ]
+
+]
+
+let apps = empty_appo ()
+let finder = empty_finder ()
+let meeting = add_app ~appo:apps "Staff Meeting" "4/1/21" "2 pm"
+let report = add_app ~appo:apps "Company report due" "2/14/21" "End of work day"
+let lunch = add_app ~appo:apps "Lunch with Client" "1/15/21" "12 PM"
+let system = add_app ~appo:apps "Learn new system features" "ASAP" "ASAP"
+let database = add_app ~appo:apps "Patch Data Base" "TBD" "TBD"
+let find1 = find_app_user ~one:finder ~appo:apps "Staff Meeting"
+
+let find_app_user_tests = [
+  update_find_test "Find specific appointment" finder 
+    [
+      "Staff Meeting"; "4/1/21"; "2 pm"; "Location";
+      "Notes about Appointment"
     ]
 ]
 
@@ -1061,7 +1119,12 @@ let suite =
     access_app_tests; 
     add_app_tests;
     complete_app_tests;
+    add_app_info_tests;
+    add_app_location_tests;
+    find_app_user_tests;
   ]
 
 let _ = run_test_tt_main suite
+
+
 

@@ -14,7 +14,11 @@ type app = {
 
 let appointments = ref []
 
+let one_app = ref []
+
 let empty_appo () = ref []
+
+let empty_finder () = ref []
 
 let access_app ?(appo=appointments) () = !appo
 
@@ -31,6 +35,11 @@ let add_app ?(appo=appointments) title date time =
 (* HELPER FUNCTION TO OTHER THINGS *)
 let find_app appo app_title =
   List.find (fun x -> x.title = app_title) appo
+
+let find_app_user ?(one=one_app) ?(appo=appointments) app_title =
+  let correct_app = List.find (fun x -> x.title = app_title) (!one) in 
+  one := correct_app :: (!one)
+
 
 
 let complete_app ?(appo=appointments) app_title = 
@@ -61,3 +70,9 @@ let rec to_list_app ?(appo=appointments) acc =
     to_list_app ~appo:appo 
       (acc @ [title; app_date; time; location; notes])
 
+let rec to_list_find ?(one=one_app) acc =
+  match (!one) with
+  | [] -> acc
+  | {title; app_date; time; location; notes} :: t -> 
+    to_list_find ~one:one 
+      (acc @ [title; app_date; time; location; notes])
