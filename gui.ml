@@ -42,7 +42,7 @@ let rec make_tll tlst cat =
   sep_tasks_w_cat wcat [] []
 
 let rec draw_task t =
-  if current_y () > 320 then moveto 10 320; 
+  if current_y () > 290 then moveto 10 290; 
   let y = current_y () in  
   match t with 
   | [] -> ()
@@ -70,7 +70,7 @@ let rec draw_str_list slst =
   let y = current_y () in 
   match slst with 
   | [] -> ()
-  | h::t -> if y > 320 then moveto 10 320;
+  | h::t -> if y > 290 then moveto 10 290;
     draw_string h; moveto (10) (current_y () - 15); 
     draw_str_list t
 
@@ -109,23 +109,27 @@ let rec draw_basic () =
   draw_string "Press a to make an automatic list - CAN VIEW BUT NOT EDIT"; 
   moveto 10 365;
   draw_string "Press s to sort your to-do list";
+  moveto 10 350;
+  draw_string "To change the priority or due date of a task, click on it";
+  moveto 10 335;
+  draw_string "To change the name of an automatic task, click on it - NOT IMPLEMENTED YET";
   moveto 520 460;
   set_color red;
   draw_string "Press q to quit";
   set_color black;
-  moveto 10 335;
+  moveto 10 305;
   draw_string "Category";
-  moveto 150 335;
+  moveto 150 305;
   draw_string "Task";
-  moveto 300 335;
+  moveto 300 305;
   draw_string "Date created";
-  moveto 425 335;
+  moveto 425 305;
   draw_string "Due date";
-  moveto 550 335; 
+  moveto 550 305; 
   draw_string "Priority";
   (*if !viewed_cat = "" then () else view_category !viewed_cat;*)
   is_todo := true;
-  moveto 10 350
+  moveto 10 320
 
 and view_category category = 
   draw_basic ();
@@ -154,24 +158,22 @@ let draw_appointments () =
   draw_string "Press c to complete an appointment"; 
   moveto 10 410;
   draw_string "Press d to delete an appointment";
-  moveto 10 365;
-  draw_string "Press s to sort your appointments";
   moveto 520 460;
   set_color red;
   draw_string "Press q to quit";
   set_color black;
-  moveto 10 335;
+  moveto 10 380;
   draw_string "Name";
-  moveto 150 335;
+  moveto 150 380;
   draw_string "Date";
-  moveto 225 335;
+  moveto 225 380;
   draw_string "Time";
-  moveto 300 335;
+  moveto 300 380;
   draw_string "Location";
-  moveto 425 335; 
+  moveto 425 380; 
   draw_string "Notes";
   is_todo := false;
-  moveto 10 350
+  moveto 10 395
 
 (** [string_input str] produces a string from anything that the user types 
     before pressing enter *)
@@ -281,15 +283,21 @@ let draw_list () =
   let category = (string_input "") in 
   if category = "all" 
   then view_all_categories ()
-  else let cat_lst_form = Manual.to_list ~cat:cat category in 
-    let cat_lst_lst = make_tll cat_lst_form category in
-    draw_task_list cat_lst_lst;
-    viewed_cat := category
+  else if category = "Car Tasks" || category = "School Tasks" || 
+          category = "Household Tasks" || category = "Shopping Tasks" || 
+          category = "Pandemic Tasks"
+  then (let cat_lst_form = Automatic.to_list_auto ~cat:auto_cat category in 
+        let cat_lst_lst = make_tll cat_lst_form category in
+        draw_task_list cat_lst_lst)
+  else (let cat_lst_form = Manual.to_list ~cat:cat category in 
+        let cat_lst_lst = make_tll cat_lst_form category in
+        draw_task_list cat_lst_lst);
+  viewed_cat := category
 
 (** [sort_gui ()] allows the user to choose whether to sort by priority or date
     and then sorts the category *)
 let sort_gui () = 
-  moveto 10 350;
+  moveto 10 320;
   set_color red;
   draw_string "To sort by priority, press p. To sort by due date, press d.";
   let e = wait_next_event [Key_pressed] in
@@ -395,7 +403,8 @@ let find_task y : string list =
           List.nth cat_lst_lst n)
 
 let change_dd y = 
-  moveto 10 350;
+  draw_basic ();
+  moveto 10 320;
   set_color red;
   draw_string "What do you want the new due date to be?";
   let new_dd = string_input "" in 
@@ -417,7 +426,8 @@ let change_dd y =
         draw_task_list cat_lst_lst)
 
 let change_pri y = 
-  moveto 10 350;
+  draw_basic ();
+  moveto 10 320;
   set_color red;
   draw_string "What do you want the new priority to be?";
   let new_pri = string_input "" in 
@@ -439,7 +449,37 @@ let change_pri y =
         draw_task_list cat_lst_lst)
 
 let change_name y =
-  failwith "unimplemented"
+  draw_basic ();
+  moveto 10 320;
+  set_color red;
+  draw_string "What do you want the new task name to be?";
+  let new_name = string_input "" in 
+  let task_changing = find_task y in 
+  Automatic.change_name_auto ~cat:auto_cat (List.nth task_changing 0) 
+    (List.nth task_changing 1) (new_name);
+  let cat_lst_form = Automatic.to_list_auto ~cat:auto_cat !viewed_cat in 
+  let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
+  draw_basic ();
+  draw_task_list cat_lst_lst
+
+
+let rec draw_appo a =
+  if current_y () > 365 then moveto 10 365; 
+  let y = current_y () in  
+  match a with 
+  | [] -> ()
+  | t::d::m::l::n::[] -> 
+    moveto 10 y;
+    draw_string t;
+    moveto 150 y;
+    draw_string d;
+    moveto 225 y;
+    draw_string m;
+    moveto 300 y;
+    draw_string l;
+    moveto 425 y; 
+    draw_string n;
+  | _ -> ()
 
 
 let rec loop () = 
@@ -496,6 +536,15 @@ let rec loop () =
                                                    "Pandemic Tasks")
     then change_name (e.mouse_y) in
 
+  let new_app = if e.key = 'n' && (not !is_todo)
+    then failwith "new appointment" in 
+
+  let complete_app = if e.key = 'c' && (not !is_todo)
+    then failwith "complete appointment" in 
+
+  let delete_app = if e.key = 'd' && (not !is_todo)
+    then failwith "delete appointment" in 
+
   new_task;
   comp_task;
   del_task;
@@ -507,6 +556,9 @@ let rec loop () =
   click_due;
   click_pri;
   change_name;
+  new_app;
+  complete_app;
+  delete_app;
 
   if e.key <> 'q' then loop () else ()
 
