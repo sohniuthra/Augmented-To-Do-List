@@ -897,6 +897,77 @@ let reset_all_cat_tests = [
       "Wipe Down Surfaces"; todays_date (); "TBD"; "3"; 
       "Buy Disinfectant Spray"; todays_date (); "TBD"; "2";
       "Buy Hand Sanitizer"; todays_date ();  "TBD"; "1"
+    ];
+
+  update_cat_test_auto "Making sure completed category is reset" cat
+    "Completed Tasks" ["Completed Tasks"]
+]
+
+let cat = empty_cat_auto ()
+let school = make_school_auto ~cat:cat ()
+let complete = make_completed_auto ~cat:cat ()
+let change = complete_task_auto ~cat:cat "School Tasks" "Fill Out OMM"
+
+let complete_task_auto_tests = [
+  update_cat_test_auto "task should no longer be in the school category" cat 
+    "School Tasks"
+    [
+      "School Tasks";
+      "Plan for Pre-Enroll"; todays_date (); "TBD"; "7"; 
+      "Watch CS 3110 Lecture Videos"; todays_date (); "TBD"; "6"; 
+      "Meet with Professor"; todays_date (); "TBD"; "4";
+      "Finish Biology Lab"; todays_date (); "TBD"; "3";
+      "Write Essay"; todays_date (); "TBD"; "2";
+      "Complete Math Problem Set"; todays_date (); "TBD"; "1"
+    ];
+
+  update_cat_test_auto "task should be in the completed category" cat 
+    "Completed Tasks"
+    [
+      "Completed Tasks"; 
+      "Fill Out OMM";todays_date (); "TBD"; "5";
+    ]
+]
+
+(** completing tasks from 2 different categories *)
+let cat = empty_cat_auto ()
+let car = make_car_auto ~cat:cat ()
+let household = make_household_auto ~cat:cat ()
+let complete = make_completed_auto ~cat:cat ()
+let change = complete_task_auto ~cat:cat "Car Tasks" "Change Battery"
+let change2 = complete_task_auto ~cat:cat "Household Tasks" "Mow the Lawn"
+
+let complete_task_auto_tests2 = [
+  update_cat_test_auto "car task should no longer be in car category" cat 
+    "Car Tasks"
+    [
+      "Car Tasks";
+      "Change Radiator Fluid"; todays_date (); "TBD"; "7"; 
+      "Change Brake Pads"; todays_date (); "TBD"; "5"; 
+      "Go to Car Wash"; todays_date (); "TBD"; "4";
+      "Go for Emissions Test"; todays_date (); "TBD"; "3";
+      "Change Steering Fluid"; todays_date (); "TBD"; "2"; 
+      "Change Oil"; todays_date (); "TBD"; "1"
+    ];
+
+  update_cat_test_auto "household task should no longer be in household
+  category" cat "Household Tasks"
+    [
+      "Household Tasks";
+      "Do the Laundry"; todays_date (); "TBD"; "7";
+      "Feed the Dog"; todays_date (); "TBD"; "6";
+      "Cook Dinner"; todays_date (); "TBD"; "4";
+      "Wash the Dishes"; todays_date (); "TBD"; "3";
+      "Vacuum the Rugs"; todays_date (); "TBD"; "2";
+      "Mop Kitchen Floor"; todays_date (); "TBD"; "1"
+    ];
+
+  update_cat_test_auto "both tasks should be in the completed category" cat 
+    "Completed Tasks"
+    [
+      "Completed Tasks"; 
+      "Mow the Lawn"; todays_date (); "TBD"; "5";
+      "Change Battery"; todays_date (); "TBD"; "6";
     ]
 ]
 
@@ -1064,7 +1135,7 @@ let find_app_user_tests = [
 ]
 
 let suite =
-  "test suite for Manual Mode"  >::: List.flatten [
+  "test suite for all functionalities"  >::: List.flatten [
     create_task_tests1;
     create_task_tests2;
     create_task_tests3;
@@ -1115,6 +1186,9 @@ let suite =
 
     reset_one_cat_tests;
     reset_all_cat_tests;
+
+    complete_task_auto_tests;
+    complete_task_auto_tests2;
 
     access_app_tests; 
     add_app_tests;
