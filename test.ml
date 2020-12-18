@@ -727,13 +727,13 @@ let change_auto_due_tests2 = [
      "Change Oil"; todays_date (); "TBD"; "1"]
 ]
 
-(* let cat = empty_cat_auto ()
-   let school = make_school_auto ~cat:cat ()
-   let chagnge = change_name_auto ~cat:cat "School Tasks" "Watch CS 3110 
-   Lecture Videos" "Watch CS 2800 Lecture Videos"
+let cat = empty_cat_auto ()
+let school = make_school_auto ~cat:cat ()
+let chagnge = change_name_auto ~cat:cat "School Tasks" 
+    "Watch CS 3110 Lecture Videos" "Watch CS 2800 Lecture Videos"
 
-   let change_auto_name_tests = [
-   update_cat_test_auto "Change name of a task in School cateogry" cat
+let change_auto_name_tests = [
+  update_cat_test_auto "Change name of a task in School cateogry" cat
     "School Tasks"
     [
       "School Tasks"; 
@@ -744,7 +744,7 @@ let change_auto_due_tests2 = [
       "Finish Biology Lab"; todays_date (); "TBD"; "3";
       "Write Essay"; todays_date (); "TBD"; "2";
       "Complete Math Problem Set"; todays_date (); "TBD"; "1"]
-   ] *)
+]
 
 let cat = empty_cat_auto ()
 let house = make_household_auto ~cat:cat ()
@@ -989,6 +989,10 @@ let system = add_app ~appo:apps "Learn new system features"
 let database = add_app ~appo:apps "Patch Data Base" "TBD" "TBD"
 let meeting2 = add_app_info ~appo:apps "Staff Meeting" "meeting to determine 
 third financial quarter goals"
+let report2 = add_app_info ~appo:apps "Company report due" "report needs
+to be 7-10 pages long"
+let lunch2 = add_app_info ~appo:apps "Lunch with Client" "client from 
+Goldman Sachs"
 
 
 

@@ -147,6 +147,15 @@ let draw_appointments () =
   moveto 300 460;
   set_color white;
   draw_string "Appointments - NOT DONE YET";
+  set_color blue;
+  moveto 10 440;
+  draw_string "Press n to create a new appointment"; 
+  moveto 10 425;
+  draw_string "Press c to complete an appointment"; 
+  moveto 10 410;
+  draw_string "Press d to delete an appointment";
+  moveto 10 365;
+  draw_string "Press s to sort your appointments";
   moveto 520 460;
   set_color red;
   draw_string "Press q to quit";
