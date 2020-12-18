@@ -1043,6 +1043,7 @@ let suite =
     change_due_date_tests2;
     change_due_date_tests3;
 
+
     change_auto_priority_tests;
     change_auto_priority_tests2;
 
