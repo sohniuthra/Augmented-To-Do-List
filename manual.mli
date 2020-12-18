@@ -68,6 +68,11 @@ val delete_task : ?cat:(t list ref) -> string -> string -> unit
     category name [cat_name] as the category with name [cat_name].*)
 val to_list : ?cat:(t list ref) -> string ->  string list
 
+(** [change_name cat_name task_name new_name] changes the name of the 
+    task with name [task_name] in the category with name [cat_name] from old 
+    name [task_name] to new name [new_name]. *)
+val change_name : ?cat:(t list ref) -> string -> string ->  string -> unit
+
 (** [change_due_date cat_name task_name new_date] changes the due date of the 
     task with name [task_name] in the category with name [cat_name] from old 
     due date to [new_date]. *)

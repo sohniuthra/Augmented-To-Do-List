@@ -13,8 +13,14 @@ type task
     Tasks should be inserted without user input*)
 type t 
 
-(** Raised when an unknown task is encountered. *)
-exception UnknownTask of task
+(** Raised when an invalid task is encountered. *)
+exception InvalidTask 
+
+(** Raised when a task is not found. *)
+exception TaskNotFound of string
+
+(** Raised when a category is not found. *)
+exception CategoryNotFound of string
 
 (** [todays_date ()] is today's date in string form. *)
 val todays_date : unit -> string
@@ -66,17 +72,45 @@ val create_task_auto : ?cat:(t list ref) -> string -> string -> string -> int ->
 (** [change_priority cat_name task_name new_priority] updates the task with name 
     [task_name] in category with name [cat_name] to have a new priority 
     [new_priority].*)
-val change_priority : ?cat:(t list ref) -> string -> string -> int ->  unit
+val change_priority_auto : ?cat:(t list ref) -> string -> string -> int ->  unit
 
 (** [change_due cat_name task_name new_date] updates the task with name 
     [task_name] in category with name [cat_name] to have a new due date 
     [new_date].*)
-val change_due : ?cat:(t list ref) -> string -> string -> string ->  unit
+val change_due_auto : ?cat:(t list ref) -> string -> string -> string ->  unit
 
 (** [change_name cat_name task_name new_name] updates the task with name 
     [task_name] in category with name [cat_name] to have a new name
     [new_name].*)
-val change_name : ?cat:(t list ref) -> string -> string -> string ->  unit
+val change_name_auto : ?cat:(t list ref) -> string -> string -> string ->  unit
+
+(** [delete_cat_auto cat_name] updates the to-do list by deleting the category
+    with name [cat_name]. *)
+val delete_cat_auto : ?cat:(t list ref) -> string -> unit
+
+(** [reset_car ()] resets the car category of the automatic to-do list to
+    its pre-set tasks, due dates, and priorities. *)
+val reset_car : ?cat:(t list ref) -> unit -> unit
+
+(** [reset_school ()] resets the school category of the automatic to-do list to
+    its pre-set tasks, due dates, and priorities. *)
+val reset_school : ?cat:(t list ref) -> unit -> unit
+
+(** [reset_household ()] resets the household category of the automatic to-do 
+    list to its pre-set tasks, due dates, and priorities. *)
+val reset_household : ?cat:(t list ref) -> unit -> unit
+
+(** [reset_car ()] resets the shopping category of the automatic to-do list to
+    its pre-set tasks, due dates, and priorities. *)
+val reset_shopping : ?cat:(t list ref) -> unit -> unit
+
+(** [reset_car ()] resets the pandemic category of the automatic to-do list to
+    its pre-set tasks, due dates, and priorities. *)
+val reset_pandemic : ?cat:(t list ref) -> unit -> unit
+
+(** [reset_all_cat ()] resets every category of the automatic to-do list to
+    all pre-set tasks, due dates, and priorities. *)
+val reset_all_cat : ?cat:(t list ref) -> unit -> unit
 
 (** [to_list cat_name] is a list containing the same elements and the same 
     category name [cat_name] as the category with name [cat_name].*)

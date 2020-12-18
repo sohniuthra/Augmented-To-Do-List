@@ -15,7 +15,7 @@ type task = {
   priority : int;
 }
 
-(** The type representing a to-do list.  Type is [task list] *)
+(** The type representing a to-do list. Type is [task list] *)
 type t = {
   c_name : string;
   task_list : task list; 
@@ -147,6 +147,22 @@ let create_task ?(cat=categories) cat_name name due_date priority =
       add_new_cat ~cat:cat new_cat
     end
 
+let reminders ?(cat=categories) cat_name name freq due_date priority = 
+  (** if a task needs to be reccuring, we need to find the task in the category
+      and call create_task to duplicate it with a new due date. the amount of times
+      we duplicate it depends on how often the user wants to be reminded
+      (represented by the freq parameter). For example, if today is 12/17 and we 
+      want the task to appear weekly until 12/31, we would have 2 tasks (12/24) and 
+      (12/31). We can create an integer r that is equal to (days left until due)/freq.
+      Then we can pattern match on r, and create a new task each time with a new date
+      of created_date + freq (in terms of days). This might be tricky when carrying
+      over between months but I think there is an OCaml function that we can use.
+
+      change freq to a number??- simple for weekly and annually but can get complicated with
+      monthly because some months have different days *)
+
+  failwith "rose"
+
 (* helper function: returns a task with [task_name] in [cat]  *)
 let find_task cat task_name = 
   List.find (fun x -> x.name = task_name) cat.task_list
@@ -196,6 +212,20 @@ let to_list ?(cat=categories) cat_name =
   try
     let category = find_category ~cat:cat cat_name in  
     [cat_name] @ (to_list_helper category.task_list [])
+  with Not_found -> raise (CategoryNotFound cat_name)
+
+let change_name ?(cat=categories) cat_name task_name new_name =
+  try 
+    let category = find_category ~cat:cat cat_name in 
+    try
+      let old_task = find_task category task_name in
+      let due_date = old_task.due_date in
+      let priority = old_task.priority in
+      let removed_cat = remove category old_task in
+      let new_task = init_task new_name due_date priority in
+      let new_cat = add_task removed_cat new_task in
+      cat := (new_cat :: (remove_cat category !cat))
+    with Not_found -> raise (TaskNotFound task_name)
   with Not_found -> raise (CategoryNotFound cat_name)
 
 let change_due_date ?(cat=categories) cat_name task_name new_date =

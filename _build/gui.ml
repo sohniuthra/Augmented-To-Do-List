@@ -394,7 +394,7 @@ let change_dd y =
   if !viewed_cat = "Car Tasks" || !viewed_cat = "School Tasks" || 
      !viewed_cat = "Household Tasks" || !viewed_cat = "Shopping Tasks" || 
      !viewed_cat = "Pandemic Tasks" 
-  then (Automatic.change_due ~cat:auto_cat (List.nth task_changing 0) 
+  then (Automatic.change_due_auto ~cat:auto_cat (List.nth task_changing 0) 
           (List.nth task_changing 1) new_dd;
         let cat_lst_form = Automatic.to_list_auto ~cat:auto_cat !viewed_cat in 
         let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
@@ -416,7 +416,7 @@ let change_pri y =
   if !viewed_cat = "Car Tasks" || !viewed_cat = "School Tasks" || 
      !viewed_cat = "Household Tasks" || !viewed_cat = "Shopping Tasks" || 
      !viewed_cat = "Pandemic Tasks" 
-  then (Automatic.change_priority ~cat:auto_cat (List.nth task_changing 0) 
+  then (Automatic.change_priority_auto ~cat:auto_cat (List.nth task_changing 0) 
           (List.nth task_changing 1) (int_of_string new_pri);
         let cat_lst_form = Automatic.to_list_auto ~cat:auto_cat !viewed_cat in 
         let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
