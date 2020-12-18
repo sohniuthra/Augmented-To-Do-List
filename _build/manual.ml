@@ -6,7 +6,7 @@ open Unix
    This module implements the data stored in a to-do list, including
    data for each task.
 *)
-
+(* comment *)
 (** The abstract type representing one task of the to-do list *)
 type task = {
   name : string;
