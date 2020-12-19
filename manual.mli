@@ -57,30 +57,58 @@ val sort_list : ?cat:(t list ref) -> string -> string -> unit
 val create_task : ?cat:(t list ref) -> string -> string -> string -> int -> unit 
 
 (** [complete_task t task] is an updated completed to-do list with name
-    [cat_name] with completed task named [task_name] added to it. *)
+    [cat_name] with completed task named [task_name] added to it.
+
+    Raises [TaskNotFound task_name] if a task with name [task_name] is not found
+    in the to-do list. 
+    Raises [CategoryNotFound cat_name] if a category with name [cat_name] is not
+    found in the to-do list. *)
 val complete_task : ?cat:(t list ref) -> string -> string -> unit
 
 (** [delete_task t task] is an updated to-do list with task with name 
-    [task_name ] deleted from category with name [cat_name]. *)
+    [task_name ] deleted from category with name [cat_name].
+
+    Raises [TaskNotFound task_name] if a task with name [task_name] is not found
+    in the to-do list. 
+    Raises [CategoryNotFound cat_name] if a category with name [cat_name] is not
+    found in the to-do list. *)
 val delete_task : ?cat:(t list ref) -> string -> string -> unit
 
 (** [to_list cat_name] is a list containing the same elements and the same 
-    category name [cat_name] as the category with name [cat_name].*)
+    category name [cat_name] as the category with name [cat_name].
+
+    Raises [CategoryNotFound cat_name] if a category with name [cat_name] is not
+    found in the to-do list.*)
 val to_list : ?cat:(t list ref) -> string ->  string list
 
 (** [change_name cat_name task_name new_name] changes the name of the 
     task with name [task_name] in the category with name [cat_name] from old 
-    name [task_name] to new name [new_name]. *)
+    name [task_name] to new name [new_name].
+
+    Raises [TaskNotFound task_name] if a task with name [task_name] is not found
+    in the to-do list. 
+    Raises [CategoryNotFound cat_name] if a category with name [cat_name] is not
+    found in the to-do list. *)
 val change_name : ?cat:(t list ref) -> string -> string ->  string -> unit
 
 (** [change_due_date cat_name task_name new_date] changes the due date of the 
     task with name [task_name] in the category with name [cat_name] from old 
-    due date to [new_date]. *)
+    due date to [new_date]. 
+
+    Raises [TaskNotFound task_name] if a task with name [task_name] is not found
+    in the to-do list. 
+    Raises [CategoryNotFound cat_name] if a category with name [cat_name] is not
+    found in the to-do list.*)
 val change_due_date : ?cat:(t list ref) -> string -> string ->  string -> unit
 
 (** [change_priority cat_name task_name new_priority] changes the priority of 
     the task with [task_name] in the category with name [cat_name] from 
-    old priority to [new_priority]. *)
+    old priority to [new_priority]. 
+
+    Raises [TaskNotFound task_name] if a task with name [task_name] is not found
+    in the to-do list. 
+    Raises [CategoryNotFound cat_name] if a category with name [cat_name] is not
+    found in the to-do list. *)
 val change_priority: ?cat:(t list ref) -> string -> string -> int -> unit
 
 (** [todays_tasks] is a task list containing all of the tasks due today *)
