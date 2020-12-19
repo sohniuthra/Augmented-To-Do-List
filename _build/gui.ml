@@ -108,13 +108,13 @@ let rec draw_basic () =
   moveto 10 395;
   draw_string "Press v to view a list";
   moveto 10 380;
-  draw_string "Press a to make an automatic list - CAN VIEW BUT NOT EDIT"; 
+  draw_string "Press a to make an automatic list"; 
   moveto 10 365;
   draw_string "Press s to sort your to-do list";
   moveto 10 350;
-  draw_string "To change the priority or due date of a task, click on it";
+  draw_string "Press r to reset an automatic to-do list";
   moveto 10 335;
-  draw_string "To change the name of an automatic task, click on it - NOT IMPLEMENTED YET";
+  draw_string "To change the priority, name, or due date of a task, click on it";
   moveto 520 460;
   set_color red;
   draw_string "Press q to quit";
@@ -474,6 +474,56 @@ let change_name y =
         draw_basic ();
         draw_task_list cat_lst_lst)
 
+let reset_gui_auto () = 
+  draw_basic ();
+  moveto 10 320;
+  set_color red;
+  draw_string "What do you want to reset? You may choose car, school, \
+               household, shopping, or pandemic";
+  let reset = string_input "" in 
+  if reset = "car" then (reset_car ~cat:auto_cat (); 
+                         let car_list = 
+                           to_list_auto ~cat:auto_cat "Car Tasks" in 
+                         let car_ll = make_tll car_list "Car Tasks" in 
+                         draw_basic ();
+                         draw_task_list car_ll;
+                         viewed_cat := "Car Tasks")
+  else if reset = "school" then (reset_school ~cat:auto_cat (); 
+                                 let school_list = 
+                                   to_list_auto ~cat:auto_cat "School Tasks" in 
+                                 let school_ll = 
+                                   make_tll school_list "School Tasks" in 
+                                 draw_basic ();
+                                 draw_task_list school_ll;
+                                 viewed_cat := "School Tasks")
+  else if reset = "household" then (reset_household ~cat:auto_cat (); 
+                                    let house_list = 
+                                      to_list_auto ~cat:auto_cat 
+                                        "Household Tasks" in 
+                                    let house_ll = 
+                                      make_tll house_list "Household Tasks" in 
+                                    draw_basic ();
+                                    draw_task_list house_ll;
+                                    viewed_cat := "Household Tasks")
+  else if reset = "shopping" then (reset_shopping ~cat:auto_cat (); 
+                                   let shopping_list = 
+                                     to_list_auto ~cat:auto_cat 
+                                       "Shopping Tasks" in 
+                                   let shopping_ll = 
+                                     make_tll shopping_list "Shopping Tasks" in 
+                                   draw_basic ();
+                                   draw_task_list shopping_ll;
+                                   viewed_cat := "Shopping Tasks")
+  else if reset = "pandemic" then (reset_pandemic ~cat:auto_cat (); 
+                                   let pandemic_list = 
+                                     to_list_auto ~cat:auto_cat 
+                                       "Pandemic Tasks" in 
+                                   let pandemic_ll = 
+                                     make_tll pandemic_list "Pandemic Tasks" in 
+                                   draw_basic ();
+                                   draw_task_list pandemic_ll;
+                                   viewed_cat := "Pandemic Tasks")
+  else draw_basic ()
 
 
 let rec draw_appo a =
@@ -580,6 +630,10 @@ let rec loop () =
     then make_auto ()
     else () in 
 
+  let reset = if e.key = 'r' && !is_todo
+    then reset_gui_auto ()
+    else () in 
+
   let switch_to_appo = if e.mouse_x > 299 && e.mouse_x < 371 && e.mouse_y > 459 
                           && e.mouse_y < 474 && e.button && !is_todo
     then draw_appointments () in 
@@ -618,6 +672,7 @@ let rec loop () =
   view;
   sort;
   auto;
+  reset;
   switch_to_appo;
   switch_to_todo;
   click_due;
