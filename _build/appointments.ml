@@ -67,7 +67,7 @@ let rec to_list_app ?(appo=appointments) acc =
   | [] -> acc
   | {title; app_date; time; location; notes} :: t -> 
     delete_app ~appo:appo title;
-    to_list_app ~appo:appo 
+    to_list_app ~appo:appo
       (acc @ [title; app_date; time; location; notes])
 
 let rec to_list_find ?(one=one_app) acc =
@@ -76,3 +76,12 @@ let rec to_list_find ?(one=one_app) acc =
   | {title; app_date; time; location; notes} :: t -> 
     to_list_find ~one:one 
       (acc @ [title; app_date; time; location; notes])
+
+let rec to_list_helper app_lst acc =
+  match app_lst with 
+  | [] -> acc 
+  | {title; app_date; time; location; notes} :: t -> 
+    to_list_helper t (acc @ [title; app_date; time; location; notes])
+
+let to_list_alt ?(appo=appointments) () = 
+  to_list_helper !appo []

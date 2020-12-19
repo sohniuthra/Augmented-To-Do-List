@@ -470,7 +470,7 @@ let rec draw_appo a =
   let y = current_y () in  
   match a with 
   | [] -> ()
-  | t::d::m::l::n::[] -> 
+  | t::d::m::l::n::""::[] -> 
     moveto 10 y;
     draw_string t;
     moveto 150 y;
@@ -481,6 +481,13 @@ let rec draw_appo a =
     draw_string l;
     moveto 425 y; 
     draw_string n;
+  | _ -> ()
+
+let rec draw_appo_lst a =
+  match a with 
+  | [] -> ()
+  | t::d::m::l::n::tail -> draw_appo (t::d::m::l::n::[""]); 
+    moveto 10 (current_y () - 15); draw_appo_lst tail
   | _ -> ()
 
 let new_appo () = 
@@ -506,17 +513,13 @@ let new_appo () =
   let notes = string_input "" in
   Appointments.add_app ~appo:apps title date time;
   draw_appointments ();
-  draw_int (List.length !apps);
-  (*let app_lst = Appointments.to_list_app ~appo:apps [] in 
-    draw_appo app_lst;*)
   if location = "" then () 
   else Appointments.add_location ~appo:apps title location;
   if notes = "" then () 
-  else Appointments.add_app_info ~appo:apps title notes
-(*draw_appointments ();
-  let app_lst = Appointments.to_list_app ~appo:apps [] in *)
-(*draw_appo app_lst*)
-(*draw_str_list app_lst*)
+  else Appointments.add_app_info ~appo:apps title notes;
+  draw_appointments ();
+  let app_lst = Appointments.to_list_alt ~appo:apps () in 
+  draw_appo_lst app_lst
 
 let complete_app_gui () = 
   draw_appointments ();
@@ -525,8 +528,8 @@ let complete_app_gui () =
   let title = (string_input "") in
   draw_appointments ();
   Appointments.complete_app ~appo:apps title;
-  let app_lst = Appointments.to_list_app ~appo:apps [] in 
-  draw_appo app_lst
+  let app_lst = Appointments.to_list_alt ~appo:apps () in 
+  draw_appo_lst app_lst
 
 let delete_app_gui () = 
   draw_appointments ();
@@ -535,8 +538,8 @@ let delete_app_gui () =
   let title = (string_input "") in
   draw_appointments ();
   Appointments.delete_app ~appo:apps title;
-  let app_lst = Appointments.to_list_app ~appo:apps [] in 
-  draw_appo app_lst
+  let app_lst = Appointments.to_list_alt ~appo:apps () in 
+  draw_appo_lst app_lst
 
 
 let rec loop () = 
