@@ -2,7 +2,20 @@ open OUnit2
 open Manual
 open Automatic
 open Appointments
-(* open Appointments *)
+
+(* TESTING PLAN: We tested every function documented in Manual.mli, 
+   Automatic.mli, and Appointmens.mli. We omitted testing helper functions, 
+   which were tested by testing their parent functions. We tested various 
+   possibilities/branches/cases for each of our functions, and always made sure 
+   to test tasks from different categories to ensure that our mutable variable 
+   categories was correctly storing the right information. 
+
+   All tests for the system were tested through OUnit automatically. A 
+   combination of black box and glass box testing was used - black box was used 
+   on most functions, but for those that consisted of more complicated code or 
+   included multiple branches (such as in if then else statements), glass box 
+   testing was used. Our tests are representative of all likely user inputs, 
+   and all of them passing demonstrates the correctness of our system.*)
 
 (**  [pp_string s] pretty-prints string [s]. *)
 let pp_string s = "\"" ^ s ^ "\""
@@ -20,44 +33,10 @@ let pp_list pp_elt lst =
     in loop 0 "" lst
   in "[" ^ pp_elts lst ^ "]"
 
-(* These tests demonstrate how to use [cmp_set_like_lists] and 
-   [pp_list] to get helpful output from OUnit. *)
-(* let cmp_demo = 
-   [
-    "order is irrelevant" >:: (fun _ -> 
-        assert_equal ~cmp:cmp_set_like_lists ~printer:(pp_list pp_string)
-          ["foo"; "bar"] ["bar"; "foo"]); *)
-(* Uncomment this test to see what happens when a test case fails.
-   "duplicates not allowed" >:: (fun _ -> 
-    assert_equal ~cmp:cmp_set_like_lists ~printer:(pp_list pp_string)
-      ["foo"; "foo"] ["foo"]);
-*)
-
-
 (********************************************************************
    End helper functions.
  ********************************************************************)
 
-(* let init_todolist_test name cat_name task_name due_date priority 
-    expected_output = 
-   name >:: (fun _ -> 
-      let expected = create_task cat_name task_name due_date 
-          priority; (access_cat ()) in 
-      assert_equal expected_output (expected)) *)
-
-(* let create_task_test name cat_name task_name due_date priority 
-    expected_output = 
-   name >:: (fun _ -> 
-      let expected = create_task cat_name task_name due_date 
-          priority; (access_cat ()) in 
-      assert_equal expected_output (expected)) *)
-
-(* let create_task_test name cat_name task_name due_date priority 
-    expected_output = 
-   let expected = create_task cat_name task_name due_date 
-      priority; to_list cat_name in
-   name >:: (fun _ -> 
-      assert_equal ~printer: (pp_list pp_string) expected_output expected) *)
 let update_cat_test name categories cat_name expected_output = 
   name >:: (fun _ -> 
       assert_equal expected_output 
@@ -699,7 +678,8 @@ let change_auto_priority_tests2 = [
 
 let cat = empty_cat_auto ()
 let shopping = make_shopping_auto ~cat:cat ()
-let change = change_due_auto ~cat:cat "Shopping Tasks" "Get New iPhone 12 Pro Max" 
+let change = change_due_auto ~cat:cat "Shopping Tasks" "Get New iPhone 12 Pro 
+Max" 
     "11/13/2020"
 
 let change_auto_due_tests = [
@@ -755,7 +735,8 @@ let change_auto_name_tests = [
 
 let cat = empty_cat_auto ()
 let house = make_household_auto ~cat:cat ()
-let change = change_name_auto ~cat:cat "Household Tasks" "Cook Dinner" "Pack Lunch"
+let change = change_name_auto ~cat:cat "Household Tasks" "Cook Dinner" 
+    "Pack Lunch"
 let change2 = change_due_auto ~cat:cat "Household Tasks" "Do the Laundry" 
     "12/16/2020"
 
@@ -1066,9 +1047,12 @@ let report = add_app ~appo:apps "Company report due" "2/14/21" "End of work day"
 let lunch = add_app ~appo:apps "Lunch with Client" "1/15/21" "12 PM"
 let system = add_app ~appo:apps "Learn new system features" "ASAP" "ASAP"
 let database = add_app ~appo:apps "Patch Data Base" "TBD" "TBD"
-let meeting2 = add_app_info ~appo:apps "Staff Meeting" "meeting to determine third financial quarter goals"
-let report2 = add_app_info ~appo:apps "Company report due" "report needs to be 7-10 pages long"
-let lunch2 = add_app_info ~appo:apps "Lunch with Client" "client from Goldman Sachs"
+let meeting2 = add_app_info ~appo:apps "Staff Meeting" "meeting to determine 
+third financial quarter goals"
+let report2 = add_app_info ~appo:apps "Company report due" "report needs to be 
+7-10 pages long"
+let lunch2 = add_app_info ~appo:apps "Lunch with Client" "client from Goldman 
+Sachs"
 
 
 
@@ -1086,7 +1070,6 @@ let add_app_info_tests = [
       "Notes about Appointment";
       "Learn new system features"; "ASAP"; "ASAP"; "Location";
       "Notes about Appointment"
-
     ]
 ]
 
@@ -1116,7 +1099,6 @@ let add_app_location_tests = [
       "Learn new system features"; "ASAP"; "ASAP"; "Location";
       "Notes about Appointment"
     ]
-
 ]
 
 let apps = empty_appo ()

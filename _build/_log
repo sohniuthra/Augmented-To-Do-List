@@ -1,0 +1,50 @@
+### Starting build.
+# Target: manual.mli.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:mli, file:manual.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules manual.mli > manual.mli.depends
+# Target: manual.cmi, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:mli, file:manual.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o manual.cmi manual.mli
+# Target: manual.ml.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:ml, file:manual.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules manual.ml > manual.ml.depends
+# Target: manual.cmo, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:cmo, extension:ml, file:manual.cmo, file:manual.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o manual.cmo manual.ml
+# Target: main.mli.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:mli, file:main.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules main.mli > main.mli.depends
+# Target: main.cmi, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:mli, file:main.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o main.cmi main.mli
+# Target: main.ml.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:ml, file:main.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules main.ml > main.ml.depends
+# Target: main.cmo, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:cmo, extension:ml, file:main.cmo, file:main.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o main.cmo main.ml
+# Target: author.mli.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:mli, file:author.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules author.mli > author.mli.depends
+# Target: author.cmi, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:mli, file:author.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o author.cmi author.mli
+# Target: author.ml.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:ml, file:author.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules author.ml > author.ml.depends
+# Target: author.cmo, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:cmo, extension:ml, file:author.cmo, file:author.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o author.cmo author.ml
+# Target: automatic.mli.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:mli, file:automatic.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules automatic.mli > automatic.mli.depends
+# Target: automatic.cmi, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:mli, file:automatic.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o automatic.cmi automatic.mli
+# Target: automatic.ml.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:ml, file:automatic.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules automatic.ml > automatic.ml.depends
+# Target: automatic.cmo, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:cmo, extension:ml, file:automatic.cmo, file:automatic.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o automatic.cmo automatic.ml
+# Target: gui.mli.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:mli, file:gui.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules gui.mli > gui.mli.depends
+# Target: gui.cmi, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:mli, file:gui.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o gui.cmi gui.mli
+# Target: gui.ml.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:ml, file:gui.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules gui.ml > gui.ml.depends
+# Target: appointments.mli.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:mli, file:appointments.mli, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules appointments.mli > appointments.mli.depends
+# Target: appointments.cmi, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:mli, file:appointments.mli, interf, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o appointments.cmi appointments.mli
+# Target: gui.cmo, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:cmo, extension:ml, file:gui.cmo, file:gui.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o gui.cmo gui.ml
+# Target: appointments.ml.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:ml, file:appointments.ml, ocaml, ocamldep, quiet, traverse }
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules appointments.ml > appointments.ml.depends
+# Target: appointments.cmo, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:cmo, extension:ml, file:appointments.cmo, file:appointments.ml, implem, ocaml, quiet, traverse }
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o appointments.cmo appointments.ml
+# Compilation successful.

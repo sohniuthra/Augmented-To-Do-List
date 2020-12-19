@@ -1,9 +1,5 @@
-(** 
-   Representation of an appointment book
-
-   This module represents the data stored in a digital appointment book,
-   including the data for each individual appointment.
-*)
+(** A module that lets the user create appointments 
+    this will have a better representation when a GUI is created *)
 
 
 type app
