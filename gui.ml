@@ -2,9 +2,11 @@ open Graphics
 open Manual
 open Printf
 open Automatic
+open Appointments
 
 let cat = empty_cat ()
 let auto_cat = empty_cat_auto ()
+let apps = Appointments.empty_appo ()
 
 let viewed_cat = ref ""
 let is_todo = ref true 
@@ -481,6 +483,61 @@ let rec draw_appo a =
     draw_string n;
   | _ -> ()
 
+let new_appo () = 
+  draw_appointments ();
+  set_color red;
+  draw_string "Type the name of your appointment";
+  let title = (string_input "") in
+  draw_appointments ();
+  set_color red;
+  draw_string "Type the date of your appointment";
+  let date = (string_input "") in
+  draw_appointments ();
+  set_color red;
+  draw_string "Type the time of your appointment";
+  let time = (string_input "") in
+  draw_appointments ();
+  set_color red;
+  draw_string "Type the location of your appointment. If none, press enter";
+  let location = string_input "" in
+  draw_appointments ();
+  set_color red;
+  draw_string "Type any notes for your appointment. If none, press enter";
+  let notes = string_input "" in
+  Appointments.add_app ~appo:apps title date time;
+  draw_appointments ();
+  draw_int (List.length !apps);
+  (*let app_lst = Appointments.to_list_app ~appo:apps [] in 
+    draw_appo app_lst;*)
+  if location = "" then () 
+  else Appointments.add_location ~appo:apps title location;
+  if notes = "" then () 
+  else Appointments.add_app_info ~appo:apps title notes
+(*draw_appointments ();
+  let app_lst = Appointments.to_list_app ~appo:apps [] in *)
+(*draw_appo app_lst*)
+(*draw_str_list app_lst*)
+
+let complete_app_gui () = 
+  draw_appointments ();
+  set_color red;
+  draw_string "What appointment do you want to complete?";
+  let title = (string_input "") in
+  draw_appointments ();
+  Appointments.complete_app ~appo:apps title;
+  let app_lst = Appointments.to_list_app ~appo:apps [] in 
+  draw_appo app_lst
+
+let delete_app_gui () = 
+  draw_appointments ();
+  set_color red;
+  draw_string "What appointment do you want to delete?";
+  let title = (string_input "") in
+  draw_appointments ();
+  Appointments.delete_app ~appo:apps title;
+  let app_lst = Appointments.to_list_app ~appo:apps [] in 
+  draw_appo app_lst
+
 
 let rec loop () = 
   let e = wait_next_event [Key_pressed; Mouse_motion; Button_down] in
@@ -537,13 +594,16 @@ let rec loop () =
     then change_name (e.mouse_y) in
 
   let new_app = if e.key = 'n' && (not !is_todo)
-    then failwith "new appointment" in 
+    then new_appo ()
+    else () in 
 
   let complete_app = if e.key = 'c' && (not !is_todo)
-    then failwith "complete appointment" in 
+    then complete_app_gui ()
+    else () in 
 
   let delete_app = if e.key = 'd' && (not !is_todo)
-    then failwith "delete appointment" in 
+    then delete_app_gui ()
+    else () in 
 
   new_task;
   comp_task;

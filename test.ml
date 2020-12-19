@@ -972,6 +972,7 @@ let complete_task_auto_tests2 = [
     ]
 ]
 
+
 let apps = empty_appo ()
 let access_app_tests = [
   update_app_test "View empty appointments list" apps []
@@ -1193,6 +1194,7 @@ let suite =
 
     access_app_tests; 
     add_app_tests;
+    delete_app_tests;
     complete_app_tests;
     add_app_info_tests;
     add_app_location_tests;
