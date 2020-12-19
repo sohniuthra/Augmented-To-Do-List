@@ -34,6 +34,10 @@ val init_task : string -> string -> int -> task
     anything because there are pre-set categories and tasks. *)
 val make_auto : ?cat:(t list ref) -> unit -> unit
 
+(** [make_completed_auto ()] is the automatic to-do list of just the completed
+    tasks category. *)
+val make_completed_auto : ?cat:(t list ref) -> unit -> unit
+
 (** [make_car_auto ()] is the automatic to-do list of just the car category. It 
     includes pre-set tasks. *)
 val make_car_auto : ?cat:(t list ref) -> unit -> unit
@@ -69,6 +73,11 @@ val delete_task_auto : ?cat:(t list ref) -> string -> string -> unit
 val create_task_auto : ?cat:(t list ref) -> string -> string -> string -> int -> 
   unit 
 
+(** [complete_task cat_name task_name] adds the task with name [task_name] in 
+    category with name [cat_name] to the completed category, and removes the
+    task from the orginal category with name [cat_name]. *)
+val complete_task_auto : ?cat:(t list ref) -> string -> string -> unit
+
 (** [change_priority cat_name task_name new_priority] updates the task with name 
     [task_name] in category with name [cat_name] to have a new priority 
     [new_priority].*)
@@ -100,12 +109,16 @@ val reset_school : ?cat:(t list ref) -> unit -> unit
     list to its pre-set tasks, due dates, and priorities. *)
 val reset_household : ?cat:(t list ref) -> unit -> unit
 
-(** [reset_car ()] resets the shopping category of the automatic to-do list to
-    its pre-set tasks, due dates, and priorities. *)
+(** [reset_shopping ()] resets the shopping category of the automatic to-do list
+     to its pre-set tasks, due dates, and priorities. *)
 val reset_shopping : ?cat:(t list ref) -> unit -> unit
 
-(** [reset_car ()] resets the pandemic category of the automatic to-do list to
-    its pre-set tasks, due dates, and priorities. *)
+(** [reset_pandemic ()] resets the pandemic category of the automatic to-do list
+     to its pre-set tasks, due dates, and priorities. *)
+val reset_pandemic : ?cat:(t list ref) -> unit -> unit
+
+(** [reset_completed ()] resets the completed tasks category of the automatic
+    to-do list to an empty task list. *)
 val reset_pandemic : ?cat:(t list ref) -> unit -> unit
 
 (** [reset_all_cat ()] resets every category of the automatic to-do list to

@@ -60,8 +60,8 @@ let find_category ?(cat=categories) cat_name =
 let remove_cat t (lst : t list) = 
   List.filter (fun x -> if x.c_name != t.c_name then true else false) lst
 
-(* let make_completed ?(cat=categories) () =
-   add_new_cat ~cat:cat (empty_list "Completed Tasks") *)
+let completed_list ?(cat=categories) () =
+  add_new_cat ~cat:cat (empty_list "Completed Tasks")
 
 let car_list ?(cat=categories) () = 
   let init_list = empty_list "Car Tasks" in 
@@ -145,8 +145,8 @@ let make_auto ?(cat=categories) () =
   school_list ~cat:cat (); 
   household_list ~cat:cat (); 
   shopping_list ~cat:cat (); 
-  pandemic_list ~cat:cat ()
-(* make_completed ~cat:cat () to be added fully in MS3 *)
+  pandemic_list ~cat:cat ();
+  completed_list ~cat:cat ()
 
 let make_car_auto ?(cat=categories) () = 
   car_list ~cat:cat () 
@@ -162,6 +162,9 @@ let make_shopping_auto ?(cat=categories) () =
 
 let make_pandemic_auto ?(cat=categories) () =
   pandemic_list ~cat:cat ()
+
+let make_completed_auto ?(cat=categories) () =
+  completed_list ~cat:cat ()
 
 let del_task t task =
   let new_task_list = List.filter (fun x -> x.name <> task.name) t.task_list 
@@ -192,17 +195,17 @@ let create_task_auto ?(cat=categories) cat_name task_name due_date priority=
   let new_list = add_task (old_list) task in
   cat := (new_list :: (remove_cat old_list !cat))
 
-(* let complete_task_auto ?(cat=categories) cat_name task_name = 
-   try
+let complete_task_auto ?(cat=categories) cat_name task_name = 
+  try
     let category = find_category ~cat:cat cat_name in
     try 
       let task = find_task category task_name in
       let new_list = del_task category task in 
-      create_task_auto ~cat:cat "Completed" task.name task.due_date 
+      create_task_auto ~cat:cat "Completed Tasks" task.name task.due_date 
         task.priority;
       cat := (new_list :: (remove_cat category !cat))
     with Not_found -> raise (TaskNotFound task_name)
-   with Not_found -> raise (CategoryNotFound cat_name) *)
+  with Not_found -> raise (CategoryNotFound cat_name)
 
 let change_priority_auto ?(cat=categories) cat_name task_name new_priority =
   let category = find_category ~cat:cat cat_name in
@@ -255,12 +258,17 @@ let reset_pandemic ?(cat=categories) () =
   delete_cat_auto ~cat:cat "Pandemic Tasks"; 
   make_pandemic_auto ~cat:cat ()
 
+let reset_completed ?(cat=categories) () =
+  delete_cat_auto ~cat:cat "Completed Tasks"; 
+  make_completed_auto ~cat:cat ()
+
 let reset_all_cat ?(cat=categories) () = 
   delete_cat_auto ~cat:cat "Car Tasks"; 
   delete_cat_auto ~cat:cat "School Tasks"; 
   delete_cat_auto ~cat:cat "Household Tasks"; 
   delete_cat_auto ~cat:cat "Shopping Tasks"; 
   delete_cat_auto ~cat:cat "Pandemic Tasks"; 
+  delete_cat_auto ~cat:cat "Completed Tasks"; 
   make_auto ~cat:cat ()
 
 let rec to_list_helper cat_list acc =
