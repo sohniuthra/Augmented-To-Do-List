@@ -1136,7 +1136,7 @@ let find_app_user_tests = [
 ]
 
 let suite =
-  "test suite for all functionality"  >::: List.flatten [
+  "test suite for all functionalities"  >::: List.flatten [
     create_task_tests1;
     create_task_tests2;
     create_task_tests3;
