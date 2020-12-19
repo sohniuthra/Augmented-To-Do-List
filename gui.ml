@@ -2,9 +2,11 @@ open Graphics
 open Manual
 open Printf
 open Automatic
+open Appointments
 
 let cat = empty_cat ()
 let auto_cat = empty_cat_auto ()
+let apps = Appointments.empty_appo ()
 
 let viewed_cat = ref ""
 let is_todo = ref true 
@@ -95,7 +97,7 @@ let rec draw_basic () =
   fill_rect 299 459 72 15;
   moveto 300 460;
   set_color black;
-  draw_string "Appointments - NOT DONE YET";
+  draw_string "Appointments";
   set_color blue;
   moveto 10 440;
   draw_string "Press t to create a new task"; 
@@ -106,13 +108,13 @@ let rec draw_basic () =
   moveto 10 395;
   draw_string "Press v to view a list";
   moveto 10 380;
-  draw_string "Press a to make an automatic list - CAN VIEW BUT NOT EDIT"; 
+  draw_string "Press a to make an automatic list"; 
   moveto 10 365;
   draw_string "Press s to sort your to-do list";
   moveto 10 350;
-  draw_string "To change the priority or due date of a task, click on it";
+  draw_string "Press r to reset an automatic to-do list";
   moveto 10 335;
-  draw_string "To change the name of an automatic task, click on it - NOT IMPLEMENTED YET";
+  draw_string "To change the priority, name, or due date of a task, click on it";
   moveto 520 460;
   set_color red;
   draw_string "Press q to quit";
@@ -158,22 +160,25 @@ let draw_appointments () =
   draw_string "Press c to complete an appointment"; 
   moveto 10 410;
   draw_string "Press d to delete an appointment";
+  moveto 10 395;
+  draw_string "To add or change a location or notes to an appointment, \
+               click on that field";
   moveto 520 460;
   set_color red;
   draw_string "Press q to quit";
   set_color black;
-  moveto 10 380;
+  moveto 10 365;
   draw_string "Name";
-  moveto 150 380;
+  moveto 150 365;
   draw_string "Date";
-  moveto 225 380;
+  moveto 225 365;
   draw_string "Time";
-  moveto 300 380;
+  moveto 300 365;
   draw_string "Location";
-  moveto 425 380; 
+  moveto 425 365; 
   draw_string "Notes";
   is_todo := false;
-  moveto 10 395
+  moveto 10 380
 
 (** [string_input str] produces a string from anything that the user types 
     before pressing enter *)
@@ -328,6 +333,7 @@ let sort_gui () =
 
 let make_auto () =
   set_color red;
+  moveto 10 320;
   draw_string "Type what kind of automatic list you want: car, school, \
                household, shopping, pandemic";
   let auto_choice = string_input "" in 
@@ -388,18 +394,18 @@ let find_task y : string list =
   then (let cat_lst_form = Automatic.to_list_auto ~cat:auto_cat !viewed_cat in 
         let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
         let num_tasks = List.length cat_lst_lst in 
-        let lower_bound = 335 - 15 * num_tasks in 
+        let lower_bound = 305 - 15 * num_tasks in 
         if y < lower_bound then failwith "out of bounds" 
         else let plc = (y - 5) / 15 in 
-          let n = 21 - plc in 
+          let n = 19 - plc in 
           List.nth cat_lst_lst n)
   else (let cat_lst_form = Manual.to_list ~cat:cat !viewed_cat in 
         let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
         let num_tasks = List.length cat_lst_lst in 
-        let lower_bound = 335 - 15 * num_tasks in 
+        let lower_bound = 305 - 15 * num_tasks in 
         if y < lower_bound then failwith "out of bounds" 
         else let plc = (y - 5) / 15 in 
-          let n = 21 - plc in 
+          let n = 19 - plc in 
           List.nth cat_lst_lst n)
 
 let change_dd y = 
@@ -452,23 +458,83 @@ let change_name y =
   draw_basic ();
   moveto 10 320;
   set_color red;
-  draw_string "What do you want the new task name to be?";
+  draw_string "What do you want the new name to be?";
   let new_name = string_input "" in 
   let task_changing = find_task y in 
-  Automatic.change_name_auto ~cat:auto_cat (List.nth task_changing 0) 
-    (List.nth task_changing 1) (new_name);
-  let cat_lst_form = Automatic.to_list_auto ~cat:auto_cat !viewed_cat in 
-  let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
+  if !viewed_cat = "Car Tasks" || !viewed_cat = "School Tasks" || 
+     !viewed_cat = "Household Tasks" || !viewed_cat = "Shopping Tasks" || 
+     !viewed_cat = "Pandemic Tasks" 
+  then (Automatic.change_name_auto ~cat:auto_cat (List.nth task_changing 0) 
+          (List.nth task_changing 1)  new_name;
+        let cat_lst_form = Automatic.to_list_auto ~cat:auto_cat !viewed_cat in 
+        let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
+        draw_basic ();
+        draw_task_list cat_lst_lst)
+  else (Manual.change_name ~cat:cat (List.nth task_changing 0) 
+          (List.nth task_changing 1) new_name;
+        let cat_lst_form = Manual.to_list ~cat:cat !viewed_cat in 
+        let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
+        draw_basic ();
+        draw_task_list cat_lst_lst)
+
+let reset_gui_auto () = 
   draw_basic ();
-  draw_task_list cat_lst_lst
+  moveto 10 320;
+  set_color red;
+  draw_string "What do you want to reset? You may choose car, school, \
+               household, shopping, or pandemic";
+  let reset = string_input "" in 
+  if reset = "car" then (reset_car ~cat:auto_cat (); 
+                         let car_list = 
+                           to_list_auto ~cat:auto_cat "Car Tasks" in 
+                         let car_ll = make_tll car_list "Car Tasks" in 
+                         draw_basic ();
+                         draw_task_list car_ll;
+                         viewed_cat := "Car Tasks")
+  else if reset = "school" then (reset_school ~cat:auto_cat (); 
+                                 let school_list = 
+                                   to_list_auto ~cat:auto_cat "School Tasks" in 
+                                 let school_ll = 
+                                   make_tll school_list "School Tasks" in 
+                                 draw_basic ();
+                                 draw_task_list school_ll;
+                                 viewed_cat := "School Tasks")
+  else if reset = "household" then (reset_household ~cat:auto_cat (); 
+                                    let house_list = 
+                                      to_list_auto ~cat:auto_cat 
+                                        "Household Tasks" in 
+                                    let house_ll = 
+                                      make_tll house_list "Household Tasks" in 
+                                    draw_basic ();
+                                    draw_task_list house_ll;
+                                    viewed_cat := "Household Tasks")
+  else if reset = "shopping" then (reset_shopping ~cat:auto_cat (); 
+                                   let shopping_list = 
+                                     to_list_auto ~cat:auto_cat 
+                                       "Shopping Tasks" in 
+                                   let shopping_ll = 
+                                     make_tll shopping_list "Shopping Tasks" in 
+                                   draw_basic ();
+                                   draw_task_list shopping_ll;
+                                   viewed_cat := "Shopping Tasks")
+  else if reset = "pandemic" then (reset_pandemic ~cat:auto_cat (); 
+                                   let pandemic_list = 
+                                     to_list_auto ~cat:auto_cat 
+                                       "Pandemic Tasks" in 
+                                   let pandemic_ll = 
+                                     make_tll pandemic_list "Pandemic Tasks" in 
+                                   draw_basic ();
+                                   draw_task_list pandemic_ll;
+                                   viewed_cat := "Pandemic Tasks")
+  else draw_basic ()
 
 
 let rec draw_appo a =
-  if current_y () > 365 then moveto 10 365; 
+  if current_y () > 350 then moveto 10 350; 
   let y = current_y () in  
   match a with 
   | [] -> ()
-  | t::d::m::l::n::[] -> 
+  | t::d::m::l::n::""::[] -> 
     moveto 10 y;
     draw_string t;
     moveto 150 y;
@@ -480,6 +546,94 @@ let rec draw_appo a =
     moveto 425 y; 
     draw_string n;
   | _ -> ()
+
+let rec draw_appo_lst a =
+  set_color black;
+  match a with 
+  | [] -> ()
+  | t::d::m::l::n::tail -> draw_appo (t::d::m::l::n::[""]); 
+    moveto 10 (current_y () - 15); draw_appo_lst tail
+  | _ -> ()
+
+let new_appo () = 
+  draw_appointments ();
+  set_color red;
+  draw_string "Type the name of your appointment";
+  let title = (string_input "") in
+  draw_appointments ();
+  set_color red;
+  draw_string "Type the date of your appointment";
+  let date = (string_input "") in
+  draw_appointments ();
+  set_color red;
+  draw_string "Type the time of your appointment";
+  let time = (string_input "") in
+  draw_appointments ();
+  set_color red;
+  draw_string "Type the location of your appointment. If none, press enter";
+  let location = string_input "" in
+  draw_appointments ();
+  set_color red;
+  draw_string "Type any notes for your appointment. If none, press enter";
+  let notes = string_input "" in
+  Appointments.add_app ~appo:apps title date time;
+  draw_appointments ();
+  if location = "" then () 
+  else Appointments.add_location ~appo:apps title location;
+  if notes = "" then () 
+  else Appointments.add_app_info ~appo:apps title notes;
+  draw_appointments ();
+  let app_lst = Appointments.to_list_alt ~appo:apps () in 
+  draw_appo_lst app_lst
+
+let complete_app_gui () = 
+  draw_appointments ();
+  set_color red;
+  draw_string "What appointment do you want to complete?";
+  let title = (string_input "") in
+  draw_appointments ();
+  Appointments.complete_app ~appo:apps title;
+  let app_lst = Appointments.to_list_alt ~appo:apps () in 
+  draw_appo_lst app_lst
+
+let delete_app_gui () = 
+  draw_appointments ();
+  set_color red;
+  draw_string "What appointment do you want to delete?";
+  let title = (string_input "") in
+  draw_appointments ();
+  Appointments.delete_app ~appo:apps title;
+  let app_lst = Appointments.to_list_alt ~appo:apps () in 
+  draw_appo_lst app_lst
+
+let find_app_name y = 
+  let app_lst = Appointments.to_list_alt ~appo:apps () in 
+  let num_apps = (List.length app_lst) / 5 in 
+  let lower_bound = 365 - 15 * num_apps in 
+  if y < lower_bound then failwith "out of bounds"
+  else let plc = (y - 5) / 15 in 
+    let n = 23 - plc in 
+    List.nth app_lst (n * 5)
+
+let info_gui y =
+  draw_appointments ();
+  set_color red;
+  draw_string "What information do you want to add?";
+  let info = (string_input "") in
+  Appointments.add_app_info ~appo:apps (find_app_name y) info;
+  draw_appointments ();
+  let app_lst = Appointments.to_list_alt ~appo:apps () in 
+  draw_appo_lst app_lst
+
+let loc_gui y =
+  draw_appointments ();
+  set_color red;
+  draw_string "What location do you want to add?";
+  let loc = (string_input "") in
+  Appointments.add_location ~appo:apps (find_app_name y) loc;
+  draw_appointments ();
+  let app_lst = Appointments.to_list_alt ~appo:apps () in 
+  draw_appo_lst app_lst
 
 
 let rec loop () = 
@@ -509,6 +663,10 @@ let rec loop () =
     then make_auto ()
     else () in 
 
+  let reset = if e.key = 'r' && !is_todo
+    then reset_gui_auto ()
+    else () in 
+
   let switch_to_appo = if e.mouse_x > 299 && e.mouse_x < 371 && e.mouse_y > 459 
                           && e.mouse_y < 474 && e.button && !is_todo
     then draw_appointments () in 
@@ -526,24 +684,28 @@ let rec loop () =
     then change_pri (e.mouse_y) in 
 
   let change_name = if e.mouse_x > 149 && e.mouse_x < 301 && e.mouse_y < 335 
-                       && e.button && !is_todo && (!viewed_cat = "Car Tasks" || 
-                                                   !viewed_cat = "School Tasks" 
-                                                   || !viewed_cat = 
-                                                      "Household Tasks" || 
-                                                   !viewed_cat = 
-                                                   "Shopping Tasks" || 
-                                                   !viewed_cat = 
-                                                   "Pandemic Tasks")
+                       && e.button && !is_todo 
     then change_name (e.mouse_y) in
 
   let new_app = if e.key = 'n' && (not !is_todo)
-    then failwith "new appointment" in 
+    then new_appo ()
+    else () in 
 
   let complete_app = if e.key = 'c' && (not !is_todo)
-    then failwith "complete appointment" in 
+    then complete_app_gui ()
+    else () in 
 
   let delete_app = if e.key = 'd' && (not !is_todo)
-    then failwith "delete appointment" in 
+    then delete_app_gui ()
+    else () in 
+
+  let add_info = if e.mouse_x > 424 && e.mouse_x < 640 && e.mouse_y < 365 
+                    && e.button && (not !is_todo) 
+    then info_gui (e.mouse_y) in
+
+  let add_loc = if e.mouse_x > 299 && e.mouse_x < 425 && e.mouse_y < 365 
+                   && e.button && (not !is_todo) 
+    then loc_gui (e.mouse_y) in
 
   new_task;
   comp_task;
@@ -551,6 +713,7 @@ let rec loop () =
   view;
   sort;
   auto;
+  reset;
   switch_to_appo;
   switch_to_todo;
   click_due;
@@ -559,6 +722,8 @@ let rec loop () =
   new_app;
   complete_app;
   delete_app;
+  add_info;
+  add_loc;
 
   if e.key <> 'q' then loop () else ()
 
