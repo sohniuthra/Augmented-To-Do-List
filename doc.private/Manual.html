@@ -1,0 +1,291 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="next" href="Main.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Manual" rel="Chapter" href="Manual.html">
+<link title="Main" rel="Chapter" href="Main.html">
+<link title="Author" rel="Chapter" href="Author.html">
+<link title="Automatic" rel="Chapter" href="Automatic.html">
+<link title="Gui" rel="Chapter" href="Gui.html">
+<link title="Appointments" rel="Chapter" href="Appointments.html"><title>Manual</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Main.html" title="Main">Next</a>
+</div>
+<h1>Module <a href="type_Manual.html">Manual</a></h1>
+
+<pre><span id="MODULEManual"><span class="keyword">module</span> Manual</span>: <code class="code">sig</code> <a href="Manual.html">..</a> <code class="code">end</code></pre><div class="info module top">
+<div class="info-desc">
+<p>Representation of a manual to-do list.</p>
+
+<p>This module represents the data stored in a to-do list, including
+   data for each task.</p>
+</div>
+</div>
+<hr width="100%">
+<p>Implementation of a manual to-do list.</p>
+
+<p>This module implements the data stored in a to-do list, including
+   data for each task.</p>
+
+<pre><code><span id="TYPEtask"><span class="keyword">type</span> <code class="type"></code>task</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtask.name">name</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtask.created_date">created_date</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtask.due_date">due_date</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtask.priority">priority</span>&nbsp;: <code class="type">int</code>;</code></td>
+
+</tr></table>
+<code>}</code>
+
+<div class="info ">
+<div class="info-desc">
+<p>The abstract type representing one task of the to-do list</p>
+
+<p>The abstract type representing one task of the to-do list</p>
+</div>
+</div>
+
+
+<pre><code><span id="TYPEt"><span class="keyword">type</span> <code class="type"></code>t</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTt.c_name">c_name</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTt.task_list">task_list</span>&nbsp;: <code class="type"><a href="Manual.html#TYPEtask">task</a> list</code>;</code></td>
+
+</tr></table>
+<code>}</code>
+
+<div class="info ">
+<div class="info-desc">
+<p>The type representing a to-do list. Type is <code class="code">task list</code></p>
+
+<p>The abstract type representing a to-do list.</p>
+</div>
+</div>
+
+
+<pre><span id="EXCEPTIONInvalidTask"><span class="keyword">exception</span> InvalidTask</span></pre>
+<div class="info ">
+<div class="info-desc">
+<p>Raised when an invalid task is encountered.</p>
+
+<p>Raised when an invalid task is encountered.</p>
+</div>
+</div>
+
+<pre><span id="EXCEPTIONTaskNotFound"><span class="keyword">exception</span> TaskNotFound</span> <span class="keyword">of</span> <code class="type">string</code></pre>
+<div class="info ">
+<div class="info-desc">
+<p>Raised when an unknown task is encountered.</p>
+
+<p>Raised when a task is not found.</p>
+</div>
+</div>
+
+<pre><span id="EXCEPTIONCategoryNotFound"><span class="keyword">exception</span> CategoryNotFound</span> <span class="keyword">of</span> <code class="type">string</code></pre>
+<div class="info ">
+<div class="info-desc">
+<p>Raised when a category is not found.</p>
+
+<p>Raised when a category is not found.</p>
+</div>
+</div>
+
+<pre><span id="VALcategories"><span class="keyword">val</span> categories</span> : <code class="type"><a href="Manual.html#TYPEt">t</a> list Stdlib.ref</code></pre>
+<pre><span id="VALaccess_cat"><span class="keyword">val</span> access_cat</span> : <code class="type">?cat:<a href="Manual.html#TYPEt">t</a> list Stdlib.ref -> unit -> <a href="Manual.html#TYPEt">t</a> list</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">access_cat ()</code> allows the user to view the entire to-do list.</p>
+</div>
+</div>
+
+<pre><span id="VALempty_cat"><span class="keyword">val</span> empty_cat</span> : <code class="type">unit -> 'a list Stdlib.ref</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">empty_cat ()</code> initializes an empty category list.</p>
+</div>
+</div>
+
+<pre><span id="VALtodays_date"><span class="keyword">val</span> todays_date</span> : <code class="type">unit -> string</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">todays_date ()</code> is today's date in string form.</p>
+</div>
+</div>
+
+<pre><span id="VALinit_task"><span class="keyword">val</span> init_task</span> : <code class="type">string -> string -> int -> <a href="Manual.html#TYPEtask">task</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">init_task name due_date priority</code> initializes a task with 
+    name <code class="code">name</code>, created date (made automatically with <code class="code">todays_date()</code>, 
+    due date <code class="code">due_date</code>, and priority <code class="code">priority</code></p>
+</div>
+</div>
+
+<pre><span id="VALinit_todolist"><span class="keyword">val</span> init_todolist</span> : <code class="type">string -> <a href="Manual.html#TYPEtask">task</a> list -> <a href="Manual.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">init_todolist name task_list</code> initializes a to-do list with name <code class="code">name</code> 
+    and task list <code class="code">lst</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALempty_list"><span class="keyword">val</span> empty_list</span> : <code class="type">string -> <a href="Manual.html#TYPEt">t</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">empty_list cat_name</code> initializes an empty to-do list with category name 
+    <code class="code">cat_name</code>.</p>
+</div>
+</div>
+
+<pre><span id="VALadd_task"><span class="keyword">val</span> add_task</span> : <code class="type"><a href="Manual.html#TYPEt">t</a> -> <a href="Manual.html#TYPEtask">task</a> -> <a href="Manual.html#TYPEt">t</a></code></pre>
+<pre><span id="VALadd_new_cat"><span class="keyword">val</span> add_new_cat</span> : <code class="type">?cat:<a href="Manual.html#TYPEt">t</a> list Stdlib.ref -> <a href="Manual.html#TYPEt">t</a> -> unit</code></pre>
+<pre><span id="VALfind_category"><span class="keyword">val</span> find_category</span> : <code class="type">?cat:<a href="Manual.html#TYPEt">t</a> list Stdlib.ref -> string -> <a href="Manual.html#TYPEt">t</a></code></pre>
+<pre><span id="VALremove_cat"><span class="keyword">val</span> remove_cat</span> : <code class="type"><a href="Manual.html#TYPEt">t</a> -> <a href="Manual.html#TYPEt">t</a> list -> <a href="Manual.html#TYPEt">t</a> list</code></pre>
+<pre><span id="VALpriority_compare"><span class="keyword">val</span> priority_compare</span> : <code class="type"><a href="Manual.html#TYPEtask">task</a> -> <a href="Manual.html#TYPEtask">task</a> -> int</code></pre>
+<pre><span id="VALget_month_due"><span class="keyword">val</span> get_month_due</span> : <code class="type"><a href="Manual.html#TYPEtask">task</a> -> int</code></pre>
+<pre><span id="VALget_day_due"><span class="keyword">val</span> get_day_due</span> : <code class="type"><a href="Manual.html#TYPEtask">task</a> -> int</code></pre>
+<pre><span id="VALget_year_due"><span class="keyword">val</span> get_year_due</span> : <code class="type"><a href="Manual.html#TYPEtask">task</a> -> int</code></pre>
+<pre><span id="VALdate_compare"><span class="keyword">val</span> date_compare</span> : <code class="type"><a href="Manual.html#TYPEtask">task</a> -> <a href="Manual.html#TYPEtask">task</a> -> int</code></pre>
+<pre><span id="VALsort_by_priority"><span class="keyword">val</span> sort_by_priority</span> : <code class="type">?cat:<a href="Manual.html#TYPEt">t</a> list Stdlib.ref -> string -> unit</code></pre>
+<pre><span id="VALsort_by_date"><span class="keyword">val</span> sort_by_date</span> : <code class="type">?cat:<a href="Manual.html#TYPEt">t</a> list Stdlib.ref -> string -> unit</code></pre>
+<pre><span id="VALsort_list"><span class="keyword">val</span> sort_list</span> : <code class="type">?cat:<a href="Manual.html#TYPEt">t</a> list Stdlib.ref -> string -> string -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">sort_list cat_name</code> sorts a to-do list with category <code class="code">name</code> by <code class="code">sort_by</code>
+    of tasks. 
+    Requires: <code class="code">sort_by</code> must either be Priority or Due Date</p>
+</div>
+</div>
+
+<pre><span id="VALcreate_task"><span class="keyword">val</span> create_task</span> : <code class="type">?cat:<a href="Manual.html#TYPEt">t</a> list Stdlib.ref -> string -> string -> string -> int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">create_task cat_name name due_date priority</code> updates the to-do
+    list with name <code class="code">cat_name</code> with the new task <code class="code">name due_date priority</code>. 
+    If category name <code class="code">cat_name</code> does not already exist, a new category with 
+    <code class="code">cat_name</code> is created with task <code class="code">name created_date due_date priority</code> 
+    in the task list.</p>
+</div>
+</div>
+
+<pre><span id="VALfind_task"><span class="keyword">val</span> find_task</span> : <code class="type"><a href="Manual.html#TYPEt">t</a> -> string -> <a href="Manual.html#TYPEtask">task</a></code></pre>
+<pre><span id="VALremove_task_newlst"><span class="keyword">val</span> remove_task_newlst</span> : <code class="type">'a list -> 'a -> 'a list -> 'a list</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">remove_task tsklst task nlst</code> returns a new task list without <code class="code">task</code></p>
+</div>
+</div>
+
+<pre><span id="VALremove"><span class="keyword">val</span> remove</span> : <code class="type"><a href="Manual.html#TYPEt">t</a> -> <a href="Manual.html#TYPEtask">task</a> -> <a href="Manual.html#TYPEt">t</a></code></pre>
+<pre><span id="VALcomplete_task"><span class="keyword">val</span> complete_task</span> : <code class="type">?cat:<a href="Manual.html#TYPEt">t</a> list Stdlib.ref -> string -> string -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">complete_task t task</code> is an updated completed to-do list with name
+    <code class="code">cat_name</code> with completed task named <code class="code">task_name</code> added to it.</p>
+
+<p>Raises <code class="code">TaskNotFound task_name</code> if a task with name <code class="code">task_name</code> is not found
+    in the to-do list. 
+    Raises <code class="code">CategoryNotFound cat_name</code> if a category with name <code class="code">cat_name</code> is not
+    found in the to-do list.</p>
+</div>
+</div>
+
+<pre><span id="VALdelete_task"><span class="keyword">val</span> delete_task</span> : <code class="type">?cat:<a href="Manual.html#TYPEt">t</a> list Stdlib.ref -> string -> string -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">delete_task t task</code> is an updated to-do list with task with name 
+    <code class="code">task_name </code> deleted from category with name <code class="code">cat_name</code>.</p>
+
+<p>Raises <code class="code">TaskNotFound task_name</code> if a task with name <code class="code">task_name</code> is not found
+    in the to-do list. 
+    Raises <code class="code">CategoryNotFound cat_name</code> if a category with name <code class="code">cat_name</code> is not
+    found in the to-do list.</p>
+</div>
+</div>
+
+<pre><span id="VALto_list_helper"><span class="keyword">val</span> to_list_helper</span> : <code class="type"><a href="Manual.html#TYPEtask">task</a> list -> string list -> string list</code></pre>
+<pre><span id="VALto_list"><span class="keyword">val</span> to_list</span> : <code class="type">?cat:<a href="Manual.html#TYPEt">t</a> list Stdlib.ref -> string -> string list</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">to_list cat_name</code> is a list containing the same elements and the same 
+    category name <code class="code">cat_name</code> as the category with name <code class="code">cat_name</code>.</p>
+
+<p>Raises <code class="code">CategoryNotFound cat_name</code> if a category with name <code class="code">cat_name</code> is not
+    found in the to-do list.</p>
+</div>
+</div>
+
+<pre><span id="VALchange_name"><span class="keyword">val</span> change_name</span> : <code class="type">?cat:<a href="Manual.html#TYPEt">t</a> list Stdlib.ref -> string -> string -> string -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">change_name cat_name task_name new_name</code> changes the name of the 
+    task with name <code class="code">task_name</code> in the category with name <code class="code">cat_name</code> from old 
+    name <code class="code">task_name</code> to new name <code class="code">new_name</code>.</p>
+
+<p>Raises <code class="code">TaskNotFound task_name</code> if a task with name <code class="code">task_name</code> is not found
+    in the to-do list. 
+    Raises <code class="code">CategoryNotFound cat_name</code> if a category with name <code class="code">cat_name</code> is not
+    found in the to-do list.</p>
+</div>
+</div>
+
+<pre><span id="VALchange_due_date"><span class="keyword">val</span> change_due_date</span> : <code class="type">?cat:<a href="Manual.html#TYPEt">t</a> list Stdlib.ref -> string -> string -> string -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">change_due_date cat_name task_name new_date</code> changes the due date of the 
+    task with name <code class="code">task_name</code> in the category with name <code class="code">cat_name</code> from old 
+    due date to <code class="code">new_date</code>.</p>
+
+<p>Raises <code class="code">TaskNotFound task_name</code> if a task with name <code class="code">task_name</code> is not found
+    in the to-do list. 
+    Raises <code class="code">CategoryNotFound cat_name</code> if a category with name <code class="code">cat_name</code> is not
+    found in the to-do list.</p>
+</div>
+</div>
+
+<pre><span id="VALchange_priority"><span class="keyword">val</span> change_priority</span> : <code class="type">?cat:<a href="Manual.html#TYPEt">t</a> list Stdlib.ref -> string -> string -> int -> unit</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">change_priority cat_name task_name new_priority</code> changes the priority of 
+    the task with <code class="code">task_name</code> in the category with name <code class="code">cat_name</code> from 
+    old priority to <code class="code">new_priority</code>.</p>
+
+<p>Raises <code class="code">TaskNotFound task_name</code> if a task with name <code class="code">task_name</code> is not found
+    in the to-do list. 
+    Raises <code class="code">CategoryNotFound cat_name</code> if a category with name <code class="code">cat_name</code> is not
+    found in the to-do list.</p>
+</div>
+</div>
+
+<pre><span id="VALtodays_tasks"><span class="keyword">val</span> todays_tasks</span> : <code class="type">unit -> 'a</code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">todays_tasks</code> is a task list containing all of the tasks due today</p>
+</div>
+</div>
+</body></html>
