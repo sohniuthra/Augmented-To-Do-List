@@ -724,12 +724,13 @@ let change2 = change_due_auto ~cat:cat "Car Tasks" "Change Radiator Fluid"
 let change_auto_due_tests2 = [
   update_cat_test_auto "Change due date of 2 tasks in the same category" cat 
     "Car Tasks"
-    ["Car Tasks"; "Change Radiator Fluid"; todays_date ();
-     "11/30/2020"; "7"; "Go to Car Wash"; 
-     todays_date (); "12/20/2020"; "4"; "Change Battery"; todays_date ();
-     "TBD"; "6"; "Change Brake Pads"; todays_date (); "TBD"; "5"; 
-     "Go for Emissions Test"; todays_date ();
-     "TBD"; "3"; "Change Steering Fluid"; todays_date (); "TBD"; "2"; 
+    ["Car Tasks"; 
+     "Change Radiator Fluid"; todays_date (); "11/30/2020"; "7";
+     "Go to Car Wash"; todays_date (); "12/20/2020"; "4";
+     "Change Battery"; todays_date (); "TBD"; "6";
+     "Change Brake Pads"; todays_date (); "TBD"; "5"; 
+     "Go for Emissions Test"; todays_date ();"TBD"; "3";
+     "Change Steering Fluid"; todays_date (); "TBD"; "2"; 
      "Change Oil"; todays_date (); "TBD"; "1"]
 ]
 

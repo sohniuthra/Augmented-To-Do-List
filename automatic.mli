@@ -1,16 +1,16 @@
 (** 
-   Representation of a automatic to-do list.
+   Representation of an automatic to-do list.
 
    This module represents the data stored in an automatic to-do list, 
-   where each task is predetermined, including
-   data for each task.
+   where each task is predetermined, including data for each task (the user
+   does have an option to add additional tasks, though).
 *)
 
 (** The abstract type representing one task of the automatic to-do list *)
 type task
 
-(** The abstract type representing an automatic to-do list. 
-    Tasks should be inserted without user input*)
+(** The abstract type representing an automatic to-do list. Tasks are intially
+    inserted without user input. *)
 type t 
 
 (** Raised when an invalid task is encountered. *)

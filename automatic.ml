@@ -167,8 +167,7 @@ let make_completed_auto ?(cat=categories) () =
   completed_list ~cat:cat ()
 
 let del_task t task =
-  let new_task_list = List.filter (fun x -> x.name <> task.name) t.task_list 
-  in 
+  let new_task_list = List.filter (fun x -> x.name <> task.name) t.task_list in
   {c_name = t.c_name; task_list = new_task_list}
 
 let find_task cat task_name =
@@ -215,35 +214,49 @@ let complete_task_auto ?(cat=categories) cat_name task_name =
   with Not_found -> raise (CategoryNotFound cat_name)
 
 let change_priority_auto ?(cat=categories) cat_name task_name new_priority =
-  let category = find_category ~cat:cat cat_name in
-  let old_task =  find_task category task_name in
-  let date = old_task.due_date in 
-  let new_t = del_task category old_task in
-  let new_task = init_task task_name date new_priority in
-  let new_cat = add_task new_t new_task in
-  cat := (new_cat :: (remove_cat category !cat))
+  try
+    let category = find_category ~cat:cat cat_name in
+    try
+      let old_task =  find_task category task_name in
+      let date = old_task.due_date in 
+      let new_t = del_task category old_task in
+      let new_task = init_task task_name date new_priority in
+      let new_cat = add_task new_t new_task in
+      cat := (new_cat :: (remove_cat category !cat))
+    with Not_found -> raise (TaskNotFound task_name)
+  with Not_found -> raise (CategoryNotFound cat_name)
 
 let change_due_auto ?(cat=categories) cat_name task_name new_date =
-  let category = find_category ~cat:cat cat_name in
-  let old_task =  find_task category task_name in
-  let priority = old_task.priority in 
-  let new_t = del_task category old_task in
-  let new_task = init_task task_name new_date priority in
-  let new_cat = add_task new_t new_task in
-  cat := (new_cat :: (remove_cat category !cat))
+  try
+    let category = find_category ~cat:cat cat_name in
+    try
+      let old_task =  find_task category task_name in
+      let priority = old_task.priority in 
+      let new_t = del_task category old_task in
+      let new_task = init_task task_name new_date priority in
+      let new_cat = add_task new_t new_task in
+      cat := (new_cat :: (remove_cat category !cat))
+    with Not_found -> raise (TaskNotFound task_name)
+  with Not_found -> raise (CategoryNotFound cat_name)
 
 let change_name_auto ?(cat=categories) cat_name task_name new_name =
-  let category = find_category ~cat:cat cat_name in
-  let old_task =  find_task category task_name in
-  let priority = old_task.priority in 
-  let date = old_task.due_date in
-  let new_t = del_task category old_task in
-  let new_task = init_task new_name date priority in
-  let new_cat = add_task new_t new_task in
-  cat := (new_cat :: (remove_cat category !cat))
+  try 
+    let category = find_category ~cat:cat cat_name in
+    try
+      let old_task =  find_task category task_name in
+      let priority = old_task.priority in 
+      let date = old_task.due_date in
+      let new_t = del_task category old_task in
+      let new_task = init_task new_name date priority in
+      let new_cat = add_task new_t new_task in
+      cat := (new_cat :: (remove_cat category !cat))
+    with Not_found -> raise (TaskNotFound task_name)
+  with Not_found -> raise (CategoryNotFound cat_name)
 
 let delete_cat_auto ?(cat=categories) cat_name =
-  cat := List.filter (fun x -> x.c_name <> cat_name) (!cat)
+  try
+    cat := List.filter (fun x -> x.c_name <> cat_name) (!cat)
+  with Not_found -> raise (CategoryNotFound cat_name)
 
 let reset_car ?(cat=categories) () = 
   delete_cat_auto ~cat:cat "Car Tasks"; 
@@ -286,5 +299,7 @@ let rec to_list_helper cat_list acc =
       (acc @ [name; created_date; due_date; string_of_int priority])
 
 let to_list_auto ?(cat=categories) cat_name =
-  let cat = find_category ~cat:cat cat_name in  
-  [cat_name] @ (to_list_helper cat.task_list [])
+  try
+    let cat = find_category ~cat:cat cat_name in  
+    [cat_name] @ (to_list_helper cat.task_list [])
+  with Not_found -> raise (CategoryNotFound cat_name)
