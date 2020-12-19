@@ -97,7 +97,7 @@ let rec draw_basic () =
   fill_rect 299 459 72 15;
   moveto 300 460;
   set_color black;
-  draw_string "Appointments - NOT DONE YET";
+  draw_string "Appointments";
   set_color blue;
   moveto 10 440;
   draw_string "Press t to create a new task"; 
@@ -160,22 +160,25 @@ let draw_appointments () =
   draw_string "Press c to complete an appointment"; 
   moveto 10 410;
   draw_string "Press d to delete an appointment";
+  moveto 10 395;
+  draw_string "To add or change a location or notes to an appointment, \
+               click on that field";
   moveto 520 460;
   set_color red;
   draw_string "Press q to quit";
   set_color black;
-  moveto 10 380;
+  moveto 10 365;
   draw_string "Name";
-  moveto 150 380;
+  moveto 150 365;
   draw_string "Date";
-  moveto 225 380;
+  moveto 225 365;
   draw_string "Time";
-  moveto 300 380;
+  moveto 300 365;
   draw_string "Location";
-  moveto 425 380; 
+  moveto 425 365; 
   draw_string "Notes";
   is_todo := false;
-  moveto 10 395
+  moveto 10 380
 
 (** [string_input str] produces a string from anything that the user types 
     before pressing enter *)
@@ -527,7 +530,7 @@ let reset_gui_auto () =
 
 
 let rec draw_appo a =
-  if current_y () > 365 then moveto 10 365; 
+  if current_y () > 350 then moveto 10 350; 
   let y = current_y () in  
   match a with 
   | [] -> ()
@@ -545,6 +548,7 @@ let rec draw_appo a =
   | _ -> ()
 
 let rec draw_appo_lst a =
+  set_color black;
   match a with 
   | [] -> ()
   | t::d::m::l::n::tail -> draw_appo (t::d::m::l::n::[""]); 
@@ -599,6 +603,35 @@ let delete_app_gui () =
   let title = (string_input "") in
   draw_appointments ();
   Appointments.delete_app ~appo:apps title;
+  let app_lst = Appointments.to_list_alt ~appo:apps () in 
+  draw_appo_lst app_lst
+
+let find_app_name y = 
+  let app_lst = Appointments.to_list_alt ~appo:apps () in 
+  let num_apps = (List.length app_lst) / 5 in 
+  let lower_bound = 365 - 15 * num_apps in 
+  if y < lower_bound then failwith "out of bounds"
+  else let plc = (y - 5) / 15 in 
+    let n = 23 - plc in 
+    List.nth app_lst (n * 5)
+
+let info_gui y =
+  draw_appointments ();
+  set_color red;
+  draw_string "What information do you want to add?";
+  let info = (string_input "") in
+  Appointments.add_app_info ~appo:apps (find_app_name y) info;
+  draw_appointments ();
+  let app_lst = Appointments.to_list_alt ~appo:apps () in 
+  draw_appo_lst app_lst
+
+let loc_gui y =
+  draw_appointments ();
+  set_color red;
+  draw_string "What location do you want to add?";
+  let loc = (string_input "") in
+  Appointments.add_location ~appo:apps (find_app_name y) loc;
+  draw_appointments ();
   let app_lst = Appointments.to_list_alt ~appo:apps () in 
   draw_appo_lst app_lst
 
@@ -666,6 +699,14 @@ let rec loop () =
     then delete_app_gui ()
     else () in 
 
+  let add_info = if e.mouse_x > 424 && e.mouse_x < 640 && e.mouse_y < 365 
+                    && e.button && (not !is_todo) 
+    then info_gui (e.mouse_y) in
+
+  let add_loc = if e.mouse_x > 299 && e.mouse_x < 425 && e.mouse_y < 365 
+                   && e.button && (not !is_todo) 
+    then loc_gui (e.mouse_y) in
+
   new_task;
   comp_task;
   del_task;
@@ -681,6 +722,8 @@ let rec loop () =
   new_app;
   complete_app;
   delete_app;
+  add_info;
+  add_loc;
 
   if e.key <> 'q' then loop () else ()
 
