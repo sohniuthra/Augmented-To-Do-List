@@ -330,6 +330,7 @@ let sort_gui () =
 
 let make_auto () =
   set_color red;
+  moveto 10 320;
   draw_string "Type what kind of automatic list you want: car, school, \
                household, shopping, pandemic";
   let auto_choice = string_input "" in 
@@ -390,18 +391,18 @@ let find_task y : string list =
   then (let cat_lst_form = Automatic.to_list_auto ~cat:auto_cat !viewed_cat in 
         let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
         let num_tasks = List.length cat_lst_lst in 
-        let lower_bound = 335 - 15 * num_tasks in 
+        let lower_bound = 305 - 15 * num_tasks in 
         if y < lower_bound then failwith "out of bounds" 
         else let plc = (y - 5) / 15 in 
-          let n = 21 - plc in 
+          let n = 19 - plc in 
           List.nth cat_lst_lst n)
   else (let cat_lst_form = Manual.to_list ~cat:cat !viewed_cat in 
         let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
         let num_tasks = List.length cat_lst_lst in 
-        let lower_bound = 335 - 15 * num_tasks in 
+        let lower_bound = 305 - 15 * num_tasks in 
         if y < lower_bound then failwith "out of bounds" 
         else let plc = (y - 5) / 15 in 
-          let n = 21 - plc in 
+          let n = 19 - plc in 
           List.nth cat_lst_lst n)
 
 let change_dd y = 
@@ -454,15 +455,25 @@ let change_name y =
   draw_basic ();
   moveto 10 320;
   set_color red;
-  draw_string "What do you want the new task name to be?";
+  draw_string "What do you want the new name to be?";
   let new_name = string_input "" in 
   let task_changing = find_task y in 
-  Automatic.change_name_auto ~cat:auto_cat (List.nth task_changing 0) 
-    (List.nth task_changing 1) (new_name);
-  let cat_lst_form = Automatic.to_list_auto ~cat:auto_cat !viewed_cat in 
-  let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
-  draw_basic ();
-  draw_task_list cat_lst_lst
+  if !viewed_cat = "Car Tasks" || !viewed_cat = "School Tasks" || 
+     !viewed_cat = "Household Tasks" || !viewed_cat = "Shopping Tasks" || 
+     !viewed_cat = "Pandemic Tasks" 
+  then (Automatic.change_name_auto ~cat:auto_cat (List.nth task_changing 0) 
+          (List.nth task_changing 1)  new_name;
+        let cat_lst_form = Automatic.to_list_auto ~cat:auto_cat !viewed_cat in 
+        let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
+        draw_basic ();
+        draw_task_list cat_lst_lst)
+  else (Manual.change_name ~cat:cat (List.nth task_changing 0) 
+          (List.nth task_changing 1) new_name;
+        let cat_lst_form = Manual.to_list ~cat:cat !viewed_cat in 
+        let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
+        draw_basic ();
+        draw_task_list cat_lst_lst)
+
 
 
 let rec draw_appo a =
@@ -586,14 +597,7 @@ let rec loop () =
     then change_pri (e.mouse_y) in 
 
   let change_name = if e.mouse_x > 149 && e.mouse_x < 301 && e.mouse_y < 335 
-                       && e.button && !is_todo && (!viewed_cat = "Car Tasks" || 
-                                                   !viewed_cat = "School Tasks" 
-                                                   || !viewed_cat = 
-                                                      "Household Tasks" || 
-                                                   !viewed_cat = 
-                                                   "Shopping Tasks" || 
-                                                   !viewed_cat = 
-                                                   "Pandemic Tasks")
+                       && e.button && !is_todo 
     then change_name (e.mouse_y) in
 
   let new_app = if e.key = 'n' && (not !is_todo)
