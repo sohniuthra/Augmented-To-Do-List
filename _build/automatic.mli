@@ -31,9 +31,8 @@ val access_cat : ?cat:(t list ref) -> unit -> t list
 (** [todays_date ()] is today's date in string form. *)
 val todays_date : unit -> string
 
-(** [init_task name due_date priority] initializes a task with 
-    name [name], created date (made automatically with [todays_date()], 
-    due date [due_date], and priority [priority] *)
+(** [init_task n d p] initializes a task with name [n], created date (made 
+    automatically with [todays_date()], due date [d], and priority [p] *)
 val init_task : string -> string -> int -> task
 
 (** [make_auto ()] is the automatic to-do list. The user does not need to input 
@@ -64,68 +63,58 @@ val make_pandemic_auto : ?cat:(t list ref) -> unit -> unit
     tasks category. *)
 val make_completed_auto : ?cat:(t list ref) -> unit -> unit
 
-(** [delete_task_auto cat_name task_name] allows the user to delete a task with 
-    name [task_name] out of a category [cat_name] in the automatic list. 
-
-    Raises [TaskNotFound task_name] if a task with name [task_name] is not found
-    in the to-do list. 
-    Raises [CategoryNotFound cat_name] if a category with name [cat_name] is not
-    found in the to-do list. *)
+(** [delete_task_auto c t] allows the user to delete a task with name [t] out 
+    of a category with name [c] in the automatic list. 
+    Raises [TaskNotFound t] if a task with name [t] is not found in the 
+    category with name [c]. 
+    Raises [CategoryNotFound c] if a category with name [c] is not
+    found in the list of categories. *)
 val delete_task_auto : ?cat:(t list ref) -> string -> string -> unit 
 
-(** [create_task cat_name task_name due_date priority] updates the to-do
-    list with name [cat_name] with the new task [task_name due_date priority].
-
-    Raises [CategoryNotFound cat_name] if a category with name [cat_name] is not
-    found in the to-do list. *)
+(** [create_task c t d p] updates the category with name [c] with the new task 
+    created by [init_task t d p].
+    Raises [CategoryNotFound c] if a category with name [c] is not
+    found in the list of categories. *)
 val create_task_auto : ?cat:(t list ref) -> string -> string -> string -> int -> 
   unit 
 
-(** [complete_task cat_name task_name] adds the task with name [task_name] in 
-    category with name [cat_name] to the completed category, and removes the
-    task from the orginal category with name [cat_name].
-
-    Raises [TaskNotFound task_name] if a task with name [task_name] is not found
-    in the to-do list. 
-    Raises [CategoryNotFound cat_name] if a category with name [cat_name] is not
-    found in the to-do list. *)
+(** [complete_task c t] adds the task with name [t] in category with name [c] 
+    to the completed category, and removes the task from the orginal category 
+    with name [c].
+    Raises [TaskNotFound t] if a task with name [t] is not found in the 
+    category with name [c]. 
+    Raises [CategoryNotFound cat_name] if a category with name [c] is not
+    found in the list of categories. *)
 val complete_task_auto : ?cat:(t list ref) -> string -> string -> unit
 
-(** [change_priority cat_name task_name new_priority] updates the task with name 
-    [task_name] in category with name [cat_name] to have a new priority 
-    [new_priority].
-
-    Raises [TaskNotFound task_name] if a task with name [task_name] is not found
-    in the to-do list. 
-    Raises [CategoryNotFound cat_name] if a category with name [cat_name] is not
-    found in the to-do list. *)
+(** [change_priority c t p] updates the task with name [t] in category with 
+    name [c] to have a new priority [p].
+    Raises [TaskNotFound t] if a task with name [t] is not found in the 
+    category with name [c]. 
+    Raises [CategoryNotFound c] if a category with name [c] is not
+    found in the list of categories. *)
 val change_priority_auto : ?cat:(t list ref) -> string -> string -> int ->  unit
 
-(** [change_due cat_name task_name new_date] updates the task with name 
-    [task_name] in category with name [cat_name] to have a new due date 
-    [new_date].
-
-    Raises [TaskNotFound task_name] if a task with name [task_name] is not found
-    in the to-do list. 
-    Raises [CategoryNotFound cat_name] if a category with name [cat_name] is not
-    found in the to-do list. *)
+(** [change_due c t d] updates the task with name [t] in category with name [c] 
+    to have a new due date [d].
+    Raises [TaskNotFound t] if a task with name [t] is not found in the 
+    category with name [c]. 
+    Raises [CategoryNotFound c] if a category with name [c] is not
+    found in the list of categories. *)
 val change_due_auto : ?cat:(t list ref) -> string -> string -> string ->  unit
 
-(** [change_name cat_name task_name new_name] updates the task with name 
-    [task_name] in category with name [cat_name] to have a new name
-    [new_name].
-
-    Raises [TaskNotFound task_name] if a task with name [task_name] is not found
-    in the to-do list. 
-    Raises [CategoryNotFound cat_name] if a category with name [cat_name] is not
-    found in the to-do list. *)
+(** [change_name c t n] updates the task with name [t] in category with name [
+    c] to have a new name [n].
+    Raises [TaskNotFound t] if a task with name [t] is not found in the 
+    category with name [c]. 
+    Raises [CategoryNotFound c] if a category with name [c] is not
+    found in the list of categories. *)
 val change_name_auto : ?cat:(t list ref) -> string -> string -> string ->  unit
 
-(** [delete_cat_auto cat_name] updates the to-do list by deleting the category
-    with name [cat_name].
-
-    Raises [CategoryNotFound cat_name] if a category with name [cat_name] is not
-    found in the to-do list. *)
+(** [delete_cat_auto c] updates the to-do list by deleting the category
+    with name [c].
+    Raises [CategoryNotFound c] if a category with name [c] is not
+    found in the list of categories. *)
 val delete_cat_auto : ?cat:(t list ref) -> string -> unit
 
 (** [reset_car ()] resets the car category of the automatic to-do list to
@@ -157,11 +146,11 @@ val reset_completed : ?cat:(t list ref) -> unit -> unit
     is reset to an empty task list. *)
 val reset_all_cat : ?cat:(t list ref) -> unit -> unit
 
-(** [to_list cat_name] is a list containing the same elements and the same 
-    category name [cat_name] as the category with name [cat_name].
+(** [to_list_auto c] is a list containing the same elements and the same 
+    category name [c] as the category with name [c].
 
-    Raises [CategoryNotFound cat_name] if a category with name [cat_name] is not
-    found in the to-do list. *)
+    Raises [CategoryNotFound c] if a category with name [cat_name] is not
+    found in the list of categories. *)
 val to_list_auto : ?cat:(t list ref) -> string ->  string list
 
 (** Function for user to be able to complete task and put it in a

@@ -6,7 +6,7 @@
 *)
 open Manual
 
-
+(** The abstract type representing one appointment of an appointment book. *)
 type app = {
   title : string;
   app_date : string;
@@ -18,21 +18,31 @@ type app = {
 
 let appointments = ref []
 
+
+(** A ref variable that should only ever have one appointment at a time. *)
 let one_app = ref []
+
 
 let empty_appo () = ref []
 
+
 let empty_finder () = ref []
 
+
 let access_app ?(appo=appointments) () = !appo
+
 
 let delete_app ?(appo=appointments) app_title =
   let new_list = List.filter (fun x -> x.title <> app_title) (!appo) in 
   appo := new_list
 
+
+(** Helper function used in [to_list_find] to delete an app from
+    the specific ref [one_app]*)
 let delete_app_find ?(one=one_app) app_title =
   let new_list = List.filter (fun x -> x.title <> app_title) (!one) in 
   one := new_list
+
 
 let add_app ?(appo=appointments) title date time = 
   let new_app = {title = title; app_date = date; time = time ;
@@ -40,9 +50,13 @@ let add_app ?(appo=appointments) title date time =
   appo := new_app :: (!appo)
 
 
-(* HELPER FUNCTION TO OTHER THINGS *)
+
+(* Helper function used in several functions below to find a specific 
+   appointment when the appointments are dereferenced.*)
 let find_app appo app_title =
   List.find (fun x -> x.title = app_title) appo
+
+
 
 let find_app_user ?(one=one_app) ?(appo=appointments) app_title =
   let correct_app = List.find (fun x -> x.title = app_title) (!appo) in 
@@ -55,6 +69,7 @@ let complete_app ?(appo=appointments) app_title =
   delete_app ~appo:appo app.title
 
 
+
 let add_app_info ?(appo=appointments) app_title info = 
   let app = find_app (!appo) app_title in 
   let new_app = {title = app.title; app_date = app.app_date; time = app.time;
@@ -62,11 +77,13 @@ let add_app_info ?(appo=appointments) app_title info =
   delete_app ~appo:appo app.title; (appo := new_app :: (!appo))
 
 
+
 let add_location ?(appo=appointments) app_title loc = 
   let app = find_app (!appo) app_title in 
   let new_app = {title = app.title; app_date = app.app_date; time = app.time;
                  location = loc; notes = app.notes} in 
   delete_app ~appo:appo app.title; (appo := new_app :: (!appo))
+
 
 
 let rec to_list_app ?(appo=appointments) acc =
@@ -78,6 +95,7 @@ let rec to_list_app ?(appo=appointments) acc =
       (acc @ [title; app_date; time; location; notes])
 
 
+
 let rec to_list_find ?(one=one_app) acc =
   match (!one) with
   | [] -> acc
@@ -86,13 +104,3 @@ let rec to_list_find ?(one=one_app) acc =
     to_list_find ~one:one 
       (acc @ [title; app_date; time; location; notes])
 
-
-let rec to_list_helper app_lst acc =
-  match app_lst with 
-  | [] -> acc 
-  | {title; app_date; time; location; notes} :: t -> 
-    to_list_helper t (acc @ [title; app_date; time; location; notes])
-
-
-let to_list_alt ?(appo=appointments) () = 
-  to_list_helper !appo []

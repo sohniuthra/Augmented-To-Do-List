@@ -47,21 +47,22 @@ val add_app_info : ?appo:(app list ref) -> string -> string -> unit
 val add_location : ?appo:(app list ref) -> string -> string -> unit
 
 
-(**  *)
+(** [to_list_app a] creates a list representation with each appointment name 
+    and all the data associated with each appointment. *)
 val to_list_app : ?appo:(app list ref) -> string list -> string list
 
-
-
-val to_list_find : ?one:(app list ref) -> string list -> string list
-
-
-
-val find_app_user : ?one:(app list ref) -> ?appo:(app list ref) -> string -> unit
-
-
-
+(** [empty_finder ()] creates a pointer to assist in finding the specific
+    appoinment a user wants. *)
 val empty_finder : unit -> app list ref 
 
 
+(** [find_app_user t] finds the appointment with name [t] and its associated 
+    data.*)
+val find_app_user : ?one:(app list ref) -> ?appo:(app list ref) -> 
+  string -> unit
 
-val to_list_alt : ?appo:(app list ref) -> unit -> string list
+
+(** [to_list_find creates a list representation with the specific user-desired
+    appointment from function [find_app_user t] and the data associated with 
+    it.*)
+val to_list_find : ?one:(app list ref) -> string list -> string list

@@ -6,22 +6,20 @@ open Appointments
 (** TESTING PLAN: We tested every function documented in Manual.mli, 
     Automatic.mli, and Appointments.mli except for a few omitted functions.
 
-    From Automatic.mli, we omitted directly testing make_auto, make_car_auto,
-    make_school_auto, make_shopping_auto, make_household_auto, and 
-    make_pandemic_auto because these functions were used to create the
-    automatic to-do list categories in our test cases, and we used these
-    categories to test the main functionality for automatic to-do lists. From
-    Automatic.mli, we omitted directly testing empty_cat_auto, todays_date, 
-    init_task, and access_cat because they were all indirectly tested with other
-    functions. From Automatic.mli, to_list_auto was also not tested because it
-    was used in the test file to create a meaningful representation of
-    appointments to be compared with expected_output.
-
-
+    From Automatic.mli, we omitted directly 
+    testing make_auto, make_car_auto, make_school_auto, make_shopping_auto, 
+    make_household_auto, and make_pandemic_auto because these functions were 
+    used to create the automatc to-do list categories in our test cases, and we 
+    used these categories to test the main functionality for automatic to-do
+    lists. From Automatic.mli, we omitted testing 
+    empty_cat_auto, todays_date, init_task, and access_cat because they were all 
+    indirectly tested with other functions. From Automatic.mli, to_list_auto was also not tested 
+    because it was used in the test file to create a meaningful representation
+     of appointments to be compared with expected_output.
     From Manual.mli, we omitted testing access_cat, empty_cat, todays_date,
     init_task, init_todolist, and empty_list because they were all indirectly
-     tested with other functions. From Manual.mli, to_list was also not tested 
-     because it was used in the test file to create a meaningful representation
+     tested with other functions. From Manual.mli, to_list was also not tested because it was
+     used in the test file to create a meaningful representation
      of appointments to be compared with expected_output. 
 
      From Appointments.ml, the functions not tested
