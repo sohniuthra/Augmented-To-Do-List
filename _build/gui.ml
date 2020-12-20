@@ -160,19 +160,27 @@ let task_input () =
 (** [complete_task_gui ()] prompts the user to type in the category and name
     of a task they want to complete *) 
 let complete_task_gui () =
-  draw_basic ();
-  set_color red;
+  draw_basic (); set_color red;
   draw_string "Type the category of the task you want to complete";
   let category = (string_input "") in
-  draw_basic ();
-  set_color red;
-  draw_string "Type the name of the task you want to complete";
+  draw_basic (); set_color red;
+  let cat_lst_form = ref [] in
+  draw_string "Type the name of the task you want to completed";
   let name = (string_input "") in
-  Manual.complete_task ~cat:cat category name;
-  let cat_lst_form = Manual.to_list ~cat:cat "Completed" in 
-  let cat_lst_lst = make_tll cat_lst_form "Completed" in
-  draw_task_list cat_lst_lst;
-  viewed_cat := "Completed"
+  draw_basic ();
+  if category = "Car Tasks" || category = "School Tasks" || 
+     category = "Household Tasks" || category = "Shopping Tasks" || 
+     category = "Pandemic Tasks"
+  then (Automatic.complete_task_auto ~cat:auto_cat category name;
+        cat_lst_form := Automatic.to_list_auto ~cat:auto_cat "Completed Tasks";
+        let cat_lst_lst = make_tll !cat_lst_form "Completed Tasks" in 
+        draw_task_list cat_lst_lst;
+        viewed_cat := "Completed Tasks")
+  else (Manual.complete_task ~cat:cat category name;
+        cat_lst_form := Manual.to_list ~cat:cat "Completed";
+        let cat_lst_lst = make_tll !cat_lst_form "Completed" in 
+        draw_task_list cat_lst_lst;
+        viewed_cat := "Completed")
 
 (** [delete_task_gui ()] prompts the user to type in the category and name
     of a task they want to delete *) 
@@ -181,6 +189,7 @@ let delete_task_gui () =
   draw_string "Type the category of the task you want to delete";
   let category = (string_input "") in
   draw_basic (); set_color red;
+  let cat_lst_form = ref [] in
   draw_string "Type the name of the task you want to delete";
   let name = (string_input "") in
   draw_basic ();
@@ -188,14 +197,11 @@ let delete_task_gui () =
      category = "Household Tasks" || category = "Shopping Tasks" || 
      category = "Pandemic Tasks"
   then (Automatic.delete_task_auto ~cat:auto_cat category name;
-        let cat_lst_form = Automatic.to_list_auto ~cat:auto_cat category in 
-        let cat_lst_lst = make_tll cat_lst_form category in 
-        draw_task_list cat_lst_lst) 
-  else 
-    (Manual.delete_task ~cat:cat category name;
-     let cat_lst_formm = Manual.to_list ~cat:cat category in 
-     let cat_lst_lstm = make_tll cat_lst_formm category in
-     draw_task_list cat_lst_lstm);
+        cat_lst_form := Automatic.to_list_auto ~cat:auto_cat category)
+  else (Manual.delete_task ~cat:cat category name;
+        cat_lst_form := Manual.to_list ~cat:cat category);
+  let cat_lst_lst = make_tll !cat_lst_form category in 
+  draw_task_list cat_lst_lst;
   viewed_cat := category
 
 (** [draw_list ()] prompts the user to say what category they want to view and
@@ -203,17 +209,17 @@ let delete_task_gui () =
 let draw_list () =
   draw_basic ();
   set_color red;
+  let cat_lst_form = ref [] in 
   draw_string "Type the category of the list you want to view.";
   let category = (string_input "") in 
   if category = "Car Tasks" || category = "School Tasks" || 
      category = "Household Tasks" || category = "Shopping Tasks" || 
      category = "Pandemic Tasks"
-  then (let cat_lst_form = Automatic.to_list_auto ~cat:auto_cat category in 
-        let cat_lst_lst = make_tll cat_lst_form category in
-        draw_task_list cat_lst_lst)
-  else (let cat_lst_form = Manual.to_list ~cat:cat category in 
-        let cat_lst_lst = make_tll cat_lst_form category in
-        draw_task_list cat_lst_lst);
+  then (cat_lst_form := Automatic.to_list_auto ~cat:auto_cat category)
+  else (cat_lst_form := Manual.to_list ~cat:cat category);
+  let cat_lst_lst = make_tll !cat_lst_form category in
+  draw_basic ();
+  draw_task_list cat_lst_lst;
   viewed_cat := category
 
 (** [sort_gui ()] allows the user to choose whether to sort by priority or date
@@ -304,33 +310,29 @@ let make_auto () =
                                     viewed_cat := "All Tasks")
   else draw_basic ()
 
+
 (** [find_task y] returns the task at location [y] on the screen *)
 let find_task y : string list = 
+  let cat_lst_form = ref [] in 
   if !viewed_cat = "Car Tasks" || !viewed_cat = "School Tasks" || 
      !viewed_cat = "Household Tasks" || !viewed_cat = "Shopping Tasks" || 
      !viewed_cat = "Pandemic Tasks"
-  then (let cat_lst_form = Automatic.to_list_auto ~cat:auto_cat !viewed_cat in 
-        let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
-        let num_tasks = List.length cat_lst_lst in 
-        let lower_bound = 305 - 15 * num_tasks in 
-        if y < lower_bound then failwith "out of bounds" 
-        else let plc = (y - 5) / 15 in 
-          let n = 19 - plc in 
-          List.nth cat_lst_lst n)
-  else (let cat_lst_form = Manual.to_list ~cat:cat !viewed_cat in 
-        let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
-        let num_tasks = List.length cat_lst_lst in 
-        let lower_bound = 305 - 15 * num_tasks in 
-        if y < lower_bound then failwith "out of bounds" 
-        else let plc = (y - 5) / 15 in 
-          let n = 19 - plc in 
-          List.nth cat_lst_lst n)
+  then (cat_lst_form := Automatic.to_list_auto ~cat:auto_cat !viewed_cat)
+  else cat_lst_form := Manual.to_list ~cat:cat !viewed_cat;
+  let cat_lst_lst = make_tll !cat_lst_form !viewed_cat in
+  let num_tasks = List.length cat_lst_lst in 
+  let lower_bound = 305 - 15 * num_tasks in 
+  if y < lower_bound then failwith "out of bounds" 
+  else let plc = (y - 5) / 15 in 
+    let n = 19 - plc in 
+    List.nth cat_lst_lst n
 
 (** [change_dd y] prompts the user to say the new due date of the task they 
     clicked on, updates it, and shows the category with the due date updated *)
 let change_dd y = 
   draw_basic (); moveto 10 320; set_color red;
   draw_string "What do you want the new due date to be?";
+  let cat_lst_form = ref [] in 
   let new_dd = string_input "" in 
   let task_changing = find_task y in 
   if !viewed_cat = "Car Tasks" || !viewed_cat = "School Tasks" || 
@@ -338,22 +340,20 @@ let change_dd y =
      !viewed_cat = "Pandemic Tasks" 
   then (Automatic.change_due_auto ~cat:auto_cat (List.nth task_changing 0) 
           (List.nth task_changing 1) new_dd;
-        let cat_lst_form = Automatic.to_list_auto ~cat:auto_cat !viewed_cat in 
-        let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
-        draw_basic ();
-        draw_task_list cat_lst_lst)
+        cat_lst_form := Automatic.to_list_auto ~cat:auto_cat !viewed_cat)
   else (change_due_date ~cat:cat (List.nth task_changing 0) 
           (List.nth task_changing 1) new_dd;
-        let cat_lst_form = Manual.to_list ~cat:cat !viewed_cat in 
-        let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
-        draw_basic ();
-        draw_task_list cat_lst_lst)
+        cat_lst_form := Manual.to_list ~cat:cat !viewed_cat);
+  let cat_lst_lst = make_tll !cat_lst_form !viewed_cat in
+  draw_basic ();
+  draw_task_list cat_lst_lst 
 
 (** [change_pri y] prompts the user to say the new priority of the task they 
     clicked on, updates it, and shows the category with the priority updated *)
 let change_pri y = 
   draw_basic (); moveto 10 320; set_color red;
   draw_string "What do you want the new priority to be?";
+  let cat_lst_form = ref [] in 
   let new_pri = string_input "" in 
   let task_changing = find_task y in 
   if !viewed_cat = "Car Tasks" || !viewed_cat = "School Tasks" || 
@@ -361,39 +361,34 @@ let change_pri y =
      !viewed_cat = "Pandemic Tasks" 
   then (Automatic.change_priority_auto ~cat:auto_cat (List.nth task_changing 0) 
           (List.nth task_changing 1) (int_of_string new_pri);
-        let cat_lst_form = Automatic.to_list_auto ~cat:auto_cat !viewed_cat in 
-        let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
-        draw_basic ();
-        draw_task_list cat_lst_lst)
-  else (Manual.change_priority ~cat:cat (List.nth task_changing 0) 
+        cat_lst_form := Automatic.to_list_auto ~cat:auto_cat !viewed_cat)
+  else (change_priority ~cat:cat (List.nth task_changing 0) 
           (List.nth task_changing 1) (int_of_string new_pri);
-        let cat_lst_form = Manual.to_list ~cat:cat !viewed_cat in 
-        let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
-        draw_basic ();
-        draw_task_list cat_lst_lst)
+        cat_lst_form := Manual.to_list ~cat:cat !viewed_cat);
+  let cat_lst_lst = make_tll !cat_lst_form !viewed_cat in
+  draw_basic ();
+  draw_task_list cat_lst_lst 
 
 (** [change_name y] prompts the user to say the new name of the task they 
     clicked on, updates it, and shows the category with the name updated *)
 let change_name y =
   draw_basic (); moveto 10 320; set_color red;
   draw_string "What do you want the new name to be?";
-  let new_name = string_input "" in 
+  let cat_lst_form = ref [] in 
+  let new_dd = string_input "" in 
   let task_changing = find_task y in 
   if !viewed_cat = "Car Tasks" || !viewed_cat = "School Tasks" || 
      !viewed_cat = "Household Tasks" || !viewed_cat = "Shopping Tasks" || 
      !viewed_cat = "Pandemic Tasks" 
   then (Automatic.change_name_auto ~cat:auto_cat (List.nth task_changing 0) 
-          (List.nth task_changing 1)  new_name;
-        let cat_lst_form = Automatic.to_list_auto ~cat:auto_cat !viewed_cat in 
-        let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
-        draw_basic ();
-        draw_task_list cat_lst_lst)
-  else (Manual.change_name ~cat:cat (List.nth task_changing 0) 
-          (List.nth task_changing 1) new_name;
-        let cat_lst_form = Manual.to_list ~cat:cat !viewed_cat in 
-        let cat_lst_lst = make_tll cat_lst_form !viewed_cat in
-        draw_basic ();
-        draw_task_list cat_lst_lst)
+          (List.nth task_changing 1) new_dd;
+        cat_lst_form := Automatic.to_list_auto ~cat:auto_cat !viewed_cat)
+  else (change_name ~cat:cat (List.nth task_changing 0) 
+          (List.nth task_changing 1) new_dd;
+        cat_lst_form := Manual.to_list ~cat:cat !viewed_cat);
+  let cat_lst_lst = make_tll !cat_lst_form !viewed_cat in
+  draw_basic ();
+  draw_task_list cat_lst_lst 
 
 (** [reset_gui_auto ()] asks the user what automatic list they want to reset
     and then resets and draws the reset list.
