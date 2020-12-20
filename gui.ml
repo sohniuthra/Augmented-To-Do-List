@@ -66,21 +66,6 @@ let rec draw_task_list tlst =
   | [] -> ()
   | h::t -> draw_task h; moveto 10 (current_y () - 15); draw_task_list t
 
-(** [draw_str_list slst] takes string list [slst] and draws it with each item 
-    on a new line *) 
-let rec draw_str_list slst =
-  let y = current_y () in 
-  match slst with 
-  | [] -> ()
-  | h::t -> if y > 290 then moveto 10 290;
-    draw_string h; moveto (10) (current_y () - 15); 
-    draw_str_list t
-
-let rec draw_str_ll slstlst =
-  match slstlst with 
-  | [] -> ()
-  | h::t -> draw_str_list h; moveto 10 (current_y () - 15); draw_str_ll t
-
 (** [draw_basic ()] is the basic window that opens when the application opens. 
     It is the interface for the to-do list *) 
 let rec draw_basic () =
@@ -240,9 +225,8 @@ let draw_list () =
 
 (** [sort_gui ()] allows the user to choose whether to sort by priority or date
     and then sorts the category
-    NOTE: this function is quite lengthy because of how many commands need
-    to be given to make the GUI appear. While it is long, it is not too 
-    complicated for one function *)
+    NOTE: this function is over 20 lines because of the two different cases it 
+    covers; however, it is not too complicated for one function *)
 let sort_gui () = 
   moveto 10 320; set_color red;
   draw_string "To sort by priority, press p. To sort by due date, press d.";
@@ -267,6 +251,10 @@ let sort_gui () =
     else () in
   priority; date
 
+(** [made_auto ()] asks the user for what kind of automatic list they want to
+    make and then creates and draws it.
+    NOTE: this function is over 20 lines because of the five different cases it 
+    covers; however, it is not too complicated for one function*)
 let make_auto () =
   set_color red;
   moveto 10 320;
@@ -345,9 +333,7 @@ let find_task y : string list =
           List.nth cat_lst_lst n)
 
 let change_dd y = 
-  draw_basic ();
-  moveto 10 320;
-  set_color red;
+  draw_basic (); moveto 10 320; set_color red;
   draw_string "What do you want the new due date to be?";
   let new_dd = string_input "" in 
   let task_changing = find_task y in 
@@ -368,9 +354,7 @@ let change_dd y =
         draw_task_list cat_lst_lst)
 
 let change_pri y = 
-  draw_basic ();
-  moveto 10 320;
-  set_color red;
+  draw_basic (); moveto 10 320; set_color red;
   draw_string "What do you want the new priority to be?";
   let new_pri = string_input "" in 
   let task_changing = find_task y in 
@@ -391,9 +375,7 @@ let change_pri y =
         draw_task_list cat_lst_lst)
 
 let change_name y =
-  draw_basic ();
-  moveto 10 320;
-  set_color red;
+  draw_basic (); moveto 10 320; set_color red;
   draw_string "What do you want the new name to be?";
   let new_name = string_input "" in 
   let task_changing = find_task y in 
@@ -413,10 +395,12 @@ let change_name y =
         draw_basic ();
         draw_task_list cat_lst_lst)
 
+(** [reset_gui_auto ()] asks the user what automatic list they want to reset
+    and then resets and draws the reset list.
+    NOTE: this function is over 20 lines because of the five different cases it 
+    covers; however, it is not too complicated for one function *)
 let reset_gui_auto () = 
-  draw_basic ();
-  moveto 10 320;
-  set_color red;
+  draw_basic (); moveto 10 320; set_color red;
   draw_string "What do you want to reset? You may choose car, school, \
                household, shopping, or pandemic";
   let reset = string_input "" in 
@@ -424,16 +408,14 @@ let reset_gui_auto () =
                          let car_list = 
                            to_list_auto ~cat:auto_cat "Car Tasks" in 
                          let car_ll = make_tll car_list "Car Tasks" in 
-                         draw_basic ();
-                         draw_task_list car_ll;
+                         draw_basic (); draw_task_list car_ll;
                          viewed_cat := "Car Tasks")
   else if reset = "school" then (reset_school ~cat:auto_cat (); 
                                  let school_list = 
                                    to_list_auto ~cat:auto_cat "School Tasks" in 
                                  let school_ll = 
                                    make_tll school_list "School Tasks" in 
-                                 draw_basic ();
-                                 draw_task_list school_ll;
+                                 draw_basic (); draw_task_list school_ll;
                                  viewed_cat := "School Tasks")
   else if reset = "household" then (reset_household ~cat:auto_cat (); 
                                     let house_list = 
@@ -441,8 +423,7 @@ let reset_gui_auto () =
                                         "Household Tasks" in 
                                     let house_ll = 
                                       make_tll house_list "Household Tasks" in 
-                                    draw_basic ();
-                                    draw_task_list house_ll;
+                                    draw_basic (); draw_task_list house_ll;
                                     viewed_cat := "Household Tasks")
   else if reset = "shopping" then (reset_shopping ~cat:auto_cat (); 
                                    let shopping_list = 
@@ -450,8 +431,7 @@ let reset_gui_auto () =
                                        "Shopping Tasks" in 
                                    let shopping_ll = 
                                      make_tll shopping_list "Shopping Tasks" in 
-                                   draw_basic ();
-                                   draw_task_list shopping_ll;
+                                   draw_basic (); draw_task_list shopping_ll;
                                    viewed_cat := "Shopping Tasks")
   else if reset = "pandemic" then (reset_pandemic ~cat:auto_cat (); 
                                    let pandemic_list = 
@@ -459,8 +439,7 @@ let reset_gui_auto () =
                                        "Pandemic Tasks" in 
                                    let pandemic_ll = 
                                      make_tll pandemic_list "Pandemic Tasks" in 
-                                   draw_basic ();
-                                   draw_task_list pandemic_ll;
+                                   draw_basic (); draw_task_list pandemic_ll;
                                    viewed_cat := "Pandemic Tasks")
   else draw_basic ()
 
@@ -492,24 +471,15 @@ let rec draw_appo_lst a =
   | _ -> ()
 
 let new_appo () = 
-  draw_appointments ();
-  set_color red;
-  draw_string "Type the name of your appointment";
-  let title = (string_input "") in
-  draw_appointments ();
-  set_color red;
-  draw_string "Type the date of your appointment";
-  let date = (string_input "") in
-  draw_appointments ();
-  set_color red;
-  draw_string "Type the time of your appointment";
-  let time = (string_input "") in
-  draw_appointments ();
-  set_color red;
+  draw_appointments (); set_color red; 
+  draw_string "Type the name of your appointment"; 
+  let title = (string_input "") in draw_appointments ();
+  set_color red; draw_string "Type the date of your appointment";
+  let date = (string_input "") in draw_appointments (); 
+  set_color red; draw_string "Type the time of your appointment";
+  let time = (string_input "") in draw_appointments (); set_color red; 
   draw_string "Type the location of your appointment. If none, press enter";
-  let location = string_input "" in
-  draw_appointments ();
-  set_color red;
+  let location = string_input "" in draw_appointments (); set_color red;
   draw_string "Type any notes for your appointment. If none, press enter";
   let notes = string_input "" in
   Appointments.add_app ~appo:apps title date time;
@@ -571,37 +541,28 @@ let loc_gui y =
   let app_lst = Appointments.to_list_app ~appo:apps [] in 
   draw_appo_lst app_lst
 
-
+(** [loop ()]  runs the GUI. It waits for the user to interact and calls the
+    appropriate function based on the user input.
+    NOTE: This function is over 20 lines because it needs to handle all the 
+    different user inputs. There is no way to shorten it and it is not too
+    complicated of a function. *)
 let rec loop () = 
   let e = wait_next_event [Key_pressed; Mouse_motion; Button_down] in
 
-  let new_task = if e.key = 't' && !is_todo
-    then task_input ()
+  let new_task = if e.key = 't' && !is_todo then task_input () else () in
+
+  let comp_task = if e.key = 'c' && !is_todo then complete_task_gui ()
     else () in
 
-  let comp_task = if e.key = 'c' && !is_todo
-    then complete_task_gui ()
-    else () in
+  let del_task = if e.key = 'd' && !is_todo then delete_task_gui () else () in
 
-  let del_task = if e.key = 'd' && !is_todo
-    then delete_task_gui ()
-    else () in
+  let view = if e.key = 'v' && !is_todo then draw_list () else () in
 
-  let view = if e.key = 'v' && !is_todo
-    then draw_list ()
-    else () in
+  let sort = if e.key = 's' && !is_todo then sort_gui () else () in 
 
-  let sort = if e.key = 's' && !is_todo
-    then sort_gui ()
-    else () in 
+  let auto = if e.key = 'a' && !is_todo then make_auto () else () in 
 
-  let auto = if e.key = 'a' && !is_todo
-    then make_auto ()
-    else () in 
-
-  let reset = if e.key = 'r' && !is_todo
-    then reset_gui_auto ()
-    else () in 
+  let reset = if e.key = 'r' && !is_todo then reset_gui_auto () else () in 
 
   let switch_to_appo = if e.mouse_x > 299 && e.mouse_x < 371 && e.mouse_y > 459 
                           && e.mouse_y < 474 && e.button && !is_todo
@@ -623,16 +584,12 @@ let rec loop () =
                        && e.button && !is_todo 
     then change_name (e.mouse_y) in
 
-  let new_app = if e.key = 'n' && (not !is_todo)
-    then new_appo ()
+  let new_app = if e.key = 'n' && (not !is_todo) then new_appo () else () in 
+
+  let complete_app = if e.key = 'c' && (not !is_todo) then complete_app_gui ()
     else () in 
 
-  let complete_app = if e.key = 'c' && (not !is_todo)
-    then complete_app_gui ()
-    else () in 
-
-  let delete_app = if e.key = 'd' && (not !is_todo)
-    then delete_app_gui ()
+  let delete_app = if e.key = 'd' && (not !is_todo) then delete_app_gui ()
     else () in 
 
   let add_info = if e.mouse_x > 424 && e.mouse_x < 640 && e.mouse_y < 365 
@@ -643,42 +600,14 @@ let rec loop () =
                    && e.button && (not !is_todo) 
     then loc_gui (e.mouse_y) in
 
-  new_task;
-  comp_task;
-  del_task;
-  view;
-  sort;
-  auto;
-  reset;
-  switch_to_appo;
-  switch_to_todo;
-  click_due;
-  click_pri;
-  change_name;
-  new_app;
-  complete_app;
-  delete_app;
-  add_info;
-  add_loc;
+  new_task; comp_task; del_task; view; sort; auto; reset; switch_to_appo;
+  switch_to_todo; click_due; click_pri; change_name; new_app; complete_app;
+  delete_app; add_info; add_loc;
 
   if e.key <> 'q' then loop () else ()
 
 (** [open_window] opens an empty window *)
 let open_window = open_graph " 640x480"; set_window_title "To-Do List"
-
-(** [draw_task tsk] takes task [tsk] and draws it *) 
-let rec draw_task tsk =
-  match tsk with 
-  | [] -> moveto 10 (current_y () - 15)
-  | h::t -> draw_string h; moveto (current_x () + 30) (current_y ())
-
-(** [draw_tsk_list tlst] takes task list [tlst] and draws it with each item on 
-    a new line *) 
-let rec draw_tsk_list tlst =
-  match tlst with 
-  | [] -> moveto 10 (current_y () - 15)
-  | h::t -> draw_task h; moveto (current_x ()) (current_y () - 15); 
-    draw_tsk_list t
 
 let () = 
   open_window;

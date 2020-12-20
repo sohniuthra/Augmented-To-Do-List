@@ -41,6 +41,3 @@ val sort_gui : unit -> unit
 (** [make_auto ()] allows the user to choose what automatic list they would
     like to create and creates it *)
 val make_auto : unit -> unit
-
-(** [draw_tsk_list tlst] takes a list of tasks and produces it on the window *)
-val draw_tsk_list : string list list -> unit
