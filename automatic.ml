@@ -1,4 +1,10 @@
-(** Module representation of a to-do list with  *)
+(** 
+   Implementation of an automatic to-do list.
+
+   This module implements the data stored in an automatic to-do list, 
+   where each task is predetermined, including data for each task (the user
+   does have an option to add additional tasks, though).
+*)
 
 type task = {
   name : string;

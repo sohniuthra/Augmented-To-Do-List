@@ -1,5 +1,5 @@
 open Unix
-(* open Graphics *)
+
 (** 
    Implementation of a manual to-do list.
 
