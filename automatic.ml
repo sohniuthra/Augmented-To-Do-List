@@ -180,13 +180,14 @@ let find_task cat task_name =
   List.find (fun x -> x.name = task_name) cat.task_list
 
 let delete_task_auto ?(cat=categories) cat_name task_name =
-  try 
+  try begin
     let old_cat = find_category ~cat:cat cat_name in 
     try 
       let task = find_task old_cat task_name in
       let new_cat = del_task old_cat task in 
       cat := new_cat :: (remove_cat old_cat !cat)
     with Not_found -> raise (TaskNotFound task_name)
+  end
   with Not_found -> raise (CategoryNotFound cat_name)
 
 let create_task_auto ?(cat=categories) cat_name task_name due_date priority= 
@@ -198,7 +199,7 @@ let create_task_auto ?(cat=categories) cat_name task_name due_date priority=
   with Not_found -> raise (CategoryNotFound cat_name)
 
 let complete_task_auto ?(cat=categories) cat_name task_name = 
-  try
+  try begin
     let category = find_category ~cat:cat cat_name in
     try 
       let task = find_task category task_name in
@@ -207,6 +208,7 @@ let complete_task_auto ?(cat=categories) cat_name task_name =
         task.priority;
       cat := new_list :: (remove_cat category !cat)
     with Not_found -> raise (TaskNotFound task_name)
+  end
   with Not_found -> raise (CategoryNotFound cat_name)
 
 let change_priority_auto ?(cat=categories) cat_name task_name new_priority =

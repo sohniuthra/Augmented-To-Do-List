@@ -20,9 +20,9 @@ open Appointments
 
     From Manual.mli, we omitted testing access_cat, empty_cat, todays_date,
     init_task, init_todolist, and empty_list because they were all indirectly
-     tested with other functions. From Manual.mli, to_list was also not tested 
-     because it was used in the test file to create a meaningful representation
-     of appointments to be compared with expected_output. 
+    tested with other functions. From Manual.mli, to_list was also not tested 
+    because it was used in the test file to create a meaningful representation
+    of appointments to be compared with expected_output. 
 
      From Appointments.ml, the functions not tested
      were find_app, to_list_app, and to_list_find.  Find_app was not tested 

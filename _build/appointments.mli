@@ -52,7 +52,7 @@ val add_location : ?appo:(app list ref) -> string -> string -> unit
 val to_list_app : ?appo:(app list ref) -> string list -> string list
 
 (** [empty_finder ()] creates a pointer to assist in finding the specific
-    appoinment a user wants. *)
+    appointment a user wants. *)
 val empty_finder : unit -> app list ref 
 
 
@@ -64,5 +64,5 @@ val find_app_user : ?one:(app list ref) -> ?appo:(app list ref) ->
 
 (** [to_list_find creates a list representation with the specific user-desired
     appointment from function [find_app_user t] and the data associated with 
-    it.*)
+    it. *)
 val to_list_find : ?one:(app list ref) -> string list -> string list

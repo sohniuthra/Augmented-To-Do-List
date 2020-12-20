@@ -583,7 +583,7 @@ let new_appo () =
   if notes = "" then () 
   else Appointments.add_app_info ~appo:apps title notes;
   draw_appointments ();
-  let app_lst = Appointments.to_list_alt ~appo:apps () in 
+  let app_lst = Appointments.to_list_app ~appo:apps [] in 
   draw_appo_lst app_lst
 
 let complete_app_gui () = 
@@ -593,7 +593,7 @@ let complete_app_gui () =
   let title = (string_input "") in
   draw_appointments ();
   Appointments.complete_app ~appo:apps title;
-  let app_lst = Appointments.to_list_alt ~appo:apps () in 
+  let app_lst = Appointments.to_list_app ~appo:apps [] in 
   draw_appo_lst app_lst
 
 let delete_app_gui () = 
@@ -603,11 +603,11 @@ let delete_app_gui () =
   let title = (string_input "") in
   draw_appointments ();
   Appointments.delete_app ~appo:apps title;
-  let app_lst = Appointments.to_list_alt ~appo:apps () in 
+  let app_lst = Appointments.to_list_app ~appo:apps [] in 
   draw_appo_lst app_lst
 
 let find_app_name y = 
-  let app_lst = Appointments.to_list_alt ~appo:apps () in 
+  let app_lst = Appointments.to_list_app ~appo:apps [] in 
   let num_apps = (List.length app_lst) / 5 in 
   let lower_bound = 365 - 15 * num_apps in 
   if y < lower_bound then failwith "out of bounds"
@@ -622,7 +622,7 @@ let info_gui y =
   let info = (string_input "") in
   Appointments.add_app_info ~appo:apps (find_app_name y) info;
   draw_appointments ();
-  let app_lst = Appointments.to_list_alt ~appo:apps () in 
+  let app_lst = Appointments.to_list_app ~appo:apps [] in 
   draw_appo_lst app_lst
 
 let loc_gui y =
@@ -632,7 +632,7 @@ let loc_gui y =
   let loc = (string_input "") in
   Appointments.add_location ~appo:apps (find_app_name y) loc;
   draw_appointments ();
-  let app_lst = Appointments.to_list_alt ~appo:apps () in 
+  let app_lst = Appointments.to_list_app ~appo:apps [] in 
   draw_appo_lst app_lst
 
 

@@ -1,0 +1,40 @@
+<html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Manual" rel="Chapter" href="Manual.html">
+<link title="Main" rel="Chapter" href="Main.html">
+<link title="Author" rel="Chapter" href="Author.html">
+<link title="Automatic" rel="Chapter" href="Automatic.html">
+<link title="Gui" rel="Chapter" href="Gui.html">
+<link title="Appointments" rel="Chapter" href="Appointments.html"><title>Appointments</title>
+</head>
+<body>
+<code class="code"><span class="keyword">sig</span><br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;app<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;empty_appo&nbsp;:&nbsp;unit&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Appointments</span>.app&nbsp;list&nbsp;<span class="constructor">Stdlib</span>.ref<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;access_app&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;?appo:<span class="constructor">Appointments</span>.app&nbsp;list&nbsp;<span class="constructor">Stdlib</span>.ref&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Appointments</span>.app&nbsp;list<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;delete_app&nbsp;:&nbsp;?appo:<span class="constructor">Appointments</span>.app&nbsp;list&nbsp;<span class="constructor">Stdlib</span>.ref&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;add_app&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;?appo:<span class="constructor">Appointments</span>.app&nbsp;list&nbsp;<span class="constructor">Stdlib</span>.ref&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;complete_app&nbsp;:&nbsp;?appo:<span class="constructor">Appointments</span>.app&nbsp;list&nbsp;<span class="constructor">Stdlib</span>.ref&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;add_app_info&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;?appo:<span class="constructor">Appointments</span>.app&nbsp;list&nbsp;<span class="constructor">Stdlib</span>.ref&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;add_location&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;?appo:<span class="constructor">Appointments</span>.app&nbsp;list&nbsp;<span class="constructor">Stdlib</span>.ref&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;to_list_app&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;?appo:<span class="constructor">Appointments</span>.app&nbsp;list&nbsp;<span class="constructor">Stdlib</span>.ref&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string&nbsp;list<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;empty_finder&nbsp;:&nbsp;unit&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Appointments</span>.app&nbsp;list&nbsp;<span class="constructor">Stdlib</span>.ref<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;find_app_user&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;?one:<span class="constructor">Appointments</span>.app&nbsp;list&nbsp;<span class="constructor">Stdlib</span>.ref&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;?appo:<span class="constructor">Appointments</span>.app&nbsp;list&nbsp;<span class="constructor">Stdlib</span>.ref&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;to_list_find&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;?one:<span class="constructor">Appointments</span>.app&nbsp;list&nbsp;<span class="constructor">Stdlib</span>.ref&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string&nbsp;list<br>
+<span class="keyword">end</span></code></body></html>
