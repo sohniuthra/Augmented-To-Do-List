@@ -38,13 +38,13 @@ ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o g
 # Target: gui.ml.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:ml, file:gui.ml, ocaml, ocamldep, quiet, traverse }
 ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules gui.ml > gui.ml.depends # cached
 # Target: appointments.mli.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:mli, file:appointments.mli, ocaml, ocamldep, quiet, traverse }
-ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules appointments.mli > appointments.mli.depends
+ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules appointments.mli > appointments.mli.depends # cached
 # Target: appointments.cmi, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:mli, file:appointments.mli, interf, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o appointments.cmi appointments.mli
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o appointments.cmi appointments.mli # cached
 # Target: gui.cmo, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:cmo, extension:ml, file:gui.cmo, file:gui.ml, implem, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o gui.cmo gui.ml
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o gui.cmo gui.ml # cached
 # Target: appointments.ml.depends, tags: { package(ANSITerminal), package(graphics), package(ounit2), extension:ml, file:appointments.ml, ocaml, ocamldep, quiet, traverse }
 ocamlfind ocamldep -package ounit2 -package ANSITerminal -package graphics -modules appointments.ml > appointments.ml.depends # cached
 # Target: appointments.cmo, tags: { package(ANSITerminal), package(graphics), package(ounit2), byte, compile, extension:cmo, extension:ml, file:appointments.cmo, file:appointments.ml, implem, ocaml, quiet, traverse }
-ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o appointments.cmo appointments.ml
+ocamlfind ocamlc -c -package ounit2 -package ANSITerminal -package graphics -o appointments.cmo appointments.ml # cached
 # Compilation successful.

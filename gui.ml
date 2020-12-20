@@ -82,56 +82,28 @@ let rec draw_str_ll slstlst =
   | h::t -> draw_str_list h; moveto 10 (current_y () - 15); draw_str_ll t
 
 (** [draw_basic ()] is the basic window that opens when the application opens. 
-    It is the interface for the to-do list
-    NOTE: this function is quite lengthy because of how many commands need
-    to be given to make the GUI appear. While it is long, it is not too 
-    complicated for one function *) 
+    It is the interface for the to-do list *) 
 let rec draw_basic () =
-  clear_graph ();
-  set_color blue;
-  fill_rect 99 459 60 15;
-  moveto 100 460;
-  set_color white;
-  draw_string "To-Do List";
-  set_color red;
-  fill_rect 299 459 72 15;
-  moveto 300 460;
-  set_color black;
-  draw_string "Appointments";
-  set_color blue;
-  moveto 10 440;
-  draw_string "Press t to create a new task"; 
-  moveto 10 425;
-  draw_string "Press c to complete a task"; 
-  moveto 10 410;
-  draw_string "Press d to delete a task";
-  moveto 10 395;
-  draw_string "Press v to view a list";
-  moveto 10 380;
-  draw_string "Press a to make an automatic list"; 
-  moveto 10 365;
-  draw_string "Press s to sort your to-do list";
-  moveto 10 350;
-  draw_string "Press r to reset an automatic to-do list";
-  moveto 10 335;
+  clear_graph (); set_color blue; fill_rect 99 459 60 15; moveto 100 460;
+  set_color white; draw_string "To-Do List"; set_color red; 
+  fill_rect 299 459 72 15; moveto 300 460; set_color black; 
+  draw_string "Appointments"; set_color blue; 
+  moveto 10 440; draw_string "Press t to create a new task";  
+  moveto 10 425; draw_string "Press c to complete a task"; 
+  moveto 10 410; draw_string "Press d to delete a task";
+  moveto 10 395; draw_string "Press v to view a list";
+  moveto 10 380; draw_string "Press a to make an automatic list"; 
+  moveto 10 365; draw_string "Press s to sort your to-do list";
+  moveto 10 350; draw_string "Press r to reset an automatic to-do list";
+  moveto 10 335; 
   draw_string "To change the priority, name, or due date of a task, click on it";
-  moveto 520 460;
-  set_color red;
-  draw_string "Press q to quit";
-  set_color black;
-  moveto 10 305;
-  draw_string "Category";
-  moveto 150 305;
-  draw_string "Task";
-  moveto 300 305;
-  draw_string "Date created";
-  moveto 425 305;
-  draw_string "Due date";
-  moveto 550 305; 
-  draw_string "Priority";
-  (*if !viewed_cat = "" then () else view_category !viewed_cat;*)
-  is_todo := true;
-  moveto 10 320
+  moveto 520 460; set_color red; draw_string "Press q to quit";
+  set_color black; moveto 10 305; draw_string "Category";
+  moveto 150 305; draw_string "Task";
+  moveto 300 305; draw_string "Date created";
+  moveto 425 305; draw_string "Due date";
+  moveto 550 305;  draw_string "Priority";
+  is_todo := true; moveto 10 320
 
 and view_category category = 
   draw_basic ();
@@ -142,41 +114,22 @@ and view_category category =
 
 (** [draw_appointments ()] is the interface for appointments *)
 let draw_appointments () = 
-  clear_graph ();
-  set_color red;
-  fill_rect 99 459 60 15;
-  moveto 100 460;
-  set_color black;
-  draw_string "To-Do List";
-  set_color blue;
-  fill_rect 299 459 72 15;
-  moveto 300 460;
-  set_color white;
-  draw_string "Appointments - NOT DONE YET";
-  set_color blue;
-  moveto 10 440;
-  draw_string "Press n to create a new appointment"; 
-  moveto 10 425;
-  draw_string "Press c to complete an appointment"; 
-  moveto 10 410;
-  draw_string "Press d to delete an appointment";
+  clear_graph (); set_color red; fill_rect 99 459 60 15; moveto 100 460;
+  set_color black; draw_string "To-Do List"; set_color blue; 
+  fill_rect 299 459 72 15; moveto 300 460; set_color white;
+  draw_string "Appointments - NOT DONE YET"; set_color blue;
+  moveto 10 440; draw_string "Press n to create a new appointment"; 
+  moveto 10 425; draw_string "Press c to complete an appointment"; 
+  moveto 10 410; draw_string "Press d to delete an appointment";
   moveto 10 395;
   draw_string "To add or change a location or notes to an appointment, \
                click on that field";
-  moveto 520 460;
-  set_color red;
-  draw_string "Press q to quit";
-  set_color black;
-  moveto 10 365;
-  draw_string "Name";
-  moveto 150 365;
-  draw_string "Date";
-  moveto 225 365;
-  draw_string "Time";
-  moveto 300 365;
-  draw_string "Location";
-  moveto 425 365; 
-  draw_string "Notes";
+  moveto 520 460; set_color red; draw_string "Press q to quit";
+  set_color black; moveto 10 365; draw_string "Name";
+  moveto 150 365; draw_string "Date";
+  moveto 225 365; draw_string "Time";
+  moveto 300 365; draw_string "Location";
+  moveto 425 365; draw_string "Notes";
   is_todo := false;
   moveto 10 380
 
@@ -193,24 +146,14 @@ let draw_int i =
   draw_string (string_of_int i)
 
 let task_input () =
-  (*let cat = empty_cat () in*)
-  draw_basic ();
-  set_color red;
-  draw_string "Type the name of your category";
+  draw_basic (); set_color red; draw_string "Type the name of your category";
   let category = (string_input "") in
-  draw_basic ();
-  set_color red;
-  draw_string "Type the name of your task";
-  let name = (string_input "") in
-  draw_basic ();
-  set_color red;
+  draw_basic (); set_color red; draw_string "Type the name of your task";
+  let name = (string_input "") in draw_basic (); set_color red; 
   draw_string "Type the due date in an mm/dd/yyyy format";
   let due = (string_input "") in
-  draw_basic ();
-  set_color red;
-  draw_string "Type the priority of your task";
-  let priority = int_of_string (string_input "") in
-  draw_basic ();
+  draw_basic (); set_color red; draw_string "Type the priority of your task";
+  let priority = int_of_string (string_input "") in draw_basic ();
   if category = "Car Tasks" || category = "School Tasks" || 
      category = "Household Tasks" || category = "Shopping Tasks" || 
      category = "Pandemic Tasks" 
@@ -222,8 +165,7 @@ let task_input () =
         set_color black;
         let cat_lst_form = Manual.to_list ~cat:cat category in 
         let cat_lst_lst = make_tll cat_lst_form category in
-        draw_task_list cat_lst_lst);
-  viewed_cat := category
+        draw_task_list cat_lst_lst); viewed_cat := category
 
 (** [complete_task_gui ()] prompts the user to type in the category and name
     of a task they want to complete *) 
@@ -246,13 +188,10 @@ let complete_task_gui () =
 (** [delete_task_gui ()] prompts the user to type in the category and name
     of a task they want to delete *) 
 let delete_task_gui () =
-  (*let cat = empty_cat () in *)
-  draw_basic ();
-  set_color red;
+  draw_basic (); set_color red;
   draw_string "Type the category of the task you want to delete";
   let category = (string_input "") in
-  draw_basic ();
-  set_color red;
+  draw_basic (); set_color red;
   draw_string "Type the name of the task you want to delete";
   let name = (string_input "") in
   draw_basic ();
@@ -300,36 +239,33 @@ let draw_list () =
   viewed_cat := category
 
 (** [sort_gui ()] allows the user to choose whether to sort by priority or date
-    and then sorts the category *)
+    and then sorts the category
+    NOTE: this function is quite lengthy because of how many commands need
+    to be given to make the GUI appear. While it is long, it is not too 
+    complicated for one function *)
 let sort_gui () = 
-  moveto 10 320;
-  set_color red;
+  moveto 10 320; set_color red;
   draw_string "To sort by priority, press p. To sort by due date, press d.";
   let e = wait_next_event [Key_pressed] in
   let priority = if e.key = 'p' 
-    then (draw_basic ();
-          set_color red;
+    then (draw_basic (); set_color red;
           draw_string "Type the name of the category you want to sort";
-          let category = (string_input "") in
-          draw_basic ();
+          let category = (string_input "") in draw_basic ();
           Manual.sort_list ~cat:cat category "Priority";
           let cat_lst_form = Manual.to_list ~cat:cat category in 
           let cat_lst_lst = make_tll cat_lst_form category in
           draw_task_list cat_lst_lst)
-    else () in
+    else () in 
   let date = if e.key = 'd' 
-    then (draw_basic ();
-          set_color red;
+    then (draw_basic (); set_color red;
           draw_string "Type the name of the category you want to sort";
-          let category = (string_input "") in
-          draw_basic ();
+          let category = (string_input "") in draw_basic ();
           Manual.sort_list ~cat:cat category "Due Date";
           let cat_lst_form = Manual.to_list ~cat:cat category in 
           let cat_lst_lst = make_tll cat_lst_form category in
           draw_task_list cat_lst_lst)
     else () in
-  priority;
-  date
+  priority; date
 
 let make_auto () =
   set_color red;

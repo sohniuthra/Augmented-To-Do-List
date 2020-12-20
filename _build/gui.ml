@@ -87,48 +87,25 @@ let rec draw_str_ll slstlst =
     to be given to make the GUI appear. While it is long, it is not too 
     complicated for one function *) 
 let rec draw_basic () =
-  clear_graph ();
-  set_color blue;
-  fill_rect 99 459 60 15;
-  moveto 100 460;
-  set_color white;
-  draw_string "To-Do List";
-  set_color red;
-  fill_rect 299 459 72 15;
-  moveto 300 460;
-  set_color black;
-  draw_string "Appointments";
-  set_color blue;
-  moveto 10 440;
-  draw_string "Press t to create a new task"; 
-  moveto 10 425;
-  draw_string "Press c to complete a task"; 
-  moveto 10 410;
-  draw_string "Press d to delete a task";
-  moveto 10 395;
-  draw_string "Press v to view a list";
-  moveto 10 380;
-  draw_string "Press a to make an automatic list"; 
-  moveto 10 365;
-  draw_string "Press s to sort your to-do list";
-  moveto 10 350;
-  draw_string "Press r to reset an automatic to-do list";
-  moveto 10 335;
+  clear_graph (); set_color blue; fill_rect 99 459 60 15; moveto 100 460;
+  set_color white; draw_string "To-Do List"; set_color red; 
+  fill_rect 299 459 72 15; moveto 300 460; set_color black; 
+  draw_string "Appointments"; set_color blue; 
+  moveto 10 440; draw_string "Press t to create a new task";  
+  moveto 10 425; draw_string "Press c to complete a task"; 
+  moveto 10 410; draw_string "Press d to delete a task";
+  moveto 10 395; draw_string "Press v to view a list";
+  moveto 10 380; draw_string "Press a to make an automatic list"; 
+  moveto 10 365; draw_string "Press s to sort your to-do list";
+  moveto 10 350; draw_string "Press r to reset an automatic to-do list";
+  moveto 10 335; 
   draw_string "To change the priority, name, or due date of a task, click on it";
-  moveto 520 460;
-  set_color red;
-  draw_string "Press q to quit";
-  set_color black;
-  moveto 10 305;
-  draw_string "Category";
-  moveto 150 305;
-  draw_string "Task";
-  moveto 300 305;
-  draw_string "Date created";
-  moveto 425 305;
-  draw_string "Due date";
-  moveto 550 305; 
-  draw_string "Priority";
+  moveto 520 460; set_color red; draw_string "Press q to quit";
+  set_color black; moveto 10 305; draw_string "Category";
+  moveto 150 305; draw_string "Task";
+  moveto 300 305; draw_string "Date created";
+  moveto 425 305; draw_string "Due date";
+  moveto 550 305;  draw_string "Priority";
   (*if !viewed_cat = "" then () else view_category !viewed_cat;*)
   is_todo := true;
   moveto 10 320

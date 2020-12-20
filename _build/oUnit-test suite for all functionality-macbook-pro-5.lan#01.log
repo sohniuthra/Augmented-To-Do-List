@@ -1,0 +1,141 @@
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:0:Adding 1 task to the General category.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:0:Adding 1 task to the General category is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:0:Adding 1 task to the General category.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:2:Adding 3 tasks to the General category.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:2:Adding 3 tasks to the General category is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:2:Adding 3 tasks to the General category.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:4:Also adding 2 tasks to the General category.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:4:Also adding 2 tasks to the General category is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:4:Also adding 2 tasks to the General category.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:6:Sorting General by priority with one task.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:6:Sorting General by priority with one task is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:6:Sorting General by priority with one task.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:8:Sorting General by priority with all tasks containing the 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:    same priorities.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:8:Sorting General by priority with all tasks containing the 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:    same priorities is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:8:Sorting General by priority with all tasks containing the 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:    same priorities.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:10:Sorting General by priority with some tasks containing the 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:    same priorities.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:10:Sorting General by priority with some tasks containing the 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:    same priorities is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:10:Sorting General by priority with some tasks containing the 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:    same priorities.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:12:Sorting General by due date with each task due different 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:    years.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:12:Sorting General by due date with each task due different 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:    years is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:12:Sorting General by due date with each task due different 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:    years.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:14:Sorting General by due date with each task due different days 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:    of the same month and same years.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:14:Sorting General by due date with each task due different days 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:    of the same month and same years is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:14:Sorting General by due date with each task due different days 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:    of the same month and same years.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:17:General should not contain watch lecture or go to 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:     discussion.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:17:General should not contain watch lecture or go to 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:     discussion is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:17:General should not contain watch lecture or go to 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:     discussion.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:18:Completed should contain watch lecture and go to 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:     discussion.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:18:Completed should contain watch lecture and go to 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:     discussion is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:18:Completed should contain watch lecture and go to 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:     discussion.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:20:School should not contain fill out OMM.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:20:School should not contain fill out OMM is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:20:School should not contain fill out OMM.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:22:General should not contain watch lecture.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:22:General should not contain watch lecture is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:22:General should not contain watch lecture.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:25:School should not contain fill out OMM.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:25:School should not contain fill out OMM is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:25:School should not contain fill out OMM.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:26:fill out OMM in School should now be Fill Out OMM.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:26:fill out OMM in School should now be Fill Out OMM is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:26:fill out OMM in School should now be Fill Out OMM.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:29:wash dishes in General should now be named Wash Dishes.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:29:wash dishes in General should now be named Wash Dishes is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:29:wash dishes in General should now be named Wash Dishes.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:31:fill out OMM in School should now have priority 3 and do 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:     lab in School should now have priority 1.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:31:fill out OMM in School should now have priority 3 and do 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:     lab in School should now have priority 1 is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:31:fill out OMM in School should now have priority 3 and do 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:     lab in School should now have priority 1.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:33:wash dishes in General should now have priority 1.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:33:wash dishes in General should now have priority 1 is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:33:wash dishes in General should now have priority 1.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:35:fill out OMM in School should now be due 10/27/20 and do 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:     lab in school should now be due 10/25/20.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:35:fill out OMM in School should now be due 10/27/20 and do 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:     lab in school should now be due 10/25/20 is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:35:fill out OMM in School should now be due 10/27/20 and do 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:     lab in school should now be due 10/25/20.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:37:wash dishes in General should now be due 10/30/20.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:37:wash dishes in General should now be due 10/30/20 is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:37:wash dishes in General should now be due 10/30/20.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:39:the priority of Make Masks in Pandemic Tasks has changed 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:    from 4 to 5, and the priority of Buy Disenfectant Spray has changed from 2
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:    to 3.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:39:the priority of Make Masks in Pandemic Tasks has changed 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:    from 4 to 5, and the priority of Buy Disenfectant Spray has changed from 2
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:    to 3 is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:39:the priority of Make Masks in Pandemic Tasks has changed 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:    from 4 to 5, and the priority of Buy Disenfectant Spray has changed from 2
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:    to 3.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:40:Change due date of Pooja's iPhone 12 Pro Max Purchase 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:    to as soon as possible.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:40:Change due date of Pooja's iPhone 12 Pro Max Purchase 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:    to as soon as possible is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:40:Change due date of Pooja's iPhone 12 Pro Max Purchase 
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:    to as soon as possible.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:42:Change name of a task in School cateogry.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:42:Change name of a task in School cateogry is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:42:Change name of a task in School cateogry.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:44:Add task to Shopping category.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:44:Add task to Shopping category is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:44:Add task to Shopping category.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:46:Reset car category after a change.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:46:Reset car category after a change is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:46:Reset car category after a change.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:48:Reset household category after a change.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:48:Reset household category after a change is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:48:Reset household category after a change.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:50:Reset pandemic category after a change.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:50:Reset pandemic category after a change is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:50:Reset pandemic category after a change.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:52:Making sure school category is reset.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:52:Making sure school category is reset is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:52:Making sure school category is reset.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:54:Making sure shopping category is reset.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:54:Making sure shopping category is reset is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:54:Making sure shopping category is reset.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:56:Making sure completed category is reset.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:56:Making sure completed category is reset is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:56:Making sure completed category is reset.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:58:task should be in the completed category.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:58:task should be in the completed category is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:58:task should be in the completed category.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:60:household task should no longer be in household
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:   category.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:60:household task should no longer be in household
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:   category is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:60:household task should no longer be in household
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I:   category.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:62:View empty appointments list.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:62:View empty appointments list is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:62:View empty appointments list.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:64:Apps are deleted from list.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:64:Apps are deleted from list is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:64:Apps are deleted from list.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:66:Add info to apps.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:66:Add info to apps is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:66:Add info to apps.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Start test test suite for all functionality:68:Find specific appointment.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: Test test suite for all functionality:68:Find specific appointment is successful.
+2020-12-20T01:21:26+00:00 macbook-pro-5.lan#01 I: End test test suite for all functionality:68:Find specific appointment.
