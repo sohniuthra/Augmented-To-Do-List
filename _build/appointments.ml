@@ -104,3 +104,14 @@ let rec to_list_find ?(one=one_app) acc =
     to_list_find ~one:one 
       (acc @ [title; app_date; time; location; notes])
 
+(** [to_list_helper app_lst acc] is a helper function for [to_list_alt] *)
+let rec to_list_helper app_lst acc =
+  match app_lst with 
+  | [] -> acc 
+  | {title; app_date; time; location; notes} :: t -> 
+    to_list_helper t (acc @ [title; app_date; time; location; notes])
+
+(** [to_list_alt ?appo ()] is the to_list function that must be used for the 
+    gui. It does not remove appointments from appo *)
+let to_list_alt ?(appo=appointments) () = 
+  to_list_helper !appo []

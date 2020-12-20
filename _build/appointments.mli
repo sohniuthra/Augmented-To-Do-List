@@ -56,3 +56,6 @@ val find_app_user : ?one:(app list ref) -> ?appo:(app list ref) ->
     appointment from function [find_app_user t] and the data associated with 
     it. *)
 val to_list_find : ?one:(app list ref) -> string list -> string list
+
+(** [to_list_alt ?appo ()] is a to_list function that works for the gui *)
+val to_list_alt : ?appo:(app list ref) -> unit -> string list

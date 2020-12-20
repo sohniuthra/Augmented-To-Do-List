@@ -1,6 +1,5 @@
 open Graphics
 open Manual
-open Printf
 open Automatic
 open Appointments
 
@@ -88,7 +87,7 @@ let draw_basic () =
   moveto 10 365; draw_string "Press s to sort your to-do list";
   moveto 10 350; draw_string "Press r to reset an automatic to-do list";
   moveto 10 335; 
-  draw_string "To change the priority, name, or due date of a task, click on it";
+  draw_string "Click on the priority, name, or due date of a task to change it";
   moveto 520 460; set_color red; draw_string "Press q to quit";
   set_color black; moveto 10 305; draw_string "Category";
   moveto 150 305; draw_string "Task";
@@ -115,8 +114,8 @@ let draw_appointments () =
   moveto 10 425; draw_string "Press c to complete an appointment"; 
   moveto 10 410; draw_string "Press d to delete an appointment";
   moveto 10 395;
-  draw_string "To add or change a location or notes to an appointment, \
-               click on that field";
+  draw_string "Click on the information or location field of an appontment to \
+               change it";
   moveto 520 460; set_color red; draw_string "Press q to quit";
   set_color black; moveto 10 365; draw_string "Name";
   moveto 150 365; draw_string "Date";
@@ -133,10 +132,6 @@ let rec string_input str =
   if e.key <> '\r' 
   then string_input (str ^ (Char.escaped e.key))
   else str
-
-(** [draw_int i] draws int [i] as a string *) 
-let draw_int i =
-  draw_string (string_of_int i)
 
 (** [task_input ()] prompts the user to input the information to create a new
     task and then draws it and its category *)
@@ -165,7 +160,6 @@ let task_input () =
 (** [complete_task_gui ()] prompts the user to type in the category and name
     of a task they want to complete *) 
 let complete_task_gui () =
-  (*let cat = empty_cat () in *)
   draw_basic ();
   set_color red;
   draw_string "Type the category of the task you want to complete";
@@ -499,7 +493,7 @@ let new_appo () =
   if notes = "" then () 
   else Appointments.add_app_info ~appo:apps title notes;
   draw_appointments ();
-  let app_lst = Appointments.to_list_app ~appo:apps [] in 
+  let app_lst = Appointments.to_list_alt ~appo:apps () in 
   draw_appo_lst app_lst
 
 (** [complete_app_gui ()] prompts the user to say what appointment they want
@@ -511,7 +505,7 @@ let complete_app_gui () =
   let title = (string_input "") in
   draw_appointments ();
   Appointments.complete_app ~appo:apps title;
-  let app_lst = Appointments.to_list_app ~appo:apps [] in 
+  let app_lst = Appointments.to_list_alt ~appo:apps () in 
   draw_appo_lst app_lst
 
 (** [delete_app_gui ()] prompts the user to say what appointment they want
@@ -523,12 +517,12 @@ let delete_app_gui () =
   let title = (string_input "") in
   draw_appointments ();
   Appointments.delete_app ~appo:apps title;
-  let app_lst = Appointments.to_list_app ~appo:apps [] in 
+  let app_lst = Appointments.to_list_alt ~appo:apps () in 
   draw_appo_lst app_lst
 
 (** [find_app_name y] returns the name of the appointment at location [y] *)
 let find_app_name y = 
-  let app_lst = Appointments.to_list_app ~appo:apps [] in 
+  let app_lst = Appointments.to_list_alt ~appo:apps () in 
   let num_apps = (List.length app_lst) / 5 in 
   let lower_bound = 365 - 15 * num_apps in 
   if y < lower_bound then failwith "out of bounds"
@@ -545,7 +539,7 @@ let info_gui y =
   let info = (string_input "") in
   Appointments.add_app_info ~appo:apps (find_app_name y) info;
   draw_appointments ();
-  let app_lst = Appointments.to_list_app ~appo:apps [] in 
+  let app_lst = Appointments.to_list_alt ~appo:apps () in 
   draw_appo_lst app_lst
 
 (** [loc_gui y] prompts the user to add a location to the appointment at 
@@ -557,7 +551,7 @@ let loc_gui y =
   let loc = (string_input "") in
   Appointments.add_location ~appo:apps (find_app_name y) loc;
   draw_appointments ();
-  let app_lst = Appointments.to_list_app ~appo:apps [] in 
+  let app_lst = Appointments.to_list_alt ~appo:apps () in 
   draw_appo_lst app_lst
 
 (** [loop ()]  runs the GUI. It waits for the user to interact and calls the
