@@ -10,11 +10,11 @@ val draw_basic : unit -> unit
 (** [draw_appointments ()] is the basic window for appointments *)
 val draw_appointments : unit -> unit
 
-(** [string_input str] produces a string from anything that the user types 
+(** [string_input s] produces a string from anything that the user types 
     before pressing enter *)
 val string_input : string -> string 
 
-(** [view_category category] shows the [category] to-do list *)
+(** [view_category c] shows the to-do list of the category with name [c] *)
 val view_category : string -> unit
 
 (** [task_input ()] prompts the user to type in the information for a new task

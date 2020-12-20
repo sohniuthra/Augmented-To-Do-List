@@ -7,7 +7,6 @@ open Unix
    data for each task.
 *)
 
-(** The abstract type representing one task of the to-do list *)
 type task = {
   name : string;
   created_date : string;
@@ -15,7 +14,6 @@ type task = {
   priority : int;
 }
 
-(** The type representing a to-do list. *)
 type t = {
   c_name : string;
   task_list : task list; 

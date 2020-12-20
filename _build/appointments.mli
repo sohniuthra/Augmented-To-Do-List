@@ -1,10 +1,9 @@
 (** 
-   Representation of an appointment book
+   Representation of an appointment book.
 
    This module represents the data stored in a digital appointment book,
    including the data for each individual appointment.
 *)
-
 
 (** [app] is the type that represents a singular appointment, including
     all of the data that is associated with the appointment.*)
@@ -52,10 +51,11 @@ val empty_finder : unit -> app list ref
 val find_app_user : ?one:(app list ref) -> ?appo:(app list ref) -> 
   string -> unit
 
-(** [to_list_find creates a list representation with the specific user-desired
-    appointment from function [find_app_user t] and the data associated with 
-    it. *)
+(** [to_list_find l] creates a list representation with the specific 
+    user-desired appointment from function [find_app_user] and the data 
+    associated with it. [l] is the empty list the answer is
+    built from.*)
 val to_list_find : ?one:(app list ref) -> string list -> string list
 
-(** [to_list_alt ?appo ()] is a to_list function that works for the gui *)
+(** [to_list_alt ()] is a to_list function that works for the gui. *)
 val to_list_alt : ?appo:(app list ref) -> unit -> string list

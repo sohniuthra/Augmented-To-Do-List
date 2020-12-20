@@ -1,11 +1,10 @@
-To install the system, download it. Then, run make build and make clean.
+To install the system, download it. Then, one will have the option to run make 
+clean and make build.
+
 The system can be tested by running make test, which will run our test suite. 
 
 We used the following packages: ounit2, ANSITerminal
 
-The system can be interacted with in utop. Follow the directions that will 
-come up when you enter utop to use the to-do list. 
-
-To interact with the GUI, user must have XQuartz installed. Run make graphics 
-in the terminal and an XQuartz application will open with instructions on how 
-to use it.
+To interact with the GUI, user must have XQuartz and graphics installed. Run 
+make graphics in the terminal and an XQuartz application will open with 
+instructions on how to use it.

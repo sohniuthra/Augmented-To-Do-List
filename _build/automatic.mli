@@ -148,7 +148,6 @@ val reset_all_cat : ?cat:(t list ref) -> unit -> unit
 
 (** [to_list_auto c] is a list containing the same elements and the same 
     category name [c] as the category with name [c].
-
     Raises [CategoryNotFound c] if a category with name [cat_name] is not
     found in the list of categories. *)
 val to_list_auto : ?cat:(t list ref) -> string ->  string list

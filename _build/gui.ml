@@ -96,7 +96,6 @@ let draw_basic () =
   moveto 550 305;  draw_string "Priority";
   is_todo := true; moveto 10 320
 
-(** [view_category category] draws all the elements in [category] *)
 let view_category category = 
   draw_basic ();
   let lst = Manual.to_list ~cat:cat category in
@@ -104,7 +103,6 @@ let view_category category =
   draw_task_list ll;
   viewed_cat := category
 
-(** [draw_appointments ()] is the interface for appointments *)
 let draw_appointments () = 
   clear_graph (); set_color red; fill_rect 99 459 60 15; moveto 100 460;
   set_color black; draw_string "To-Do List"; set_color blue; 
@@ -114,7 +112,7 @@ let draw_appointments () =
   moveto 10 425; draw_string "Press c to complete an appointment"; 
   moveto 10 410; draw_string "Press d to delete an appointment";
   moveto 10 395;
-  draw_string "Click on the information or location field of an appontment to \
+  draw_string "Click on the information or location field of an appointment to \
                change it";
   moveto 520 460; set_color red; draw_string "Press q to quit";
   set_color black; moveto 10 365; draw_string "Name";
@@ -125,16 +123,12 @@ let draw_appointments () =
   is_todo := false;
   moveto 10 380
 
-(** [string_input str] produces a string from anything that the user types 
-    before pressing enter *)
 let rec string_input str =
   let e = wait_next_event [Key_pressed] in 
   if e.key <> '\r' 
   then string_input (str ^ (Char.escaped e.key))
   else str
 
-(** [task_input ()] prompts the user to input the information to create a new
-    task and then draws it and its category *)
 let task_input () =
   draw_basic (); set_color red; draw_string "Type the name of your category";
   let category = (string_input "") in
@@ -157,8 +151,6 @@ let task_input () =
         let cat_lst_lst = make_tll cat_lst_form category in
         draw_task_list cat_lst_lst); viewed_cat := category
 
-(** [complete_task_gui ()] prompts the user to type in the category and name
-    of a task they want to complete *) 
 let complete_task_gui () =
   draw_basic (); set_color red;
   draw_string "Type the category of the task you want to complete";
@@ -182,8 +174,6 @@ let complete_task_gui () =
         draw_task_list cat_lst_lst;
         viewed_cat := "Completed")
 
-(** [delete_task_gui ()] prompts the user to type in the category and name
-    of a task they want to delete *) 
 let delete_task_gui () =
   draw_basic (); set_color red;
   draw_string "Type the category of the task you want to delete";
@@ -204,8 +194,6 @@ let delete_task_gui () =
   draw_task_list cat_lst_lst;
   viewed_cat := category
 
-(** [draw_list ()] prompts the user to say what category they want to view and
-    then shows the list *)
 let draw_list () =
   draw_basic ();
   set_color red;
@@ -222,94 +210,105 @@ let draw_list () =
   draw_task_list cat_lst_lst;
   viewed_cat := category
 
-(** [sort_gui ()] allows the user to choose whether to sort by priority or date
-    and then sorts the category
-    NOTE: this function is over 20 lines because of the two different cases it 
-    covers; however, it is not too complicated for one function *)
+(** [priority_sort () is a helper function for [sort_gui ()]] *)
+let priority_sort () = 
+  draw_basic (); set_color red;
+  draw_string "Type the name of the category you want to sort";
+  let category = (string_input "") in draw_basic ();
+  Manual.sort_list ~cat:cat category "Priority";
+  let cat_lst_form = Manual.to_list ~cat:cat category in 
+  let cat_lst_lst = make_tll cat_lst_form category in
+  draw_task_list cat_lst_lst
+
+(** [date_sort () is a helper function for [sort_gui ()]] *)
+let date_sort () =
+  draw_basic (); set_color red;
+  draw_string "Type the name of the category you want to sort";
+  let category = (string_input "") in draw_basic ();
+  Manual.sort_list ~cat:cat category "Due Date";
+  let cat_lst_form = Manual.to_list ~cat:cat category in 
+  let cat_lst_lst = make_tll cat_lst_form category in
+  draw_task_list cat_lst_lst
+
 let sort_gui () = 
   moveto 10 320; set_color red;
   draw_string "To sort by priority, press p. To sort by due date, press d.";
   let e = wait_next_event [Key_pressed] in
-  let priority = if e.key = 'p' 
-    then (draw_basic (); set_color red;
-          draw_string "Type the name of the category you want to sort";
-          let category = (string_input "") in draw_basic ();
-          Manual.sort_list ~cat:cat category "Priority";
-          let cat_lst_form = Manual.to_list ~cat:cat category in 
-          let cat_lst_lst = make_tll cat_lst_form category in
-          draw_task_list cat_lst_lst)
-    else () in 
-  let date = if e.key = 'd' 
-    then (draw_basic (); set_color red;
-          draw_string "Type the name of the category you want to sort";
-          let category = (string_input "") in draw_basic ();
-          Manual.sort_list ~cat:cat category "Due Date";
-          let cat_lst_form = Manual.to_list ~cat:cat category in 
-          let cat_lst_lst = make_tll cat_lst_form category in
-          draw_task_list cat_lst_lst)
-    else () in
-  priority; date
+  match e.key with
+  | 'p' -> priority_sort ()
+  | 'd' -> date_sort ()
+  | _ -> ()
 
-(** [made_auto ()] asks the user for what kind of automatic list they want to
-    make and then creates and draws it.
-    NOTE: this function is over 20 lines because of the five different cases it 
-    covers; however, it is not too complicated for one function*)
+(** [make_auto_car ()] is a helpter function for [make_auto ()] *)
+let make_auto_car () = 
+  make_car_auto ~cat:auto_cat (); 
+  let car_list = to_list_auto ~cat:auto_cat "Car Tasks" in 
+  let car_ll = make_tll car_list "Car Tasks" in 
+  draw_basic ();
+  draw_task_list car_ll;
+  viewed_cat := "Car Tasks"
+
+(** [make_auto_school ()] is a helpter function for [make_auto ()] *)
+let make_auto_school () =
+  make_school_auto ~cat:auto_cat (); 
+  let school_list = to_list_auto ~cat:auto_cat "School Tasks" in 
+  let school_ll = make_tll school_list "School Tasks" in 
+  draw_basic ();
+  draw_task_list school_ll;
+  viewed_cat := "School Tasks"
+
+(** [make_auto_household ()] is a helpter function for [make_auto ()] *)
+let make_auto_household () = 
+  make_household_auto ~cat:auto_cat (); 
+  let house_list = to_list_auto ~cat:auto_cat "Household Tasks" in 
+  let house_ll = make_tll house_list "Household Tasks" in 
+  draw_basic ();
+  draw_task_list house_ll;
+  viewed_cat := "Household Tasks"
+
+(** [make_auto_shopping ()] is a helpter function for [make_auto ()] *)
+let make_auto_shopping () =
+  make_shopping_auto ~cat:auto_cat (); 
+  let shopping_list = to_list_auto ~cat:auto_cat "Shopping Tasks" in 
+  let shopping_ll = make_tll shopping_list "Shopping Tasks" in 
+  draw_basic ();
+  draw_task_list shopping_ll;
+  viewed_cat := "Shopping Tasks"
+
+(** [make_auto_pandemic ()] is a helpter function for [make_auto ()] *)
+let make_auto_pandemic () =
+  make_pandemic_auto ~cat:auto_cat (); 
+  let pandemic_list = to_list_auto ~cat:auto_cat "Pandemic Tasks" in 
+  let pandemic_ll = make_tll pandemic_list "Pandemic Tasks" in 
+  draw_basic ();
+  draw_task_list pandemic_ll;
+  viewed_cat := "Pandemic Tasks"
+
+(** [make_auto_all ()] is a helpter function for [make_auto ()] *)
+let make_auto_all () = 
+  make_auto ~cat:auto_cat (); 
+  let all_list = to_list_auto ~cat:auto_cat 
+      "All Tasks" in 
+  let all_ll = make_tll all_list "All Tasks" 
+  in 
+  draw_basic ();
+  draw_task_list all_ll;
+  viewed_cat := "All Tasks"
+
 let make_auto () =
   set_color red;
   moveto 10 320;
   draw_string "Type what kind of automatic list you want: car, school, \
                household, shopping, pandemic";
   let auto_choice = string_input "" in 
-  if auto_choice = "car" then (make_car_auto ~cat:auto_cat (); 
-                               let car_list = to_list_auto ~cat:auto_cat 
-                                   "Car Tasks" in 
-                               let car_ll = make_tll car_list "Car Tasks" in 
-                               draw_basic ();
-                               draw_task_list car_ll;
-                               viewed_cat := "Car Tasks")
-  else if auto_choice = "school" then (make_school_auto ~cat:auto_cat (); 
-                                       let school_list = 
-                                         to_list_auto ~cat:auto_cat 
-                                           "School Tasks" in 
-                                       let school_ll = make_tll school_list 
-                                           "School Tasks" in 
-                                       draw_basic ();
-                                       draw_task_list school_ll;
-                                       viewed_cat := "School Tasks")
-  else if auto_choice = "household" then (make_household_auto ~cat:auto_cat (); 
-                                          let house_list = to_list_auto 
-                                              ~cat:auto_cat "Household Tasks" in 
-                                          let house_ll = make_tll house_list 
-                                              "Household Tasks" in 
-                                          draw_basic ();
-                                          draw_task_list house_ll;
-                                          viewed_cat := "Household Tasks")
-  else if auto_choice = "shopping" then (make_shopping_auto ~cat:auto_cat (); 
-                                         let shopping_list = to_list_auto 
-                                             ~cat:auto_cat "Shopping Tasks" in 
-                                         let shopping_ll = make_tll 
-                                             shopping_list "Shopping Tasks" in 
-                                         draw_basic ();
-                                         draw_task_list shopping_ll;
-                                         viewed_cat := "Shopping Tasks")
-  else if auto_choice = "pandemic" then (make_pandemic_auto ~cat:auto_cat (); 
-                                         let pandemic_list = to_list_auto 
-                                             ~cat:auto_cat "Pandemic Tasks" in 
-                                         let pandemic_ll = make_tll 
-                                             pandemic_list "Pandemic Tasks" in 
-                                         draw_basic ();
-                                         draw_task_list pandemic_ll;
-                                         viewed_cat := "Pandemic Tasks")
-  else if auto_choice = "all" then (make_auto ~cat:auto_cat (); 
-                                    let all_list = to_list_auto ~cat:auto_cat 
-                                        "All Tasks" in 
-                                    let all_ll = make_tll all_list "All Tasks" 
-                                    in 
-                                    draw_basic ();
-                                    draw_task_list all_ll;
-                                    viewed_cat := "All Tasks")
-  else draw_basic ()
-
+  match auto_choice with
+  | "car" -> make_auto_car ()
+  | "school" -> make_auto_school ()
+  | "household" -> make_auto_household ()
+  | "shopping" -> make_auto_shopping ()
+  | "pandemic" -> make_auto_pandemic ()
+  | "all" -> make_auto_all ()
+  | _ -> draw_basic ()
 
 (** [find_task y] returns the task at location [y] on the screen *)
 let find_task y : string list = 
@@ -327,8 +326,6 @@ let find_task y : string list =
     let n = 19 - plc in 
     List.nth cat_lst_lst n
 
-(** [change_dd y] prompts the user to say the new due date of the task they 
-    clicked on, updates it, and shows the category with the due date updated *)
 let change_dd y = 
   draw_basic (); moveto 10 320; set_color red;
   draw_string "What do you want the new due date to be?";
@@ -338,9 +335,11 @@ let change_dd y =
   if !viewed_cat = "Car Tasks" || !viewed_cat = "School Tasks" || 
      !viewed_cat = "Household Tasks" || !viewed_cat = "Shopping Tasks" || 
      !viewed_cat = "Pandemic Tasks" 
-  then (Automatic.change_due_auto ~cat:auto_cat (List.nth task_changing 0) 
-          (List.nth task_changing 1) new_dd;
-        cat_lst_form := Automatic.to_list_auto ~cat:auto_cat !viewed_cat)
+  then begin
+    Automatic.change_due_auto ~cat:auto_cat (List.nth task_changing 0) 
+      (List.nth task_changing 1) new_dd;
+    cat_lst_form := Automatic.to_list_auto ~cat:auto_cat !viewed_cat
+  end
   else (change_due_date ~cat:cat (List.nth task_changing 0) 
           (List.nth task_changing 1) new_dd;
         cat_lst_form := Manual.to_list ~cat:cat !viewed_cat);
@@ -348,8 +347,6 @@ let change_dd y =
   draw_basic ();
   draw_task_list cat_lst_lst 
 
-(** [change_pri y] prompts the user to say the new priority of the task they 
-    clicked on, updates it, and shows the category with the priority updated *)
 let change_pri y = 
   draw_basic (); moveto 10 320; set_color red;
   draw_string "What do you want the new priority to be?";
@@ -359,9 +356,11 @@ let change_pri y =
   if !viewed_cat = "Car Tasks" || !viewed_cat = "School Tasks" || 
      !viewed_cat = "Household Tasks" || !viewed_cat = "Shopping Tasks" || 
      !viewed_cat = "Pandemic Tasks" 
-  then (Automatic.change_priority_auto ~cat:auto_cat (List.nth task_changing 0) 
-          (List.nth task_changing 1) (int_of_string new_pri);
-        cat_lst_form := Automatic.to_list_auto ~cat:auto_cat !viewed_cat)
+  then begin 
+    Automatic.change_priority_auto ~cat:auto_cat (List.nth task_changing 0) 
+      (List.nth task_changing 1) (int_of_string new_pri);
+    cat_lst_form := Automatic.to_list_auto ~cat:auto_cat !viewed_cat
+  end
   else (change_priority ~cat:cat (List.nth task_changing 0) 
           (List.nth task_changing 1) (int_of_string new_pri);
         cat_lst_form := Manual.to_list ~cat:cat !viewed_cat);
@@ -369,8 +368,6 @@ let change_pri y =
   draw_basic ();
   draw_task_list cat_lst_lst 
 
-(** [change_name y] prompts the user to say the new name of the task they 
-    clicked on, updates it, and shows the category with the name updated *)
 let change_name y =
   draw_basic (); moveto 10 320; set_color red;
   draw_string "What do you want the new name to be?";
@@ -380,9 +377,11 @@ let change_name y =
   if !viewed_cat = "Car Tasks" || !viewed_cat = "School Tasks" || 
      !viewed_cat = "Household Tasks" || !viewed_cat = "Shopping Tasks" || 
      !viewed_cat = "Pandemic Tasks" 
-  then (Automatic.change_name_auto ~cat:auto_cat (List.nth task_changing 0) 
-          (List.nth task_changing 1) new_dd;
-        cat_lst_form := Automatic.to_list_auto ~cat:auto_cat !viewed_cat)
+  then begin 
+    Automatic.change_name_auto ~cat:auto_cat (List.nth task_changing 0) 
+      (List.nth task_changing 1) new_dd;
+    cat_lst_form := Automatic.to_list_auto ~cat:auto_cat !viewed_cat
+  end
   else (change_name ~cat:cat (List.nth task_changing 0) 
           (List.nth task_changing 1) new_dd;
         cat_lst_form := Manual.to_list ~cat:cat !viewed_cat);
@@ -390,53 +389,59 @@ let change_name y =
   draw_basic ();
   draw_task_list cat_lst_lst 
 
-(** [reset_gui_auto ()] asks the user what automatic list they want to reset
-    and then resets and draws the reset list.
-    NOTE: this function is over 20 lines because of the five different cases it 
-    covers; however, it is not too complicated for one function *)
+(** [reset_car ()] is a helper function for [reset_gui_auto ()] *)
+let reset_car () = 
+  reset_car ~cat:auto_cat (); 
+  let car_list = 
+    to_list_auto ~cat:auto_cat "Car Tasks" in 
+  let car_ll = make_tll car_list "Car Tasks" in 
+  draw_basic (); draw_task_list car_ll;
+  viewed_cat := "Car Tasks"
+
+(** [reset_school ()] is a helper function for [reset_gui_auto ()] *)
+let reset_school () = 
+  reset_school ~cat:auto_cat (); 
+  let school_list = to_list_auto ~cat:auto_cat "School Tasks" in 
+  let school_ll = make_tll school_list "School Tasks" in 
+  draw_basic (); draw_task_list school_ll;
+  viewed_cat := "School Tasks"
+
+(** [reset_household ()] is a helper function for [reset_gui_auto ()] *)
+let reset_household () = 
+  reset_household ~cat:auto_cat (); 
+  let house_list = to_list_auto ~cat:auto_cat "Household Tasks" in 
+  let house_ll = make_tll house_list "Household Tasks" in 
+  draw_basic (); draw_task_list house_ll;
+  viewed_cat := "Household Tasks"
+
+(** [reset_shopping ()] is a helper function for [reset_gui_auto ()] *)
+let reset_shopping () = 
+  reset_shopping ~cat:auto_cat (); 
+  let shopping_list = to_list_auto ~cat:auto_cat "Shopping Tasks" in 
+  let shopping_ll = make_tll shopping_list "Shopping Tasks" in 
+  draw_basic (); draw_task_list shopping_ll;
+  viewed_cat := "Shopping Tasks"
+
+(** [reset_pandemic ()] is a helper function for [reset_gui_auto ()] *)
+let reset_pandemic () = 
+  reset_pandemic ~cat:auto_cat (); 
+  let pandemic_list = to_list_auto ~cat:auto_cat "Pandemic Tasks" in 
+  let pandemic_ll = make_tll pandemic_list "Pandemic Tasks" in 
+  draw_basic (); draw_task_list pandemic_ll;
+  viewed_cat := "Pandemic Tasks"
+
 let reset_gui_auto () = 
   draw_basic (); moveto 10 320; set_color red;
   draw_string "What do you want to reset? You may choose car, school, \
                household, shopping, or pandemic";
   let reset = string_input "" in 
-  if reset = "car" then (reset_car ~cat:auto_cat (); 
-                         let car_list = 
-                           to_list_auto ~cat:auto_cat "Car Tasks" in 
-                         let car_ll = make_tll car_list "Car Tasks" in 
-                         draw_basic (); draw_task_list car_ll;
-                         viewed_cat := "Car Tasks")
-  else if reset = "school" then (reset_school ~cat:auto_cat (); 
-                                 let school_list = 
-                                   to_list_auto ~cat:auto_cat "School Tasks" in 
-                                 let school_ll = 
-                                   make_tll school_list "School Tasks" in 
-                                 draw_basic (); draw_task_list school_ll;
-                                 viewed_cat := "School Tasks")
-  else if reset = "household" then (reset_household ~cat:auto_cat (); 
-                                    let house_list = 
-                                      to_list_auto ~cat:auto_cat 
-                                        "Household Tasks" in 
-                                    let house_ll = 
-                                      make_tll house_list "Household Tasks" in 
-                                    draw_basic (); draw_task_list house_ll;
-                                    viewed_cat := "Household Tasks")
-  else if reset = "shopping" then (reset_shopping ~cat:auto_cat (); 
-                                   let shopping_list = 
-                                     to_list_auto ~cat:auto_cat 
-                                       "Shopping Tasks" in 
-                                   let shopping_ll = 
-                                     make_tll shopping_list "Shopping Tasks" in 
-                                   draw_basic (); draw_task_list shopping_ll;
-                                   viewed_cat := "Shopping Tasks")
-  else if reset = "pandemic" then (reset_pandemic ~cat:auto_cat (); 
-                                   let pandemic_list = 
-                                     to_list_auto ~cat:auto_cat 
-                                       "Pandemic Tasks" in 
-                                   let pandemic_ll = 
-                                     make_tll pandemic_list "Pandemic Tasks" in 
-                                   draw_basic (); draw_task_list pandemic_ll;
-                                   viewed_cat := "Pandemic Tasks")
-  else draw_basic ()
+  match reset with
+  | "car" -> reset_car ()
+  | "school" -> reset_school ()
+  | "household" -> reset_household ()
+  | "shopping" -> reset_shopping ()
+  | "pandemic" -> reset_pandemic ()
+  | _ -> draw_basic ()
 
 (** [draw_appo a] draws [a] *)
 let rec draw_appo a =
@@ -466,9 +471,6 @@ let rec draw_appo_lst a =
     moveto 10 (current_y () - 15); draw_appo_lst tail
   | _ -> ()
 
-(** [new_appo ()] prompts the user to input the necessary information to create
-    a new appointment and then creates and displays that appointment with those 
-    that are already created *)
 let new_appo () = 
   draw_appointments (); set_color red; 
   draw_string "Type the name of your appointment"; 
@@ -525,8 +527,6 @@ let find_app_name y =
     let n = 23 - plc in 
     List.nth app_lst (n * 5)
 
-(** [info_gui y] prompts the user to add information to the appointment at 
-    location [y] they clicked on *)
 let info_gui y =
   draw_appointments ();
   set_color red;
@@ -537,8 +537,6 @@ let info_gui y =
   let app_lst = Appointments.to_list_alt ~appo:apps () in 
   draw_appo_lst app_lst
 
-(** [loc_gui y] prompts the user to add a location to the appointment at 
-    location [y] they clicked on *)
 let loc_gui y =
   draw_appointments ();
   set_color red;
@@ -556,62 +554,43 @@ let loc_gui y =
     complicated of a function. *)
 let rec loop () = 
   let e = wait_next_event [Key_pressed; Mouse_motion; Button_down] in
-
   let new_task = if e.key = 't' && !is_todo then task_input () else () in
-
   let comp_task = if e.key = 'c' && !is_todo then complete_task_gui ()
     else () in
-
   let del_task = if e.key = 'd' && !is_todo then delete_task_gui () else () in
-
   let view = if e.key = 'v' && !is_todo then draw_list () else () in
-
   let sort = if e.key = 's' && !is_todo then sort_gui () else () in 
-
   let auto = if e.key = 'a' && !is_todo then make_auto () else () in 
-
   let reset = if e.key = 'r' && !is_todo then reset_gui_auto () else () in 
-
   let switch_to_appo = if e.mouse_x > 299 && e.mouse_x < 371 && e.mouse_y > 459 
                           && e.mouse_y < 474 && e.button && !is_todo
     then draw_appointments () in 
-
   let switch_to_todo = if e.mouse_x > 99 && e.mouse_x < 169 && e.mouse_y > 459 
                           && e.mouse_y < 474 && e.button && (not !is_todo)
     then draw_basic () in 
-
   let click_due = if e.mouse_x > 425 && e.mouse_x < 520 && e.mouse_y < 335 
                      && e.button && !is_todo
     then change_dd (e.mouse_y) in 
-
   let click_pri = if e.mouse_x > 550 && e.mouse_x < 640 && e.mouse_y < 335 
                      && e.button && !is_todo
     then change_pri (e.mouse_y) in 
-
   let change_name = if e.mouse_x > 149 && e.mouse_x < 301 && e.mouse_y < 335 
                        && e.button && !is_todo 
     then change_name (e.mouse_y) in
-
   let new_app = if e.key = 'n' && (not !is_todo) then new_appo () else () in 
-
   let complete_app = if e.key = 'c' && (not !is_todo) then complete_app_gui ()
     else () in 
-
   let delete_app = if e.key = 'd' && (not !is_todo) then delete_app_gui ()
     else () in 
-
   let add_info = if e.mouse_x > 424 && e.mouse_x < 640 && e.mouse_y < 365 
                     && e.button && (not !is_todo) 
     then info_gui (e.mouse_y) in
-
   let add_loc = if e.mouse_x > 299 && e.mouse_x < 425 && e.mouse_y < 365 
                    && e.button && (not !is_todo) 
     then loc_gui (e.mouse_y) in
-
   new_task; comp_task; del_task; view; sort; auto; reset; switch_to_appo;
   switch_to_todo; click_due; click_pri; change_name; new_app; complete_app;
   delete_app; add_info; add_loc;
-
   if e.key <> 'q' then loop () else ()
 
 (** [open_window] opens an empty window *)

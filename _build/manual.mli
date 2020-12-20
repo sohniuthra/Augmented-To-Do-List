@@ -5,10 +5,10 @@
    data for each task.
 *)
 
-(** The abstract type representing one task of the to-do list *)
+(** The abstract type representing one task of the manual to-do list *)
 type task
 
-(** The abstract type representing a to-do list. *)
+(** The abstract type representing a manual to-do list. *)
 type t 
 
 (** Raised when an invalid task is encountered. *)
@@ -65,7 +65,7 @@ val complete_task : ?cat:(t list ref) -> string -> string -> unit
     Raises [TaskNotFound t] if a task with name [t] is not found in the 
     category with name [c]. 
     Raises [CategoryNotFound c] if a category with name [c] is not found
-    in the list of categories *)
+    in the list of categories. *)
 val delete_task : ?cat:(t list ref) -> string -> string -> unit
 
 (** [to_list c] is a category with name [c] in a list representation (it is a
@@ -88,10 +88,10 @@ val change_name : ?cat:(t list ref) -> string -> string ->  string -> unit
     Raises [TaskNotFound t] if a task with name [t] is not found in the 
     category with name [c]. 
     Raises [CategoryNotFound c] if a category with name [c] is not found
-    in the list of categories*)
+    in the list of categories. *)
 val change_due_date : ?cat:(t list ref) -> string -> string ->  string -> unit
 
-(** [change_priority c t p] changes the priority of task with [t] in the 
+(** [change_priority c t p] changes the priority of task with name [t] in the 
     category with name [c] from old priority to [p]. 
     Raises [TaskNotFound t] if a task with name [t] is not found in the 
     category with name [c]. 

@@ -1,0 +1,135 @@
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:1:Adding 2 tasks to the General category.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:1:Adding 2 tasks to the General category is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:1:Adding 2 tasks to the General category.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:3:Adding 3 tasks to the School category.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:3:Adding 3 tasks to the School category is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:3:Adding 3 tasks to the School category.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:5:Also adding 2 tasks to the Careers category.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:5:Also adding 2 tasks to the Careers category is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:5:Also adding 2 tasks to the Careers category.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:6:Sorting General by priority with one task.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:6:Sorting General by priority with one task is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:6:Sorting General by priority with one task.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:8:Sorting General by priority with all tasks containing the 
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:    same priorities.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:8:Sorting General by priority with all tasks containing the 
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:    same priorities is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:8:Sorting General by priority with all tasks containing the 
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:    same priorities.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:10:Sorting General by priority with some tasks containing the 
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:    same priorities.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:10:Sorting General by priority with some tasks containing the 
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:    same priorities is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:10:Sorting General by priority with some tasks containing the 
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:    same priorities.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:12:Sorting General by due date with each task due different 
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:    years.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:12:Sorting General by due date with each task due different 
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:    years is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:12:Sorting General by due date with each task due different 
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:    years.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:14:Sorting General by due date with each task due different days 
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:    of the same month and same years.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:14:Sorting General by due date with each task due different days 
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:    of the same month and same years is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:14:Sorting General by due date with each task due different days 
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:    of the same month and same years.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:16:Completed should contain watch lecture.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:16:Completed should contain watch lecture is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:16:Completed should contain watch lecture.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:19:General should not contain watch basketball game.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:19:General should not contain watch basketball game is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:19:General should not contain watch basketball game.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:21:Completed should contain fill out OMM and watch basketball
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:     game.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:21:Completed should contain fill out OMM and watch basketball
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:     game is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:21:Completed should contain fill out OMM and watch basketball
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:     game.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:22:General should not contain watch lecture.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:22:General should not contain watch lecture is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:22:General should not contain watch lecture.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:25:School should not contain fill out OMM.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:25:School should not contain fill out OMM is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:25:School should not contain fill out OMM.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:27:fill out OMM in School should now be Fill Out OMM and do 
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:     lab in School should now be Do Lab.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:27:fill out OMM in School should now be Fill Out OMM and do 
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:     lab in School should now be Do Lab is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:27:fill out OMM in School should now be Fill Out OMM and do 
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:     lab in School should now be Do Lab.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:29:wash dishes in General should now be named Wash Dishes.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:29:wash dishes in General should now be named Wash Dishes is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:29:wash dishes in General should now be named Wash Dishes.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:31:fill out OMM in School should now have priority 3 and do 
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:     lab in School should now have priority 1.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:31:fill out OMM in School should now have priority 3 and do 
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:     lab in School should now have priority 1 is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:31:fill out OMM in School should now have priority 3 and do 
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:     lab in School should now have priority 1.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:33:wash dishes in General should now have priority 1.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:33:wash dishes in General should now have priority 1 is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:33:wash dishes in General should now have priority 1.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:35:fill out OMM in School should now be due 10/27/20 and do 
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:     lab in school should now be due 10/25/20.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:35:fill out OMM in School should now be due 10/27/20 and do 
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:     lab in school should now be due 10/25/20 is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:35:fill out OMM in School should now be due 10/27/20 and do 
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:     lab in school should now be due 10/25/20.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:37:wash dishes in General should now be due 10/30/20.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:37:wash dishes in General should now be due 10/30/20 is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:37:wash dishes in General should now be due 10/30/20.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:39:the priority of Make Masks in Pandemic Tasks has changed 
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:    from 4 to 5, and the priority of Buy Disenfectant Spray has changed from 2
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:    to 3.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:39:the priority of Make Masks in Pandemic Tasks has changed 
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:    from 4 to 5, and the priority of Buy Disenfectant Spray has changed from 2
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:    to 3 is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:39:the priority of Make Masks in Pandemic Tasks has changed 
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:    from 4 to 5, and the priority of Buy Disenfectant Spray has changed from 2
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:    to 3.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:42:Change name of a task in School cateogry.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:42:Change name of a task in School cateogry is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:42:Change name of a task in School cateogry.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:43:Change name of a task in Household category and change
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:    due date of another task.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:43:Change name of a task in Household category and change
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:    due date of another task is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:43:Change name of a task in Household category and change
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I:    due date of another task.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:45:Delete task from Pandemic category.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:45:Delete task from Pandemic category is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:45:Delete task from Pandemic category.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:47:Reset school category after a change.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:47:Reset school category after a change is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:47:Reset school category after a change.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:49:Reset shopping category after a change.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:49:Reset shopping category after a change is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:49:Reset shopping category after a change.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:51:Making sure car category is reset.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:51:Making sure car category is reset is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:51:Making sure car category is reset.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:53:Making sure household category is reset.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:53:Making sure household category is reset is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:53:Making sure household category is reset.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:55:Making sure pandemic category is reset.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:55:Making sure pandemic category is reset is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:55:Making sure pandemic category is reset.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:57:task should no longer be in the school category.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:57:task should no longer be in the school category is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:57:task should no longer be in the school category.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:59:car task should no longer be in car category.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:59:car task should no longer be in car category is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:59:car task should no longer be in car category.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:61:both tasks should be in the completed category.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:61:both tasks should be in the completed category is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:61:both tasks should be in the completed category.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:63:Apps are added to appointment list.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:63:Apps are added to appointment list is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:63:Apps are added to appointment list.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:65:Apps are deleted from list.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:65:Apps are deleted from list is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:65:Apps are deleted from list.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Start test test suite for all functionality:67:Add location to apps.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: Test test suite for all functionality:67:Add location to apps is successful.
+2020-12-20T20:17:06+00:00 Melissas-MacBook-Pro.local#02 I: End test test suite for all functionality:67:Add location to apps.
