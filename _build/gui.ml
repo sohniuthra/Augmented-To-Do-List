@@ -20,6 +20,9 @@ let rec sep_tasks (lst : 'a list) (tsklst : 'a list list) (currtsk : 'a list) =
     then sep_tasks t (currtsk :: tsklst) [h] 
     else sep_tasks t tsklst (currtsk @ [h]) 
 
+(** [sep_tasks_w_cat lst tsklst currtsk] takes list [lst] and separates it into 
+    tasks in [tsklst]. [lst] is a list of tasks with the category before each 
+    task *)
 let rec sep_tasks_w_cat (lst : 'a list) (tsklst : 'a list list) currtsk = 
   match lst with 
   | [] -> (currtsk :: tsklst)
@@ -27,6 +30,8 @@ let rec sep_tasks_w_cat (lst : 'a list) (tsklst : 'a list list) currtsk =
     then sep_tasks_w_cat t (currtsk :: tsklst) [h] 
     else sep_tasks_w_cat t tsklst (currtsk @ [h]) 
 
+(** [add_cat tll cat acc] adds [cat] to the beginning of every element of 
+    [tll] *)
 let rec add_cat tll cat acc = 
   match tll with 
   | [] -> acc 
@@ -43,6 +48,7 @@ let rec make_tll tlst cat =
   let wcat = add_cat separated [cat] [] in 
   sep_tasks_w_cat wcat [] []
 
+(** [draw_task t] draws [t] *)
 let rec draw_task t =
   if current_y () > 290 then moveto 10 290; 
   let y = current_y () in  
@@ -60,6 +66,7 @@ let rec draw_task t =
     draw_string p;
   | _ -> ()
 
+(** [draw_task_list tlst] draws each element of [tlst] on a new line *)
 let rec draw_task_list tlst = 
   set_color black;
   match tlst with 
@@ -68,7 +75,7 @@ let rec draw_task_list tlst =
 
 (** [draw_basic ()] is the basic window that opens when the application opens. 
     It is the interface for the to-do list *) 
-let rec draw_basic () =
+let draw_basic () =
   clear_graph (); set_color blue; fill_rect 99 459 60 15; moveto 100 460;
   set_color white; draw_string "To-Do List"; set_color red; 
   fill_rect 299 459 72 15; moveto 300 460; set_color black; 
@@ -90,7 +97,8 @@ let rec draw_basic () =
   moveto 550 305;  draw_string "Priority";
   is_todo := true; moveto 10 320
 
-and view_category category = 
+(** [view_category category] draws all the elements in [category] *)
+let view_category category = 
   draw_basic ();
   let lst = Manual.to_list ~cat:cat category in
   let ll = make_tll lst category in 
@@ -130,6 +138,8 @@ let rec string_input str =
 let draw_int i =
   draw_string (string_of_int i)
 
+(** [task_input ()] prompts the user to input the information to create a new
+    task and then draws it and its category *)
 let task_input () =
   draw_basic (); set_color red; draw_string "Type the name of your category";
   let category = (string_input "") in
@@ -194,27 +204,16 @@ let delete_task_gui () =
      draw_task_list cat_lst_lstm);
   viewed_cat := category
 
-let rec view_all_helper cat_list = 
-  match cat_list with 
-  | [] -> ()
-  | h::t -> failwith "need a way to get the cat name"
-
-let view_all_categories () = 
-  let cat_list = !cat in 
-  view_all_helper cat_list
-
-(** [draw_list ()] shows the list *)
+(** [draw_list ()] prompts the user to say what category they want to view and
+    then shows the list *)
 let draw_list () =
   draw_basic ();
   set_color red;
-  draw_string "Type the category of the list you want to view. If you want to \
-               view all lists, type all (NOT IMPLEMENTED IN GUI YET)";
+  draw_string "Type the category of the list you want to view.";
   let category = (string_input "") in 
-  if category = "all" 
-  then view_all_categories ()
-  else if category = "Car Tasks" || category = "School Tasks" || 
-          category = "Household Tasks" || category = "Shopping Tasks" || 
-          category = "Pandemic Tasks"
+  if category = "Car Tasks" || category = "School Tasks" || 
+     category = "Household Tasks" || category = "Shopping Tasks" || 
+     category = "Pandemic Tasks"
   then (let cat_lst_form = Automatic.to_list_auto ~cat:auto_cat category in 
         let cat_lst_lst = make_tll cat_lst_form category in
         draw_task_list cat_lst_lst)
@@ -311,6 +310,7 @@ let make_auto () =
                                     viewed_cat := "All Tasks")
   else draw_basic ()
 
+(** [find_task y] returns the task at location [y] on the screen *)
 let find_task y : string list = 
   if !viewed_cat = "Car Tasks" || !viewed_cat = "School Tasks" || 
      !viewed_cat = "Household Tasks" || !viewed_cat = "Shopping Tasks" || 
@@ -332,6 +332,8 @@ let find_task y : string list =
           let n = 19 - plc in 
           List.nth cat_lst_lst n)
 
+(** [change_dd y] prompts the user to say the new due date of the task they 
+    clicked on, updates it, and shows the category with the due date updated *)
 let change_dd y = 
   draw_basic (); moveto 10 320; set_color red;
   draw_string "What do you want the new due date to be?";
@@ -353,6 +355,8 @@ let change_dd y =
         draw_basic ();
         draw_task_list cat_lst_lst)
 
+(** [change_pri y] prompts the user to say the new priority of the task they 
+    clicked on, updates it, and shows the category with the priority updated *)
 let change_pri y = 
   draw_basic (); moveto 10 320; set_color red;
   draw_string "What do you want the new priority to be?";
@@ -374,6 +378,8 @@ let change_pri y =
         draw_basic ();
         draw_task_list cat_lst_lst)
 
+(** [change_name y] prompts the user to say the new name of the task they 
+    clicked on, updates it, and shows the category with the name updated *)
 let change_name y =
   draw_basic (); moveto 10 320; set_color red;
   draw_string "What do you want the new name to be?";
@@ -443,7 +449,7 @@ let reset_gui_auto () =
                                    viewed_cat := "Pandemic Tasks")
   else draw_basic ()
 
-
+(** [draw_appo a] draws [a] *)
 let rec draw_appo a =
   if current_y () > 350 then moveto 10 350; 
   let y = current_y () in  
@@ -462,6 +468,7 @@ let rec draw_appo a =
     draw_string n;
   | _ -> ()
 
+(** [draw_appo_lst a] draws each appointment in [a] on a new line *)
 let rec draw_appo_lst a =
   set_color black;
   match a with 
@@ -470,6 +477,9 @@ let rec draw_appo_lst a =
     moveto 10 (current_y () - 15); draw_appo_lst tail
   | _ -> ()
 
+(** [new_appo ()] prompts the user to input the necessary information to create
+    a new appointment and then creates and displays that appointment with those 
+    that are already created *)
 let new_appo () = 
   draw_appointments (); set_color red; 
   draw_string "Type the name of your appointment"; 
@@ -492,6 +502,8 @@ let new_appo () =
   let app_lst = Appointments.to_list_app ~appo:apps [] in 
   draw_appo_lst app_lst
 
+(** [complete_app_gui ()] prompts the user to say what appointment they want
+    to complete and draws the updated appointment list *)
 let complete_app_gui () = 
   draw_appointments ();
   set_color red;
@@ -502,6 +514,8 @@ let complete_app_gui () =
   let app_lst = Appointments.to_list_app ~appo:apps [] in 
   draw_appo_lst app_lst
 
+(** [delete_app_gui ()] prompts the user to say what appointment they want
+    to delete and draws the updated appointment list *)
 let delete_app_gui () = 
   draw_appointments ();
   set_color red;
@@ -512,6 +526,7 @@ let delete_app_gui () =
   let app_lst = Appointments.to_list_app ~appo:apps [] in 
   draw_appo_lst app_lst
 
+(** [find_app_name y] returns the name of the appointment at location [y] *)
 let find_app_name y = 
   let app_lst = Appointments.to_list_app ~appo:apps [] in 
   let num_apps = (List.length app_lst) / 5 in 
@@ -521,6 +536,8 @@ let find_app_name y =
     let n = 23 - plc in 
     List.nth app_lst (n * 5)
 
+(** [info_gui y] prompts the user to add information to the appointment at 
+    location [y] they clicked on *)
 let info_gui y =
   draw_appointments ();
   set_color red;
@@ -531,6 +548,8 @@ let info_gui y =
   let app_lst = Appointments.to_list_app ~appo:apps [] in 
   draw_appo_lst app_lst
 
+(** [loc_gui y] prompts the user to add a location to the appointment at 
+    location [y] they clicked on *)
 let loc_gui y =
   draw_appointments ();
   set_color red;
@@ -609,6 +628,7 @@ let rec loop () =
 (** [open_window] opens an empty window *)
 let open_window = open_graph " 640x480"; set_window_title "To-Do List"
 
+(** Runs the gui *)
 let () = 
   open_window;
   draw_basic ();
